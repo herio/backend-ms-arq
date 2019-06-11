@@ -5,6 +5,28 @@ spring:
   #necessário para permitir fazer override em classes springsecurity
   main:
     allow-bean-definition-overriding: true
+  #bd
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/USUARIO
+  jpa:
+    properties:
+      hibernate:
+        default_schema: public
+        format_sql: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  #flyway
+  flyway:
+    user: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/USUARIO
+    schemas: public
     
 #management config - necessario para liberar acesso spring-security
 management:
