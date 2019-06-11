@@ -1,0 +1,27 @@
+#spring appname - necessário para acessar <appname>.properties via spring-cloud
+spring:
+  application:
+    name: arq-ms-mobile
+  #necessário para permitir fazer override em classes springsecurity
+  main:
+    allow-bean-definition-overriding: true
+    
+#management config - necessario para liberar acesso spring-security
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    servlet:
+      context-path: /management
+  
+#spring-boot infra - contexto e porta
+server:
+  port: ${port:8211}
+
+#config para rodar localmente
+logging:
+  file: app.log
+integracao:
+  urlRSMPush: http://localhost:8080/mobile-push-RS/rest

@@ -1,0 +1,79 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.0.RELEASE'
+		springCloudVersion = '2.1.0.RELEASE'
+		springSecurityVersion = '5.0.4.RELEASE'
+
+		repos = {
+			mavenLocal()
+			mavenCentral()
+		}
+	}
+
+	repositories project.repos
+}
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+
+group = 'br.com.herio'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories project.repos
+
+dependencies {
+	//spring-boot
+	compile ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+	compile ("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+	compile ("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+
+	//spring-cloud - feign
+	compile ("org.springframework.cloud:spring-cloud-starter-openfeign:${springCloudVersion}")
+
+	//spring security
+    compile ("org.springframework.security:spring-security-core:${springSecurityVersion}")
+	compile ("org.springframework.security:spring-security-config:${springSecurityVersion}")
+	compile ("org.springframework.security:spring-security-web:${springSecurityVersion}")
+	
+	//groovy
+	compile ('org.codehaus.groovy:groovy-all:2.4.15')
+
+    //swagger    
+	compile ('io.springfox:springfox-swagger2:2.9.2')
+	compile ('io.springfox:springfox-swagger-ui:2.9.2')
+    //necessário para o springfox não lançar exceção com springboot 2.1.0
+    compile("org.springframework.hateoas:spring-hateoas:0.24.0.RELEASE")
+	
+	//jaxb - evitar erro ao usar jaxb com jdk10
+	compile ('javax.xml.bind:jaxb-api:2.3.0')
+	compile ('com.sun.xml.bind:jaxb-core:2.3.0')
+	compile ('com.sun.xml.bind:jaxb-impl:2.3.0')
+	compile ('javax.activation:activation:1.1.1')
+
+	//apache
+	compile ('commons-io:commons-io:2.6')
+	compile ('org.apache.commons:commons-lang3:3.0')
+	compile ('org.apache.httpcomponents:httpcore:4.4.11')
+
+}
+
+sourceSets {
+	main {
+		java { srcDirs = [] }
+		groovy { srcDirs = ["src/main/java"] }
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+}

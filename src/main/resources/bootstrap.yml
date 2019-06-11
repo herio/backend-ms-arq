@@ -1,0 +1,4 @@
+spring:
+  #profile ativo
+  #profiles:
+  #  active: dev
