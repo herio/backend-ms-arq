@@ -1,6 +1,5 @@
 package br.com.herio.arqmsmobile.service;
 
-
 import br.com.herio.arqmsmobile.dto.DtoAutenticacao;
 import br.com.herio.arqmsmobile.dto.DtoUsuario;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +23,7 @@ public class AutenticacaoService {
     }
 
 	public DtoUsuario autenticarUsuario(DtoAutenticacao dtoAutenticacao) {
+        //TODO GERAR TOKEN
         DtoUsuario dtoUsuario = new DtoUsuario();
         recuperarRecebimentoNotificacoes(dtoUsuario, dtoAutenticacao);
 		return dtoUsuario;
