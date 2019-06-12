@@ -18,17 +18,14 @@ spring:
         format_sql: true
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
   #flyway
   flyway:
     user: postgres
     password: postgres
     url: jdbc:postgresql://localhost:5432/USUARIO
     schemas: public
-    
-#management config - necessario para liberar acesso spring-security
+
+#management - necessario para liberar acesso spring-security
 management:
   endpoints:
     web:
@@ -38,11 +35,16 @@ management:
     servlet:
       context-path: /management
   
-#spring-boot infra - contexto e porta
+#spring-boot porta
 server:
   port: ${port:8211}
 
 #config para rodar localmente
+seguranca:
+  chave:
+    assinatura:
+      token:
+        jwt: az8xLbf4AwL7EeZwvuifjVACNw+At6G1NuzZhGYq8ySN4akvvLxVtbXXRHz9E+ao+dX4qpTO5SaCIhao6ODC8g==
 logging:
   file: app.log
 integracao:

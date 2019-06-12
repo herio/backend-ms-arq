@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import br.com.herio.arqmsmobile.infra.excecao.dto.DtoExcecao;
 
+import java.util.NoSuchElementException;
+
 @RestControllerAdvice
 @Order(HIGHEST_PRECEDENCE)
 public class TratadorExcecaoRestController {
@@ -37,6 +39,15 @@ public class TratadorExcecaoRestController {
 	public DtoExcecao tratarExcecaoNegocio(ConstraintViolationException e) {
 		// ConstraintViolationException deve retornar http status 412
 		String mensagem = "Já existe registro cadastrado com os valores informados na requisição.";
+		String causa = ExceptionUtils.getStackTrace(e);
+		return new DtoExcecao(mensagem, causa);
+	}
+
+	@ResponseStatus(HttpStatus.PRECONDITION_FAILED)
+	@ExceptionHandler(NoSuchElementException.class)
+	public DtoExcecao tratarExcecaoNegocio(NoSuchElementException e) {
+		// ConstraintViolationException deve retornar http status 412
+		String mensagem = "Registro inexistente.";
 		String causa = ExceptionUtils.getStackTrace(e);
 		return new DtoExcecao(mensagem, causa);
 	}

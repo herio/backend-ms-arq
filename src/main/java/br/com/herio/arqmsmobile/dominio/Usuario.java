@@ -2,13 +2,7 @@ package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,6 +37,9 @@ public class Usuario implements Serializable {
     @Column(name = "NUM_VERSAO_REGISTRO")
     private Long versao;
 
+    @Transient
+    private String token;
+
     public Usuario() {
         //default
     	super();
@@ -55,6 +52,14 @@ public class Usuario implements Serializable {
         this.nome = nome;
         this.email = email;
         this.urlFoto = urlFoto;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getUrlFoto() {
