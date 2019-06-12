@@ -22,6 +22,7 @@ public class Dispositivo implements Serializable {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_USUARIO")
     private Usuario usuario;
 
     @Column(name = "NUM_REGISTRO")
@@ -41,7 +42,12 @@ public class Dispositivo implements Serializable {
     @Column(name = "DTHORA_EXCLUSAO")
     private Date dataExclusao;
 
+    @Version
+    @Column(name = "NUM_VERSAO_REGISTRO")
+    private Long versao;
+    
     public Dispositivo() {
+    	super();
         // default
     }
 
@@ -109,7 +115,15 @@ public class Dispositivo implements Serializable {
         this.usuario = usuario;
     }
 
-    @Override
+    public Long getVersao() {
+		return versao;
+	}
+
+	public void setVersao(Long versao) {
+		this.versao = versao;
+	}
+
+	@Override
     public String toString() {
         return String.format("%nDispositivo [id=%s, idUsuario=%s, numRegistro=%s, os=%s, sistema=%s, dataCadastro=%s]",
                 getId(), usuario.getId(), numRegistro, os, sistema, dataCadastro);

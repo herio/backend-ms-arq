@@ -1,18 +1,19 @@
 package br.com.herio.arqmsmobile.rest;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.ReversedLinesFileReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
 
 @RestController
 @RequestMapping("/management/log")
@@ -27,7 +28,7 @@ public class LogController {
     public void tail(HttpServletResponse response) {
         File f = new File(log);
         try {
-            ReversedLinesFileReader r = new ReversedLinesFileReader(f, Charset.defaultCharset());
+        	ReversedLinesFileReader r = new ReversedLinesFileReader(f, Charset.defaultCharset());
             for (Integer i = 0; i < QTD_LINHAS; i++) {
                 String line = r.readLine();
                 if(line == null) {
@@ -36,8 +37,10 @@ public class LogController {
                 response.getWriter().append(line).append(System.getProperty("line.separator"));
             }
             response.flushBuffer();
+        	r.close();
         } catch (IOException e) {
             throw new RuntimeException("Erro em tail", e);
+        } finally {
         }
     }
 

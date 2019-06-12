@@ -1,19 +1,25 @@
 package br.com.herio.arqmsmobile.dominio;
 
-import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Collections;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
+
+import org.apache.commons.lang3.StringUtils;
+
+import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
 @Entity
 @Table(schema = "public", name = "USUARIO")
-public class Usuario implements Serializable, UserDetails {
-    @Id
+public class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="ID")
     private Long id;
@@ -30,22 +36,36 @@ public class Usuario implements Serializable, UserDetails {
     @Column(name="EMAIL")
     private String email;
 
+    @Column(name="URL_FOTO")
+    private String urlFoto;
+    
     @Version
     @Column(name = "NUM_VERSAO_REGISTRO")
     private Long versao;
 
     public Usuario() {
         //default
+    	super();
     }
 
-    public Usuario(String login, String senha, String nome, String email) {
+    public Usuario(String login, String senha, String nome, String email, String urlFoto) {
+    	super();
         this.login = login;
         this.senha = senha;
         this.nome = nome;
         this.email = email;
+        this.urlFoto = urlFoto;
     }
 
-    public String getLogin() {
+    public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
+
+	public String getLogin() {
         return login;
     }
 
@@ -101,42 +121,6 @@ public class Usuario implements Serializable, UserDetails {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
-    }
-
-    //UserDetails
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.EMPTY_LIST;
-    }
-
-    @Override
-    public String getPassword() {
-        return senha;
-    }
-
-    @Override
-    public String getUsername() {
-        return login;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 
     public void valida() {

@@ -1,14 +1,16 @@
 package br.com.herio.arqmsmobile.infra.excecao;
 
-import br.com.herio.arqmsmobile.infra.excecao.dto.DtoExcecao;
+import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
+import br.com.herio.arqmsmobile.infra.excecao.dto.DtoExcecao;
 
 @RestControllerAdvice
 @Order(HIGHEST_PRECEDENCE)
@@ -16,7 +18,7 @@ public class TratadorExcecaoRestController {
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	@ExceptionHandler(ExcecaoSessaoInvalida.class)
 	public DtoExcecao tratarExcecaoSessaoInvalida(ExcecaoSessaoInvalida e) {
-		// excecao de sessao invalida deve retornar http status 401
+		// ExcecaoSessaoInvalida deve retornar http status 401
 		String causa = ExceptionUtils.getStackTrace(e);
 		return new DtoExcecao(e.getMessage(), causa);
 
@@ -28,5 +30,14 @@ public class TratadorExcecaoRestController {
 		// excecao negocio deve retornar http status 412
 		String causa = ExceptionUtils.getStackTrace(e);
 		return new DtoExcecao(e.getMessage(), causa);
+	}
+
+	@ResponseStatus(HttpStatus.PRECONDITION_FAILED)
+	@ExceptionHandler(ConstraintViolationException.class)
+	public DtoExcecao tratarExcecaoNegocio(ConstraintViolationException e) {
+		// ConstraintViolationException deve retornar http status 412
+		String mensagem = "Já existe registro cadastrado com os valores informados na requisição.";
+		String causa = ExceptionUtils.getStackTrace(e);
+		return new DtoExcecao(mensagem, causa);
 	}
 }

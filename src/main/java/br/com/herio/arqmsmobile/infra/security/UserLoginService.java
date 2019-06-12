@@ -1,18 +1,15 @@
 package br.com.herio.arqmsmobile.infra.security;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
+import java.util.Optional;
 
-import br.com.herio.arqmsmobile.dominio.Usuario;
-import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import br.com.herio.arqmsmobile.dominio.Usuario;
+import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 
 
 @Service
@@ -27,6 +24,6 @@ public class UserLoginService implements UserDetailsService {
 		if(!usuario.isPresent()) {
 			throw new UsernameNotFoundException("O usuário " + username + " não foi encontrado!");
 		}
-		return usuario.get();
+		return new UsuarioAutenticado(usuario.get());
 	}
 }
