@@ -1,5 +1,7 @@
 package br.com.herio.arqmsmobile.infra.security.token;
 
+import br.com.herio.arqmsmobile.dominio.Usuario;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -13,25 +15,27 @@ public class TokenSeguranca {
     private final int tempoExpiracaoClienteMobile = 604800000;
 
     private Date expiracaoToken;
-    private long criacaoToken;
     private Date dataCriacaoToken;
-    private int idUsuario;
-    private String nomeUsuarioLogado;
-    private String usuarioLogado;
+    private Long idUsuario;
+    private String nomeUsuario;
+    private String loginUsuario;
     private Set<String> roles = new HashSet<>();
     private String emissorDoToken;
 
-    public TokenSeguranca(Date expiracaoToken, long criacaoToken, Date dataCriacaoToken, int idUsuario,
-                          String nomeUsuarioLogado, String usuarioLogado, Set<String> roles, String emissorToken) {
+    public TokenSeguranca(Long idUsuario, String nomeUsuario, String loginUsuario) {
+        this(null, null, idUsuario, nomeUsuario, loginUsuario, null, null );
+    }
+
+    public TokenSeguranca(Date expiracaoToken, Date dataCriacaoToken, Long idUsuario,
+                          String nomeUsuario, String loginUsuario, Set<String> roles, String emissorToken) {
         super();
-        this.expiracaoToken = expiracaoToken;
-        this.criacaoToken = criacaoToken;
-        this.dataCriacaoToken = dataCriacaoToken;
+        this.expiracaoToken = expiracaoToken == null ? defineExpiracaoToken() : expiracaoToken;
+        this.dataCriacaoToken = dataCriacaoToken == null? new Date(): dataCriacaoToken;
         this.idUsuario = idUsuario;
-        this.nomeUsuarioLogado = nomeUsuarioLogado;
-        this.usuarioLogado = usuarioLogado;
+        this.nomeUsuario = nomeUsuario;
+        this.loginUsuario = loginUsuario;
         this.roles = roles;
-        this.emissorDoToken = emissorToken;
+        this.emissorDoToken = emissorToken == null? TOKEN_ISSUER: emissorToken;
         this.validaToken();
     }
 
@@ -56,16 +60,16 @@ public class TokenSeguranca {
 
     public Date getDataCriacaoToken() { return dataCriacaoToken; }
 
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public String getNomeUsuarioLogado() {
-        return nomeUsuarioLogado;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public String getUsuarioLogado() {
-        return usuarioLogado;
+    public String getLoginUsuario() {
+        return loginUsuario;
     }
 
     public Set<String> getRoles() {
@@ -76,7 +80,4 @@ public class TokenSeguranca {
         return emissorDoToken;
     }
 
-    public long getCriacaoToken() {
-        return criacaoToken;
-    }
 }

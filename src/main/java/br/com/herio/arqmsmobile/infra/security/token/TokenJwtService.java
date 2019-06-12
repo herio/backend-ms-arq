@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Component
-@Order(100)
-public class ServiceTokenJwt {
+@Service
+public class TokenJwtService {
 
     @Autowired
     private ChaveHMACService keyService;
@@ -22,15 +22,15 @@ public class ServiceTokenJwt {
 
         Map<String, Object> claims = new HashMap<String, Object>();
         claims.put("iss", tokenSeguranca.getEmissorToken());
-        claims.put("sub", tokenSeguranca.getUsuarioLogado());
-        claims.put("created", tokenSeguranca.getCriacaoToken());
+        claims.put("sub", tokenSeguranca.getLoginUsuario());
+        claims.put("created", tokenSeguranca.getDataCriacaoToken().getTime());
         claims.put("exp", tokenSeguranca.getExpiracaoToken());
-        // As claims abaixo sao adicionais, customiizacoes do TCU
+        // As claims abaixo sao adicionais
         claims.put("roles", tokenSeguranca.getRoles());
-        // cod = codigo-usuario-siga
+        // idUsuario
         claims.put("id", Long.valueOf(tokenSeguranca.getIdUsuario()));
-        // nus = nome-usuario-logado-siga
-        claims.put("nus", tokenSeguranca.getNomeUsuarioLogado());
+        // nus = nome-usuario
+        claims.put("nu", tokenSeguranca.getNomeUsuario());
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -46,12 +46,12 @@ public class ServiceTokenJwt {
         long criacaoToken = claims.get("created", Long.class);
         Date dataCriacaoToken = new Date(criacaoToken);
         HashSet<String> roles = new HashSet<String>(claims.get("roles", ArrayList.class));
-        int idUsuario = claims.get("id", Integer.class);
-        String nomeUsuarioLogado = claims.get("nus", String.class);
-        String usuarioLogado = claims.getSubject();
+        Long idUsuario = claims.get("id", Long.class);
+        String nomeUsuario = claims.get("nu", String.class);
+        String loginUsuario = claims.getSubject();
         String emissorToken = claims.getIssuer();
 
-        return new TokenSeguranca(expiracaoToken, criacaoToken, dataCriacaoToken, idUsuario, nomeUsuarioLogado, usuarioLogado,
+        return new TokenSeguranca(expiracaoToken, dataCriacaoToken, idUsuario, nomeUsuario, loginUsuario,
                 roles, emissorToken);
     }
 

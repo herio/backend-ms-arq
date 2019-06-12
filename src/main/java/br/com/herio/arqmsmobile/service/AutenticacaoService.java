@@ -3,6 +3,8 @@ package br.com.herio.arqmsmobile.service;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.DtoAutenticacao;
+import br.com.herio.arqmsmobile.infra.security.token.TokenJwtService;
+import br.com.herio.arqmsmobile.infra.security.token.TokenSeguranca;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +14,18 @@ public class AutenticacaoService {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
+	@Autowired
+	TokenJwtService tokenJwtService;
 
 	public Usuario autenticarUsuario(DtoAutenticacao dtoAutenticacao) {
-        Usuario usuario = usuarioRepository.findByLoginSenha(dtoAutenticacao.getLogin(), dtoAutenticacao.getSenha()).get();
-		usuario.setToken(criaTokenJwt());
+        Usuario usuario = usuarioRepository.findByLoginAndSenha(dtoAutenticacao.getLogin(), dtoAutenticacao.getSenha()).get();
+		usuario.setToken(criaTokenJwt(usuario));
         return new Usuario();
 	}
 
-	private String criaTokenJwt() {
-		return null;
+	private String criaTokenJwt(Usuario usuario) {
+		TokenSeguranca tokenSeguranca = new TokenSeguranca(usuario.getId(), usuario.getNome(), usuario.getLogin());
+		return tokenJwtService.tokenSegurancaToTokenJwt(tokenSeguranca);
 	}
 
 //	private void recuperarRecebimentoNotificacoes(Usuario usuario, DtoAutenticacao dtoAutenticacao) {

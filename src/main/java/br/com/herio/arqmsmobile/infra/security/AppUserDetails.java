@@ -11,7 +11,7 @@ public class AppUserDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer idUsuario;
+    private Long idUsuario;
     private String nomeUsuarioLogado;
     private String username;
     private String password;
@@ -26,13 +26,13 @@ public class AppUserDetails implements UserDetails {
         super();
     }
 
-    public AppUserDetails(Integer idUsuario, String nomeUsuarioLogado, String username, String password,
+    public AppUserDetails(Long idUsuario, String nomeUsuario, String username, String password,
                           Collection<? extends GrantedAuthority> authorities, Boolean accountNonExpired,
                           Boolean accountNonLocked, Boolean credentialsNonExpired, Boolean enabled) {
         this.setIdUsuario(idUsuario);
         this.setUsername(username);
         this.setPassword(password);
-        this.setNomeUsuarioLogado(nomeUsuarioLogado);
+        this.setNomeUsuarioLogado(nomeUsuario);
         this.setAuthorities(authorities);
         this.setAccountNonExpired(accountNonExpired);
         this.setAccountNonLocked(accountNonLocked);
@@ -40,11 +40,11 @@ public class AppUserDetails implements UserDetails {
         this.setEnabled(enabled);
     }
 
-    public Integer getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 

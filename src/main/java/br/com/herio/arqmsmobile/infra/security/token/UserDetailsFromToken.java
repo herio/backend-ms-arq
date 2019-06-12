@@ -8,25 +8,23 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
 
 @Service
 public class UserDetailsFromToken {
 
     @Autowired
-    private ServiceTokenJwt serviceTokenJwt;
-
-    @Autowired
-    private ChaveHMACService keyService;
+    private TokenJwtService serviceTokenJwt;
 
     public UserDetails criaUsuario(String token) {
 
         Validate.notNull(token, "Não foi possível criar o usuário a partir do token porque o token está nulo");
         TokenSeguranca tokenSeguranca = serviceTokenJwt.tokenJwtToTokenSeguranca(token);
 
-        Integer codigoUsuario = tokenSeguranca.getIdUsuario();
-        String login = tokenSeguranca.getUsuarioLogado();
-        String nomeUsuarioLogado = tokenSeguranca.getNomeUsuarioLogado();
+        Long idUsuario = tokenSeguranca.getIdUsuario();
+        String loginUsuario = tokenSeguranca.getLoginUsuario();
+        String nomeUsuarioLogado = tokenSeguranca.getNomeUsuario();
         String password = null;
         boolean enabled = true;
         boolean accountNonExpired = true;
@@ -38,7 +36,7 @@ public class UserDetailsFromToken {
 
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(rolesArray);
 
-        return new AppUserDetails(codigoUsuario, nomeUsuarioLogado, login, password, authorities,
+        return new AppUserDetails(idUsuario, nomeUsuarioLogado, loginUsuario, password, authorities,
                 accountNonExpired, accountNonLocked, credentialsNonExpired, enabled);
     }
 
