@@ -1,6 +1,14 @@
 package br.com.herio.arqmsmobile.infra.security;
 
-import br.com.herio.arqmsmobile.infra.security.token.UserDetailsFromToken;
+import java.io.IOException;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import br.com.herio.arqmsmobile.infra.security.token.TokenJwtService;
 
 
 public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -28,7 +30,7 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
     final private String TIPO_TOKEN_HEADER = "Bearer";
 
     @Autowired
-    private UserDetailsFromToken userDetailsFromToken;
+    private TokenJwtService tokenJwtService;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
@@ -42,7 +44,7 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
         if (token != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails;
             try {
-                userDetails = userDetailsFromToken.criaUsuario(token);
+                userDetails = tokenJwtService.tokenJwtToUserDetais(token);
             } catch (AccessDeniedException ade) {
                 HttpServletResponse httpResponse = (HttpServletResponse) response;
                 httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

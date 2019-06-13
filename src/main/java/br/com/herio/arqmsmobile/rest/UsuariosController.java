@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.herio.arqmsmobile.dominio.Usuario;
@@ -19,29 +18,37 @@ import io.swagger.annotations.ApiOperation;
 
 @Api("UsuariosController")
 @RestController
-@RequestMapping("/usuarios")
 public class UsuariosController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	@ApiOperation("salvarUsuario")
-	@PostMapping
-	public Usuario salvarUsuario(@RequestBody Usuario usuario) {
-		usuario.valida();
-		if(usuario.getId() == null) {
-			//salva
-			return usuarioRepository.save(usuario);
-		} else {
-			//atualiza
-			Usuario usuarioBd = usuarioRepository.findById(usuario.getId()).get();
-			BeanUtils.copyProperties(usuario, usuarioBd);
-			return usuarioRepository.save(usuarioBd);	
+	@ApiOperation("criarUsuario")
+	@PostMapping("/publico/usuarios")
+	public Usuario criarUsuario(@RequestBody Usuario usuario) {
+		if(usuario.getId() != null) {
+			throw new IllegalArgumentException("Informe um novo usuário sem id!");
 		}
+		//cria
+		usuario.valida();
+		return usuarioRepository.save(usuario);
+	}
+
+	@ApiOperation("atualizarUsuario")
+	@PostMapping("/usuarios")
+	public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
+		if(usuario.getId() == null) {
+			throw new IllegalArgumentException("Informe um usuário com id!");
+		}
+		//atualiza
+		Usuario usuarioBd = usuarioRepository.findById(usuario.getId()).get();
+		BeanUtils.copyProperties(usuario, usuarioBd);
+		usuario.valida();
+		return usuarioRepository.save(usuarioBd);	
 	}
 
 	@ApiOperation("listarUsuarios")
-	@GetMapping
+	@GetMapping("/usuarios")
 	public Collection<Usuario> listarUsuarios() {
 		return StreamSupport.stream(usuarioRepository.findAll().spliterator(), false).collect(Collectors.toList());
 	}

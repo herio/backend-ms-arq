@@ -1,16 +1,26 @@
 package br.com.herio.arqmsmobile.infra.security.token;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
+import br.com.herio.arqmsmobile.infra.security.AppUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 @Service
 public class TokenJwtService {
@@ -29,7 +39,7 @@ public class TokenJwtService {
         claims.put("roles", tokenSeguranca.getRoles());
         // idUsuario
         claims.put("id", Long.valueOf(tokenSeguranca.getIdUsuario()));
-        // nus = nome-usuario
+        // nu = nome-usuario
         claims.put("nu", tokenSeguranca.getNomeUsuario());
 
         return Jwts.builder()
@@ -56,6 +66,30 @@ public class TokenJwtService {
     }
 
 
+    public UserDetails tokenJwtToUserDetais(String token) {
+
+        Validate.notNull(token, "Não foi possível criar o usuário a partir do token porque o token está nulo");
+        TokenSeguranca tokenSeguranca = tokenJwtToTokenSeguranca(token);
+
+        Long idUsuario = tokenSeguranca.getIdUsuario();
+        String loginUsuario = tokenSeguranca.getLoginUsuario();
+        String nomeUsuarioLogado = tokenSeguranca.getNomeUsuario();
+        String password = null;
+        boolean enabled = true;
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
+
+        Set<String> roles = tokenSeguranca.getRoles();
+        String[] rolesArray = roles.stream().map(str -> "ROLE_" + str).toArray(size -> new String[roles.size()]);
+
+        Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(rolesArray);
+
+        return new AppUserDetails(idUsuario, nomeUsuarioLogado, loginUsuario, password, authorities,
+                accountNonExpired, accountNonLocked, credentialsNonExpired, enabled);
+    }
+
+    
     private Claims parseClaimsJwt(String tokenJwt) {
         Claims claims = null;
         try {

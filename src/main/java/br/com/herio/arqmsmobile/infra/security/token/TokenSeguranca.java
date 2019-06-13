@@ -1,7 +1,5 @@
 package br.com.herio.arqmsmobile.infra.security.token;
 
-import br.com.herio.arqmsmobile.dominio.Usuario;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -29,8 +27,8 @@ public class TokenSeguranca {
     public TokenSeguranca(Date expiracaoToken, Date dataCriacaoToken, Long idUsuario,
                           String nomeUsuario, String loginUsuario, Set<String> roles, String emissorToken) {
         super();
-        this.expiracaoToken = expiracaoToken == null ? defineExpiracaoToken() : expiracaoToken;
         this.dataCriacaoToken = dataCriacaoToken == null? new Date(): dataCriacaoToken;
+        this.expiracaoToken = expiracaoToken == null ? defineExpiracaoToken() : expiracaoToken;
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
         this.loginUsuario = loginUsuario;

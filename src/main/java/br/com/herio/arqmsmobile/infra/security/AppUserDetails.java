@@ -1,18 +1,16 @@
 package br.com.herio.arqmsmobile.infra.security;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.commons.lang3.StringUtils;
+import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
 
 public class AppUserDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     private Long idUsuario;
-    private String nomeUsuarioLogado;
+    private String nomeUsuario;
     private String username;
     private String password;
 
@@ -32,7 +30,7 @@ public class AppUserDetails implements UserDetails {
         this.setIdUsuario(idUsuario);
         this.setUsername(username);
         this.setPassword(password);
-        this.setNomeUsuarioLogado(nomeUsuario);
+        this.setNomeUsuario(nomeUsuario);
         this.setAuthorities(authorities);
         this.setAccountNonExpired(accountNonExpired);
         this.setAccountNonLocked(accountNonLocked);
@@ -48,12 +46,12 @@ public class AppUserDetails implements UserDetails {
         this.idUsuario = idUsuario;
     }
 
-    public String getNomeUsuarioLogado() {
-        return nomeUsuarioLogado;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setNomeUsuarioLogado(String nomeUsuarioLogado) {
-        this.nomeUsuarioLogado = nomeUsuarioLogado;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public void setUsername(String username) {

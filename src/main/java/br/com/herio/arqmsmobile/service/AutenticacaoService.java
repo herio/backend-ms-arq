@@ -19,8 +19,8 @@ public class AutenticacaoService {
 
 	public Usuario autenticarUsuario(DtoAutenticacao dtoAutenticacao) {
         Usuario usuario = usuarioRepository.findByLoginAndSenha(dtoAutenticacao.getLogin(), dtoAutenticacao.getSenha()).get();
-		usuario.setToken(criaTokenJwt(usuario));
-        return new Usuario();
+		usuario.setToken("Bearer " + criaTokenJwt(usuario));
+        return usuario;
 	}
 
 	private String criaTokenJwt(Usuario usuario) {

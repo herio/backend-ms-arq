@@ -31,9 +31,6 @@ management:
     web:
       exposure:
         include: "*"
-  server:
-    servlet:
-      context-path: /management
   
 #spring-boot porta
 server:

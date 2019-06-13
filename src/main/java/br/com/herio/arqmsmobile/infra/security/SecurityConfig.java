@@ -62,10 +62,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/apple-app-site-association").permitAll()
             //testeProducao
             .antMatchers("/testeProducao/**").permitAll()
-            //management
-            .antMatchers("/management/**").permitAll()
+            //actuator
+            .antMatchers("/actuator/**").permitAll()
             //demais públicos
-            .antMatchers("/auth/**", "/publico/**").permitAll()
+            .antMatchers("/publico/**").permitAll()
             //swagger
             .antMatchers("/v2/api-docs", "/swagger/**", "swagger-resources/configuration/ui", "/swagger-resources/**", "/configuration/app", "/swagger-ui.html", "/webjars/**").permitAll()
             .anyRequest().authenticated();

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/management/log")
+@RequestMapping("/actuator/log")
 public class LogController {
     private static final String NO_CACHE = "no-cache";
     public static final int QTD_LINHAS = 200;

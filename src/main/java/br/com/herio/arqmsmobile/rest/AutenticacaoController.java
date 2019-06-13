@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@Api("LoginController")
+@Api("AutenticacaoController")
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/publico/autenticacao")
 public class AutenticacaoController {
 	
 	@Autowired
