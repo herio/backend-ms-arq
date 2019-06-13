@@ -5153,3 +5153,1174 @@ Using generated security password: 07871fcc-083a-425a-8a38-1a5021fe82b2
 	"login":"herio",
 	"senha":"123456"
 }]
+2019-06-13 15:30:49.388  INFO 12364 --- [main] b.c.h.a.ArqMsMobileApplication           : No active profile set, falling back to default profiles: default
+2019-06-13 15:30:50.551  INFO 12364 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-13 15:30:50.646  INFO 12364 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85ms. Found 2 repository interfaces.
+2019-06-13 15:30:51.005  INFO 12364 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=42e39e40-c564-36a3-a99a-a01f017258eb
+2019-06-13 15:30:51.118  INFO 12364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c1c8aaad] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:30:51.159  INFO 12364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$5a7672e7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:30:51.165  INFO 12364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:30:51.167  INFO 12364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4c6bba7d' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:30:51.168  INFO 12364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$7f4b1599] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:30:51.176  INFO 12364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$a4a02daf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:30:51.178  INFO 12364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:30:51.179  INFO 12364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:30:51.203  INFO 12364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$dde2adaa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:30:51.599  INFO 12364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8211 (http)
+2019-06-13 15:30:51.630  INFO 12364 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-13 15:30:51.631  INFO 12364 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-13 15:30:52.345  INFO 12364 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-13 15:30:52.345  INFO 12364 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2941 ms
+2019-06-13 15:30:53.139 DEBUG 12364 --- [main] c.h.a.i.l.AppCommonsRequestLoggingFilter : Filter 'requestLoggingFilter' configured for use
+2019-06-13 15:30:53.210  INFO 12364 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.1 by Boxfuse
+2019-06-13 15:30:53.388  INFO 12364 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:postgresql://localhost:5432/USUARIO (PostgreSQL 9.6)
+2019-06-13 15:30:53.459  INFO 12364 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.024s)
+2019-06-13 15:30:53.468  INFO 12364 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2019-06-13 15:30:53.468  INFO 12364 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2019-06-13 15:30:53.545  INFO 12364 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-13 15:30:53.641  INFO 12364 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-13 15:30:53.701  INFO 12364 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-13 15:30:53.788  INFO 12364 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-13 15:30:53.790  INFO 12364 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-13 15:30:53.979  INFO 12364 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-13 15:30:54.197  INFO 12364 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+2019-06-13 15:30:54.335  INFO 12364 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.useContextualLobCreation(LobCreatorBuilderImpl.java:113) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.makeLobCreatorBuilder(LobCreatorBuilderImpl.java:54) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.<init>(JdbcEnvironmentImpl.java:271) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:114) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:94) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:179) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:119) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:904) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:935) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1105) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at br.com.herio.arqmsmobile.ArqMsMobileApplication.main(ArqMsMobileApplication.java:12) ~[classes/:na]
+Caused by: java.sql.SQLFeatureNotSupportedException: Método org.postgresql.jdbc.PgConnection.createClob() ainda não foi implementado.
+	at org.postgresql.Driver.notImplemented(Driver.java:688) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgConnection.createClob(PgConnection.java:1269) ~[postgresql-42.2.5.jar:42.2.5]
+	... 44 common frames omitted
+
+2019-06-13 15:30:54.344  INFO 12364 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@230d013b
+2019-06-13 15:30:55.272  INFO 12364 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-13 15:30:55.616  INFO 12364 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-06-13 15:30:56.046  WARN 12364 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-13 15:30:56.173  INFO 12364 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 20 endpoint(s) beneath base path '/actuator'
+2019-06-13 15:30:56.560  INFO 12364 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 8934d980-d126-4f9b-b1af-098b61ee26af
+
+2019-06-13 15:30:56.639  INFO 12364 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@943d0c2, org.springframework.security.web.context.SecurityContextPersistenceFilter@29f3ea39, org.springframework.security.web.header.HeaderWriterFilter@53ec379a, org.springframework.security.web.authentication.logout.LogoutFilter@4c954b79, br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter@12548f9a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@19740583, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4842a683, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@529b8e41, org.springframework.security.web.session.SessionManagementFilter@606c2e4b, org.springframework.security.web.access.ExceptionTranslationFilter@33e19be9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@c52c362]
+2019-06-13 15:30:56.667  INFO 12364 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-13 15:30:56.697  WARN 12364 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:30:56.697  INFO 12364 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:30:56.701  WARN 12364 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:30:56.701  INFO 12364 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:30:56.917  WARN 12364 --- [main] .b.a.g.t.GroovyTemplateAutoConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Groovy configuration, or set spring.groovy.template.check-template-location=false)
+2019-06-13 15:30:57.338  INFO 12364 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-13 15:30:57.355  INFO 12364 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-13 15:30:57.396  INFO 12364 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-13 15:30:57.637  INFO 12364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8211 (http) with context path ''
+2019-06-13 15:30:57.639  INFO 12364 --- [main] b.c.h.a.ArqMsMobileApplication           : Started ArqMsMobileApplication in 9.613 seconds (JVM running for 11.158)
+2019-06-13 15:30:58.154  INFO 12364 --- [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-13 15:30:58.154  INFO 12364 --- [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-13 15:30:58.169  INFO 12364 --- [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2019-06-13 15:31:22.263 DEBUG 12364 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"e244047a-409b-441f-a8d1-ac3a9ab950f3", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"39", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:31:22.390 DEBUG 12364 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"e244047a-409b-441f-a8d1-ac3a9ab950f3", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"39", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"login":"herio",
+	"senha":"123456"
+}]
+2019-06-13 15:31:29.432 DEBUG 12364 --- [http-nio-8211-exec-4] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"919778f3-3439-4387-933a-a3213ad3a8a4", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"65", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:31:29.447 DEBUG 12364 --- [http-nio-8211-exec-4] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"919778f3-3439-4387-933a-a3213ad3a8a4", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"65", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"nome":"Herio Oliveira",
+	"login":"herio",
+	"se]
+2019-06-13 15:31:57.152 DEBUG 12364 --- [http-nio-8211-exec-3] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"a90051ea-5f1b-4fb1-85fa-4a3172db1152", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"65", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:32:07.649 DEBUG 12364 --- [http-nio-8211-exec-3] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"a90051ea-5f1b-4fb1-85fa-4a3172db1152", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"65", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"nome":"Herio Oliveira",
+	"login":"herio",
+	"se]
+2019-06-13 15:34:38.610  INFO 14100 --- [main] b.c.h.a.ArqMsMobileApplication           : No active profile set, falling back to default profiles: default
+2019-06-13 15:34:39.658  INFO 14100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-13 15:34:39.737  INFO 14100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71ms. Found 2 repository interfaces.
+2019-06-13 15:34:40.074  INFO 14100 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=42e39e40-c564-36a3-a99a-a01f017258eb
+2019-06-13 15:34:40.167  INFO 14100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3a7e3bb0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:34:40.195  INFO 14100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$d32c03ea] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:34:40.200  INFO 14100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:34:40.201  INFO 14100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4e7bc939' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:34:40.205  INFO 14100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$f800a69c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:34:40.210  INFO 14100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$1d55beb2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:34:40.212  INFO 14100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:34:40.213  INFO 14100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:34:40.233  INFO 14100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$56983ead] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:34:40.572  INFO 14100 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8211 (http)
+2019-06-13 15:34:40.599  INFO 14100 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-13 15:34:40.600  INFO 14100 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-13 15:34:41.200  INFO 14100 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-13 15:34:41.201  INFO 14100 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2576 ms
+2019-06-13 15:34:42.059 DEBUG 14100 --- [main] c.h.a.i.l.AppCommonsRequestLoggingFilter : Filter 'requestLoggingFilter' configured for use
+2019-06-13 15:34:42.130  INFO 14100 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.1 by Boxfuse
+2019-06-13 15:34:42.323  INFO 14100 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:postgresql://localhost:5432/USUARIO (PostgreSQL 9.6)
+2019-06-13 15:34:42.373  INFO 14100 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.019s)
+2019-06-13 15:34:42.380  INFO 14100 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2019-06-13 15:34:42.381  INFO 14100 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2019-06-13 15:34:42.441  INFO 14100 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-13 15:34:42.581  INFO 14100 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-13 15:34:42.634  INFO 14100 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-13 15:34:42.699  INFO 14100 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-13 15:34:42.701  INFO 14100 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-13 15:34:42.865  INFO 14100 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-13 15:34:43.039  INFO 14100 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+2019-06-13 15:34:43.171  INFO 14100 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.useContextualLobCreation(LobCreatorBuilderImpl.java:113) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.makeLobCreatorBuilder(LobCreatorBuilderImpl.java:54) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.<init>(JdbcEnvironmentImpl.java:271) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:114) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:94) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:179) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:119) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:904) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:935) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1105) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at br.com.herio.arqmsmobile.ArqMsMobileApplication.main(ArqMsMobileApplication.java:12) ~[classes/:na]
+Caused by: java.sql.SQLFeatureNotSupportedException: Método org.postgresql.jdbc.PgConnection.createClob() ainda não foi implementado.
+	at org.postgresql.Driver.notImplemented(Driver.java:688) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgConnection.createClob(PgConnection.java:1269) ~[postgresql-42.2.5.jar:42.2.5]
+	... 44 common frames omitted
+
+2019-06-13 15:34:43.179  INFO 14100 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@36d5c2ce
+2019-06-13 15:34:44.023  INFO 14100 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-13 15:34:44.364  INFO 14100 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-06-13 15:34:44.801  WARN 14100 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-13 15:34:45.063  INFO 14100 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 20 endpoint(s) beneath base path '/actuator'
+2019-06-13 15:34:45.604  INFO 14100 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 4069fe71-7dca-4c1a-8789-71cda7ff6a22
+
+2019-06-13 15:34:45.686  INFO 14100 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@bf0025d, org.springframework.security.web.context.SecurityContextPersistenceFilter@7b7268db, org.springframework.security.web.header.HeaderWriterFilter@347770a9, org.springframework.security.web.authentication.logout.LogoutFilter@695f382c, br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter@7a3a49e5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@b257072, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@67c2ff5d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@227ae4e4, org.springframework.security.web.session.SessionManagementFilter@2e29a7d, org.springframework.security.web.access.ExceptionTranslationFilter@3de507af, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@466c39de]
+2019-06-13 15:34:45.718  INFO 14100 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-13 15:34:45.751  WARN 14100 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:34:45.751  INFO 14100 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:34:45.756  WARN 14100 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:34:45.756  INFO 14100 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:34:45.989  WARN 14100 --- [main] .b.a.g.t.GroovyTemplateAutoConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Groovy configuration, or set spring.groovy.template.check-template-location=false)
+2019-06-13 15:34:46.450  INFO 14100 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-13 15:34:46.467  INFO 14100 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-13 15:34:46.505  INFO 14100 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-13 15:34:46.690  INFO 14100 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8211 (http) with context path ''
+2019-06-13 15:34:46.692  INFO 14100 --- [main] b.c.h.a.ArqMsMobileApplication           : Started ArqMsMobileApplication in 9.412 seconds (JVM running for 10.891)
+2019-06-13 15:34:47.053  INFO 14100 --- [RMI TCP Connection(8)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-13 15:34:47.054  INFO 14100 --- [RMI TCP Connection(8)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-13 15:34:47.067  INFO 14100 --- [RMI TCP Connection(8)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2019-06-13 15:34:58.021 DEBUG 14100 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"abd47634-8f3a-4c01-8395-a9695c9923a4", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"65", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:34:58.135  WARN 14100 --- [http-nio-8211-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23505
+2019-06-13 15:34:58.135 ERROR 14100 --- [http-nio-8211-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: duplicate key value violates unique constraint "usuario_uk"
+  Detalhe: Key (login)=(herio) already exists.
+2019-06-13 15:34:58.141 ERROR 14100 --- [http-nio-8211-exec-2] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2019-06-13 15:34:58.171 DEBUG 14100 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"abd47634-8f3a-4c01-8395-a9695c9923a4", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"65", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"nome":"Herio Oliveira",
+	"login":"herio",
+	"se]
+2019-06-13 15:35:04.708 DEBUG 14100 --- [http-nio-8211-exec-3] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"19a60a03-c09e-4cfe-8739-8693133c2473", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"66", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:35:04.713  WARN 14100 --- [http-nio-8211-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23505
+2019-06-13 15:35:04.713 ERROR 14100 --- [http-nio-8211-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: duplicate key value violates unique constraint "usuario_uk"
+  Detalhe: Key (login)=(herio2) already exists.
+2019-06-13 15:35:04.713 ERROR 14100 --- [http-nio-8211-exec-3] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2019-06-13 15:35:04.719 DEBUG 14100 --- [http-nio-8211-exec-3] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"19a60a03-c09e-4cfe-8739-8693133c2473", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"66", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"nome":"Herio Oliveira",
+	"login":"herio2",
+	"s]
+2019-06-13 15:35:09.907 DEBUG 14100 --- [http-nio-8211-exec-4] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"7c17ce61-738e-4cfc-8622-3e298f5f29e3", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"67", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:35:09.926 DEBUG 14100 --- [http-nio-8211-exec-4] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/usuarios;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"7c17ce61-738e-4cfc-8622-3e298f5f29e3", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"67", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"nome":"Herio Oliveira",
+	"login":"herio22",
+	"]
+2019-06-13 15:35:29.377 DEBUG 14100 --- [http-nio-8211-exec-5] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"5411aaa7-5869-449b-9610-895befb9af60", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"41", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:35:29.425 DEBUG 14100 --- [http-nio-8211-exec-5] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"5411aaa7-5869-449b-9610-895befb9af60", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"41", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"login":"herio22",
+	"senha":"123456"
+}]
+2019-06-13 15:37:16.285  INFO 5940 --- [main] b.c.h.a.ArqMsMobileApplication           : No active profile set, falling back to default profiles: default
+2019-06-13 15:37:17.299  INFO 5940 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-13 15:37:17.377  INFO 5940 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72ms. Found 2 repository interfaces.
+2019-06-13 15:37:17.691  INFO 5940 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=42e39e40-c564-36a3-a99a-a01f017258eb
+2019-06-13 15:37:17.785  INFO 5940 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$610a9cf3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:37:17.815  INFO 5940 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$f9b8652d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:37:17.820  INFO 5940 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:37:17.821  INFO 5940 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1570cad0' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:37:17.822  INFO 5940 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$1e8d07df] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:37:17.829  INFO 5940 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$43e21ff5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:37:17.830  INFO 5940 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:37:17.831  INFO 5940 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:37:17.850  INFO 5940 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7d249ff0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:37:18.185  INFO 5940 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8211 (http)
+2019-06-13 15:37:18.217  INFO 5940 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-13 15:37:18.218  INFO 5940 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-13 15:37:18.802  INFO 5940 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-13 15:37:18.802  INFO 5940 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2503 ms
+2019-06-13 15:37:19.594 DEBUG 5940 --- [main] c.h.a.i.l.AppCommonsRequestLoggingFilter : Filter 'requestLoggingFilter' configured for use
+2019-06-13 15:37:19.663  INFO 5940 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.1 by Boxfuse
+2019-06-13 15:37:19.850  INFO 5940 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:postgresql://localhost:5432/USUARIO (PostgreSQL 9.6)
+2019-06-13 15:37:19.897  INFO 5940 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.019s)
+2019-06-13 15:37:19.904  INFO 5940 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2019-06-13 15:37:19.904  INFO 5940 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2019-06-13 15:37:19.963  INFO 5940 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-13 15:37:20.020  INFO 5940 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-13 15:37:20.073  INFO 5940 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-13 15:37:20.137  INFO 5940 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-13 15:37:20.139  INFO 5940 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-13 15:37:20.282  INFO 5940 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-13 15:37:20.474  INFO 5940 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+2019-06-13 15:37:20.596  INFO 5940 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.useContextualLobCreation(LobCreatorBuilderImpl.java:113) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.makeLobCreatorBuilder(LobCreatorBuilderImpl.java:54) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.<init>(JdbcEnvironmentImpl.java:271) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:114) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:94) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:179) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:119) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:904) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:935) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1105) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at br.com.herio.arqmsmobile.ArqMsMobileApplication.main(ArqMsMobileApplication.java:12) ~[classes/:na]
+Caused by: java.sql.SQLFeatureNotSupportedException: Método org.postgresql.jdbc.PgConnection.createClob() ainda não foi implementado.
+	at org.postgresql.Driver.notImplemented(Driver.java:688) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgConnection.createClob(PgConnection.java:1269) ~[postgresql-42.2.5.jar:42.2.5]
+	... 44 common frames omitted
+
+2019-06-13 15:37:20.604  INFO 5940 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@3fd6dfbc
+2019-06-13 15:37:21.441  INFO 5940 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-13 15:37:21.762  INFO 5940 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-06-13 15:37:22.178  WARN 5940 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-13 15:37:22.302  INFO 5940 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 20 endpoint(s) beneath base path '/actuator'
+2019-06-13 15:37:22.674  INFO 5940 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 198ecd50-e603-43a6-aa64-a451beb2b558
+
+2019-06-13 15:37:22.745  INFO 5940 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6d4dac56, org.springframework.security.web.context.SecurityContextPersistenceFilter@36e8fefe, org.springframework.security.web.header.HeaderWriterFilter@6dd8ac29, org.springframework.security.web.authentication.logout.LogoutFilter@9be2897, br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter@7a78d380, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@70c3c5d7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@53cdfb09, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ce7d43, org.springframework.security.web.session.SessionManagementFilter@6019ce4b, org.springframework.security.web.access.ExceptionTranslationFilter@5e81b406, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1b513ce8]
+2019-06-13 15:37:22.774  INFO 5940 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-13 15:37:22.806  WARN 5940 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:37:22.806  INFO 5940 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:37:22.810  WARN 5940 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:37:22.810  INFO 5940 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:37:23.028  WARN 5940 --- [main] .b.a.g.t.GroovyTemplateAutoConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Groovy configuration, or set spring.groovy.template.check-template-location=false)
+2019-06-13 15:37:23.456  INFO 5940 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-13 15:37:23.474  INFO 5940 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-13 15:37:23.533  INFO 5940 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-13 15:37:23.716  INFO 5940 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8211 (http) with context path ''
+2019-06-13 15:37:23.718  INFO 5940 --- [main] b.c.h.a.ArqMsMobileApplication           : Started ArqMsMobileApplication in 8.769 seconds (JVM running for 10.296)
+2019-06-13 15:37:24.082  INFO 5940 --- [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-13 15:37:24.082  INFO 5940 --- [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-13 15:37:24.094  INFO 5940 --- [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2019-06-13 15:37:38.727 DEBUG 5940 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"ff67815d-ccb5-43d3-ad1e-bcc0971bf42c", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"41", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:37:39.162 DEBUG 5940 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"ff67815d-ccb5-43d3-ad1e-bcc0971bf42c", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"41", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"login":"herio22",
+	"senha":"123456"
+}]
+2019-06-13 15:39:59.646 DEBUG 5940 --- [http-nio-8211-exec-5] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"003a9b83-9e8c-4dff-99f2-506a2ea4b441", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"41", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:39:59.654 DEBUG 5940 --- [http-nio-8211-exec-5] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"003a9b83-9e8c-4dff-99f2-506a2ea4b441", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"41", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"login":"herio22",
+	"senha":"123456"
+}]
+2019-06-13 15:40:08.452 ERROR 5940 --- [http-nio-8211-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+java.lang.NullPointerException: null
+	at java.util.HashSet.<init>(HashSet.java:118) ~[na:1.8.0_101]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToTokenSeguranca(TokenJwtService.java:58) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToUserDetais(TokenJwtService.java:72) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter.doFilter(AppUsernamePasswordAuthenticationFilter.java:47) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:117) ~[spring-boot-actuator-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:106) ~[spring-boot-actuator-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_101]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_101]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_101]
+
+2019-06-13 15:40:08.462 ERROR 5940 --- [http-nio-8211-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] threw exception
+
+java.lang.NullPointerException: null
+	at java.util.HashSet.<init>(HashSet.java:118) ~[na:1.8.0_101]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToTokenSeguranca(TokenJwtService.java:58) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToUserDetais(TokenJwtService.java:72) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter.doFilter(AppUsernamePasswordAuthenticationFilter.java:47) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_101]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_101]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_101]
+
+2019-06-13 15:40:08.464 ERROR 5940 --- [http-nio-8211-exec-6] o.a.c.c.C.[Tomcat].[localhost]           : Exception Processing ErrorPage[errorCode=0, location=/error]
+
+java.lang.NullPointerException: null
+	at java.util.HashSet.<init>(HashSet.java:118) ~[na:1.8.0_101]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToTokenSeguranca(TokenJwtService.java:58) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToUserDetais(TokenJwtService.java:72) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter.doFilter(AppUsernamePasswordAuthenticationFilter.java:47) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_101]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_101]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_101]
+
+2019-06-13 15:41:43.613  INFO 9228 --- [main] b.c.h.a.ArqMsMobileApplication           : No active profile set, falling back to default profiles: default
+2019-06-13 15:41:44.677  INFO 9228 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-13 15:41:44.754  INFO 9228 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70ms. Found 2 repository interfaces.
+2019-06-13 15:41:45.107  INFO 9228 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=42e39e40-c564-36a3-a99a-a01f017258eb
+2019-06-13 15:41:45.200  INFO 9228 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1a620006] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:41:45.227  INFO 9228 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$b30fc840] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:41:45.232  INFO 9228 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:41:45.233  INFO 9228 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@25ae1f80' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:41:45.237  INFO 9228 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$d7e46af2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:41:45.243  INFO 9228 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$fd398308] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:41:45.245  INFO 9228 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:41:45.245  INFO 9228 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:41:45.264  INFO 9228 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$367c0303] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:41:45.594  INFO 9228 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8211 (http)
+2019-06-13 15:41:45.627  INFO 9228 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-13 15:41:45.628  INFO 9228 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-13 15:41:46.217  INFO 9228 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-13 15:41:46.217  INFO 9228 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2590 ms
+2019-06-13 15:41:47.072 DEBUG 9228 --- [main] c.h.a.i.l.AppCommonsRequestLoggingFilter : Filter 'requestLoggingFilter' configured for use
+2019-06-13 15:41:47.140  INFO 9228 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.1 by Boxfuse
+2019-06-13 15:41:47.394  INFO 9228 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:postgresql://localhost:5432/USUARIO (PostgreSQL 9.6)
+2019-06-13 15:41:47.440  INFO 9228 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.019s)
+2019-06-13 15:41:47.447  INFO 9228 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2019-06-13 15:41:47.447  INFO 9228 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2019-06-13 15:41:47.508  INFO 9228 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-13 15:41:47.626  INFO 9228 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-13 15:41:47.678  INFO 9228 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-13 15:41:47.740  INFO 9228 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-13 15:41:47.742  INFO 9228 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-13 15:41:47.899  INFO 9228 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-13 15:41:48.072  INFO 9228 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+2019-06-13 15:41:48.200  INFO 9228 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.useContextualLobCreation(LobCreatorBuilderImpl.java:113) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.makeLobCreatorBuilder(LobCreatorBuilderImpl.java:54) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.<init>(JdbcEnvironmentImpl.java:271) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:114) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:94) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:179) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:119) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:904) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:935) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1105) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at br.com.herio.arqmsmobile.ArqMsMobileApplication.main(ArqMsMobileApplication.java:12) ~[classes/:na]
+Caused by: java.sql.SQLFeatureNotSupportedException: Método org.postgresql.jdbc.PgConnection.createClob() ainda não foi implementado.
+	at org.postgresql.Driver.notImplemented(Driver.java:688) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgConnection.createClob(PgConnection.java:1269) ~[postgresql-42.2.5.jar:42.2.5]
+	... 44 common frames omitted
+
+2019-06-13 15:41:48.210  INFO 9228 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@451a4187
+2019-06-13 15:41:49.064  INFO 9228 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-13 15:41:49.382  INFO 9228 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-06-13 15:41:49.796  WARN 9228 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-13 15:41:49.918  INFO 9228 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 20 endpoint(s) beneath base path '/actuator'
+2019-06-13 15:41:50.286  INFO 9228 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 079ee1a5-d766-411d-acc0-69732e7a4c01
+
+2019-06-13 15:41:50.356  INFO 9228 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2acbbee4, org.springframework.security.web.context.SecurityContextPersistenceFilter@51c7d472, org.springframework.security.web.header.HeaderWriterFilter@6f999cf4, org.springframework.security.web.authentication.logout.LogoutFilter@58f259bd, br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter@78e043e4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@e50e308, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e11d73c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3446ab40, org.springframework.security.web.session.SessionManagementFilter@79c9a128, org.springframework.security.web.access.ExceptionTranslationFilter@29a51ff1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3a2b1f24]
+2019-06-13 15:41:50.383  INFO 9228 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-13 15:41:50.415  WARN 9228 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:41:50.415  INFO 9228 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:41:50.419  WARN 9228 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:41:50.419  INFO 9228 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:41:50.636  WARN 9228 --- [main] .b.a.g.t.GroovyTemplateAutoConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Groovy configuration, or set spring.groovy.template.check-template-location=false)
+2019-06-13 15:41:51.061  INFO 9228 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-13 15:41:51.078  INFO 9228 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-13 15:41:51.114  INFO 9228 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-13 15:41:51.318  INFO 9228 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8211 (http) with context path ''
+2019-06-13 15:41:51.320  INFO 9228 --- [main] b.c.h.a.ArqMsMobileApplication           : Started ArqMsMobileApplication in 8.952 seconds (JVM running for 10.416)
+2019-06-13 15:41:51.593  INFO 9228 --- [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-13 15:41:51.593  INFO 9228 --- [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-13 15:41:51.605  INFO 9228 --- [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2019-06-13 15:42:09.715 DEBUG 9228 --- [http-nio-8211-exec-1] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"ca606dda-6d13-49e5-b340-eff857725940", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"41", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:42:10.103 DEBUG 9228 --- [http-nio-8211-exec-1] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/publico/autenticacao;client=0:0:0:0:0:0:0:1;headers=[accept:"*/*", user-agent:"PostmanRuntime/7.13.0", cache-control:"no-cache", postman-token:"ca606dda-6d13-49e5-b340-eff857725940", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"41", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+	"login":"herio22",
+	"senha":"123456"
+}]
+2019-06-13 15:42:21.200 ERROR 9228 --- [http-nio-8211-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.RequiredTypeException: Expected value to be of type: class java.util.HashSet, but was class java.util.ArrayList
+	at io.jsonwebtoken.impl.DefaultClaims.castClaimValue(DefaultClaims.java:143) ~[jjwt-0.9.1.jar:0.9.1]
+	at io.jsonwebtoken.impl.DefaultClaims.get(DefaultClaims.java:123) ~[jjwt-0.9.1.jar:0.9.1]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToTokenSeguranca(TokenJwtService.java:58) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToUserDetais(TokenJwtService.java:72) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter.doFilter(AppUsernamePasswordAuthenticationFilter.java:47) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:117) ~[spring-boot-actuator-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:106) ~[spring-boot-actuator-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_101]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_101]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_101]
+
+2019-06-13 15:42:21.208 ERROR 9228 --- [http-nio-8211-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] threw exception
+
+io.jsonwebtoken.RequiredTypeException: Expected value to be of type: class java.util.HashSet, but was class java.util.ArrayList
+	at io.jsonwebtoken.impl.DefaultClaims.castClaimValue(DefaultClaims.java:143) ~[jjwt-0.9.1.jar:0.9.1]
+	at io.jsonwebtoken.impl.DefaultClaims.get(DefaultClaims.java:123) ~[jjwt-0.9.1.jar:0.9.1]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToTokenSeguranca(TokenJwtService.java:58) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToUserDetais(TokenJwtService.java:72) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter.doFilter(AppUsernamePasswordAuthenticationFilter.java:47) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_101]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_101]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_101]
+
+2019-06-13 15:42:21.209 ERROR 9228 --- [http-nio-8211-exec-2] o.a.c.c.C.[Tomcat].[localhost]           : Exception Processing ErrorPage[errorCode=0, location=/error]
+
+io.jsonwebtoken.RequiredTypeException: Expected value to be of type: class java.util.HashSet, but was class java.util.ArrayList
+	at io.jsonwebtoken.impl.DefaultClaims.castClaimValue(DefaultClaims.java:143) ~[jjwt-0.9.1.jar:0.9.1]
+	at io.jsonwebtoken.impl.DefaultClaims.get(DefaultClaims.java:123) ~[jjwt-0.9.1.jar:0.9.1]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToTokenSeguranca(TokenJwtService.java:58) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToUserDetais(TokenJwtService.java:72) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter.doFilter(AppUsernamePasswordAuthenticationFilter.java:47) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_101]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_101]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_101]
+
+2019-06-13 15:42:59.555 ERROR 9228 --- [http-nio-8211-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.RequiredTypeException: Expected value to be of type: class java.util.HashSet, but was class java.util.ArrayList
+	at io.jsonwebtoken.impl.DefaultClaims.castClaimValue(DefaultClaims.java:143) ~[jjwt-0.9.1.jar:0.9.1]
+	at io.jsonwebtoken.impl.DefaultClaims.get(DefaultClaims.java:123) ~[jjwt-0.9.1.jar:0.9.1]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToTokenSeguranca(TokenJwtService.java:58) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToUserDetais(TokenJwtService.java:72) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter.doFilter(AppUsernamePasswordAuthenticationFilter.java:47) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:117) ~[spring-boot-actuator-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:106) ~[spring-boot-actuator-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_101]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_101]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_101]
+
+2019-06-13 15:42:59.557 ERROR 9228 --- [http-nio-8211-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] threw exception
+
+io.jsonwebtoken.RequiredTypeException: Expected value to be of type: class java.util.HashSet, but was class java.util.ArrayList
+	at io.jsonwebtoken.impl.DefaultClaims.castClaimValue(DefaultClaims.java:143) ~[jjwt-0.9.1.jar:0.9.1]
+	at io.jsonwebtoken.impl.DefaultClaims.get(DefaultClaims.java:123) ~[jjwt-0.9.1.jar:0.9.1]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToTokenSeguranca(TokenJwtService.java:58) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToUserDetais(TokenJwtService.java:72) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter.doFilter(AppUsernamePasswordAuthenticationFilter.java:47) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_101]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_101]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_101]
+
+2019-06-13 15:42:59.558 ERROR 9228 --- [http-nio-8211-exec-5] o.a.c.c.C.[Tomcat].[localhost]           : Exception Processing ErrorPage[errorCode=0, location=/error]
+
+io.jsonwebtoken.RequiredTypeException: Expected value to be of type: class java.util.HashSet, but was class java.util.ArrayList
+	at io.jsonwebtoken.impl.DefaultClaims.castClaimValue(DefaultClaims.java:143) ~[jjwt-0.9.1.jar:0.9.1]
+	at io.jsonwebtoken.impl.DefaultClaims.get(DefaultClaims.java:123) ~[jjwt-0.9.1.jar:0.9.1]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToTokenSeguranca(TokenJwtService.java:58) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.token.TokenJwtService.tokenJwtToUserDetais(TokenJwtService.java:72) ~[classes/:na]
+	at br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter.doFilter(AppUsernamePasswordAuthenticationFilter.java:47) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_101]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_101]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_101]
+
+2019-06-13 15:43:29.788  INFO 14368 --- [main] b.c.h.a.ArqMsMobileApplication           : No active profile set, falling back to default profiles: default
+2019-06-13 15:43:30.869  INFO 14368 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-13 15:43:30.953  INFO 14368 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 77ms. Found 2 repository interfaces.
+2019-06-13 15:43:31.313  INFO 14368 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=42e39e40-c564-36a3-a99a-a01f017258eb
+2019-06-13 15:43:31.419  INFO 14368 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$aa9237d8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:43:31.449  INFO 14368 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$43400012] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:43:31.455  INFO 14368 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:43:31.457  INFO 14368 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@721fc2e3' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:43:31.462  INFO 14368 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$6814a2c4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:43:31.468  INFO 14368 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$8d69bada] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:43:31.470  INFO 14368 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:43:31.470  INFO 14368 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:43:31.490  INFO 14368 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$c6ac3ad5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 15:43:31.837  INFO 14368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8211 (http)
+2019-06-13 15:43:31.864  INFO 14368 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-13 15:43:31.865  INFO 14368 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-13 15:43:32.518  INFO 14368 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-13 15:43:32.518  INFO 14368 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2714 ms
+2019-06-13 15:43:33.351 DEBUG 14368 --- [main] c.h.a.i.l.AppCommonsRequestLoggingFilter : Filter 'requestLoggingFilter' configured for use
+2019-06-13 15:43:33.478  INFO 14368 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.1 by Boxfuse
+2019-06-13 15:43:33.688  INFO 14368 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:postgresql://localhost:5432/USUARIO (PostgreSQL 9.6)
+2019-06-13 15:43:33.754  INFO 14368 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.024s)
+2019-06-13 15:43:33.762  INFO 14368 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2019-06-13 15:43:33.763  INFO 14368 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2019-06-13 15:43:33.851  INFO 14368 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-13 15:43:34.042  INFO 14368 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-13 15:43:34.115  INFO 14368 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-13 15:43:34.192  INFO 14368 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-13 15:43:34.195  INFO 14368 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-13 15:43:34.384  INFO 14368 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-13 15:43:34.589  INFO 14368 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+2019-06-13 15:43:34.741  INFO 14368 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.useContextualLobCreation(LobCreatorBuilderImpl.java:113) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.makeLobCreatorBuilder(LobCreatorBuilderImpl.java:54) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.<init>(JdbcEnvironmentImpl.java:271) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:114) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:94) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:179) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:119) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:904) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:935) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1105) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at br.com.herio.arqmsmobile.ArqMsMobileApplication.main(ArqMsMobileApplication.java:12) ~[classes/:na]
+Caused by: java.sql.SQLFeatureNotSupportedException: Método org.postgresql.jdbc.PgConnection.createClob() ainda não foi implementado.
+	at org.postgresql.Driver.notImplemented(Driver.java:688) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgConnection.createClob(PgConnection.java:1269) ~[postgresql-42.2.5.jar:42.2.5]
+	... 44 common frames omitted
+
+2019-06-13 15:43:34.750  INFO 14368 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@333efb51
+2019-06-13 15:43:35.629  INFO 14368 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-13 15:43:35.970  INFO 14368 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-06-13 15:43:36.443  WARN 14368 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-13 15:43:36.571  INFO 14368 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 20 endpoint(s) beneath base path '/actuator'
+2019-06-13 15:43:36.966  INFO 14368 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 427ccdb4-2cb2-4817-b06f-b100c41bd246
+
+2019-06-13 15:43:37.037  INFO 14368 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@23471f48, org.springframework.security.web.context.SecurityContextPersistenceFilter@44b99f09, org.springframework.security.web.header.HeaderWriterFilter@d45acab, org.springframework.security.web.authentication.logout.LogoutFilter@1d8230cd, br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter@326706d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@724a80d2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@8d0253b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2898cd46, org.springframework.security.web.session.SessionManagementFilter@94ba90a, org.springframework.security.web.access.ExceptionTranslationFilter@ae49f31, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5d8de4bd]
+2019-06-13 15:43:37.067  INFO 14368 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-13 15:43:37.101  WARN 14368 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:43:37.102  INFO 14368 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:43:37.106  WARN 14368 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 15:43:37.106  INFO 14368 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 15:43:37.332  WARN 14368 --- [main] .b.a.g.t.GroovyTemplateAutoConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Groovy configuration, or set spring.groovy.template.check-template-location=false)
+2019-06-13 15:43:37.779  INFO 14368 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-13 15:43:37.797  INFO 14368 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-13 15:43:37.834  INFO 14368 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-13 15:43:38.048  INFO 14368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8211 (http) with context path ''
+2019-06-13 15:43:38.050  INFO 14368 --- [main] b.c.h.a.ArqMsMobileApplication           : Started ArqMsMobileApplication in 9.537 seconds (JVM running for 11.053)
+2019-06-13 15:43:38.145  INFO 14368 --- [RMI TCP Connection(6)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-13 15:43:38.145  INFO 14368 --- [RMI TCP Connection(6)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-13 15:43:38.158  INFO 14368 --- [RMI TCP Connection(6)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2019-06-13 15:44:03.087 DEBUG 14368 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"3dc2402f-4f13-46c4-b03b-8d458537f25d", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:44:03.192 DEBUG 14368 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"3dc2402f-4f13-46c4-b03b-8d458537f25d", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:45:19.802 DEBUG 14368 --- [http-nio-8211-exec-6] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"9f7e63b2-3ea5-441e-ba96-a2c65d13289a", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"77", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:45:19.831  WARN 14368 --- [http-nio-8211-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 5, column: 2]]
+2019-06-13 15:45:19.831 DEBUG 14368 --- [http-nio-8211-exec-6] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"9f7e63b2-3ea5-441e-ba96-a2c65d13289a", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"77", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+    "id": 4,
+    "login": "herio2",
+    "nome": ]
+2019-06-13 15:45:26.004 DEBUG 14368 --- [http-nio-8211-exec-8] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"ef7a63f7-69eb-45ba-9668-3dd5f3fee5e9", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"76", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:45:26.046 DEBUG 14368 --- [http-nio-8211-exec-8] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"ef7a63f7-69eb-45ba-9668-3dd5f3fee5e9", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"76", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+    "id": 4,
+    "login": "herio2",
+    "nome": ]
+2019-06-13 15:45:48.364 DEBUG 14368 --- [http-nio-8211-exec-9] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"5df0171d-46fd-4069-a3e1-79d115360f4f", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"76", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 15:46:07.890 DEBUG 14368 --- [http-nio-8211-exec-9] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"5df0171d-46fd-4069-a3e1-79d115360f4f", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"76", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+    "id": 4,
+    "login": "herio2",
+    "nome": ]
+2019-06-13 16:12:50.910  INFO 2752 --- [main] b.c.h.a.ArqMsMobileApplication           : No active profile set, falling back to default profiles: default
+2019-06-13 16:12:52.014  INFO 2752 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-13 16:12:52.098  INFO 2752 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76ms. Found 2 repository interfaces.
+2019-06-13 16:12:52.473  INFO 2752 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=42e39e40-c564-36a3-a99a-a01f017258eb
+2019-06-13 16:12:52.580  INFO 2752 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c604f9e0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 16:12:52.612  INFO 2752 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$5eb2c21a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 16:12:52.618  INFO 2752 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 16:12:52.619  INFO 2752 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1736c1e4' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 16:12:52.621  INFO 2752 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$838764cc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 16:12:52.629  INFO 2752 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$a8dc7ce2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 16:12:52.632  INFO 2752 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 16:12:52.633  INFO 2752 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 16:12:52.658  INFO 2752 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$e21efcdd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-13 16:12:53.037  INFO 2752 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8211 (http)
+2019-06-13 16:12:53.067  INFO 2752 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-13 16:12:53.067  INFO 2752 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-13 16:12:53.784  INFO 2752 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-13 16:12:53.784  INFO 2752 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2854 ms
+2019-06-13 16:12:54.740 DEBUG 2752 --- [main] c.h.a.i.l.AppCommonsRequestLoggingFilter : Filter 'requestLoggingFilter' configured for use
+2019-06-13 16:12:54.809  INFO 2752 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.1 by Boxfuse
+2019-06-13 16:12:54.969  INFO 2752 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:postgresql://localhost:5432/USUARIO (PostgreSQL 9.6)
+2019-06-13 16:12:55.024  INFO 2752 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.021s)
+2019-06-13 16:12:55.031  INFO 2752 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2019-06-13 16:12:55.031  INFO 2752 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2019-06-13 16:12:55.095  INFO 2752 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-13 16:12:55.239  INFO 2752 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-13 16:12:55.293  INFO 2752 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-13 16:12:55.359  INFO 2752 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-13 16:12:55.361  INFO 2752 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-13 16:12:55.518  INFO 2752 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-13 16:12:55.709  INFO 2752 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+2019-06-13 16:12:55.822  INFO 2752 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.useContextualLobCreation(LobCreatorBuilderImpl.java:113) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl.makeLobCreatorBuilder(LobCreatorBuilderImpl.java:54) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.<init>(JdbcEnvironmentImpl.java:271) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:114) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:94) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:179) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:119) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:904) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:935) [hibernate-core-5.3.9.Final.jar:5.3.9.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1105) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) ~[spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at br.com.herio.arqmsmobile.ArqMsMobileApplication.main(ArqMsMobileApplication.java:12) ~[classes/:na]
+Caused by: java.sql.SQLFeatureNotSupportedException: Método org.postgresql.jdbc.PgConnection.createClob() ainda não foi implementado.
+	at org.postgresql.Driver.notImplemented(Driver.java:688) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgConnection.createClob(PgConnection.java:1269) ~[postgresql-42.2.5.jar:42.2.5]
+	... 44 common frames omitted
+
+2019-06-13 16:12:55.830  INFO 2752 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@28b68067
+2019-06-13 16:12:56.730  INFO 2752 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-13 16:12:57.057  INFO 2752 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-06-13 16:12:57.480  WARN 2752 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-13 16:12:57.614  INFO 2752 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 20 endpoint(s) beneath base path '/actuator'
+2019-06-13 16:12:57.998  INFO 2752 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: e090f9b2-8095-4660-99a2-57e6b1f37d52
+
+2019-06-13 16:12:58.075  INFO 2752 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4fc9e73d, org.springframework.security.web.context.SecurityContextPersistenceFilter@5680f009, org.springframework.security.web.header.HeaderWriterFilter@5b084c4c, org.springframework.security.web.authentication.logout.LogoutFilter@27879518, br.com.herio.arqmsmobile.infra.security.AppUsernamePasswordAuthenticationFilter@72a33316, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73e0c775, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1da53092, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ca3a203, org.springframework.security.web.session.SessionManagementFilter@67b5da40, org.springframework.security.web.access.ExceptionTranslationFilter@2a2cdba0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@e8ef60b]
+2019-06-13 16:12:58.103  INFO 2752 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-13 16:12:58.135  WARN 2752 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 16:12:58.135  INFO 2752 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 16:12:58.139  WARN 2752 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2019-06-13 16:12:58.139  INFO 2752 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-06-13 16:12:58.364  WARN 2752 --- [main] .b.a.g.t.GroovyTemplateAutoConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Groovy configuration, or set spring.groovy.template.check-template-location=false)
+2019-06-13 16:12:58.787  INFO 2752 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-13 16:12:58.805  INFO 2752 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-13 16:12:58.841  INFO 2752 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-13 16:12:59.050  INFO 2752 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8211 (http) with context path ''
+2019-06-13 16:12:59.053  INFO 2752 --- [main] b.c.h.a.ArqMsMobileApplication           : Started ArqMsMobileApplication in 9.394 seconds (JVM running for 10.933)
+2019-06-13 16:12:59.272  INFO 2752 --- [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-13 16:12:59.272  INFO 2752 --- [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-13 16:12:59.285  INFO 2752 --- [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2019-06-13 16:13:53.353 DEBUG 2752 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"427f4812-5e92-47a1-8906-06f375145a04", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 16:13:53.446 DEBUG 2752 --- [http-nio-8211-exec-2] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"427f4812-5e92-47a1-8906-06f375145a04", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 16:14:12.721 DEBUG 2752 --- [http-nio-8211-exec-3] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"92ae9115-18c5-49ff-b4f6-dee6c84e0131", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"137", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 16:14:12.752  WARN 2752 --- [http-nio-8211-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 7, column: 2]]
+2019-06-13 16:14:12.753 DEBUG 2752 --- [http-nio-8211-exec-3] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"92ae9115-18c5-49ff-b4f6-dee6c84e0131", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"137", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+        "id": 4,
+        "login": "herio2",
+    ]
+2019-06-13 16:14:17.342 DEBUG 2752 --- [http-nio-8211-exec-5] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"a53e7cbd-6afb-4d7a-8635-58a1ab0bce70", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"137", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 16:14:17.344  WARN 2752 --- [http-nio-8211-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 7, column: 2]]
+2019-06-13 16:14:17.345 DEBUG 2752 --- [http-nio-8211-exec-5] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"a53e7cbd-6afb-4d7a-8635-58a1ab0bce70", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"137", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+        "id": 4,
+        "login": "herio2",
+    ]
+2019-06-13 16:14:21.591 DEBUG 2752 --- [http-nio-8211-exec-7] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"c4ffd4cf-bda7-4514-90f2-353925a78d73", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"136", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 16:14:27.372 DEBUG 2752 --- [http-nio-8211-exec-7] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"c4ffd4cf-bda7-4514-90f2-353925a78d73", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"136", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+        "id": 4,
+        "login": "herio2",
+    ]
+2019-06-13 16:14:46.747 DEBUG 2752 --- [http-nio-8211-exec-8] c.h.a.i.l.AppCommonsRequestLoggingFilter : Before request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"5682cbc2-f8d1-4ee3-be2a-9aab497a8d7f", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"136", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"]]
+2019-06-13 16:14:46.758 DEBUG 2752 --- [http-nio-8211-exec-8] c.h.a.i.l.AppCommonsRequestLoggingFilter : After request [uri=/usuarios;client=0:0:0:0:0:0:0:1;user=herio22;headers=[authorization:"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZXJpbzIyIiwiY3JlYXRlZCI6MTU2MDQ1MTMyOTgxMiwicm9sZXMiOltdLCJudSI6IkhlcmlvIE9saXZlaXJhIiwiaXNzIjoiY29tLmhlcmlvIiwiaWQiOjEwLCJleHAiOjE1NjEwNTYxMjk4MTJ9.nAoBCybVg1SNBAI59b1YWw0UsYk_ud4TqlAD23OCdeSzFSClltUK5oA7UtkVTwIdpT4f2IunpWuM-BbbL2i6bQ", "application/json", user-agent:"PostmanRuntime/7.13.0", accept:"*/*", cache-control:"no-cache", postman-token:"5682cbc2-f8d1-4ee3-be2a-9aab497a8d7f", host:"localhost:8211", cookie:"JSESSIONID=3230EB0BDE4EEBC66D4843591A60EACF", accept-encoding:"gzip, deflate", content-length:"136", connection:"keep-alive", Content-Type:"application/json;charset=UTF-8"];payload={
+        "id": 4,
+        "login": "herio21",
+   ]

@@ -31,4 +31,6 @@
 /build
 /.project
 /.classpath
+
 /app.log
+*.gz

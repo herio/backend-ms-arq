@@ -1,5 +1,6 @@
 package br.com.herio.arqmsmobile.rest;
 
+import java.util.Base64;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -31,6 +32,7 @@ public class UsuariosController {
 		}
 		//cria
 		usuario.valida();
+		usuario.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
 		return usuarioRepository.save(usuario);
 	}
 
@@ -42,8 +44,12 @@ public class UsuariosController {
 		}
 		//atualiza
 		Usuario usuarioBd = usuarioRepository.findById(usuario.getId()).get();
-		BeanUtils.copyProperties(usuario, usuarioBd);
-		usuario.valida();
+		usuarioBd.setLogin(usuario.getLogin());
+		usuarioBd.setNome(usuario.getNome());
+		usuarioBd.setEmail(usuario.getEmail());
+		usuarioBd.setUrlFoto(usuario.getUrlFoto());
+		usuarioBd.valida();
+		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuarioBd.getSenha().getBytes()));
 		return usuarioRepository.save(usuarioBd);	
 	}
 

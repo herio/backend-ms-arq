@@ -32,7 +32,7 @@ public class TokenSeguranca {
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
         this.loginUsuario = loginUsuario;
-        this.roles = roles;
+        this.roles = roles == null? new HashSet<>(): roles;
         this.emissorDoToken = emissorToken == null? TOKEN_ISSUER: emissorToken;
         this.validaToken();
     }

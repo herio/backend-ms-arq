@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.StringUtils;
 
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
@@ -21,6 +22,7 @@ public class Usuario implements Serializable {
     @Column(name="LOGIN")
     private String login;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name="SENHA")
     private String senha;
 

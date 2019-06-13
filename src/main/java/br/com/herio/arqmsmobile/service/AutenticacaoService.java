@@ -8,6 +8,8 @@ import br.com.herio.arqmsmobile.infra.security.token.TokenSeguranca;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
+
 @Service
 public class AutenticacaoService {
 
@@ -18,7 +20,8 @@ public class AutenticacaoService {
 	TokenJwtService tokenJwtService;
 
 	public Usuario autenticarUsuario(DtoAutenticacao dtoAutenticacao) {
-        Usuario usuario = usuarioRepository.findByLoginAndSenha(dtoAutenticacao.getLogin(), dtoAutenticacao.getSenha()).get();
+        Usuario usuario = usuarioRepository.findByLoginAndSenha(dtoAutenticacao.getLogin(),
+				Base64.getEncoder().encodeToString(dtoAutenticacao.getSenha().getBytes())).get();
 		usuario.setToken("Bearer " + criaTokenJwt(usuario));
         return usuario;
 	}
