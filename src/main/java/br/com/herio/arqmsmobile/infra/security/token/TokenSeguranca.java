@@ -12,7 +12,7 @@ public class TokenSeguranca {
     // 7 dias em milisegundos - 1000 * 60 * 60 * 24 * 7
     private final int tempoExpiracaoClienteMobile = 604800000;
 
-    private Date expiracaoToken;
+    private Date dataExpiracaoToken;
     private Date dataCriacaoToken;
     private Long idUsuario;
     private String nomeUsuario;
@@ -24,11 +24,11 @@ public class TokenSeguranca {
         this(null, null, idUsuario, nomeUsuario, loginUsuario, null, null );
     }
 
-    public TokenSeguranca(Date expiracaoToken, Date dataCriacaoToken, Long idUsuario,
+    public TokenSeguranca(Date dataExpiracaoToken, Date dataCriacaoToken, Long idUsuario,
                           String nomeUsuario, String loginUsuario, Set<String> roles, String emissorToken) {
         super();
         this.dataCriacaoToken = dataCriacaoToken == null? new Date(): dataCriacaoToken;
-        this.expiracaoToken = expiracaoToken == null ? defineExpiracaoToken() : expiracaoToken;
+        this.dataExpiracaoToken = dataExpiracaoToken == null ? defineExpiracaoToken() : dataExpiracaoToken;
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
         this.loginUsuario = loginUsuario;
@@ -45,16 +45,14 @@ public class TokenSeguranca {
     }
 
     protected void validaToken() {
-        final long expiracaoEmMills = this.getExpiracaoToken().getTime();
+        final long expiracaoEmMills = this.getDataExpiracaoToken().getTime();
         final long dataHoraCorrenteEmMills = new Date().getTime();
         if (expiracaoEmMills < dataHoraCorrenteEmMills) {
             throw new IllegalStateException("Validade do token JWT expirada");
         }
     }
 
-    public Date getExpiracaoToken() {
-        return expiracaoToken;
-    }
+    public Date getDataExpiracaoToken() { return dataExpiracaoToken; }
 
     public Date getDataCriacaoToken() { return dataCriacaoToken; }
 

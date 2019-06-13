@@ -28,7 +28,7 @@ public class TokenJwtService {
         claims.put("iss", tokenSeguranca.getEmissorToken());
         claims.put("sub", tokenSeguranca.getLoginUsuario());
         claims.put("created", tokenSeguranca.getDataCriacaoToken().getTime());
-        claims.put("exp", tokenSeguranca.getExpiracaoToken());
+        claims.put("exp", tokenSeguranca.getDataExpiracaoToken().getTime());
         // As claims abaixo sao adicionais
         claims.put("roles", tokenSeguranca.getRoles());
         // idUsuario
@@ -46,16 +46,15 @@ public class TokenJwtService {
 
     public TokenSeguranca tokenJwtToTokenSeguranca(String tokenJwt) {
         final Claims claims = parseClaimsJwt(tokenJwt);
-        Date expiracaoToken = new Date(claims.getExpiration().getTime() / 1000);
-        long criacaoToken = claims.get("created", Long.class);
-        Date dataCriacaoToken = new Date(criacaoToken);
+        String emissorToken = claims.getIssuer();
+        String loginUsuario = claims.getSubject();
+        Date dataCriacaoToken = claims.getIssuedAt();
+        Date dataExpiracaoToken = claims.getExpiration();
         HashSet<String> roles = new HashSet<String>(claims.get("roles", ArrayList.class));
         Long idUsuario = claims.get("id", Long.class);
         String nomeUsuario = claims.get("nu", String.class);
-        String loginUsuario = claims.getSubject();
-        String emissorToken = claims.getIssuer();
 
-        return new TokenSeguranca(expiracaoToken, dataCriacaoToken, idUsuario, nomeUsuario, loginUsuario,
+        return new TokenSeguranca(dataExpiracaoToken, dataCriacaoToken, idUsuario, nomeUsuario, loginUsuario,
                 roles, emissorToken);
     }
 
