@@ -8,13 +8,15 @@ Fornece a infra de:
 - cliente feign (FeignErrorDecoder e FeignRequestInterceptor)
 - security (SecurityConfig)
 - resources e beans (AppConfig)
-- serviço de autenticação tokenjwt (TokenAuthenticationService)
-- Config e acesso aos logs do projeto (LogController, AppCommonsRequestLoggingFilter)
+- TokenJWT (TokenJwtService)
+- Config logs do projeto (AppCommonsRequestLoggingFilter)
 
 Fornece endpoints para:
-- CRUD usuários
-- CRUD dispositivos
-- Notificações
+- Autenticação (AutenticacaoController)
+- CRUD usuários (UsuariosController)
+- CRUD dispositivos (DispositivosController)
+- Notificações (NotificacoesController)
+- Logs (LogController)
 
 ## Pré-requisitos para rodar localmente
 

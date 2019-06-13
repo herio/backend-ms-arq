@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +48,6 @@ public class UsuariosController {
 		usuarioBd.setEmail(usuario.getEmail());
 		usuarioBd.setUrlFoto(usuario.getUrlFoto());
 		usuarioBd.valida();
-		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuarioBd.getSenha().getBytes()));
 		return usuarioRepository.save(usuarioBd);	
 	}
 

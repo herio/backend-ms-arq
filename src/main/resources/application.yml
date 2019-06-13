@@ -1,4 +1,4 @@
-#spring appname - necessário para acessar <appname>.properties via spring-cloud
+#spring
 spring:
   application:
     name: arq-ms-mobile

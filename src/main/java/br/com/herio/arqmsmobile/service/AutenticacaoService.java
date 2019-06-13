@@ -22,13 +22,13 @@ public class AutenticacaoService {
 	public Usuario autenticarUsuario(DtoAutenticacao dtoAutenticacao) {
         Usuario usuario = usuarioRepository.findByLoginAndSenha(dtoAutenticacao.getLogin(),
 				Base64.getEncoder().encodeToString(dtoAutenticacao.getSenha().getBytes())).get();
-		usuario.setToken("Bearer " + criaTokenJwt(usuario));
+		usuario.setToken(criaTokenJwt(usuario));
         return usuario;
 	}
 
 	private String criaTokenJwt(Usuario usuario) {
 		TokenSeguranca tokenSeguranca = new TokenSeguranca(usuario.getId(), usuario.getNome(), usuario.getLogin());
-		return tokenJwtService.tokenSegurancaToTokenJwt(tokenSeguranca);
+		return "Bearer " + tokenJwtService.tokenSegurancaToTokenJwt(tokenSeguranca);
 	}
 
 //	private void recuperarRecebimentoNotificacoes(Usuario usuario, DtoAutenticacao dtoAutenticacao) {
