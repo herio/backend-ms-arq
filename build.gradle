@@ -14,6 +14,7 @@ buildscript {
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
+apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 group = 'br.com.herio'
@@ -78,6 +79,5 @@ publishing {
 	}
 	repositories {
 		mavenLocal()
-		mavenCentral()
 	}
 }
