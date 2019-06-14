@@ -68,3 +68,47 @@ Comandos úteis:
     git push -u origin master --push repo remoto
     git push heroku master //toda vez que tiver alteração e quiser subir em produção
     
+    
+## Heroku
+
+Principais comandos:
+    
+    heroku login
+    heroku create appname
+    git push heroku master //toda vez que tiver alteração e quiser subir em produção
+    heroku open
+    heroku logs --tail
+    heroku config //vê url bd
+    heroku pg //vê dados bd
+    heroku ps:scale web=1 //add uma instância web
+    heroku config:set ENERGY="20 GeV" //criar var ambiente
+    heroku config //listar var ambiente
+     
+Criar Procfile na raiz do projeto:
+
+    Ex. web: java $JAVA_OPTS -Dserver.port=$PORT -Dspring.profiles.active=prod -jar build/libs/arq-ms-mobile-0.0.1-SNAPSHOT.jar
+
+Acessar BD:
+
+    Ir em datastore > settings > credentials > heroku CLI > Copiar comando (Executar esse comando na raiz do projeto: pgsql deve estar configurado no PATH)
+    Ex. heroku pg:psql postgresql-asymmetrical-61306 --app sgtifgo
+
+Criar backup sql no pgadmin: 
+
+    Clique botão direito no banco > backup > plain > gere arquivo .sql e jogue na raiz do projeto
+
+Alterar owner do arquivo .sql  por usuário do banco no heroku:
+
+    ex. replace all: 'TO postgres' por: 'TO zpsjlzbixfkzxt'
+
+Em heroku pg:sql, mande executar o arquivo criado
+
+    \i sgt.sql
+
+Dúvidas de comandos:
+ 
+    \copyright para mostrar termos de distribuição
+    \h para ajuda com comandos SQL
+    \? para ajuda com comandos do psql
+    \g ou terminar com ponto-e-vírgula para executar a consulta
+    \q para sair
