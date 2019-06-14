@@ -88,6 +88,10 @@ Criar Procfile na raiz do projeto:
 
     Ex. web: java $JAVA_OPTS -Dserver.port=$PORT -Dspring.profiles.active=prod -jar build/libs/arq-ms-mobile-0.0.1-SNAPSHOT.jar
 
+Criar add-on para postgress
+
+    heroku addons:create heroku-postgresql:hobby-dev --version=9.6
+
 Acessar BD:
 
     Ir em datastore > settings > credentials > heroku CLI > Copiar comando (Executar esse comando na raiz do projeto: pgsql deve estar configurado no PATH)
