@@ -84,20 +84,35 @@ Principais comandos:
     heroku config:set ENERGY="20 GeV" //criar var ambiente
     heroku config //listar var ambiente
      
-Criar Procfile na raiz do projeto:
+Criar Procfile para rodar app em prod:
 
     Ex. web: java $JAVA_OPTS -Dserver.port=$PORT -Dspring.profiles.active=prod -jar build/libs/arq-ms-mobile-0.0.1-SNAPSHOT.jar
 
-Criar add-on para postgress
+Criar application-prod.yml com config de prod heroku:
+     
+    spring:
+	 #bd
+	 datasource:
+	  username: ${JDBC_DATABASE_USERNAME}
+	  password: ${JDBC_DATABASE_PASSWORD}
+    url: ${JDBC_DATABASE_URL}
+	 #flyway
+	 flyway:
+	  user: ${JDBC_DATABASE_USERNAME}
+	  password: ${JDBC_DATABASE_PASSWORD}
+	  url: ${JDBC_DATABASE_URL}
+
+
+Criar add-on para postgress prod:
 
     heroku addons:create heroku-postgresql:hobby-dev --version=9.6
 
-Acessar BD:
+Acessar BD prod:
 
     Ir em datastore > settings > credentials > heroku CLI > Copiar comando (Executar esse comando na raiz do projeto: pgsql deve estar configurado no PATH)
     Ex. heroku pg:psql postgresql-asymmetrical-61306 --app sgtifgo
 
-Criar backup sql no pgadmin: 
+Criar backup sql no pgadmin (caso não tenha flyway): 
 
     Clique botão direito no banco > backup > plain > gere arquivo .sql e jogue na raiz do projeto
 
