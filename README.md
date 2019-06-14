@@ -22,7 +22,7 @@ Fornece endpoints para:
 
 Ter instalado (configurado nas variáveis de ambiente):
 - Java 8 (JAVA_HOME e PATH)
-- Gradle 4.7 (GRADLE_HOME e GRADLE_USER_HOME)
+- Gradle 5.4 (GRADLE_HOME e GRADLE_USER_HOME)
 - Maven (M2_HOME)
 
 
