@@ -68,6 +68,17 @@ Comandos úteis:
     git push -u origin master --push repo remoto
     git push heroku master //toda vez que tiver alteração e quiser subir em produção
     
+Criar novo repositório:
+
+    Na web > + > new repository > nome, vazio
+    git clone url
+    adiciona arquivos
+    git add .
+    git commit -m "comentário"
+    git push iu origin master
+    
+
+    
     
 ## Heroku
 
