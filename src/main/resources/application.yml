@@ -24,6 +24,7 @@ spring:
     password: postgres
     url: jdbc:postgresql://localhost:5432/USUARIO
     schemas: public
+    locations: classpath:db/migrationarq
 
 #management - necessario para liberar acesso spring-security
 management:
