@@ -10,13 +10,17 @@ buildscript {
 	}
 
 	repositories project.repos
+	
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+	}
 }
-
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-
+apply plugin: 'maven-publish'	
+apply plugin: org.springframework.boot.gradle.plugin.SpringBootPlugin
+ 
 group = 'br.com.herio'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_1_8
