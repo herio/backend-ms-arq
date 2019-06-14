@@ -1,12 +1,12 @@
-#spring
+  #spring
 spring:
   #bd
   datasource:
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    url: jdbc:postgresql://${DB_HOST}:${DB_HOST_PORT}/${DB_NAME}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    url: ${JDBC_DATABASE_URL}
   #flyway
   flyway:
-    user: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    url: jdbc:postgresql://${DB_HOST}:${DB_HOST_PORT}/${DB_NAME}
+    user: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    url: ${JDBC_DATABASE_URL}
