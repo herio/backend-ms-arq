@@ -82,6 +82,10 @@ publishing {
 		}
 	}
 	repositories {
+		//deploy nos repositórios dos projetos dependentes para publicação no heroku
+		maven {
+			url 'file:./../template/repo'
+		}
 		mavenLocal()
 	}
 }
