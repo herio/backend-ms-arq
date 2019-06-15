@@ -1,5 +1,18 @@
 package br.com.herio.arqmsmobile.infra.app;
 
+import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import br.com.herio.arqmsmobile.infra.feign.FeignErrorDecoder;
 import br.com.herio.arqmsmobile.infra.feign.FeignRequestInterceptor;
 import br.com.herio.arqmsmobile.infra.log.AppCommonsRequestLoggingFilter;
@@ -8,20 +21,6 @@ import ch.qos.logback.classic.LoggerContext;
 import feign.Logger;
 import feign.RequestInterceptor;
 import feign.codec.ErrorDecoder;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 
 @Order(HIGHEST_PRECEDENCE)
 @Configuration
