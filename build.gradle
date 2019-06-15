@@ -81,6 +81,8 @@ publishing {
 		//deploy nos repositários dos projetos dependentes para publicação no heroku
 		maven {
 			url 'file:./../backend-ms-template/repo'
+		}
+		maven {
 			url 'file:./../backend-ms-federal-apps/repo'
 		}
 		mavenLocal()
