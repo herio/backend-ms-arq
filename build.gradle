@@ -42,7 +42,7 @@ dependencies {
     //swagger    
 	compile ('io.springfox:springfox-swagger2:2.9.2')
 	compile ('io.springfox:springfox-swagger-ui:2.9.2')
-    //necess√°rio para o springfox n√£o lan√ßar exce√ß√£o com springboot 2.1.0
+    //necess·rio para o springfox n„o lanÁar exceÁ„o com springboot 2.1.0
     compile("org.springframework.hateoas:spring-hateoas:0.24.0.RELEASE")
 	
 	//jaxb - evitar erro ao usar jaxb com jdk10
@@ -78,7 +78,7 @@ publishing {
 		}
 	}
 	repositories {
-		//deploy nos reposit√≥rios dos projetos dependentes para publica√ß√£o no heroku
+		//deploy nos reposit·rios dos projetos dependentes para publicaÁ„o no heroku
 		maven {
 			url 'file:./../template-mobile/repo'
 		}

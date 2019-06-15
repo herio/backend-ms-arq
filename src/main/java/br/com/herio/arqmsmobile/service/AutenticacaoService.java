@@ -1,23 +1,24 @@
 package br.com.herio.arqmsmobile.service;
 
+import java.util.Base64;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.DtoAutenticacao;
 import br.com.herio.arqmsmobile.infra.security.token.TokenJwtService;
 import br.com.herio.arqmsmobile.infra.security.token.TokenSeguranca;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Base64;
 
 @Service
 public class AutenticacaoService {
 
 	@Autowired
-	UsuarioRepository usuarioRepository;
+	protected UsuarioRepository usuarioRepository;
 
 	@Autowired
-	TokenJwtService tokenJwtService;
+	protected TokenJwtService tokenJwtService;
 
 	public Usuario autenticarUsuario(DtoAutenticacao dtoAutenticacao) {
         Usuario usuario = usuarioRepository.findByLoginAndSenha(dtoAutenticacao.getLogin(),

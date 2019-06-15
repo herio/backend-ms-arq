@@ -34,6 +34,9 @@ public class Usuario implements Serializable {
 
     @Column(name="URL_FOTO")
     private String urlFoto;
+
+    @Column(name="ATIVADO")
+    private boolean ativado;
     
     @Version
     @Column(name = "NUM_VERSAO_REGISTRO")
@@ -47,16 +50,25 @@ public class Usuario implements Serializable {
     	super();
     }
 
-    public Usuario(String login, String senha, String nome, String email, String urlFoto) {
+    public Usuario(String login, String senha, String nome, String email, String urlFoto, boolean ativado) {
     	super();
         this.login = login;
         this.senha = senha;
         this.nome = nome;
         this.email = email;
         this.urlFoto = urlFoto;
+        this.ativado = ativado;
     }
 
-    public String getToken() {
+    public boolean isAtivado() {
+		return ativado;
+	}
+
+	public void setAtivado(boolean ativado) {
+		this.ativado = ativado;
+	}
+
+	public String getToken() {
         return token;
     }
 

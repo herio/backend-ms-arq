@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AutenticacaoController {
 	
 	@Autowired
-	private AutenticacaoService autenticacaoService;
+	protected AutenticacaoService autenticacaoService;
 
 	@ApiOperation("autenticar")
 	@PostMapping
