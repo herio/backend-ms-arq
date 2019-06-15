@@ -132,7 +132,7 @@ public class Dispositivo implements Serializable {
     public void valida() {
         if(StringUtils.isEmpty(this.numRegistro) || this.os == null
                 || this.sistema == null || this.usuario == null || this.dataCadastro == null) {
-            throw new ExcecaoNegocio("Dispositivo inv√°lido, verifique campos obrigat√≥rios");
+            throw new ExcecaoNegocio("Dispositivo inv·lido, verifique campos obrigatÛrios");
         }
     }
 }

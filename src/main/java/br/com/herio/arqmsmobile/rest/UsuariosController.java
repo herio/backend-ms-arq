@@ -27,7 +27,7 @@ public class UsuariosController {
 	@PostMapping("/publico/usuarios")
 	public Usuario criarUsuario(@RequestBody Usuario usuario) {
 		if(usuario.getId() != null) {
-			throw new IllegalArgumentException("Informe um novo usu√°rio sem id!");
+			throw new IllegalArgumentException("Informe um novo usu·rio sem id!");
 		}
 		//cria
 		usuario.valida();
@@ -39,7 +39,7 @@ public class UsuariosController {
 	@PostMapping("/usuarios")
 	public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
 		if(usuario.getId() == null) {
-			throw new IllegalArgumentException("Informe um usu√°rio com id!");
+			throw new IllegalArgumentException("Informe um usu·rio com id!");
 		}
 		//atualiza
 		Usuario usuarioBd = usuarioRepository.findById(usuario.getId()).get();

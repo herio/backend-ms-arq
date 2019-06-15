@@ -34,9 +34,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title(String.format("API REST - %s", appName))
-                .description(String.format("DocumentaÃ§Ã£o da API REST do projeto %s", appName))
+                .description(String.format("Documentação da API REST do projeto %s", appName))
                 .version("1.0.0")
-                .contact(new Contact("HÃ©rio Oliveira", null, "heriothiago@gmail.com"))
+                .contact(new Contact("Hério Oliveira", null, "heriothiago@gmail.com"))
                 .build();
     }
 

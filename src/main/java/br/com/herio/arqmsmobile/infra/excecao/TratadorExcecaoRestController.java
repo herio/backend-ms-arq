@@ -38,7 +38,7 @@ public class TratadorExcecaoRestController {
 	@ExceptionHandler(ConstraintViolationException.class)
 	public DtoExcecao tratarExcecaoNegocio(ConstraintViolationException e) {
 		// ConstraintViolationException deve retornar http status 412
-		String mensagem = "JÃ¡ existe registro cadastrado com os valores informados na requisiÃ§Ã£o.";
+		String mensagem = "Já existe registro cadastrado com os valores informados na requisição.";
 		String causa = ExceptionUtils.getStackTrace(e);
 		return new DtoExcecao(mensagem, causa);
 	}

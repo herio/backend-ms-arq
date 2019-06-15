@@ -23,8 +23,8 @@ import br.com.herio.arqmsmobile.infra.security.token.TokenJwtService;
 
 public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    final private String MSG_TOKEN_NAO_INFORMADO = "Token de autoriza√ß√£o n√£o enviado";
-    final private String MSG_AUTHORIZATION_HEADER_INCORRETO = "Header do token de autoriza√ß√£o esta incorreto ou inexistente";
+    final private String MSG_TOKEN_NAO_INFORMADO = "Token de autorizaÁ„o n„o enviado";
+    final private String MSG_AUTHORIZATION_HEADER_INCORRETO = "Header do token de autorizaÁ„o esta incorreto ou inexistente";
 
     final private String TOKEN_HEADER = "Authorization";
     final private String TIPO_TOKEN_HEADER = "Bearer";
