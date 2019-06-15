@@ -4,25 +4,21 @@ buildscript {
 		springVersion = '5.1.5.RELEASE'
 
 		repos = {
-			mavenLocal()
 			mavenCentral()
+			mavenLocal()
 		}
 	}
 
 	repositories project.repos
 	
-	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-	}
 }
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'	
-apply plugin: org.springframework.boot.gradle.plugin.SpringBootPlugin
  
 group = 'br.com.herio'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories project.repos
@@ -84,7 +80,7 @@ publishing {
 	repositories {
 		//deploy nos repositórios dos projetos dependentes para publicação no heroku
 		maven {
-			url 'file:./../template/repo'
+			url 'file:./../template-mobile/repo'
 		}
 		mavenLocal()
 	}
