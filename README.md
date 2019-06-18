@@ -18,7 +18,7 @@ Fornece endpoints para:
 - Notificações (NotificacoesController)
 - Logs (LogController)
 
-## PrÃ©-requisitos para rodar localmente
+## Pré-requisitos para rodar localmente
 
 Ter instalado (configurado nas variáveis de ambiente):
 - Java 8 (JAVA_HOME e PATH)
@@ -38,7 +38,7 @@ Import project from external model > Gradle
 - Global Gradle settings > Service directory path deve apontar para GRADLE_USER_HOME 
 
 
-## PublicaÃ§Ã£o no repositÃ³rio local
+## Publicação no repositório local
 
 Para publicar atualização do projeto, rodar comando gradle:
 
@@ -144,7 +144,7 @@ Em heroku pg:sql, mande executar o arquivo criado
 
     \i sgt.sql
 
-DÃºvidas de comandos:
+Dúvidas de comandos:
  
     \copyright para mostrar termos de distribuição
     \h para ajuda com comandos SQL
