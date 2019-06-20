@@ -2,10 +2,18 @@ package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.commons.lang3.StringUtils;
 
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
@@ -16,51 +24,51 @@ public class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="ID")
-    private Long id;
+	@Column(name = "ID")
+	private Long id;
 
-    @Column(name="LOGIN")
-    private String login;
+	@Column(name = "LOGIN")
+	private String login;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(name="SENHA")
-    private String senha;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@Column(name = "SENHA")
+	private String senha;
 
-    @Column(name="NOME")
-    private String nome;
+	@Column(name = "NOME")
+	private String nome;
 
-    @Column(name="EMAIL")
-    private String email;
+	@Column(name = "EMAIL")
+	private String email;
 
-    @Column(name="URL_FOTO")
-    private String urlFoto;
+	@Column(name = "URL_FOTO")
+	private String urlFoto;
 
-    @Column(name="ATIVADO")
-    private boolean ativado;
-    
-    @Version
-    @Column(name = "NUM_VERSAO_REGISTRO")
-    private Long versao;
+	@Column(name = "ATIVADO")
+	private boolean ativado;
 
-    @Transient
-    private String token;
+	@Version
+	@Column(name = "NUM_VERSAO_REGISTRO")
+	private Long versao;
 
-    public Usuario() {
-        //default
-    	super();
-    }
+	@Transient
+	private String token;
 
-    public Usuario(String login, String senha, String nome, String email, String urlFoto, boolean ativado) {
-    	super();
-        this.login = login;
-        this.senha = senha;
-        this.nome = nome;
-        this.email = email;
-        this.urlFoto = urlFoto;
-        this.ativado = ativado;
-    }
+	public Usuario() {
+		// default
+		super();
+	}
 
-    public boolean isAtivado() {
+	public Usuario(String login, String senha, String nome, String email, String urlFoto, boolean ativado) {
+		super();
+		this.login = login;
+		this.senha = senha;
+		this.nome = nome;
+		this.email = email;
+		this.urlFoto = urlFoto;
+		this.ativado = ativado;
+	}
+
+	public boolean isAtivado() {
 		return ativado;
 	}
 
@@ -69,14 +77,14 @@ public class Usuario implements Serializable {
 	}
 
 	public String getToken() {
-        return token;
-    }
+		return token;
+	}
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+	public void setToken(String token) {
+		this.token = token;
+	}
 
-    public String getUrlFoto() {
+	public String getUrlFoto() {
 		return urlFoto;
 	}
 
@@ -85,76 +93,76 @@ public class Usuario implements Serializable {
 	}
 
 	public String getLogin() {
-        return login;
-    }
+		return login;
+	}
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public String getSenha() {
+		return senha;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Long getVersao() {
-        return versao;
-    }
+	public Long getVersao() {
+		return versao;
+	}
 
-    public void setVersao(Long versao) {
-        this.versao = versao;
-    }
+	public void setVersao(Long versao) {
+		this.versao = versao;
+	}
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 
-    public void valida() {
-        StringBuilder msg = new StringBuilder();
-        if(StringUtils.isEmpty(this.login)) {
-            msg.append("Login inválido, ");
-        }
-        if(StringUtils.isEmpty(this.senha)) {
-            msg.append("Senha inválida, ");
-        }
-        if(StringUtils.isEmpty(this.nome)) {
-            msg.append("Nome inválido");
-        }
-        if(msg.length() > 0) {
-            throw new ExcecaoNegocio(msg.toString());
-        }
-    }
+	public void valida() {
+		StringBuilder msg = new StringBuilder();
+		if (StringUtils.isEmpty(this.login)) {
+			msg.append("Login inválido, ");
+		}
+		if (StringUtils.isEmpty(this.senha)) {
+			msg.append("Senha inválida, ");
+		}
+		if (StringUtils.isEmpty(this.nome)) {
+			msg.append("Nome inválido");
+		}
+		if (msg.length() > 0) {
+			throw new ExcecaoNegocio(msg.toString());
+		}
+	}
 }
