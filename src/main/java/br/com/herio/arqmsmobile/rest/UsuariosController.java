@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiOperation;
 @Api("UsuariosController")
 @RestController
 public class UsuariosController {
-	
+
 	@Autowired
 	protected UsuarioRepository usuarioRepository;
 
@@ -30,10 +30,10 @@ public class UsuariosController {
 	@ApiOperation("criarUsuario")
 	@PostMapping("/publico/usuarios")
 	public Usuario criarUsuario(@RequestBody Usuario usuario) {
-		if(usuario.getId() != null) {
-			throw new IllegalArgumentException("Informe um novo usu·rio sem id!");
+		if (usuario.getId() != null) {
+			throw new IllegalArgumentException("Informe um novo usu√°rio (sem id)!");
 		}
-		//cria
+		// cria
 		usuario.valida();
 		usuario.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
 		usuario = usuarioRepository.save(usuario);
@@ -44,17 +44,17 @@ public class UsuariosController {
 	@ApiOperation("atualizarUsuario")
 	@PostMapping("/usuarios")
 	public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
-		if(usuario.getId() == null) {
-			throw new IllegalArgumentException("Informe um usu·rio com id!");
+		if (usuario.getId() == null) {
+			throw new IllegalArgumentException("Informe um usu√°rio j√° existente (com id)!");
 		}
-		//atualiza
+		// atualiza
 		Usuario usuarioBd = usuarioRepository.findById(usuario.getId()).get();
 		usuarioBd.setLogin(usuario.getLogin());
 		usuarioBd.setNome(usuario.getNome());
 		usuarioBd.setEmail(usuario.getEmail());
 		usuarioBd.setUrlFoto(usuario.getUrlFoto());
 		usuarioBd.valida();
-		return usuarioRepository.save(usuarioBd);	
+		return usuarioRepository.save(usuarioBd);
 	}
 
 	@ApiOperation("listarUsuarios")

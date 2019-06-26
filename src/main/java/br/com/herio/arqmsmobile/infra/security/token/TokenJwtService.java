@@ -65,7 +65,7 @@ public class TokenJwtService {
 
 	public UserDetails tokenJwtToUserDetais(String token) {
 
-		Validate.notNull(token, "Não foi possível criar o usuário a partir do token porque o token está nulo");
+		Validate.notNull(token, "Nao foi possivel criar o usuario a partir do token porque o token esta nulo");
 		TokenSeguranca tokenSeguranca = tokenJwtToTokenSeguranca(token);
 
 		Long idUsuario = tokenSeguranca.getIdUsuario();
@@ -91,7 +91,7 @@ public class TokenJwtService {
 		try {
 			claims = Jwts.parser().setSigningKey(keyService.getSecretKey()).parseClaimsJws(tokenJwt).getBody();
 		} catch (JwtException jwtException) {
-			throw new AccessDeniedException("Token invÃ¡lido!", jwtException);
+			throw new AccessDeniedException("Token invalido!", jwtException);
 		}
 		return claims;
 	}

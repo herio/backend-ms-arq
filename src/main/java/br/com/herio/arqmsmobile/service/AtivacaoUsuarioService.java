@@ -27,12 +27,12 @@ public class AtivacaoUsuarioService {
 
 	public AtivacaoUsuario gerarAtivacaoUsuario(Long idUsuario) {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
-		if(usuario.isAtivado()) {
-			throw new ExcecaoNegocio("Usu·rio j· est· ativado!");
+		if (usuario.isAtivado()) {
+			throw new ExcecaoNegocio("Usu√°rio j√° est√° ativado!");
 		}
 		Optional<AtivacaoUsuario> ativacao = ativacaoUsuarioRepository.findByUsuarioId(idUsuario);
 		AtivacaoUsuario ativacaoUsuario;
-		if(ativacao.isPresent()) {
+		if (ativacao.isPresent()) {
 			ativacaoUsuario = ativacao.get();
 		} else {
 			ativacaoUsuario = new AtivacaoUsuario();
@@ -42,19 +42,20 @@ public class AtivacaoUsuarioService {
 		ativacaoUsuario.setDataAtivacao(null);
 		ativacaoUsuario.geraChaveAtivacao();
 		ativacaoUsuarioRepository.save(ativacaoUsuario);
-        return ativacaoUsuario;
+		return ativacaoUsuario;
 	}
 
 	public void confirmarAtivacaoUsuario(Long idUsuario, String chave) {
-		AtivacaoUsuario ativacaoUsuario = ativacaoUsuarioRepository.findByUsuarioIdChaveAtivacaoValida(idUsuario, chave).get();
-		if(isPeriodoAtivacaoValido(ativacaoUsuario)) {
+		AtivacaoUsuario ativacaoUsuario = ativacaoUsuarioRepository.findByUsuarioIdChaveAtivacaoValida(idUsuario, chave)
+				.get();
+		if (isPeriodoAtivacaoValido(ativacaoUsuario)) {
 			ativacaoUsuario.setDataAtivacao(new Date());
 			ativacaoUsuarioRepository.save(ativacaoUsuario);
 			Usuario usuario = usuarioRepository.findById(idUsuario).get();
 			usuario.setAtivado(true);
 			usuarioRepository.save(usuario);
 		} else {
-			throw new ExcecaoNegocio("Prazo de ativaÁ„o expirado, gere uma nova chave de ativaÁ„o.");
+			throw new ExcecaoNegocio("Prazo de ativa√ß√£o expirado, gere uma nova chave de ativa√ß√£o.");
 		}
 	}
 

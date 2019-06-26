@@ -4,6 +4,6 @@ public class ExcecaoSessaoInvalida extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	public ExcecaoSessaoInvalida() {
-		super("Sessão inválida");
+		super("Sessao invalida");
 	}
 }

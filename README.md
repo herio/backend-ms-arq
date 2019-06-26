@@ -3,7 +3,7 @@
 Projeto spring boot que fornece infra para projetos spring boot mobile.
 
 Fornece a infra de:
-- tratamento de exceções (TratadorExcecaoRestController)
+- tratamento de exceÃ§Ãµes (TratadorExcecaoRestController)
 - swagger (SwaggerConfig)
 - cliente feign (FeignErrorDecoder e FeignRequestInterceptor)
 - security (SecurityConfig)
@@ -12,15 +12,15 @@ Fornece a infra de:
 - Config logs do projeto (AppCommonsRequestLoggingFilter)
 
 Fornece endpoints para:
-- Autenticação (AutenticacaoController)
-- CRUD usuários (UsuariosController)
+- AutenticaÃ§Ã£o (AutenticacaoController)
+- CRUD usuÃ¡rios (UsuariosController)
 - CRUD dispositivos (DispositivosController)
-- Notificações (NotificacoesController)
+- NotificaÃ§Ãµes (NotificacoesController)
 - Logs (LogController)
 
-## Pré-requisitos para rodar localmente
+## PrÃ©-requisitos para rodar localmente
 
-Ter instalado (configurado nas variáveis de ambiente):
+Ter instalado (configurado nas variÃ¡veis de ambiente):
 - Java 8 (JAVA_HOME e PATH)
 - Gradle 5.4 (GRADLE_HOME e GRADLE_USER_HOME)
 - Maven (M2_HOME)
@@ -33,14 +33,14 @@ File > New > Project from existing source > arq-ms-mobile
 Import project from external model > Gradle
 
 - Use default gradle wrapper
-- Gradle home > instalação do gradle local (definido em GRADLE_HOME)
-- Gradle JVM > instalação Jdk 8 local (definido em JAVA_HOME)
+- Gradle home > instalaÃ§Ã£o do gradle local (definido em GRADLE_HOME)
+- Gradle JVM > instalaÃ§Ã£o Jdk 8 local (definido em JAVA_HOME)
 - Global Gradle settings > Service directory path deve apontar para GRADLE_USER_HOME 
 
 
-## Publicação no repositório local
+## PublicaÃ§Ã£o no repositÃ³rio local
 
-Para publicar atualização do projeto, rodar comando gradle:
+Para publicar atualizaÃ§Ã£o do projeto, rodar comando gradle:
 
     gradle publish
     
@@ -52,7 +52,7 @@ Baixar projeto:
 
     git clone https://github.com/herio/backend-ms-arq.git
 
-Sobrescrever código local com o do repositório:
+Sobrescrever cÃ³digo local com o do repositÃ³rio:
 
     git fetch --all
 	 git reset --hard origin/master
@@ -60,30 +60,30 @@ Sobrescrever código local com o do repositório:
 - git fetch downloads the latest from remote without trying to merge or rebase anything.
 - Then the git reset resets the master branch to what you just fetched. The --hard option changes all the files in your working tree to match the files in origin/master
 	
-Atualizar código local mantendo suas atualizações
+Atualizar cÃ³digo local mantendo suas atualizaÃ§Ãµes
   
     git status
 	 git stash
 	 git pull
 	 git stash pop
 
-Ver log dos últimos commits:
+Ver log dos Ãºltimos commits:
 
     git log --stat
 
 Fazer commit:
 
-    git add . --add todas alterações
-    git commit -m "descrição" --faz commit repo local
+    git add . --add todas alteraÃ§Ãµes
+    git commit -m "descriÃ§Ã£o" --faz commit repo local
     git push origin master --push repo remoto
     
-Criar novo repositório:
+Criar novo repositÃ³rio:
 
     Na web > + > new repository > nome, vazio
     git clone url
     adiciona arquivos
     git add .
-    git commit -m "comentário"
+    git commit -m "comentÃ¡rio"
     git push iu origin master
     
 
@@ -95,12 +95,12 @@ Principais comandos:
     
     heroku login
     heroku create appname
-    git push heroku master //toda vez que tiver alteração e quiser subir em produção
+    git push heroku master //toda vez que tiver alteraÃ§Ã£o e quiser subir em produÃ§Ã£o
     heroku open
     heroku logs --tail
-    heroku config //vê url bd
-    heroku pg //vê dados bd
-    heroku ps:scale web=1 //add uma instância web
+    heroku config //vÃª url bd
+    heroku pg //vÃª dados bd
+    heroku ps:scale web=1 //add uma instÃ¢ncia web
     heroku config:set ENERGY="20 GeV" //criar var ambiente
     heroku config //listar var ambiente
      
@@ -132,9 +132,9 @@ Acessar BD prod:
     Ir em datastore > settings > credentials > heroku CLI > Copiar comando (Executar esse comando na raiz do projeto: pgsql deve estar configurado no PATH)
     Ex. heroku pg:psql postgresql-asymmetrical-61306 --app sgtifgo
 
-Criar backup sql no pgadmin (caso não tenha flyway): 
+Criar backup sql no pgadmin (caso nÃ£o tenha flyway): 
 
-    Clique botão direito no banco > backup > plain > gere arquivo .sql e jogue na raiz do projeto
+    Clique botÃ£o direito no banco > backup > plain > gere arquivo .sql e jogue na raiz do projeto
 
 Alterar owner do arquivo .sql  por usuÃ¡rio do banco no heroku:
 
@@ -144,9 +144,9 @@ Em heroku pg:sql, mande executar o arquivo criado
 
     \i sgt.sql
 
-Dúvidas de comandos:
+DÃºvidas de comandos:
  
-    \copyright para mostrar termos de distribuição
+    \copyright para mostrar termos de distribuiÃ§Ã£o
     \h para ajuda com comandos SQL
     \? para ajuda com comandos do psql
     \g ou terminar com ponto-e-vÃ­rgula para executar a consulta

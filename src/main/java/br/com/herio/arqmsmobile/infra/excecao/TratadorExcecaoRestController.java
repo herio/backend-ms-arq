@@ -2,6 +2,8 @@ package br.com.herio.arqmsmobile.infra.excecao;
 
 import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 
+import java.util.NoSuchElementException;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.core.annotation.Order;
@@ -11,8 +13,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import br.com.herio.arqmsmobile.infra.excecao.dto.DtoExcecao;
-
-import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 @Order(HIGHEST_PRECEDENCE)
@@ -38,7 +38,7 @@ public class TratadorExcecaoRestController {
 	@ExceptionHandler(ConstraintViolationException.class)
 	public DtoExcecao tratarExcecaoNegocio(ConstraintViolationException e) {
 		// ConstraintViolationException deve retornar http status 412
-		String mensagem = "Já existe registro cadastrado com os valores informados na requisição.";
+		String mensagem = "JÃ¡ existe registro cadastrado com os valores informados.";
 		String causa = ExceptionUtils.getStackTrace(e);
 		return new DtoExcecao(mensagem, causa);
 	}

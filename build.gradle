@@ -42,7 +42,7 @@ dependencies {
     //swagger    
 	compile ('io.springfox:springfox-swagger2:2.9.2')
 	compile ('io.springfox:springfox-swagger-ui:2.9.2')
-    //necessário para o springfox não lançar exceção com springboot 2.1.0
+    //necessario para o springfox nao lancar excecao com springboot 2.1.0
     compile("org.springframework.hateoas:spring-hateoas:0.24.0.RELEASE")
 	
 	//jaxb - evitar erro ao usar jaxb com jdk10
@@ -78,7 +78,7 @@ publishing {
 		}
 	}
 	repositories {
-		//deploy nos repositários dos projetos dependentes para publicação no heroku
+		//deploy nos repositorios dos projetos dependentes para publicacao no heroku
 		maven {
 			url 'file:./../backend-ms-template/repo'
 		}
