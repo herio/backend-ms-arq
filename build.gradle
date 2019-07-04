@@ -82,6 +82,7 @@ publishing {
 		maven {
 			url 'file:./../backend-ms-template/repo'
 		}
+		
 		maven {
 			url 'file:./../backend-noticias-juridicas/repo'
 		}
