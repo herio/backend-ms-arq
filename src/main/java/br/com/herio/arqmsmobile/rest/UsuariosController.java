@@ -6,10 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
@@ -47,19 +44,28 @@ public class UsuariosController {
 	}
 
 	@ApiOperation("atualizarUsuario")
-	@PostMapping("/usuarios")
-	public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
-		if (usuario.getId() == null) {
+	@PostMapping("/usuarios/{idUsuario}")
+	public Usuario atualizarUsuario(@PathVariable Long idUsuario, @RequestBody Usuario usuario) {
+		if (idUsuario == null) {
 			throw new IllegalArgumentException("Informe um usuário já existente (com id)!");
 		}
 		// atualiza
-		Usuario usuarioBd = usuarioRepository.findById(usuario.getId()).get();
+		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
 		usuarioBd.setLogin(usuario.getLogin());
 		usuarioBd.setNome(usuario.getNome());
 		usuarioBd.setEmail(usuario.getEmail());
 		usuarioBd.setUrlFoto(usuario.getUrlFoto());
 		usuarioBd.valida();
 		return usuarioRepository.save(usuarioBd);
+	}
+
+	@ApiOperation("removerUsuario")
+	@DeleteMapping("/usuarios/{idUsuario}")
+	public void removerUsuario(@PathVariable Long idUsuario) {
+		if (idUsuario == null) {
+			throw new IllegalArgumentException("Informe um usuário já existente (com id)!");
+		}
+		usuarioRepository.deleteById(idUsuario);
 	}
 
 	@ApiOperation("listarUsuarios")
