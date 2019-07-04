@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.service.AtivacaoUsuarioService;
+import br.com.herio.arqmsmobile.service.AutenticacaoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -27,6 +28,9 @@ public class UsuariosController {
 	@Autowired
 	protected AtivacaoUsuarioService ativacaoUsuarioService;
 
+	@Autowired
+	protected AutenticacaoService autenticacaoService;
+
 	@ApiOperation("criarUsuario")
 	@PostMapping("/publico/usuarios")
 	public Usuario criarUsuario(@RequestBody Usuario usuario) {
@@ -37,6 +41,7 @@ public class UsuariosController {
 		usuario.valida();
 		usuario.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
 		usuario = usuarioRepository.save(usuario);
+		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 		ativacaoUsuarioService.gerarAtivacaoUsuario(usuario.getId());
 		return usuario;
 	}
