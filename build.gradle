@@ -83,7 +83,7 @@ publishing {
 			url 'file:./../backend-ms-template/repo'
 		}
 		maven {
-			url 'file:./../backend-ms-federal-apps/repo'
+			url 'file:./../backend-noticias-juridicas/repo'
 		}
 		mavenLocal()
 	}
