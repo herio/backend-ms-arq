@@ -55,7 +55,7 @@ Baixar projeto:
 Sobrescrever código local com o do repositório:
 
     git fetch --all
-	 git reset --hard origin/master
+	git reset --hard origin/master
 	
 - git fetch downloads the latest from remote without trying to merge or rebase anything.
 - Then the git reset resets the master branch to what you just fetched. The --hard option changes all the files in your working tree to match the files in origin/master
@@ -63,9 +63,9 @@ Sobrescrever código local com o do repositório:
 Atualizar código local mantendo suas atualizações
   
     git status
-	 git stash
-	 git pull
-	 git stash pop
+	git stash
+	git pull
+	git stash pop
 
 Ver log dos últimos commits:
 
@@ -86,6 +86,9 @@ Criar novo repositório:
     git commit -m "comentário"
     git push iu origin master
     
+Definir usuário padrão para commit via linha de comando
+
+    git config --global credential.username "seu email"
 
     
     
