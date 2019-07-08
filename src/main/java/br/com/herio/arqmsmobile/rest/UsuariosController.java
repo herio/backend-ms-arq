@@ -6,12 +6,19 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.service.AtivacaoUsuarioService;
 import br.com.herio.arqmsmobile.service.AutenticacaoService;
+import br.com.herio.arqmsmobile.service.UsuarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -21,6 +28,9 @@ public class UsuariosController {
 
 	@Autowired
 	protected UsuarioRepository usuarioRepository;
+
+	@Autowired
+	protected UsuarioService usuarioService;
 
 	@Autowired
 	protected AtivacaoUsuarioService ativacaoUsuarioService;
@@ -41,6 +51,12 @@ public class UsuariosController {
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 		ativacaoUsuarioService.gerarAtivacaoUsuario(usuario.getId());
 		return usuario;
+	}
+
+	@ApiOperation("recuperarSenha")
+	@GetMapping("/publico/usuarios/senha")
+	public String recuperarSenha(@RequestParam String login) {
+		return usuarioService.recuperarSenha(login);
 	}
 
 	@ApiOperation("atualizarUsuario")
