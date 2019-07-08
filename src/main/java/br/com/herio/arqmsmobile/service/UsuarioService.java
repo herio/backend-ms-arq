@@ -19,7 +19,7 @@ import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 public class UsuarioService {
 
 	@Autowired
-	private JavaMailSender javaMailSender;
+	protected JavaMailSender javaMailSender;
 
 	@Autowired
 	protected UsuarioRepository usuarioRepository;
