@@ -36,7 +36,7 @@ public class UsuarioService {
 		try {
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			// true = multipart message
-			MimeMessageHelper helper = new MimeMessageHelper(msg, "UTF-8");
+			MimeMessageHelper helper = new MimeMessageHelper(msg, true, "ISO-8859-1");
 			helper.setFrom("Juris Apps <contatojurisapps@gmail.com>");
 			helper.setTo(usuario.getEmail());
 			helper.setSubject("JurisApps - Recuperação de senha");
@@ -52,7 +52,7 @@ public class UsuarioService {
 					new String(Base64.getDecoder().decode(usuario.getSenha()))));
 
 			javaMailSender.send(msg);
-			return "E-mail enviado com sucesso! Verifique sua caixa de e-mail.";
+			return "E-mail de recuperação de senha enviado com sucesso! Verifique sua caixa de e-mail.";
 		} catch (MessagingException e) {
 			throw new RuntimeException("Erro ao enviar email", e);
 		}
