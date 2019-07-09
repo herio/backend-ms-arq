@@ -98,7 +98,7 @@ public class EnviadorEmailService {
 	private String addDadosUsuario(Usuario usuario, EnumSistema sistema) {
 		return new StringBuilder()
 			.append("<table><tr>")
-			.append(String.format("<td><img width='100px' height='100px' src='%s'/></td>",
+			.append(String.format("<td><img style='border-radius: 50%' width='100px' height='100px' src='%s'/></td>",
 					usuario.getUrlFoto() == null ? sistema.getDefaultAvatar() : usuario.getUrlFoto()))
 			.append("<td><b>Nome:</b> %s")
 			.append("<br/><b>E-mail:</b> %s")
