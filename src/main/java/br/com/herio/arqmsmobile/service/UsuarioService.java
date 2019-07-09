@@ -42,12 +42,13 @@ public class UsuarioService {
 			helper.setSubject("JurisApps - Recuperação de senha");
 
 			// true = text/html
-			String email = new StringBuilder("<h1>Juris Apps - Recuperação de senha</h1><br/><br/>")
-					.append("Olá %s, <br/><br/>Sua senha descriptograda é: <b>%s</b><br/><br/>")
-					.append("Caso queira trocá-la, entre no App e vá em: Configurações > Atualize seus dados.<br/><br/>")
-					.append("Atenciosamente, Juris Apps.<br/>")
-					.append("<img width='100px' height='100px' src='https://noticias-juridicas.herokuapp.com/publico/icone_app.png'/><br/><br/><br/><br/>")
-					.toString();
+			String email = new StringBuilder("<table><tr>")
+				.append("<td><img width='100px' height='100px' src='https://noticias-juridicas.herokuapp.com/publico/icone_app.png'/>")
+				.append("<td><h1>Juris Apps - Recuperação de senha</h1></td></tr></table>")
+				.append("<br/><br/>Olá %s, <br/><br/>Sua senha descriptograda é: <b>%s</b>")
+				.append("<br/><br/>Caso queira trocá-la, entre no App e vá em: Configurações > Atualize seus dados.")
+				.append("<br/><br/>Atenciosamente, Juris Apps.<br/><br/>")
+				.toString();
 			helper.setText(String.format(email, usuario.getNome(), new String(Base64.getDecoder().decode(usuario.getSenha()))), true);
 
 			javaMailSender.send(msg);
