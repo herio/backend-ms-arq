@@ -9,6 +9,7 @@ import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UsuarioService {
@@ -24,6 +25,9 @@ public class UsuarioService {
 
 	@Autowired
 	protected EnviadorEmailService enviadorEmailService;
+
+	@Autowired
+	private FileStorageService fileStorageService;
 
 	public Usuario criarUsuario(Usuario usuario, EnumSistema sistema) {
 		if (usuario.getId() != null) {
@@ -58,6 +62,17 @@ public class UsuarioService {
 		// enviaEmail
 		enviadorEmailService.enviaEmailAtualizacaoDados(usuarioBd, sistema);
 		return usuarioBd;
+	}
+
+	public Usuario uploadFoto(Long idUsuario, EnumSistema sistema, MultipartFile file) {
+		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		String fileUri = fileStorageService.storeFile(file);
+		usuario.setUrlFoto(fileUri);
+		usuarioRepository.save(usuario);
+
+		// enviaEmail
+		enviadorEmailService.enviaEmailAtualizacaoDados(usuario, sistema);
+		return usuario;
 	}
 
 	public String recuperarSenha(String login, EnumSistema sistema) {
