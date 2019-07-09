@@ -38,7 +38,6 @@ public class AtivacaoUsuarioService {
 			ativacaoUsuario = new AtivacaoUsuario();
 			ativacaoUsuario.setUsuario(usuario);
 		}
-		ativacaoUsuario.setDataCadastro(new Date());
 		ativacaoUsuario.setDataAtivacao(null);
 		ativacaoUsuario.geraChaveAtivacao();
 		ativacaoUsuarioRepository.save(ativacaoUsuario);
@@ -61,7 +60,7 @@ public class AtivacaoUsuarioService {
 
 	private boolean isPeriodoAtivacaoValido(AtivacaoUsuario ativacaoUsuario) {
 		Date dataAtual = new Date();
-		Date dataCadastro = ativacaoUsuario.getDataCadastro();
+		Date dataCadastro = java.sql.Timestamp.valueOf(ativacaoUsuario.getDataCriacao());
 		long seconds = (dataAtual.getTime() - dataCadastro.getTime()) / 1000;
 		int hours = (int) (seconds / UMA_HORA_EM_SEGUNDOS);
 		return hours <= PERIODO_ATIVACAO_EM_HORAS;

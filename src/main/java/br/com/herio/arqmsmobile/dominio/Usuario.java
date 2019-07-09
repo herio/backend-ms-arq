@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.persistence.Version;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,7 +18,7 @@ import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
 @Entity
 @Table(schema = "public", name = "USUARIO")
-public class Usuario implements Serializable {
+public class Usuario extends Entidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -45,10 +44,6 @@ public class Usuario implements Serializable {
 
 	@Column(name = "ATIVADO")
 	private boolean ativado;
-
-	@Version
-	@Column(name = "NUM_VERSAO_REGISTRO")
-	private Long versao;
 
 	@Transient
 	private String token;
@@ -130,14 +125,6 @@ public class Usuario implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersao() {
-		return versao;
-	}
-
-	public void setVersao(Long versao) {
-		this.versao = versao;
 	}
 
 	@Override

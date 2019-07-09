@@ -45,10 +45,7 @@ public class DispositivosController {
 			dispositivo.setUsuario(usuarioRepository.findById(idUsuario).get());
 			List<Dispositivo> dispositivos = dispositivoRepository.findByIdUsuarioNumRegistroOs(idUsuario,
 					dispositivo.getNumRegistro(), dispositivo.getOs());
-			if (dispositivos.isEmpty()) {
-				// dispositivo novo
-				dispositivo.setDataCadastro(new Date());
-			} else {
+			if (!dispositivos.isEmpty()) {
 				// dispositivo excluido anteriormente
 				dispositivo = dispositivos.iterator().next();
 				dispositivo.setDataExclusao(null);

@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Version;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -23,7 +22,7 @@ import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
 @Entity
 @Table(name = "DISPOSITIVO", schema = "public")
-public class Dispositivo implements Serializable {
+public class Dispositivo extends Entidade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,15 +42,8 @@ public class Dispositivo implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private EnumTipoSO os;
 
-	@Column(name = "DTHORA_CADASTRO")
-	private Date dataCadastro;
-
-	@Column(name = "DTHORA_EXCLUSAO")
+	@Column(name = "DATA_EXCLUSAO")
 	private Date dataExclusao;
-
-	@Version
-	@Column(name = "NUM_VERSAO_REGISTRO")
-	private Long versao;
 
 	public Dispositivo() {
 		super();
@@ -89,14 +81,6 @@ public class Dispositivo implements Serializable {
 		this.os = so;
 	}
 
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
 	public Date getDataExclusao() {
 		return dataExclusao;
 	}
@@ -113,23 +97,14 @@ public class Dispositivo implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Long getVersao() {
-		return versao;
-	}
-
-	public void setVersao(Long versao) {
-		this.versao = versao;
-	}
-
 	@Override
 	public String toString() {
-		return String.format("%nDispositivo [id=%s, idUsuario=%s, numRegistro=%s, os=%s, sistema=%s, dataCadastro=%s]",
-				getId(), usuario.getId(), numRegistro, os, dataCadastro);
+		return String.format("%nDispositivo [id=%s, idUsuario=%s, numRegistro=%s, os=%s, sistema=%s]", getId(),
+				usuario.getId(), numRegistro, os);
 	}
 
 	public void valida() {
-		if (StringUtils.isEmpty(this.numRegistro) || this.os == null || this.usuario == null
-				|| this.dataCadastro == null) {
+		if (StringUtils.isEmpty(this.numRegistro) || this.os == null || this.usuario == null) {
 			throw new ExcecaoNegocio("Dispositivo inválido, verifique campos obrigatórios");
 		}
 	}
