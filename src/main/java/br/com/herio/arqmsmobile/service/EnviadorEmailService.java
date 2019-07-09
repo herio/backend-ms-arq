@@ -91,7 +91,7 @@ public class EnviadorEmailService {
 
 	private String addHeader(String urlIcone, String titulo) {
 		return new StringBuilder("<table><tr>")
-			.append(String.format("<td><img width='100px' height='100px' src='%s'/></td>", urlIcone))
+			.append(String.format("<td><img width='50px' height='50px' src='%s'/></td>", urlIcone))
 			.append(String.format("<td><h1>%s</h1></td></tr></table>", titulo)).toString();
 	}
 
