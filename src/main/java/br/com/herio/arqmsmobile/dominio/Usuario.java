@@ -18,18 +18,18 @@ import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 public class Usuario extends Entidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Column(name = "NOME")
+	private String nome;
+
 	@Column(name = "LOGIN")
 	private String login;
+
+	@Column(name = "EMAIL")
+	private String email;
 
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name = "SENHA")
 	private String senha;
-
-	@Column(name = "NOME")
-	private String nome;
-
-	@Column(name = "EMAIL")
-	private String email;
 
 	@Column(name = "URL_FOTO")
 	private String urlFoto;

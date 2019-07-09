@@ -12,6 +12,8 @@ import javax.persistence.Version;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @MappedSuperclass
 public class Entidade {
 
@@ -20,14 +22,17 @@ public class Entidade {
 	@Column(name = "ID")
 	private Long id;
 
+	@JsonIgnore
 	@CreationTimestamp
 	@Column(name = "DATA_CRIACAO")
 	private LocalDateTime dataCriacao;
 
+	@JsonIgnore
 	@UpdateTimestamp
 	@Column(name = "DATA_ATUALIZACAO")
 	private LocalDateTime dataAtualizacao;
 
+	@JsonIgnore
 	@Version
 	@Column(name = "VERSAO")
 	private Long versao;
