@@ -6,10 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ConfiguracaoNotificacaoRepository extends CrudRepository<ConfiguracaoNotificacao, Long> {
 
     @Query("SELECT a FROM ConfiguracaoNotificacao a WHERE a.usuario.id = :idUsuario")
-    List<ConfiguracaoNotificacao> findAllByUsuarioId(Long idUsuario);
+    Optional<ConfiguracaoNotificacao> findByUsuarioId(Long idUsuario);
 }

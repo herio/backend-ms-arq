@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-@Api("ConfiguracaoNotificacaoController")
+@Api("ConfiguracoesNotificacoesController")
 @RestController
 @RequestMapping("/usuarios/{idUsuario}/configuracoesnotificacoes")
 public class ConfiguracoesNotificacoesController {
@@ -20,10 +20,10 @@ public class ConfiguracoesNotificacoesController {
 	@Autowired
 	protected UsuarioRepository usuarioRepository;
 
-	@ApiOperation("listarConfiguracoes")
+	@ApiOperation("recuperarConfiguracao")
 	@GetMapping
-	public Collection<ConfiguracaoNotificacao> listarConfiguracoes(@PathVariable Long idUsuario) {
-		return configuracaoNotificacaoRepository.findAllByUsuarioId(idUsuario);
+	public ConfiguracaoNotificacao recuperarConfiguracao(@PathVariable Long idUsuario) {
+		return configuracaoNotificacaoRepository.findByUsuarioId(idUsuario).get();
 	}
 
 	@ApiOperation("salvarConfiguracao")
