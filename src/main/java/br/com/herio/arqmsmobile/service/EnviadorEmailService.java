@@ -25,7 +25,7 @@ public class EnviadorEmailService {
 			MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), String.format("App %s - Recuperação de senha", sistema.getNome()));
 
 			String email = new StringBuilder()
-				.append(addHeader(sistema.getIcone(), String.format("%s - Recuperação de senha", sistema.getNome())))
+				.append(addHeader(sistema.getIcone(), String.format("Recuperação de senha do App %s", sistema.getNome())))
 				.append(addDadosUsuario(usuario, sistema))
 				.append(addFooter())
 				.toString();
