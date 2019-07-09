@@ -2,59 +2,72 @@ package br.com.herio.arqmsmobile.service;
 
 import java.util.Base64;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
+import br.com.herio.arqmsmobile.dto.EnumSistema;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
 @Service
 public class UsuarioService {
 
 	@Autowired
-	protected JavaMailSender javaMailSender;
-
-	@Autowired
 	protected UsuarioRepository usuarioRepository;
 
-	public String recuperarSenha(String login) {
+	@Autowired
+	protected AtivacaoUsuarioService ativacaoUsuarioService;
+
+	@Autowired
+	protected AutenticacaoService autenticacaoService;
+
+	@Autowired
+	protected EnviadorEmailService enviadorEmailService;
+
+	public Usuario criarUsuario(Usuario usuario, EnumSistema sistema) {
+		if (usuario.getId() != null) {
+			throw new IllegalArgumentException("Informe um novo usuário (sem id)!");
+		}
+		// cria
+		usuario.valida();
+		usuario.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
+		usuario = usuarioRepository.save(usuario);
+		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
+		ativacaoUsuarioService.gerarAtivacaoUsuario(usuario.getId());
+
+		// enviaEmail
+		enviadorEmailService.enviaEmailBoasVindas(usuario, sistema);
+		return usuario;
+	}
+
+	public Usuario atualizarUsuario(Long idUsuario, EnumSistema sistema, Usuario usuario) {
+		if (idUsuario == null) {
+			throw new IllegalArgumentException("Informe um usuário já existente (com id)!");
+		}
+		// atualiza
+		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
+		usuarioBd.setLogin(usuario.getLogin());
+		usuarioBd.setNome(usuario.getNome());
+		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
+		usuarioBd.setEmail(usuario.getEmail());
+		usuarioBd.setUrlFoto(usuario.getUrlFoto());
+		usuarioBd.valida();
+		usuarioBd = usuarioRepository.save(usuarioBd);
+
+		// enviaEmail
+		enviadorEmailService.enviaEmailAtualizacaoDados(usuarioBd, sistema);
+		return usuarioBd;
+	}
+
+	public String recuperarSenha(String login, EnumSistema sistema) {
 		Usuario usuario = usuarioRepository.findByLogin(login).get();
 		if (usuario == null) {
 			throw new ExcecaoNegocio(String.format("Usuário de login %s inexistente", login));
 		}
-		return sendEmailWithAttachment(usuario);
+
+		// enviaEmail
+		return enviadorEmailService.enviaEmailRecuperaSenha(usuario, sistema);
 	}
 
-	public String sendEmailWithAttachment(Usuario usuario) {
-
-		try {
-			MimeMessage msg = javaMailSender.createMimeMessage();
-			// true = multipart message
-			MimeMessageHelper helper = new MimeMessageHelper(msg);
-			helper.setFrom("Juris Apps <contatojurisapps@gmail.com>");
-			helper.setTo(usuario.getEmail());
-			helper.setSubject("JurisApps - Recuperação de senha");
-
-			// true = text/html
-			String email = new StringBuilder("<table><tr>")
-				.append("<td><img width='100px' height='100px' src='https://noticias-juridicas.herokuapp.com/publico/icone_app.png'/>")
-				.append("<td><h1>Juris Apps - Recuperação de senha</h1></td></tr></table>")
-				.append("<br/><br/>Olá %s, <br/><br/>Sua senha descriptograda é: <b>%s</b>")
-				.append("<br/><br/>Caso queira trocá-la, entre no App e vá em: Configurações > Atualize seus dados.")
-				.append("<br/><br/>Atenciosamente, Juris Apps.<br/><br/>")
-				.toString();
-			helper.setText(String.format(email, usuario.getNome(), new String(Base64.getDecoder().decode(usuario.getSenha()))), true);
-
-			javaMailSender.send(msg);
-			return "E-mail de recuperação de senha enviado com sucesso! Verifique sua caixa de e-mail.";
-		} catch (MessagingException e) {
-			throw new RuntimeException("Erro ao enviar email", e);
-		}
-	}
 }
