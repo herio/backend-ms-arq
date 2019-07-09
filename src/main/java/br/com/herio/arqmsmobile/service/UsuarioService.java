@@ -49,7 +49,7 @@ public class UsuarioService {
 					.append("<img width='100px' height='100px' src='https://noticias-juridicas.herokuapp.com/publico/icone_app.png'/><br/><br/><br/><br/>")
 					.toString();
 			helper.setText(String.format(email, usuario.getNome(),
-					Base64.getEncoder().encodeToString(usuario.getSenha().getBytes())), true);
+					new String(Base64.getDecoder().decode(usuario.getSenha()))));
 
 			javaMailSender.send(msg);
 			return "E-mail enviado com sucesso! Verifique sua caixa de e-mail.";
