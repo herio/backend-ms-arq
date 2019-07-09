@@ -44,7 +44,7 @@ public class UsuarioService {
 			// true = text/html
 			String email = new StringBuilder("<h1>Juris Apps - Recuperação de senha</h1><br/><br/>")
 					.append("Olá %s, <br/><br/>Sua senha descriptograda é: <b>%s</b><br/><br/>")
-					.append("Entre no App e caso queira trocá-la, vá em: Configurações > Atualize seus dados.<br/><br/>")
+					.append("Caso queira trocá-la, entre no App e vá em: Configurações > Atualize seus dados.<br/><br/>")
 					.append("Atenciosamente, Juris Apps.<br/>")
 					.append("<img width='100px' height='100px' src='https://noticias-juridicas.herokuapp.com/publico/icone_app.png'/><br/><br/><br/><br/>")
 					.toString();
