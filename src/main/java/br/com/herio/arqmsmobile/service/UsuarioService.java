@@ -6,7 +6,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -37,20 +36,20 @@ public class UsuarioService {
 		try {
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			// true = multipart message
-			MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+			MimeMessageHelper helper = new MimeMessageHelper(msg, "UTF-8");
+			helper.setFrom("Juris Apps <contatojurisapps@gmail.com>");
 			helper.setTo(usuario.getEmail());
 			helper.setSubject("JurisApps - Recuperação de senha");
 
 			// true = text/html
 			String email = new StringBuilder("<h1>Juris Apps - Recuperação de senha</h1><br/><br/>")
-					.append("Olá %s, <br/><br/> Sua senha descriptograda é: <b>%s</b><br/><br/>")
+					.append("Olá %s, <br/><br/>Sua senha descriptograda é: <b>%s</b><br/><br/>")
 					.append("Entre no App e caso queira trocá-la, vá em: Configurações > Atualize seus dados.<br/><br/>")
-					.append("<img src='https://noticias-juridicas.herokuapp.com/publico/icone_app.png'/>")
-					.append("Atenciosamente, Juris Apps.").toString();
+					.append("Atenciosamente, Juris Apps.<br/>")
+					.append("<img width='100px' height='100px' src='https://noticias-juridicas.herokuapp.com/publico/icone_app.png'/><br/><br/><br/><br/>")
+					.toString();
 			helper.setText(String.format(email, usuario.getNome(),
 					Base64.getEncoder().encodeToString(usuario.getSenha().getBytes())), true);
-
-			helper.addAttachment("my_photo.png", new ClassPathResource("android.png"));
 
 			javaMailSender.send(msg);
 			return "E-mail enviado com sucesso! Verifique sua caixa de e-mail.";
