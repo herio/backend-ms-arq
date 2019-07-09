@@ -8,9 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication(scanBasePackages = { "br.com.herio" })
 @EnableFeignClients
-@EnableConfigurationProperties({
-		FileStorageProperties.class
-})
+@EnableConfigurationProperties({ FileStorageProperties.class })
 public class ArqMsMobileApplication {
 
 	public static void main(String[] args) {

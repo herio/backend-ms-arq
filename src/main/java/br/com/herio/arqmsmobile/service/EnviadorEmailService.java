@@ -25,10 +25,10 @@ public class EnviadorEmailService {
 			MimeMessageHelper helper = new MimeMessageHelper(msg);
 			helper.setFrom("Juris Apps <contatojurisapps@gmail.com>");
 			helper.setTo(usuario.getEmail());
-			helper.setSubject(String.format("%s - Recuperação de senha", sistema.getNome()));
+			helper.setSubject(String.format("App %s - Recuperação de senha", sistema.getNome()));
 
 			String email = new StringBuilder("<table><tr>")
-					.append(String.format("<td><img width='100px' height='100px' src='%s'/>", sistema.getIcone()))
+					.append(String.format("<td><img width='100px' height='100px' src='%s'/></td>", sistema.getIcone()))
 					.append(String.format("<td><h1>%s - Recuperação de senha</h1></td></tr></table>", sistema.getNome()))
 					.append("<br/><br/>Olá %s, <br/><br/>Sua senha descriptograda é: <b>%s</b>")
 					.append("<br/><br/>Caso queira trocá-la, entre no App e vá em: Configurações > Atualize seus dados.")
@@ -49,14 +49,17 @@ public class EnviadorEmailService {
 			MimeMessageHelper helper = new MimeMessageHelper(msg);
 			helper.setFrom("Juris Apps <contatojurisapps@gmail.com>");
 			helper.setTo(usuario.getEmail());
-			helper.setSubject(String.format("App %s - Seja bem vindo", sistema.getNome()));
+			helper.setSubject(String.format("Seja bem vindo ao App %s", sistema.getNome()));
 
 			String email = new StringBuilder("<table><tr>")
-					.append(String.format("<td><img width='100px' height='100px' src='%s'/>", sistema.getIcone()))
+					.append(String.format("<td><img width='100px' height='100px' src='%s'/></td>", sistema.getIcone()))
 					.append(String.format("<td><h1>%s - Dados de Cadastro</h1></td></tr></table>", sistema.getNome()))
-					.append("<br/><br/><b>Nome:</b> %s")
+					.append("<table><tr>")
+					.append(String.format("<td><img width='100px' height='100px' src='%s'/></td>", sistema.getDefaultAvatar()))
+					.append("<td><b>Nome:</b> %s")
 					.append("<br/><b>E-mail:</b> %s")
-					.append("<br/><b>Senha:</b> %s")
+					.append("<br/><b>Senha:</b> %s</td>")
+					.append("</tr></table>")
 					.append("<br/><br/>Caso queira atualizar seus dados, entre no App e vá em: Configurações > Atualize seus dados.")
 					.append("<br/><br/>Atenciosamente, Juris Apps.<br/><br/>").toString();
 			helper.setText(String.format(email, usuario.getNome(), usuario.getEmail(),
@@ -74,14 +77,18 @@ public class EnviadorEmailService {
 			MimeMessageHelper helper = new MimeMessageHelper(msg);
 			helper.setFrom("Juris Apps <contatojurisapps@gmail.com>");
 			helper.setTo(usuario.getEmail());
-			helper.setSubject(String.format("App %s - Seus dados foram atualizados", sistema.getNome()));
+			helper.setSubject(String.format("Seus dados foram atualizados no App %s", sistema.getNome()));
 
 			String email = new StringBuilder("<table><tr>")
-					.append(String.format("<td><img width='100px' height='100px' src='%s'/>", sistema.getIcone()))
+					.append(String.format("<td><img width='100px' height='100px' src='%s'/></td>", sistema.getIcone()))
 					.append(String.format("<td><h1>%s - Dados atualizados</h1></td></tr></table>", sistema.getNome()))
-					.append("<br/><br/><b>Nome:</b> %s")
+					.append("<table><tr>")
+					.append(String.format("<td><img width='100px' height='100px' src='%s'/></td>",
+							usuario.getUrlFoto() == null ? sistema.getDefaultAvatar() : usuario.getUrlFoto()))
+					.append("<td><b>Nome:</b> %s")
 					.append("<br/><b>E-mail:</b> %s")
-					.append("<br/><b>Senha:</b> %s")
+					.append("<br/><b>Senha:</b> %s</td>")
+					.append("</tr></table>")
 					.append("<br/><br/>Caso queira atualizar seus dados, entre no App e vá em: Configurações > Atualize seus dados.")
 					.append("<br/><br/>Atenciosamente, Juris Apps.<br/><br/>").toString();
 			helper.setText(String.format(email, usuario.getNome(), usuario.getEmail(),
