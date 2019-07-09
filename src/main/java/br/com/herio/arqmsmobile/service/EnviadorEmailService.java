@@ -26,11 +26,10 @@ public class EnviadorEmailService {
 
 			String email = new StringBuilder()
 				.append(addHeader(sistema.getIcone(), String.format("%s - Recuperação de senha", sistema.getNome())))
-				.append("<br/><br/>Olá %s, <br/><br/>Sua senha descriptograda é: <b>%s</b>")
+				.append(addDadosUsuario(usuario, sistema))
 				.append(addFooter())
 				.toString();
-			helper.setText(String.format(email, usuario.getNome(), 
-					new String(Base64.getDecoder().decode(usuario.getSenha()))), true);
+			helper.setText(email, true);
 
 			javaMailSender.send(msg);
 			return "E-mail de recuperação de senha enviado com sucesso! Verifique sua caixa de e-mail.";
@@ -49,8 +48,7 @@ public class EnviadorEmailService {
 				.append(addDadosUsuario(usuario, sistema))
 				.append(addFooter())
 				.toString();
-			helper.setText(String.format(email, usuario.getNome(), usuario.getEmail(),
-					new String(Base64.getDecoder().decode(usuario.getSenha()))), true);
+			helper.setText(email, true);
 
 			javaMailSender.send(msg);
 		} catch (MessagingException e) {
@@ -68,8 +66,7 @@ public class EnviadorEmailService {
 				.append(addDadosUsuario(usuario, sistema))
 				.append(addFooter())
 				.toString();
-			helper.setText(String.format(email, usuario.getNome(), usuario.getEmail(),
-					new String(Base64.getDecoder().decode(usuario.getSenha()))), true);
+			helper.setText(email, true);
 
 			javaMailSender.send(msg);
 		} catch (MessagingException e) {
@@ -96,13 +93,13 @@ public class EnviadorEmailService {
 	}
 
 	private String addDadosUsuario(Usuario usuario, EnumSistema sistema) {
+		String img = usuario.getUrlFoto() == null ? sistema.getDefaultAvatar() : usuario.getUrlFoto();
 		return new StringBuilder()
 			.append("<table><tr>")
-			.append(String.format("<td><img style='width:100px;height:100px' src='%s'/></td>",
-					usuario.getUrlFoto() == null ? sistema.getDefaultAvatar() : usuario.getUrlFoto()))
-			.append("<td><b>Nome:</b> %s")
-			.append("<br/><b>E-mail:</b> %s")
-			.append("<br/><b>Senha:</b> %s</td>")
+			.append("<td><img style='width:100px;height:100px;border-radius: 50%' src='").append(img).append("'/></td>")
+			.append("<td><b>Nome:</b> ").append(usuario.getNome())
+			.append("<br/><b>E-mail:</b> ").append(usuario.getEmail())
+			.append("<br/><b>Senha:</b> ").append(new String(Base64.getDecoder().decode(usuario.getSenha()))).append("</td>")
 			.append("</tr></table>").toString();
 	}
 
