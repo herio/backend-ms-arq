@@ -28,7 +28,7 @@ public class AtivacaoUsuarioService {
 	public AtivacaoUsuario gerarAtivacaoUsuario(Long idUsuario) {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		if (usuario.isAtivado()) {
-			throw new ExcecaoNegocio("Usu√°rio j√° est√° ativado!");
+			throw new ExcecaoNegocio("Usu·rio j· est· ativado!");
 		}
 		Optional<AtivacaoUsuario> ativacao = ativacaoUsuarioRepository.findByUsuarioId(idUsuario);
 		AtivacaoUsuario ativacaoUsuario;
@@ -55,7 +55,7 @@ public class AtivacaoUsuarioService {
 			usuario.setAtivado(true);
 			usuarioRepository.save(usuario);
 		} else {
-			throw new ExcecaoNegocio("Prazo de ativa√ß√£o expirado, gere uma nova chave de ativa√ß√£o.");
+			throw new ExcecaoNegocio("Prazo de ativaÁ„o expirado, gere uma nova chave de ativaÁ„o.");
 		}
 	}
 

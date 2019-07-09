@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.herio.arqmsmobile.dominio.Dispositivo;
 import br.com.herio.arqmsmobile.dominio.DispositivoRepository;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
-import br.com.herio.arqmsmobile.dto.EnumSistema;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -25,51 +24,51 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/usuarios/{idUsuario}/dispositivos")
 public class DispositivosController {
-    @Autowired
-    protected DispositivoRepository dispositivoRepository;
-    
-    @Autowired
-    protected UsuarioRepository usuarioRepository;
+	@Autowired
+	protected DispositivoRepository dispositivoRepository;
 
-    @ApiOperation("listarDispositivos")
-    @GetMapping
-    public Collection<Dispositivo> listarDispositivos(@PathVariable Long idUsuario,
-          @RequestParam(required = false) boolean exibirAtivos, @RequestParam(required = false) EnumSistema sistema) {
-        return exibirAtivos? dispositivoRepository.findByIdUsuarioSistemaAtivos(idUsuario, sistema)
-                : dispositivoRepository.findByIdUsuarioSistema(idUsuario, sistema);
-    }
+	@Autowired
+	protected UsuarioRepository usuarioRepository;
 
-    @ApiOperation("salvarDispositivo")
-    @PostMapping
-    public Dispositivo salvarDispositivo(@PathVariable Long idUsuario, @RequestBody Dispositivo dispositivo) {
-        if(dispositivo.getId() == null) {
-            dispositivo.setUsuario(usuarioRepository.findById(idUsuario).get());
-            List<Dispositivo> dispositivos = dispositivoRepository.findByIdUsuarioNumRegistroOsSistema(
-            		idUsuario, dispositivo.getNumRegistro(), dispositivo.getOs(), dispositivo.getSistema());
-            if(dispositivos.isEmpty()) {
-                //dispositivo novo
-                dispositivo.setDataCadastro(new Date());
-            } else {
-                //dispositivo excluido anteriormente
-                dispositivo = dispositivos.iterator().next();
-                dispositivo.setDataExclusao(null);
-            }
-        } else {
-            // atualiza registrationID e retira data exclusão
-            String novoNumRegistro = dispositivo.getNumRegistro();
-            dispositivo = dispositivoRepository.findById(dispositivo.getId()).get();
-            dispositivo.setNumRegistro(novoNumRegistro);
-            dispositivo.setDataExclusao(null);
-        }
-        dispositivo.valida();
-        return dispositivoRepository.save(dispositivo);
-    }
+	@ApiOperation("listarDispositivos")
+	@GetMapping
+	public Collection<Dispositivo> listarDispositivos(@PathVariable Long idUsuario,
+			@RequestParam(required = false) boolean exibirAtivos) {
+		return exibirAtivos ? dispositivoRepository.findByIdUsuarioAtivos(idUsuario)
+				: dispositivoRepository.findByIdUsuario(idUsuario);
+	}
 
-    @ApiOperation("removerDispositivo")
-    @DeleteMapping("/{id}")
-    public void removerDispositivo(@PathVariable Long id) {
-        Dispositivo dispositivo = dispositivoRepository.findById(id).get();
-        dispositivo.setDataExclusao(new Date());
-        dispositivoRepository.save(dispositivo);
-    }
+	@ApiOperation("salvarDispositivo")
+	@PostMapping
+	public Dispositivo salvarDispositivo(@PathVariable Long idUsuario, @RequestBody Dispositivo dispositivo) {
+		if (dispositivo.getId() == null) {
+			dispositivo.setUsuario(usuarioRepository.findById(idUsuario).get());
+			List<Dispositivo> dispositivos = dispositivoRepository.findByIdUsuarioNumRegistroOs(idUsuario,
+					dispositivo.getNumRegistro(), dispositivo.getOs());
+			if (dispositivos.isEmpty()) {
+				// dispositivo novo
+				dispositivo.setDataCadastro(new Date());
+			} else {
+				// dispositivo excluido anteriormente
+				dispositivo = dispositivos.iterator().next();
+				dispositivo.setDataExclusao(null);
+			}
+		} else {
+			// atualiza registrationID e retira data exclusao
+			String novoNumRegistro = dispositivo.getNumRegistro();
+			dispositivo = dispositivoRepository.findById(dispositivo.getId()).get();
+			dispositivo.setNumRegistro(novoNumRegistro);
+			dispositivo.setDataExclusao(null);
+		}
+		dispositivo.valida();
+		return dispositivoRepository.save(dispositivo);
+	}
+
+	@ApiOperation("removerDispositivo")
+	@DeleteMapping("/{id}")
+	public void removerDispositivo(@PathVariable Long id) {
+		Dispositivo dispositivo = dispositivoRepository.findById(id).get();
+		dispositivo.setDataExclusao(new Date());
+		dispositivoRepository.save(dispositivo);
+	}
 }

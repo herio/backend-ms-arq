@@ -153,13 +153,13 @@ public class Usuario implements Serializable {
 	public void valida() {
 		StringBuilder msg = new StringBuilder();
 		if (StringUtils.isEmpty(this.login)) {
-			msg.append("Login invÃ¡lido, ");
+			msg.append("Login inválido, ");
 		}
 		if (StringUtils.isEmpty(this.senha)) {
-			msg.append("Senha invÃ¡lida, ");
+			msg.append("Senha inválida, ");
 		}
 		if (StringUtils.isEmpty(this.nome)) {
-			msg.append("Nome invÃ¡lido");
+			msg.append("Nome inválido");
 		}
 		if (msg.length() > 0) {
 			throw new ExcecaoNegocio(msg.toString());

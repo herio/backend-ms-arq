@@ -26,7 +26,7 @@ public class UsuarioService {
 	public String recuperarSenha(String login) {
 		Usuario usuario = usuarioRepository.findByLogin(login).get();
 		if (usuario == null) {
-			throw new ExcecaoNegocio(String.format("Usu√°rio de login %s inexistente", login));
+			throw new ExcecaoNegocio(String.format("Usu·rio de login %s inexistente", login));
 		}
 		return sendEmailWithAttachment(usuario);
 	}
@@ -36,23 +36,22 @@ public class UsuarioService {
 		try {
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			// true = multipart message
-			MimeMessageHelper helper = new MimeMessageHelper(msg, true, "ISO-8859-1");
+			MimeMessageHelper helper = new MimeMessageHelper(msg);
 			helper.setFrom("Juris Apps <contatojurisapps@gmail.com>");
 			helper.setTo(usuario.getEmail());
-			helper.setSubject("JurisApps - Recupera√ß√£o de senha");
+			helper.setSubject("JurisApps - RecuperaÁ„o de senha");
 
 			// true = text/html
-			String email = new StringBuilder("<h1>Juris Apps - Recupera√ß√£o de senha</h1><br/><br/>")
-					.append("Ol√° %s, <br/><br/>Sua senha descriptograda √©: <b>%s</b><br/><br/>")
-					.append("Entre no App e caso queira troc√°-la, v√° em: Configura√ß√µes > Atualize seus dados.<br/><br/>")
+			String email = new StringBuilder("<h1>Juris Apps - RecuperaÁ„o de senha</h1><br/><br/>")
+					.append("Ol· %s, <br/><br/>Sua senha descriptograda È: <b>%s</b><br/><br/>")
+					.append("Entre no App e caso queira troc·-la, v· em: ConfiguraÁıes > Atualize seus dados.<br/><br/>")
 					.append("Atenciosamente, Juris Apps.<br/>")
 					.append("<img width='100px' height='100px' src='https://noticias-juridicas.herokuapp.com/publico/icone_app.png'/><br/><br/><br/><br/>")
 					.toString();
-			helper.setText(String.format(email, usuario.getNome(),
-					new String(Base64.getDecoder().decode(usuario.getSenha()))));
+			helper.setText(String.format(email, usuario.getNome(), new String(Base64.getDecoder().decode(usuario.getSenha()))), true);
 
 			javaMailSender.send(msg);
-			return "E-mail de recupera√ß√£o de senha enviado com sucesso! Verifique sua caixa de e-mail.";
+			return "E-mail de recuperaÁ„o de senha enviado com sucesso! Verifique sua caixa de e-mail.";
 		} catch (MessagingException e) {
 			throw new RuntimeException("Erro ao enviar email", e);
 		}

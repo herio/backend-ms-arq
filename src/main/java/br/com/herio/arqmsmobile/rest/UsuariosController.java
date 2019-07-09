@@ -42,7 +42,7 @@ public class UsuariosController {
 	@PostMapping("/publico/usuarios")
 	public Usuario criarUsuario(@RequestBody Usuario usuario) {
 		if (usuario.getId() != null) {
-			throw new IllegalArgumentException("Informe um novo usu√°rio (sem id)!");
+			throw new IllegalArgumentException("Informe um novo usu·rio (sem id)!");
 		}
 		// cria
 		usuario.valida();
@@ -63,7 +63,7 @@ public class UsuariosController {
 	@PostMapping("/usuarios/{idUsuario}")
 	public Usuario atualizarUsuario(@PathVariable Long idUsuario, @RequestBody Usuario usuario) {
 		if (idUsuario == null) {
-			throw new IllegalArgumentException("Informe um usu√°rio j√° existente (com id)!");
+			throw new IllegalArgumentException("Informe um usu·rio j· existente (com id)!");
 		}
 		// atualiza
 		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
@@ -79,7 +79,7 @@ public class UsuariosController {
 	@DeleteMapping("/usuarios/{idUsuario}")
 	public void removerUsuario(@PathVariable Long idUsuario) {
 		if (idUsuario == null) {
-			throw new IllegalArgumentException("Informe um usu√°rio j√° existente (com id)!");
+			throw new IllegalArgumentException("Informe um usu·rio j· existente (com id)!");
 		}
 		usuarioRepository.deleteById(idUsuario);
 	}

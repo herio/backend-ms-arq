@@ -27,53 +27,51 @@ import feign.codec.ErrorDecoder;
 @EnableWebMvc
 public class AppConfig implements WebMvcConfigurer {
 
-    private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
-            "classpath:/META-INF/resources/", "classpath:/resources/",
-            "classpath:/static/", "classpath:/public/"};
+	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = { "classpath:/META-INF/resources/",
+			"classpath:/resources/", "classpath:/static/", "classpath:/public/" };
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**")
-                .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
-    }
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
+	}
 
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
-    }
+	@Bean
+	public CorsFilter corsFilter() {
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowCredentials(true);
+		config.addAllowedOrigin("*");
+		config.addAllowedHeader("*");
+		config.addAllowedMethod("*");
+		source.registerCorsConfiguration("/**", config);
+		return new CorsFilter(source);
+	}
 
-    @Bean
-    public AppCommonsRequestLoggingFilter requestLoggingFilter() {
-        AppCommonsRequestLoggingFilter loggingFilter = new AppCommonsRequestLoggingFilter();
-        loggingFilter.setIncludeClientInfo(true);
-        loggingFilter.setIncludeQueryString(true);
-        loggingFilter.setIncludeHeaders(true);
-        loggingFilter.setIncludePayload(true);
-        LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
-        context.getLogger(loggingFilter.getClass().getName()).setLevel(Level.DEBUG);
-        return loggingFilter;
-    }
+	@Bean
+	public AppCommonsRequestLoggingFilter requestLoggingFilter() {
+		AppCommonsRequestLoggingFilter loggingFilter = new AppCommonsRequestLoggingFilter();
+		loggingFilter.setIncludeClientInfo(true);
+		loggingFilter.setIncludeQueryString(true);
+		loggingFilter.setIncludeHeaders(true);
+		loggingFilter.setIncludePayload(true);
+		LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
+		context.getLogger(loggingFilter.getClass().getName()).setLevel(Level.DEBUG);
+		return loggingFilter;
+	}
 
-    @Bean
-    Logger.Level feignLoggerLevel() {
-        return Logger.Level.FULL;
-    }
+	@Bean
+	Logger.Level feignLoggerLevel() {
+		return Logger.Level.FULL;
+	}
 
-    @Bean
-    public ErrorDecoder feignErrorDecoder() {
-        return new FeignErrorDecoder();
-    }
+	@Bean
+	public ErrorDecoder feignErrorDecoder() {
+		return new FeignErrorDecoder();
+	}
 
-    @Bean
-    public RequestInterceptor FeignRequestInterceptor() {
-        return new FeignRequestInterceptor();
-    }
+	@Bean
+	public RequestInterceptor FeignRequestInterceptor() {
+		return new FeignRequestInterceptor();
+	}
 
 }
