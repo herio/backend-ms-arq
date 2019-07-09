@@ -69,6 +69,7 @@ public class UsuariosController {
 		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
 		usuarioBd.setLogin(usuario.getLogin());
 		usuarioBd.setNome(usuario.getNome());
+		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
 		usuarioBd.setEmail(usuario.getEmail());
 		usuarioBd.setUrlFoto(usuario.getUrlFoto());
 		usuarioBd.valida();
