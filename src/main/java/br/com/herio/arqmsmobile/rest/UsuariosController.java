@@ -60,7 +60,7 @@ public class UsuariosController {
 	@DeleteMapping("/usuarios/{idUsuario}")
 	public void removerUsuario(@PathVariable Long idUsuario) {
 		if (idUsuario == null) {
-			throw new IllegalArgumentException("Informe um usuï¿½rio jï¿½ existente (com id)!");
+			throw new IllegalArgumentException("Informe um usuário já existente (com id)!");
 		}
 		usuarioRepository.deleteById(idUsuario);
 	}

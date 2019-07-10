@@ -1,6 +1,5 @@
 package br.com.herio.arqmsmobile.service;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
 import javax.mail.MessagingException;
@@ -89,7 +88,7 @@ public class EnviadorEmailService {
 	}
 
 	private String addHeader(String urlIcone, String titulo) {
-		return new StringBuilder("<html><head><meta charset='UTF-8'></head><table><tr>")
+		return new StringBuilder("<html><table><tr>")
 				.append(String.format("<td><img style='width:50px;height:50px' src='%s'/></td>", urlIcone))
 				.append(String.format("<td><h2>%s</h2></td></tr></table>", titulo))
 				.toString();
@@ -110,22 +109,5 @@ public class EnviadorEmailService {
 		return new StringBuilder().append(
 				"<br/><br/>Para atualizar seus dados, entre no App e vá em: Configurações > Atualize seus dados.")
 				.append("<br/><br/>Atenciosamente, Juris Apps.<br/><br/></html>").toString();
-	}
-
-	public static void main(String[] args) throws UnsupportedEncodingException {
-		String sistema = EnumSistema.NOTICIAS_JURIDICAS.getNome();
-		byte[] latin1 = sistema.getBytes();
-		byte[] utf8 = new String(latin1, "ISO-8859-1").getBytes("ISO-8859-1");
-		byte[] latin11 = sistema.getBytes();
-		byte[] utf81 = new String(latin11, "UTF-8").getBytes("UTF-8");
-		byte[] latin111 = sistema.getBytes();
-		byte[] utf811 = new String(latin111, "ISO-8859-1").getBytes("UTF-8");
-		byte[] latin1111 = sistema.getBytes();
-		byte[] utf8111 = new String(latin1111, "UTF-8").getBytes("ISO-8859-1");
-		System.out.println(sistema);
-		System.out.println(new String(utf8));
-		System.out.println(new String(utf81));
-		System.out.println(new String(utf811));
-		System.out.println(new String(utf8111));
 	}
 }
