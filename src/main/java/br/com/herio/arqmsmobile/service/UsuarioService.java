@@ -4,12 +4,12 @@ import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UsuarioService {
@@ -55,7 +55,6 @@ public class UsuarioService {
 		usuarioBd.setNome(usuario.getNome());
 		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
 		usuarioBd.setEmail(usuario.getEmail());
-		usuarioBd.setUrlFoto(usuario.getUrlFoto());
 		usuarioBd.valida();
 		usuarioBd = usuarioRepository.save(usuarioBd);
 
