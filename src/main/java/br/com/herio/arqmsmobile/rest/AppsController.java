@@ -44,7 +44,7 @@ public class AppsController {
 		appBd.setUrlAndroid(app.getUrlAndroid());
 		appBd.setUrlIos(app.getUrlIos());
 		appBd.setUrlIcone(app.getUrlIcone());
-		return appRepository.save(app);
+		return appRepository.save(appBd);
 	}
 
 	@ApiOperation("removerApp")
