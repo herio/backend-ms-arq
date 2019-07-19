@@ -4,16 +4,21 @@ import org.apache.commons.text.StringEscapeUtils
 
 enum EnumSistema {
 	NOTICIAS_JURIDICAS("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_app.png",
-	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png");
+	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
+	"https://noticias-juridicas.herokuapp.com/publico/NOTICIAS_JURIDICAS/usuarios/%s/foto/%s");
 
 	String nome;
 	String icone;
 	String defaultAvatar;
+	String uploadFolder;
+	String downloadUrl;
 
-	EnumSistema(String nome, String icone, String defaultAvatar) {
+	EnumSistema(String nome, String icone, String defaultAvatar, String uploadFolder, String downloadUrl) {
 		this.nome = nome;
 		this.icone = icone;
 		this.defaultAvatar = defaultAvatar;
+		this.uploadFolder = uploadFolder;
+		this.downloadUrl = downloadUrl;
 	}
 
 	String getNome() {
@@ -27,5 +32,13 @@ enum EnumSistema {
 
 	String getDefaultAvatar() {
 		return this.defaultAvatar;
+	}
+
+	public String getUploadFolder() {
+		return uploadFolder;
+	}
+
+	public String getDownloadUrl() {
+		return downloadUrl;
 	}
 }

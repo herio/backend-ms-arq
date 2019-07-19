@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.api.services.drive.model.File;
+
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
+import br.com.herio.arqmsmobile.drive.GoogleDriveFachada;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
@@ -27,7 +30,7 @@ public class UsuarioService {
 	protected EnviadorEmailService enviadorEmailService;
 
 	@Autowired
-	private FileStorageService fileStorageService;
+	protected GoogleDriveFachada googleDriveFachada;
 
 	public Usuario criarUsuario(Usuario usuario, EnumSistema sistema) {
 		if (usuario.getId() != null) {
@@ -63,9 +66,14 @@ public class UsuarioService {
 		return usuarioBd;
 	}
 
-	public Usuario uploadFoto(Long idUsuario, EnumSistema sistema, MultipartFile file) {
+	public java.io.File downloadFoto(String idFile, String fileName) {
+		return googleDriveFachada.downloadFile(idFile, fileName);
+	}
+
+	public Usuario uploadFoto(Long idUsuario, EnumSistema sistema, MultipartFile mfile) {
+		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
+		String fileUri = String.format(sistema.getDownloadUrl(), idUsuario, file.getId());
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
-		String fileUri = fileStorageService.storeFile(file);
 		usuario.setUrlFoto(fileUri);
 		usuarioRepository.save(usuario);
 

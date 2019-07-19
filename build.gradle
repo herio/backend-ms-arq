@@ -64,6 +64,10 @@ dependencies {
 	//banco de dados
 	compile('org.postgresql:postgresql:42.2.5')
 	compile("org.flywaydb:flyway-core:5.2.1")
+	
+	//google drive
+	compile ('com.google.api-client:google-api-client:1.25.0')
+	compile ('com.google.apis:google-api-services-drive:v3-rev173-1.25.0')
 }
 
 sourceSets {
