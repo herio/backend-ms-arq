@@ -72,9 +72,10 @@ public class UsuarioService {
 
 	public Usuario uploadFoto(Long idUsuario, EnumSistema sistema, MultipartFile mfile) {
 		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
-		String fileUri = String.format(sistema.getDownloadUrl(), idUsuario, file.getId());
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		String fileUri = String.format(sistema.getDownloadUrl(), idUsuario, file.getId());
 		usuario.setUrlFoto(fileUri);
+		usuario.setUrlFotoDrive(file.getWebViewLink());
 		usuarioRepository.save(usuario);
 
 		// enviaEmail

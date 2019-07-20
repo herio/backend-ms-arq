@@ -71,15 +71,15 @@ public class GoogleDriveFachada {
 
 	public File uploadFile(MultipartFile mFile, String idFolder) {
 		try {
-			java.io.File file = fileStorageService.storeFile(mFile);
+			java.io.File iofile = fileStorageService.storeFile(mFile);
 			File fileMetadata = new File();
-			fileMetadata.setName(file.getName());
+			fileMetadata.setName(iofile.getName());
 			fileMetadata.setParents(Collections.singletonList(idFolder));
-			FileContent mediaContent = new FileContent("image/" + file.getName().split("\\.")[1], file);
+			FileContent mediaContent = new FileContent("image/" + iofile.getName().split("\\.")[1], iofile);
 
 			// upload
 			return service.files().create(fileMetadata, mediaContent)
-					.setFields("name,id,parents")
+					.setFields("name,id,parents,webViewLink")
 					.execute();
 		} catch (IOException e) {
 			throw new RuntimeException("Erro em uploadFile", e);
