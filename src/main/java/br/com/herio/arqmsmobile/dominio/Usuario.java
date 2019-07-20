@@ -39,8 +39,6 @@ public class Usuario extends Entidade implements Serializable {
 
 	@Transient
 	private String token;
-	@Transient
-	private String urlFotoDrive;
 
 	public Usuario() {
 		// default
@@ -55,14 +53,6 @@ public class Usuario extends Entidade implements Serializable {
 		this.email = email;
 		this.urlFoto = urlFoto;
 		this.ativado = ativado;
-	}
-
-	public String getUrlFotoDrive() {
-		return urlFotoDrive;
-	}
-
-	public void setUrlFotoDrive(String urlFotoDrive) {
-		this.urlFotoDrive = urlFotoDrive;
 	}
 
 	public boolean isAtivado() {

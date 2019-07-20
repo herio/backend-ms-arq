@@ -75,7 +75,6 @@ public class UsuarioService {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		String fileUri = String.format(sistema.getDownloadUrl(), idUsuario, file.getId());
 		usuario.setUrlFoto(fileUri);
-		usuario.setUrlFotoDrive(file.getWebViewLink());
 		usuarioRepository.save(usuario);
 
 		// enviaEmail
