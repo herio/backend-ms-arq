@@ -2,11 +2,11 @@ package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +15,7 @@ public class ConfiguracaoNotificacao extends Entidade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_USUARIO")
 	private Usuario usuario;
 
