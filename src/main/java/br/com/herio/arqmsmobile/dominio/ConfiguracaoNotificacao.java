@@ -20,7 +20,7 @@ public class ConfiguracaoNotificacao extends Entidade implements Serializable {
 	private Usuario usuario;
 
 	@Column(name = "RECEBER_NOTIFICACAO")
-	private Boolean receberNotificacao;
+	private boolean receberNotificacao;
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -30,11 +30,11 @@ public class ConfiguracaoNotificacao extends Entidade implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Boolean getReceberNotificacao() {
+	public boolean isReceberNotificacao() {
 		return receberNotificacao;
 	}
 
-	public void setReceberNotificacao(Boolean receberNotificacao) {
+	public void setReceberNotificacao(boolean receberNotificacao) {
 		this.receberNotificacao = receberNotificacao;
 	}
 }
