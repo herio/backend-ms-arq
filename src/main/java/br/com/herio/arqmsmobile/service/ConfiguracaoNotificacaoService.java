@@ -1,16 +1,20 @@
 package br.com.herio.arqmsmobile.service;
 
-import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
-import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoRepository;
-import br.com.herio.arqmsmobile.dominio.Usuario;
-import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
+import br.com.herio.arqmsmobile.dominio.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class ConfiguracaoNotificacaoService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConfiguracaoNotificacaoService.class);
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -18,19 +22,31 @@ public class ConfiguracaoNotificacaoService {
     @Autowired
     ConfiguracaoNotificacaoRepository configuracaoNotificacaoRepository;
 
-    public ConfiguracaoNotificacao atualizaConfiguracao(Long idUsuario, boolean receberNotificacao) {
-        Usuario usuario = usuarioRepository.findById(idUsuario).get();
-        Optional<ConfiguracaoNotificacao> configOpt = configuracaoNotificacaoRepository.findByUsuarioId(idUsuario);
-        ConfiguracaoNotificacao config;
-        if (configOpt.isPresent()) {
-            config = configOpt.get();
-        } else {
-            config = new ConfiguracaoNotificacao();
-            config.setUsuario(usuario);
+    public ConfiguracaoNotificacao salvarConfiguracao(Long idUsuario, ConfiguracaoNotificacao configuracaoNotificacao) {
+        ConfiguracaoNotificacao configBd;
+        try {
+            configBd = configuracaoNotificacaoRepository.findByUsuarioId(idUsuario).get();
+        } catch(NoSuchElementException e) {
+            LOGGER.debug("ConfiguracaoNotificacao salvarConfiguracao", e);
+            configBd = new ConfiguracaoNotificacao();
         }
-        config.setReceberNotificacao(receberNotificacao);
-        configuracaoNotificacaoRepository.save(config);
-        return config;
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+        configBd.setUsuario(usuario);
+        configBd.setReceberNotificacao(configuracaoNotificacao.isReceberNotificacao());
+        for (ConfiguracaoNotificacaoItem item: configuracaoNotificacao.getItens()) {
+            item.setConfiguracao(configBd);
+        }
+        configBd.setItens(configuracaoNotificacao.getItens());
+        return configuracaoNotificacaoRepository.save(configBd);
+    }
+
+    public ConfiguracaoNotificacao recuperarConfiguracao(Long idUsuario) {
+        try {
+            return configuracaoNotificacaoRepository.findByUsuarioId(idUsuario).get();
+        } catch(NoSuchElementException e) {
+            LOGGER.debug("ConfiguracaoNotificacao recuperarConfiguracao", e);
+            return null;
+        }
 
     }
 }
