@@ -1,6 +1,7 @@
 package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -28,7 +29,7 @@ public class ConfiguracaoNotificacao extends Entidade implements Serializable {
 	private boolean receberNotificacao;
 
 	@OneToMany(mappedBy = "configuracao", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ConfiguracaoNotificacaoItem> itens;
+	private List<ConfiguracaoNotificacaoItem> itens = new ArrayList<>();
 
 	public List<ConfiguracaoNotificacaoItem> getItens() {
 		return itens;
