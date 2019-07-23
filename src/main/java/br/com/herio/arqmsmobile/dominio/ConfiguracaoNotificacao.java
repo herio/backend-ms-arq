@@ -1,10 +1,17 @@
 package br.com.herio.arqmsmobile.dominio;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "CONFIGURACAO_NOTIFICACAO", schema = "public")
@@ -20,7 +27,7 @@ public class ConfiguracaoNotificacao extends Entidade implements Serializable {
 	@Column(name = "RECEBER_NOTIFICACAO")
 	private boolean receberNotificacao;
 
-	@OneToMany(mappedBy="configuracao", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "configuracao", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ConfiguracaoNotificacaoItem> itens;
 
 	public List<ConfiguracaoNotificacaoItem> getItens() {

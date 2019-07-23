@@ -37,8 +37,6 @@ public class ConfiguracaoNotificacaoService {
 		for (ConfiguracaoNotificacaoItem item : configuracaoNotificacao.getItens()) {
 			item.setConfiguracao(configBd);
 		}
-		configBd.setItens(null);
-		configBd = configuracaoNotificacaoRepository.save(configBd);
 		configBd.setItens(configuracaoNotificacao.getItens());
 		return configuracaoNotificacaoRepository.save(configBd);
 	}
