@@ -25,49 +25,52 @@ repositories project.repos
 
 dependencies {
 	//spring-boot
-	compile ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-	compile ("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
-	compile ("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
-	compile ("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-	compile ("org.springframework.boot:spring-boot-starter-mail:${springBootVersion}")
+	implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+	implementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+	implementation "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
+	implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+	implementation "org.springframework.boot:spring-boot-starter-mail:${springBootVersion}"
 
 	//spring
-	compile ("org.springframework.cloud:spring-cloud-starter-openfeign:2.1.1.RELEASE")
-    compile ("org.springframework.security:spring-security-core:${springVersion}")
-	compile ("org.springframework.security:spring-security-config:${springVersion}")
-	compile ("org.springframework.security:spring-security-web:${springVersion}")
+	implementation "org.springframework.cloud:spring-cloud-starter-openfeign:2.1.1.RELEASE"
+    implementation "org.springframework.security:spring-security-core:${springVersion}"
+	implementation "org.springframework.security:spring-security-config:${springVersion}"
+	implementation "org.springframework.security:spring-security-web:${springVersion}"
 	
 	//groovy
-	compile ('org.codehaus.groovy:groovy-all:2.5.6')
+	implementation "org.codehaus.groovy:groovy-all:2.5.6"
 
     //swagger    
-	compile ('io.springfox:springfox-swagger2:2.9.2')
-	compile ('io.springfox:springfox-swagger-ui:2.9.2')
+	implementation "io.springfox:springfox-swagger2:2.9.2"
+	implementation "io.springfox:springfox-swagger-ui:2.9.2"	
     //necessario para o springfox nao lancar excecao com springboot 2.1.0
-    compile("org.springframework.hateoas:spring-hateoas:0.24.0.RELEASE")
+	implementation "org.springframework.hateoas:spring-hateoas:0.24.0.RELEASE"
 	
 	//jaxb - evitar erro ao usar jaxb com jdk10
-	compile ('javax.xml.bind:jaxb-api:2.3.0')
-	compile ('com.sun.xml.bind:jaxb-core:2.3.0')
-	compile ('com.sun.xml.bind:jaxb-impl:2.3.0')
-	compile ('javax.activation:activation:1.1.1')
+	implementation "javax.xml.bind:jaxb-api:2.3.0"
+	implementation "com.sun.xml.bind:jaxb-core:2.3.0"
+	implementation "com.sun.xml.bind:jaxb-impl:2.3.0"
+	implementation "javax.activation:activation:1.1.1"
 
 	//apache
-	compile ('commons-io:commons-io:2.6')
-	compile ('org.apache.commons:commons-lang3:3.0')
-	compile ('org.apache.commons:commons-text:1.6')
-	compile ('org.apache.httpcomponents:httpcore:4.4.11')
+	implementation "commons-io:commons-io:2.6"
+	implementation "org.apache.commons:commons-lang3:3.0"
+	implementation "org.apache.commons:commons-text:1.6"
+	implementation "org.apache.httpcomponents:httpcore:4.4.11"
 
 	//jwt
-	compile ('io.jsonwebtoken:jjwt:0.9.1')
+	implementation "io.jsonwebtoken:jjwt:0.9.1"
 
 	//banco de dados
-	compile('org.postgresql:postgresql:42.2.5')
-	compile("org.flywaydb:flyway-core:5.2.1")
+	implementation "org.postgresql:postgresql:42.2.5"
+	implementation "org.flywaydb:flyway-core:5.2.1"
 	
 	//google drive
-	compile ('com.google.api-client:google-api-client:1.25.0')
-	compile ('com.google.apis:google-api-services-drive:v3-rev173-1.25.0')
+	implementation "com.google.api-client:google-api-client:1.25.0"
+	implementation "com.google.apis:google-api-services-drive:v3-rev173-1.25.0"
+
+	//firebase
+	implementation "com.google.firebase:firebase-admin:6.8.1"
 }
 
 sourceSets {
