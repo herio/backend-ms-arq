@@ -21,6 +21,8 @@ public class FirebaseFachada {
     //https://firebase.google.com/docs/cloud-messaging/send-message#send_messages_to_specific_devices
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FirebaseFachada.class);
+    private static String caminhoChave;
+    private static String urlDatabase;
 
     public boolean enviaNotificacao(String titulo, String conteudo, String destinatario, EnumTipoSO so) {
         try {
@@ -39,16 +41,21 @@ public class FirebaseFachada {
 
     public void init(String caminhoChave, String urlDatabase) {
         try {
-            FileInputStream serviceAccount = new FileInputStream(caminhoChave);//noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
+            FirebaseFachada.caminhoChave = caminhoChave;
+            FirebaseFachada.urlDatabase = urlDatabase;
+            FileInputStream serviceAccount = new FileInputStream(FirebaseFachada.caminhoChave);//noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .setDatabaseUrl(urlDatabase) //"https://noticias-juridicas-45015.firebaseio.com"
+                    .setDatabaseUrl(FirebaseFachada.urlDatabase) //"https://noticias-juridicas-45015.firebaseio.com"
                     .build();
 
             FirebaseApp.initializeApp(options);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public boolean isIniciada() {
+        return FirebaseFachada.caminhoChave != null && FirebaseFachada.urlDatabase != null;
     }
 }
