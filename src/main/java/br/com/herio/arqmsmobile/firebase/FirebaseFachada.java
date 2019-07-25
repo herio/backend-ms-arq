@@ -1,11 +1,11 @@
 package br.com.herio.arqmsmobile.firebase;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import br.com.herio.arqmsmobile.drive.GoogleDriveFachada;
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,8 +20,6 @@ import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
 
 import br.com.herio.arqmsmobile.dominio.Notificacao;
-
-import javax.annotation.PostConstruct;
 
 @Component
 public class FirebaseFachada {
