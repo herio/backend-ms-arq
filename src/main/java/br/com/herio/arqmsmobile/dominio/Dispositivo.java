@@ -30,7 +30,7 @@ public class Dispositivo extends Entidade implements Serializable {
 	@Column(name = "NUM_REGISTRO")
 	private String numRegistro;
 
-	@Column(name = "IND_OS")
+	@Column(name = "IND_SO")
 	@Enumerated(EnumType.STRING)
 	private EnumTipoSO so;
 
