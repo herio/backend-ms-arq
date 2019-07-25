@@ -18,6 +18,8 @@ import com.google.firebase.messaging.Notification;
 
 import br.com.herio.arqmsmobile.dominio.Notificacao;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class FirebaseFachada {
 	// https://firebase.google.com/docs/admin/setup#initialize_the_sdk
@@ -30,10 +32,6 @@ public class FirebaseFachada {
 
 	@Value("${firebase.urlDatabase}")
 	private String urlDatabase;
-
-	public FirebaseFachada() {
-		init();
-	}
 
 	public boolean enviaNotificacao(Notificacao notificacao) {
 		try {
@@ -50,6 +48,7 @@ public class FirebaseFachada {
 		return false;
 	}
 
+	@PostConstruct
 	public void init() {
 		try {
 			FileInputStream serviceAccount = new FileInputStream(caminhoChave);// noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
