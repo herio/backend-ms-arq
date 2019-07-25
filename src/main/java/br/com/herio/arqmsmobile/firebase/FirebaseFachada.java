@@ -1,8 +1,11 @@
 package br.com.herio.arqmsmobile.firebase;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
+import br.com.herio.arqmsmobile.drive.GoogleDriveFachada;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,9 +54,12 @@ public class FirebaseFachada {
 	@PostConstruct
 	public void init() {
 		try {
-			FileInputStream serviceAccount = new FileInputStream(caminhoChave);// noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
+			InputStream in = FirebaseFachada.class.getResourceAsStream(caminhoChave);// noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
+			if (in == null) {
+				throw new FileNotFoundException("Resource not found: " + caminhoChave);
+			}
 			FirebaseOptions options = new FirebaseOptions.Builder()
-					.setCredentials(GoogleCredentials.fromStream(serviceAccount))
+					.setCredentials(GoogleCredentials.fromStream(in))
 					.setDatabaseUrl(urlDatabase) // "https://noticias-juridicas-45015.firebaseio.com"
 					.build();
 
