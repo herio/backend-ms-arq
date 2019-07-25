@@ -62,8 +62,8 @@ dependencies {
 	compile ('io.jsonwebtoken:jjwt:0.9.1')
 
 	//banco de dados
-	compile('org.postgresql:postgresql:42.2.5')
-	compile('org.flywaydb:flyway-core:5.2.1')
+	compile ('org.postgresql:postgresql:42.2.5')
+	compile ('org.flywaydb:flyway-core:5.2.1')
 
 	//google drive
 	compile ('com.google.api-client:google-api-client:1.25.0')
