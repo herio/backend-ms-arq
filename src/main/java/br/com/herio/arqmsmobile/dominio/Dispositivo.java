@@ -32,7 +32,7 @@ public class Dispositivo extends Entidade implements Serializable {
 
 	@Column(name = "IND_OS")
 	@Enumerated(EnumType.STRING)
-	private EnumTipoSO os;
+	private EnumTipoSO so;
 
 	@Column(name = "DATA_EXCLUSAO")
 	private Date dataExclusao;
@@ -42,11 +42,11 @@ public class Dispositivo extends Entidade implements Serializable {
 		// default
 	}
 
-	public Dispositivo(Usuario usuario, String numRegistro, EnumTipoSO os) {
+	public Dispositivo(Usuario usuario, String numRegistro, EnumTipoSO so) {
 		super();
 		this.usuario = usuario;
 		this.numRegistro = numRegistro;
-		this.os = os;
+		this.so = so;
 	}
 
 	public String getNumRegistro() {
@@ -57,12 +57,12 @@ public class Dispositivo extends Entidade implements Serializable {
 		this.numRegistro = numRegistro;
 	}
 
-	public EnumTipoSO getOs() {
-		return os;
+	public EnumTipoSO getSo() {
+		return so;
 	}
 
-	public void setOs(EnumTipoSO so) {
-		this.os = so;
+	public void setSo(EnumTipoSO so) {
+		this.so = so;
 	}
 
 	public Date getDataExclusao() {
@@ -83,12 +83,12 @@ public class Dispositivo extends Entidade implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("%nDispositivo [id=%s, idUsuario=%s, numRegistro=%s, os=%s, sistema=%s]", getId(),
-				usuario.getId(), numRegistro, os);
+		return String.format("%nDispositivo [id=%s, idUsuario=%s, numRegistro=%s, so=%s, sistema=%s]", getId(),
+				usuario.getId(), numRegistro, so);
 	}
 
 	public void valida() {
-		if (StringUtils.isEmpty(this.numRegistro) || this.os == null || this.usuario == null) {
+		if (StringUtils.isEmpty(this.numRegistro) || this.so == null || this.usuario == null) {
 			throw new ExcecaoNegocio("Dispositivo inválido, verifique campos obrigatórios");
 		}
 	}

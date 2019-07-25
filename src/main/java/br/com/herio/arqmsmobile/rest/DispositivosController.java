@@ -44,7 +44,7 @@ public class DispositivosController {
 		if (dispositivo.getId() == null) {
 			dispositivo.setUsuario(usuarioRepository.findById(idUsuario).get());
 			List<Dispositivo> dispositivos = dispositivoRepository.findByIdUsuarioNumRegistroOs(idUsuario,
-					dispositivo.getNumRegistro(), dispositivo.getOs());
+					dispositivo.getNumRegistro(), dispositivo.getSo());
 			if (!dispositivos.isEmpty()) {
 				// dispositivo excluido anteriormente
 				dispositivo = dispositivos.iterator().next();

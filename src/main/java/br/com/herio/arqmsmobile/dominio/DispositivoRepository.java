@@ -18,7 +18,7 @@ public interface DispositivoRepository extends CrudRepository<Dispositivo, Long>
 	@Query("SELECT a FROM Dispositivo a WHERE a.usuario.id = :idUsuario")
 	List<Dispositivo> findByIdUsuario(@Param("idUsuario") Long idUsuario);
 
-	@Query("SELECT a FROM Dispositivo a WHERE a.usuario.id = :idUsuario AND a.numRegistro = :numRegistro AND a.os = :os")
+	@Query("SELECT a FROM Dispositivo a WHERE a.usuario.id = :idUsuario AND a.numRegistro = :numRegistro AND a.so = :so")
 	List<Dispositivo> findByIdUsuarioNumRegistroOs(@Param("idUsuario") Long idUsuario,
-			@Param("numRegistro") String numRegistro, @Param("os") EnumTipoSO os);
+			@Param("numRegistro") String numRegistro, @Param("so") EnumTipoSO so);
 }
