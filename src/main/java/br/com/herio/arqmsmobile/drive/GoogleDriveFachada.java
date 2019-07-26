@@ -2,7 +2,6 @@ package br.com.herio.arqmsmobile.drive;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +13,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Component;
@@ -37,6 +38,7 @@ import br.com.herio.arqmsmobile.service.FileStorageService;
 @Component
 public class GoogleDriveFachada {
 	// https://developers.google.com/drive/api/v3/quickstart/java?authuser=1
+	private static final Logger LOGGER = LoggerFactory.getLogger(GoogleDriveFachada.class);
 	private static final String APPLICATION_NAME = "juris-apps";
 	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 	private static final String TOKENS_DIRECTORY_PATH = "tokens";
@@ -51,11 +53,14 @@ public class GoogleDriveFachada {
 	public GoogleDriveFachada() {
 		try {
 			final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-			this.service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-					.setApplicationName(APPLICATION_NAME)
-					.build();
+			Credential credential = getCredentials(HTTP_TRANSPORT);
+			if (credential != null) {
+				this.service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
+						.setApplicationName(APPLICATION_NAME)
+						.build();
+			}
 		} catch (GeneralSecurityException | IOException e) {
-			throw new RuntimeException("Erro ao conectar ao Drive", e);
+			throw new RuntimeException("GoogleDriveFachada Erro ao conectar ao Drive", e);
 		}
 	}
 
@@ -82,7 +87,7 @@ public class GoogleDriveFachada {
 					.setFields("name,id,parents,webViewLink")
 					.execute();
 		} catch (IOException e) {
-			throw new RuntimeException("Erro em uploadFile", e);
+			throw new RuntimeException("GoogleDriveFachada Erro em uploadFile", e);
 		}
 	}
 
@@ -95,20 +100,23 @@ public class GoogleDriveFachada {
 			byteArrayOutputStream.writeTo(outputStream);
 			return file;
 		} catch (IOException e) {
-			throw new RuntimeException("Erro em downloadFile", e);
+			throw new RuntimeException("GoogleDriveFachada Erro em downloadFile", e);
 		}
 	}
 
 	private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
 		InputStream in = GoogleDriveFachada.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
 		if (in == null) {
-			throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
+			LOGGER.debug("GoogleDriveFachada não iniciado. Resource not found: " + CREDENTIALS_FILE_PATH);
+
+		} else {
+			GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+			GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
+					.setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
+					.build();
+			return flow.loadCredential("user");
 		}
-		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-		GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-				.setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
-				.build();
-		return flow.loadCredential("user");
+		return null;
 	}
 
 	public static void main(String... args) {
