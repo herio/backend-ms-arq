@@ -1,19 +1,19 @@
 package br.com.herio.arqmsmobile.dominio;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.persistence.*;
+import java.io.IOException;
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import br.com.herio.arqmsmobile.dominio.Dispositivo;
-import br.com.herio.arqmsmobile.dominio.Entidade;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
-@Table(name = "NOTIFICACAO", schema = "public")
+@Table(name = "NOTIFICACAO")
 public class Notificacao extends Entidade implements Serializable {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Notificacao.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,6 +22,9 @@ public class Notificacao extends Entidade implements Serializable {
 
 	@Column(name = "CONTEUDO")
 	private String conteudo;
+
+	@Column(name = "DADOS_EXTRAS")
+	private String dadosExtras;
 
 	@Column(name = "TOKEN")
 	private String token;
@@ -42,6 +45,14 @@ public class Notificacao extends Entidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ID_DISPOSITIVO")
 	private Dispositivo dispositivo;
+
+	public String getDadosExtras() {
+		return dadosExtras;
+	}
+
+	public void setDadosExtras(String dadosExtras) {
+		this.dadosExtras = dadosExtras;
+	}
 
 	public String getTitulo() {
 		return titulo;
@@ -105,6 +116,19 @@ public class Notificacao extends Entidade implements Serializable {
 
 	public void setDispositivo(Dispositivo dispositivo) {
 		this.dispositivo = dispositivo;
+	}
+
+	public Map<String, String> getMapDadosExtras() {
+		//dadosExtras: { "data" : { "field1" : "value1", "field2" : "value2" } }
+		Map<String, String> map = new HashMap<>();
+		if(this.dadosExtras != null) {
+			try {
+				map = new ObjectMapper().readValue(this.dadosExtras, HashMap.class);
+			} catch (IOException e) {
+				LOGGER.error("Erro em getMapDadosExtras", e);
+			}
+		}
+		return map;
 	}
 
 }

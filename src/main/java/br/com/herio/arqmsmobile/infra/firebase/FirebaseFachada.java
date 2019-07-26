@@ -60,6 +60,7 @@ public class FirebaseFachada {
 		try {
 			Message message = Message.builder()
 					.setNotification(new Notification(notificacao.getTitulo(), notificacao.getConteudo()))
+					.putAllData(notificacao.getMapDadosExtras())
 					.setToken(notificacao.getDispositivo().getNumRegistro())
 					.build();
 			String response = FirebaseMessaging.getInstance().send(message);

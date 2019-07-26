@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "CONFIGURACAO_NOTIFICACAO_ITEM", schema = "public")
+@Table(name = "CONFIGURACAO_NOTIFICACAO_ITEM")
 public class ConfiguracaoNotificacaoItem extends Entidade implements Serializable {
 
 	private static final long serialVersionUID = 1L;

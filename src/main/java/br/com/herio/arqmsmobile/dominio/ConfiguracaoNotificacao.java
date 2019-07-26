@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "CONFIGURACAO_NOTIFICACAO", schema = "public")
+@Table(name = "CONFIGURACAO_NOTIFICACAO")
 public class ConfiguracaoNotificacao extends Entidade implements Serializable {
 
 	private static final long serialVersionUID = 1L;

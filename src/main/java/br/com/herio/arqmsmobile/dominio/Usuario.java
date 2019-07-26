@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
 @Entity
-@Table(schema = "public", name = "USUARIO")
+@Table(name = "USUARIO")
 public class Usuario extends Entidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 

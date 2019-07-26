@@ -3,6 +3,7 @@ package br.com.herio.arqmsmobile.rest;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,14 +43,13 @@ public class DispositivosController {
 	@PostMapping
 	public Dispositivo salvarDispositivo(@PathVariable Long idUsuario, @RequestBody Dispositivo dispositivo) {
 		if (dispositivo.getId() == null) {
-			dispositivo.setUsuario(usuarioRepository.findById(idUsuario).get());
-			List<Dispositivo> dispositivos = dispositivoRepository.findByIdUsuarioNumRegistroOs(idUsuario,
-					dispositivo.getNumRegistro(), dispositivo.getSo());
-			if (!dispositivos.isEmpty()) {
+			Optional<Dispositivo> dispositivoOpt = dispositivoRepository.findByNumRegistroAndSo(dispositivo.getNumRegistro(), dispositivo.getSo());
+			if (dispositivoOpt.isPresent()) {
 				// dispositivo excluido anteriormente
-				dispositivo = dispositivos.iterator().next();
+				dispositivo = dispositivoOpt.get();
 				dispositivo.setDataExclusao(null);
 			}
+			dispositivo.setUsuario(usuarioRepository.findById(idUsuario).get());
 		} else {
 			// atualiza registrationID e retira data exclusao
 			String novoNumRegistro = dispositivo.getNumRegistro();

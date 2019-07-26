@@ -18,7 +18,7 @@ import br.com.herio.arqmsmobile.dto.EnumTipoSO;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
 @Entity
-@Table(name = "DISPOSITIVO", schema = "public")
+@Table(name = "DISPOSITIVO")
 public class Dispositivo extends Entidade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
