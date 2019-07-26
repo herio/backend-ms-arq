@@ -51,8 +51,9 @@ public class FirebaseFachada {
 
 	@PostConstruct
 	public void init() {
+		LOGGER.debug(String.format("FirebaseFachada init caminhoChave[%s], urlDatabase[%s]", caminhoChave, urlDatabase));
 		try {
-			if (caminhoChave != null && "".equals(caminhoChave) && urlDatabase != null && "".equals(urlDatabase)) {
+			if (caminhoChave != null && !"".equals(caminhoChave) && urlDatabase != null && !"".equals(urlDatabase)) {
 				InputStream in = FirebaseFachada.class.getResourceAsStream(caminhoChave);// noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
 				if (in == null) {
 					throw new FileNotFoundException("Resource not found: " + caminhoChave);
@@ -61,7 +62,6 @@ public class FirebaseFachada {
 						.setCredentials(GoogleCredentials.fromStream(in))
 						.setDatabaseUrl(urlDatabase) // "https://noticias-juridicas-45015.firebaseio.com"
 						.build();
-
 				FirebaseApp.initializeApp(options);
 			} else {
 				LOGGER.debug("FirebaseFachada não iniciado. caminhoChave, urlDatabase nulos ", caminhoChave, urlDatabase);
