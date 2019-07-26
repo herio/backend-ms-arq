@@ -16,6 +16,7 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,28 +36,36 @@ import com.google.api.services.drive.model.File;
 
 import br.com.herio.arqmsmobile.service.FileStorageService;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class GoogleDriveFachada {
 	// https://developers.google.com/drive/api/v3/quickstart/java?authuser=1
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(GoogleDriveFachada.class);
-	private static final String APPLICATION_NAME = "juris-apps";
 	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 	private static final String TOKENS_DIRECTORY_PATH = "tokens";
 
 	private static final Set<String> SCOPES = DriveScopes.all();
-	private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 	private Drive service;
+
+	@Value("${googledrive.appName}")
+	private String appName;
+
+	@Value("${googledrive.credentialsFile}")
+	private String credentialsFile;
 
 	@Autowired
 	protected FileStorageService fileStorageService;
 
-	public GoogleDriveFachada() {
+	@PostConstruct
+	public void init() {
 		try {
 			final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 			Credential credential = getCredentials(HTTP_TRANSPORT);
 			if (credential != null) {
 				this.service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-						.setApplicationName(APPLICATION_NAME)
+						.setApplicationName(appName)
 						.build();
 			}
 		} catch (GeneralSecurityException | IOException e) {
@@ -105,9 +114,9 @@ public class GoogleDriveFachada {
 	}
 
 	private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
-		InputStream in = GoogleDriveFachada.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+		InputStream in = GoogleDriveFachada.class.getResourceAsStream(credentialsFile);
 		if (in == null) {
-			LOGGER.debug("GoogleDriveFachada não iniciado. Resource not found: " + CREDENTIALS_FILE_PATH);
+			LOGGER.debug("GoogleDriveFachada não iniciado. Resource not found: " + credentialsFile);
 		} else {
 			GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 			GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
