@@ -1,4 +1,4 @@
-package br.com.herio.arqmsmobile.firebase;
+package br.com.herio.arqmsmobile.infra.firebase;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

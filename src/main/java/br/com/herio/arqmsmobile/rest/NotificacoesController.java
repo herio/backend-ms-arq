@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.herio.arqmsmobile.dominio.Notificacao;
-import br.com.herio.arqmsmobile.firebase.FirebaseFachada;
+import br.com.herio.arqmsmobile.infra.firebase.FirebaseFachada;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
