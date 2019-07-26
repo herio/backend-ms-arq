@@ -108,7 +108,6 @@ public class GoogleDriveFachada {
 		InputStream in = GoogleDriveFachada.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
 		if (in == null) {
 			LOGGER.debug("GoogleDriveFachada não iniciado. Resource not found: " + CREDENTIALS_FILE_PATH);
-
 		} else {
 			GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 			GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)

@@ -52,16 +52,20 @@ public class FirebaseFachada {
 	@PostConstruct
 	public void init() {
 		try {
-			InputStream in = FirebaseFachada.class.getResourceAsStream(caminhoChave);// noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
-			if (in == null) {
-				throw new FileNotFoundException("Resource not found: " + caminhoChave);
-			}
-			FirebaseOptions options = new FirebaseOptions.Builder()
-					.setCredentials(GoogleCredentials.fromStream(in))
-					.setDatabaseUrl(urlDatabase) // "https://noticias-juridicas-45015.firebaseio.com"
-					.build();
+			if (caminhoChave != null && "".equals(caminhoChave) && urlDatabase != null && "".equals(urlDatabase)) {
+				InputStream in = FirebaseFachada.class.getResourceAsStream(caminhoChave);// noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
+				if (in == null) {
+					throw new FileNotFoundException("Resource not found: " + caminhoChave);
+				}
+				FirebaseOptions options = new FirebaseOptions.Builder()
+						.setCredentials(GoogleCredentials.fromStream(in))
+						.setDatabaseUrl(urlDatabase) // "https://noticias-juridicas-45015.firebaseio.com"
+						.build();
 
-			FirebaseApp.initializeApp(options);
+				FirebaseApp.initializeApp(options);
+			} else {
+				LOGGER.debug("FirebaseFachada não iniciado. caminhoChave, urlDatabase nulos ", caminhoChave, urlDatabase);
+			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
