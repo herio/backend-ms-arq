@@ -106,6 +106,9 @@ Principais comandos:
     heroku ps:scale web=1 //add uma instância web
     heroku config:set ENERGY="20 GeV" //criar var ambiente
     heroku config //listar var ambiente
+    heroku apps //listar apps
+    heroku git:remote -a noomedoapp //adicionar heroku a pasta do app
+    git remote -v //verificar se heroku foi ligado a pasta do projeto
      
 Criar Procfile para rodar app em prod:
 
@@ -134,6 +137,10 @@ Acessar BD prod:
 
     Ir em datastore > settings > credentials > heroku CLI > Copiar comando (Executar esse comando na raiz do projeto: pgsql deve estar configurado no PATH)
     Ex. heroku pg:psql postgresql-asymmetrical-61306 --app sgtifgo
+    
+Comandos de BD úteis
+
+    \dt //lista tabelas     
 
 Criar backup sql no pgadmin (caso não tenha flyway): 
 
