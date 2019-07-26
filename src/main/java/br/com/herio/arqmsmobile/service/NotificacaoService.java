@@ -29,6 +29,7 @@ public class NotificacaoService {
         Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
                 notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
         notificacao.setDispositivo(dispositivoBd);
+        notificacao.setToken(dispositivoBd.getNumRegistro());
         notificacao = notificacaoRepository.save(notificacao);
         boolean enviou = firebaseFachada.enviaNotificacao(notificacao);
         if(enviou) {
