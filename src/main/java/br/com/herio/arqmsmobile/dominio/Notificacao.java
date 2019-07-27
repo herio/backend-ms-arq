@@ -127,6 +127,9 @@ public class Notificacao extends Entidade implements Serializable {
 	public Map<String, String> getMapDadosExtras() {
 		// dadosExtras: { "field1" : "value1", "field2" : "value2" }
 		Map<String, String> map = new HashMap<>();
+		map.put("id", String.valueOf(this.getId()));
+		map.put("titulo", this.titulo);
+		map.put("conteudo", this.conteudo);
 		if (this.dadosExtras != null) {
 			try {
 				map = new ObjectMapper().readValue(this.dadosExtras, HashMap.class);
