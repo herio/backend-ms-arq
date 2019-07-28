@@ -2,7 +2,6 @@ package br.com.herio.arqmsmobile.rest;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;

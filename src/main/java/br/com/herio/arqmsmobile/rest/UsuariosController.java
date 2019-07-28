@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.herio.arqmsmobile.dominio.Usuario;
@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api("UsuariosController")
 @RestController
+@RequestMapping("/usuarios")
 public class UsuariosController {
 
 	@Autowired
@@ -30,27 +31,15 @@ public class UsuariosController {
 	@Autowired
 	protected UsuarioService usuarioService;
 
-	@ApiOperation("criarUsuario")
-	@PostMapping("/publico/usuarios/{sistema}")
-	public Usuario criarUsuario(@RequestBody Usuario usuario, @PathVariable EnumSistema sistema) {
-		return usuarioService.criarUsuario(usuario, sistema);
-	}
-
-	@ApiOperation("recuperarSenha")
-	@GetMapping(value = "/publico/usuarios/senha/{sistema}")
-	public String recuperarSenha(@RequestParam String login, @PathVariable EnumSistema sistema) {
-		return usuarioService.recuperarSenha(login, sistema);
-	}
-
 	@ApiOperation("atualizarUsuario")
-	@PostMapping("/usuarios/{idUsuario}/{sistema}")
+	@PostMapping("/{idUsuario}/{sistema}")
 	public Usuario atualizarUsuario(@PathVariable Long idUsuario, @PathVariable EnumSistema sistema,
 			@RequestBody Usuario usuario) {
 		return usuarioService.atualizarUsuario(idUsuario, sistema, usuario);
 	}
 
 	@ApiOperation("removerUsuario")
-	@DeleteMapping("/usuarios/{idUsuario}")
+	@DeleteMapping("/{idUsuario}")
 	public void removerUsuario(@PathVariable Long idUsuario) {
 		if (idUsuario == null) {
 			throw new IllegalArgumentException("Informe um usuário já existente (com id)!");
@@ -59,7 +48,7 @@ public class UsuariosController {
 	}
 
 	@ApiOperation("listarUsuarios")
-	@GetMapping("/usuarios")
+	@GetMapping
 	public Collection<Usuario> listarUsuarios() {
 		return StreamSupport.stream(usuarioRepository.findAll().spliterator(), false).collect(Collectors.toList());
 	}
