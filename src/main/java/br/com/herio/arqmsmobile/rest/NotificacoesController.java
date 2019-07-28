@@ -15,26 +15,26 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Api("NotificacoesController")
-@RestController
+@RestController("/usuarios/{idUsuario}/notificacoes")
 public class NotificacoesController {
 
 	@Autowired
 	private NotificacaoService notificacaoService;
 
 	@ApiOperation("enviaNotificacao")
-	@PostMapping("/notificacoes/envia")
+	@PostMapping("/envia")
 	public boolean enviaNotificacao(@RequestBody Notificacao notificacao) {
 		return notificacaoService.enviaNotificacao(notificacao);
 	}
 
 	@ApiOperation("atualizaNotificacao")
-	@PostMapping("/notificacoes")
+	@PostMapping
 	public Notificacao atualizaNotificacao(@RequestBody Notificacao notificacao) {
 		return notificacaoService.atualizaNotificacao(notificacao);
 	}
 
 	@ApiOperation("listaNotificacoesEnviadasNaoExcluidas")
-	@GetMapping("/usuarios/{idUsuario}/notificacoes")
+	@GetMapping("/enviadasnaoexcluidas")
 	public Page<Notificacao> listaNotificacoesEnviadasNaoExcluidas(@PathVariable Long idUsuario, Pageable page) {
 		return notificacaoService.listaNotificacoesEnviadasNaoExcluidas(idUsuario, page);
 	}
