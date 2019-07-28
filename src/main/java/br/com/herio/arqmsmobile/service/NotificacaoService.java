@@ -1,15 +1,15 @@
 package br.com.herio.arqmsmobile.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.herio.arqmsmobile.dominio.Dispositivo;
 import br.com.herio.arqmsmobile.dominio.DispositivoRepository;
 import br.com.herio.arqmsmobile.dominio.Notificacao;
 import br.com.herio.arqmsmobile.dominio.NotificacaoRepository;
 import br.com.herio.arqmsmobile.infra.firebase.FirebaseFachada;
-import io.swagger.annotations.ApiOperation;
 
 @Service
 public class NotificacaoService {
@@ -23,8 +23,6 @@ public class NotificacaoService {
 	@Autowired
 	private FirebaseFachada firebaseFachada;
 
-	@ApiOperation("enviaNotificacao")
-	@PostMapping("/envia")
 	public boolean enviaNotificacao(Notificacao notificacao) {
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
 				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
@@ -37,5 +35,19 @@ public class NotificacaoService {
 			notificacaoRepository.save(notificacao);
 		}
 		return enviou;
+	}
+
+	public Notificacao atualizaNotificacao(Notificacao notificacao) {
+		if (notificacao.getId() == null) {
+			throw new RuntimeException("Notificação sem id");
+		}
+		Notificacao notificacaoBd = notificacaoRepository.findById(notificacao.getId()).get();
+		notificacaoBd.setLida(notificacao.isLida());
+		notificacaoBd.setExcluida(notificacao.isExcluida());
+		return notificacaoBd;
+	}
+
+	public Page<Notificacao> listaNotificacoesEnviadasNaoExcluidas(Long idUsuario, Pageable page) {
+		return notificacaoRepository.findAllByEnviadaNaoExcluidaDispositivoUsuarioIdOrderByDataCriacaoDesc(idUsuario, page);
 	}
 }
