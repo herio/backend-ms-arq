@@ -37,13 +37,11 @@ public class NotificacaoService {
 		return enviou;
 	}
 
-	public Notificacao atualizaNotificacao(Notificacao notificacao) {
-		if (notificacao.getId() == null) {
-			throw new RuntimeException("Notificação sem id");
-		}
-		Notificacao notificacaoBd = notificacaoRepository.findById(notificacao.getId()).get();
+	public Notificacao atualizaNotificacao(Long idNotificacao, Notificacao notificacao) {
+		Notificacao notificacaoBd = notificacaoRepository.findById(idNotificacao).get();
 		notificacaoBd.setLida(notificacao.isLida());
 		notificacaoBd.setExcluida(notificacao.isExcluida());
+		notificacaoRepository.save(notificacaoBd);
 		return notificacaoBd;
 	}
 

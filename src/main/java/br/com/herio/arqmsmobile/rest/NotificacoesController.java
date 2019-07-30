@@ -30,9 +30,9 @@ public class NotificacoesController {
 	}
 
 	@ApiOperation("atualizaNotificacao")
-	@PostMapping
-	public Notificacao atualizaNotificacao(@RequestBody Notificacao notificacao) {
-		return notificacaoService.atualizaNotificacao(notificacao);
+	@PostMapping("/{idNotificacao}")
+	public Notificacao atualizaNotificacao(@PathVariable Long idNotificacao, @RequestBody Notificacao notificacao) {
+		return notificacaoService.atualizaNotificacao(idNotificacao, notificacao);
 	}
 
 	@ApiOperation("listaNotificacoesEnviadasNaoExcluidas")
