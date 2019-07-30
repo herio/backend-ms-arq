@@ -1,20 +1,16 @@
 package br.com.herio.arqmsmobile.dominio;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.persistence.*;
+import java.io.IOException;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "NOTIFICACAO")
@@ -122,6 +118,11 @@ public class Notificacao extends Entidade implements Serializable {
 
 	public void setDispositivo(Dispositivo dispositivo) {
 		this.dispositivo = dispositivo;
+	}
+
+	@JsonProperty
+	public String getDataFormatada() {
+		return new SimpleDateFormat("dd/MM/yyyy HH:mm").format(getDataCriacao());
 	}
 
 	public Map<String, String> getMapDadosExtras() {
