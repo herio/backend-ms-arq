@@ -43,12 +43,7 @@ public class ConfiguracaoNotificacaoService {
 		}
 		configBd.getItens().clear();
 		configBd.getItens().addAll(configuracaoNotificacao.getItens());
-		configBd = configuracaoNotificacaoRepository.save(configBd);
-
-		if (configBd.isReceberNotificacao()) {
-			enviaNotificacao(configBd);
-		}
-		return configBd;
+		return configuracaoNotificacaoRepository.save(configBd);
 	}
 
 	public ConfiguracaoNotificacao recuperarConfiguracao(Long idUsuario) {
@@ -59,12 +54,4 @@ public class ConfiguracaoNotificacaoService {
 			return null;
 		}
 	}
-
-	private void enviaNotificacao(ConfiguracaoNotificacao configBd) {
-		Notificacao notificacao = new Notificacao();
-		notificacao.setTitulo("Configurações atualizadas com sucesso");
-		notificacao.setConteudo(String.format("A partir de agora você receberá notificações de acordo com as suas configurações pessoais!"));
-		notificacaoService.enviaNotificacaoParaTodosDispositivosUsuario(configBd.getUsuario().getId(), notificacao);
-	}
-
 }

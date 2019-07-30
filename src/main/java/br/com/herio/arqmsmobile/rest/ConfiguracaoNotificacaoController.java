@@ -16,7 +16,7 @@ import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api("ConfiguracoesNotificacoesController")
+@Api("ConfiguracaoNotificacaoController")
 @RestController
 @RequestMapping("/usuarios/{idUsuario}/configuracaonotificacao")
 public class ConfiguracaoNotificacaoController {
