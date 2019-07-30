@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NotificacaoRepository extends CrudRepository<Notificacao, Long> {
 
-	@Query(value = "SELECT a FROM Notificacao a WHERE a.enviada = true AND a.excluida = false AND a.dispositivo.usuario.id = :usuarioId")
+	@Query(value = "SELECT a FROM Notificacao a WHERE a.enviada = true AND a.excluida = false AND a.notificacaoOrigem is null AND a.dispositivo.usuario.id = :usuarioId")
 	Page<Notificacao> findAllByEnviadaNaoExcluidaDispositivoUsuarioIdOrderByDataCriacaoDesc(@Param("usuarioId") Long usuarioId, Pageable page);
 
 }

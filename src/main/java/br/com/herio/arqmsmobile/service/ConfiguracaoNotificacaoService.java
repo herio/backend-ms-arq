@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
 import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem;
 import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoRepository;
+import br.com.herio.arqmsmobile.dominio.Notificacao;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 
@@ -18,10 +19,13 @@ public class ConfiguracaoNotificacaoService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConfiguracaoNotificacaoService.class);
 
 	@Autowired
-	UsuarioRepository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 
 	@Autowired
-	ConfiguracaoNotificacaoRepository configuracaoNotificacaoRepository;
+	private ConfiguracaoNotificacaoRepository configuracaoNotificacaoRepository;
+
+	@Autowired
+	private NotificacaoService notificacaoService;
 
 	public ConfiguracaoNotificacao salvarConfiguracao(Long idUsuario, ConfiguracaoNotificacao configuracaoNotificacao) {
 		ConfiguracaoNotificacao configBd;
@@ -39,7 +43,12 @@ public class ConfiguracaoNotificacaoService {
 		}
 		configBd.getItens().clear();
 		configBd.getItens().addAll(configuracaoNotificacao.getItens());
-		return configuracaoNotificacaoRepository.save(configBd);
+		configBd = configuracaoNotificacaoRepository.save(configBd);
+
+		if (configBd.isReceberNotificacao()) {
+			enviaNotificacao(configBd);
+		}
+		return configBd;
 	}
 
 	public ConfiguracaoNotificacao recuperarConfiguracao(Long idUsuario) {
@@ -49,6 +58,13 @@ public class ConfiguracaoNotificacaoService {
 			LOGGER.debug("ConfiguracaoNotificacao recuperarConfiguracao", e);
 			return null;
 		}
-
 	}
+
+	private void enviaNotificacao(ConfiguracaoNotificacao configBd) {
+		Notificacao notificacao = new Notificacao();
+		notificacao.setTitulo("Configurações atualizadas com sucesso");
+		notificacao.setConteudo(String.format("A partir de agora você receberá notificações de acordo com as suas configurações pessoais!"));
+		notificacaoService.enviaNotificacaoParaTodosDispositivosUsuario(configBd.getUsuario().getId(), notificacao);
+	}
+
 }

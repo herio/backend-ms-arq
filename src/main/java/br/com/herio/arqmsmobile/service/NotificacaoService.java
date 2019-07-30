@@ -1,5 +1,11 @@
 package br.com.herio.arqmsmobile.service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +19,7 @@ import br.com.herio.arqmsmobile.infra.firebase.FirebaseFachada;
 
 @Service
 public class NotificacaoService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(NotificacaoService.class);
 
 	@Autowired
 	private DispositivoRepository dispositivoRepository;
@@ -22,6 +29,47 @@ public class NotificacaoService {
 
 	@Autowired
 	private FirebaseFachada firebaseFachada;
+
+	public boolean enviaNotificacaoParaTodosDispositivosUsuario(Long idUsuario, Notificacao notificacao) {
+		List<Dispositivo> dispositivos = dispositivoRepository.findNaoExcluidosByIdUsuario(idUsuario);
+		boolean enviou = false;
+		if (dispositivos != null && !dispositivos.isEmpty()) {
+			List<Notificacao> notificacoesASeremEnviadas = new ArrayList<>();
+			Notificacao notificacaoOrigem = null;
+			for (Dispositivo dispositivo : dispositivos) {
+				Notificacao notificacaoAtual = new Notificacao();
+				notificacaoAtual.setTitulo(notificacao.getTitulo());
+				notificacaoAtual.setConteudo(notificacao.getConteudo());
+				notificacaoAtual.setDadosExtras(notificacao.getDadosExtras());
+				notificacaoAtual.setDispositivo(dispositivo);
+				notificacaoAtual.setToken(dispositivo.getNumRegistro());
+				if (notificacaoOrigem != null) {
+					notificacaoAtual.setNotificacaoOrigem(notificacaoOrigem);
+				}
+				notificacaoAtual = notificacaoRepository.save(notificacaoAtual);
+				if (notificacoesASeremEnviadas.isEmpty()) {
+					notificacaoOrigem = notificacaoAtual;
+				}
+				notificacoesASeremEnviadas.add(notificacaoAtual);
+			}
+			for (Notificacao notificacaoBd : notificacoesASeremEnviadas) {
+				try {
+					enviou = firebaseFachada.enviaNotificacao(notificacaoBd);
+					if (enviou) {
+						notificacaoBd.setEnviada(true);
+						notificacaoRepository.save(notificacaoBd);
+					}
+				} catch (RuntimeException e) {
+					LOGGER.error("Erro ao enviar notificação para dispositivo", notificacaoBd.getToken(), e);
+					if (e.getMessage().contains("Requested entity was not found")) {
+						notificacaoBd.getDispositivo().setDataExclusao(new Date());
+						dispositivoRepository.save(notificacaoBd.getDispositivo());
+					}
+				}
+			}
+		}
+		return enviou;
+	}
 
 	public boolean enviaNotificacao(Notificacao notificacao) {
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
