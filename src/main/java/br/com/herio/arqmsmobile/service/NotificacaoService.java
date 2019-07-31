@@ -1,6 +1,9 @@
 package br.com.herio.arqmsmobile.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -30,11 +33,9 @@ public class NotificacaoService {
 	@Autowired
 	private FirebaseFachada firebaseFachada;
 
-	public boolean enviaNotificacaoParaTodosDispositivosUsuario(Long idUsuario, Notificacao notificacao) {
-		List<Dispositivo> dispositivos = dispositivoRepository.findNaoExcluidosByIdUsuario(idUsuario);
-		boolean enviou = false;
+	public List<Notificacao> criaNotificacoesParaDispositivos(List<Dispositivo> dispositivos, Notificacao notificacao) {
+		List<Notificacao> notificacoesASeremEnviadas = new ArrayList<>();
 		if (dispositivos != null && !dispositivos.isEmpty()) {
-			List<Notificacao> notificacoesASeremEnviadas = new ArrayList<>();
 			Notificacao notificacaoOrigem = null;
 			for (Dispositivo dispositivo : dispositivos) {
 				Notificacao notificacaoAtual = new Notificacao();
@@ -52,26 +53,32 @@ public class NotificacaoService {
 				}
 				notificacoesASeremEnviadas.add(notificacaoAtual);
 			}
-			for (Notificacao notificacaoBd : notificacoesASeremEnviadas) {
-				try {
-					enviou = firebaseFachada.enviaNotificacao(notificacaoBd);
-					if (enviou) {
-						notificacaoBd.setEnviada(true);
-						notificacaoRepository.save(notificacaoBd);
-					}
-				} catch (RuntimeException e) {
-					LOGGER.error("Erro ao enviar notificação para dispositivo", notificacaoBd.getToken(), e);
-					if (e.getMessage().contains("Requested entity was not found")) {
-						notificacaoBd.getDispositivo().setDataExclusao(new Date());
-						dispositivoRepository.save(notificacaoBd.getDispositivo());
-					}
+		}
+		return notificacoesASeremEnviadas;
+	}
+
+	public boolean enviaNotificacoes(Collection<Notificacao> notificacoes) {
+		boolean enviou = false;
+		for (Notificacao notificacaoBd : notificacoes) {
+			try {
+				enviou = firebaseFachada.enviaNotificacao(notificacaoBd);
+				if (enviou) {
+					notificacaoBd.setEnviada(true);
+					notificacaoBd.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));
+					notificacaoRepository.save(notificacaoBd);
+				}
+			} catch (RuntimeException e) {
+				LOGGER.error("Erro ao enviar notificação para dispositivo", notificacaoBd.getToken(), e);
+				if (e.getMessage().contains("Requested entity was not found")) {
+					notificacaoBd.getDispositivo().setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
+					dispositivoRepository.save(notificacaoBd.getDispositivo());
 				}
 			}
 		}
 		return enviou;
 	}
 
-	public boolean enviaNotificacao(Notificacao notificacao) {
+	public boolean salvaEEnviaNotificacao(Notificacao notificacao) {
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
 				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
 		notificacao.setDispositivo(dispositivoBd);
@@ -80,6 +87,7 @@ public class NotificacaoService {
 		boolean enviou = firebaseFachada.enviaNotificacao(notificacao);
 		if (enviou) {
 			notificacao.setEnviada(true);
+			notificacao.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));
 			notificacaoRepository.save(notificacao);
 		}
 		return enviou;

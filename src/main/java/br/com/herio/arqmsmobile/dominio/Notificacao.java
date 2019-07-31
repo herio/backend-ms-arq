@@ -9,6 +9,8 @@ import javax.persistence.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +42,9 @@ public class Notificacao extends Entidade implements Serializable {
 	@Column(name = "EXCLUIDA")
 	private boolean excluida;
 
+	@Column(name = "DATA_ENVIO")
+	private LocalDateTime dataEnvio;
+
 	@ManyToOne
 	@JoinColumn(name = "ID_NOTIFICACAO_ORIGEM")
 	private Notificacao notificacaoOrigem;
@@ -47,6 +52,14 @@ public class Notificacao extends Entidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ID_DISPOSITIVO")
 	private Dispositivo dispositivo;
+
+	public LocalDateTime getDataEnvio() {
+		return dataEnvio;
+	}
+
+	public void setDataEnvio(LocalDateTime dataEnvio) {
+		this.dataEnvio = dataEnvio;
+	}
 
 	public String getDadosExtras() {
 		return dadosExtras;
@@ -121,8 +134,8 @@ public class Notificacao extends Entidade implements Serializable {
 	}
 
 	@JsonProperty
-	public String getDataFormatada() {
-		return new SimpleDateFormat("dd/MM/yyyy HH:mm").format(getDataCriacao());
+	public String getDataEnvioFormatada() {
+		return getDataEnvio() == null ? "": getDataEnvio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 	}
 
 	public Map<String, String> getMapDadosExtras() {

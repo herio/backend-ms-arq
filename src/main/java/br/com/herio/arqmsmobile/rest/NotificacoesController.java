@@ -23,10 +23,10 @@ public class NotificacoesController {
 	@Autowired
 	private NotificacaoService notificacaoService;
 
-	@ApiOperation("enviaNotificacao")
+	@ApiOperation("salvaEEnviaNotificacao")
 	@PostMapping("/envia")
 	public boolean enviaNotificacao(@RequestBody Notificacao notificacao) {
-		return notificacaoService.enviaNotificacao(notificacao);
+		return notificacaoService.salvaEEnviaNotificacao(notificacao);
 	}
 
 	@ApiOperation("atualizaNotificacao")

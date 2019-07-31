@@ -1,6 +1,7 @@
 package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ public class Dispositivo extends Entidade implements Serializable {
 	private EnumTipoSO so;
 
 	@Column(name = "DATA_EXCLUSAO")
-	private Date dataExclusao;
+	private LocalDateTime dataExclusao;
 
 	public Dispositivo() {
 		super();
@@ -65,11 +66,11 @@ public class Dispositivo extends Entidade implements Serializable {
 		this.so = so;
 	}
 
-	public Date getDataExclusao() {
+	public LocalDateTime getDataExclusao() {
 		return dataExclusao;
 	}
 
-	public void setDataExclusao(Date dataExclusao) {
+	public void setDataExclusao(LocalDateTime dataExclusao) {
 		this.dataExclusao = dataExclusao;
 	}
 

@@ -19,8 +19,19 @@ public class ConfiguracaoNotificacaoItem extends Entidade implements Serializabl
 	@Column(name = "TIPO_ITEM")
 	private String tipoItem;
 
+	@Column(name = "TIPO_PERIODICIDADE")
+	private String tipoPeriodicidade;
+
 	@Column(name = "VALOR_ITEM")
 	private String valorItem;
+
+	public String getTipoPeriodicidade() {
+		return tipoPeriodicidade;
+	}
+
+	public void setTipoPeriodicidade(String tipoPeriodicidade) {
+		this.tipoPeriodicidade = tipoPeriodicidade;
+	}
 
 	public ConfiguracaoNotificacao getConfiguracao() {
 		return configuracao;
@@ -44,5 +55,10 @@ public class ConfiguracaoNotificacaoItem extends Entidade implements Serializabl
 
 	public void setValorItem(String valorItem) {
 		this.valorItem = valorItem;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("{tipoItem:'%s', tipoPeriodicidade: '%s', valorItem: '%s'}", tipoItem, tipoPeriodicidade, valorItem);
 	}
 }
