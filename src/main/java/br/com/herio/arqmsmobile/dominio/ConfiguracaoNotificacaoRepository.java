@@ -1,5 +1,6 @@
 package br.com.herio.arqmsmobile.dominio;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
@@ -12,4 +13,6 @@ public interface ConfiguracaoNotificacaoRepository extends CrudRepository<Config
 
 	@Query("SELECT a FROM ConfiguracaoNotificacao a WHERE a.usuario.id = :usuarioId")
 	Optional<ConfiguracaoNotificacao> findByUsuarioId(@Param("usuarioId") Long usuarioId);
+
+	Collection<ConfiguracaoNotificacao> findAllByReceberNotificacao(boolean receberNotificacao);
 }
