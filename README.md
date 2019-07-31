@@ -141,6 +141,7 @@ Acessar BD prod:
 Comandos de BD úteis
 
     \dt //lista tabelas     
+    drop schema noticias_juridicas cascade; //remove schema
 
 Criar backup sql no pgadmin (caso não tenha flyway): 
 
