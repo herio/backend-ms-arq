@@ -2,6 +2,8 @@ package br.com.herio.arqmsmobile.service;
 
 import java.util.Base64;
 
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +34,9 @@ public class UsuarioService {
 	@Autowired
 	protected GoogleDriveFachada googleDriveFachada;
 
+	@Autowired
+	protected ConfiguracaoNotificacaoService configuracaoNotificacaoService;
+
 	public Usuario criarUsuario(Usuario usuario, EnumSistema sistema) {
 		if (usuario.getId() != null) {
 			throw new IllegalArgumentException("Informe um novo usuário (sem id)!");
@@ -41,7 +46,12 @@ public class UsuarioService {
 		usuario.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
 		usuario = usuarioRepository.save(usuario);
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
+
+		//gera ativação
 		ativacaoUsuarioService.gerarAtivacaoUsuario(usuario.getId());
+
+		//criaconfignotificacao default
+		criaConfigNotificacaoDefault(usuario.getId(), sistema);
 
 		// enviaEmail
 		enviadorEmailService.enviaEmailBoasVindas(usuario, sistema);
@@ -90,6 +100,13 @@ public class UsuarioService {
 
 		// enviaEmail
 		return enviadorEmailService.enviaEmailRecuperaSenha(usuario, sistema);
+	}
+
+	private void criaConfigNotificacaoDefault(Long idUsuario, EnumSistema sistema) {
+		ConfiguracaoNotificacao configuracaoNotificacao = new ConfiguracaoNotificacao();
+		configuracaoNotificacao.setReceberNotificacao(true);
+		configuracaoNotificacao.getItens().add(EnumSistema.getConfigItemDefault(sistema));
+		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
 	}
 
 }

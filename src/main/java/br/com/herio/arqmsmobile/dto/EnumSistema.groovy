@@ -1,5 +1,6 @@
 package br.com.herio.arqmsmobile.dto
 
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem
 import org.apache.commons.text.StringEscapeUtils
 
 enum EnumSistema {
@@ -40,5 +41,19 @@ enum EnumSistema {
 
 	public String getDownloadUrl() {
 		return downloadUrl;
+	}
+
+	public static ConfiguracaoNotificacaoItem getConfigItemDefault(EnumSistema sistema) {
+		ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
+		switch (sistema) {
+			case NOTICIAS_JURIDICAS:
+				configItem.setTipoItem("ULTIMAS_SITE");
+				configItem.setTipoPeriodicidade("UM_POR_DIA");
+				configItem.setValorItem("0");
+				break;
+			default:
+				break;
+		}
+		return configItem;
 	}
 }
