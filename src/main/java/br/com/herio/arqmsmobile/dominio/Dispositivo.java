@@ -2,7 +2,7 @@ package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import br.com.herio.arqmsmobile.dto.EnumTipoSO;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
@@ -72,6 +74,11 @@ public class Dispositivo extends Entidade implements Serializable {
 
 	public void setDataExclusao(LocalDateTime dataExclusao) {
 		this.dataExclusao = dataExclusao;
+	}
+
+	@JsonProperty
+	public String getDataExclusaoFormatada() {
+		return this.dataExclusao == null ? "" : this.dataExclusao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 	}
 
 	public Usuario getUsuario() {

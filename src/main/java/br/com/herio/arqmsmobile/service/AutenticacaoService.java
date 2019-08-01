@@ -21,8 +21,8 @@ public class AutenticacaoService {
 	protected TokenJwtService tokenJwtService;
 
 	public Usuario autenticarUsuario(DtoAutenticacao dtoAutenticacao) {
-		Usuario usuario = usuarioRepository.findByLoginAndSenha(dtoAutenticacao.getLogin(),
-				Base64.getEncoder().encodeToString(dtoAutenticacao.getSenha().getBytes())).get();
+		Usuario usuario = usuarioRepository.findByLoginAndSenhaAndAtivado(dtoAutenticacao.getLogin(),
+				Base64.getEncoder().encodeToString(dtoAutenticacao.getSenha().getBytes()), true).get();
 		usuario.setToken(criaTokenJwt(usuario));
 		return usuario;
 	}

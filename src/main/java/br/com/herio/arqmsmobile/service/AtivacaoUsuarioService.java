@@ -45,7 +45,7 @@ public class AtivacaoUsuarioService {
 	}
 
 	public void confirmarAtivacaoUsuario(Long idUsuario, String chave) {
-		AtivacaoUsuario ativacaoUsuario = ativacaoUsuarioRepository.findByUsuarioIdChaveAtivacaoValida(idUsuario, chave)
+		AtivacaoUsuario ativacaoUsuario = ativacaoUsuarioRepository.findByUsuarioIdAndChaveAtivacaoAndDataAtivacaoIsNull(idUsuario, chave)
 				.get();
 		if (isPeriodoAtivacaoValido(ativacaoUsuario)) {
 			ativacaoUsuario.setDataAtivacao(new Date());

@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -102,6 +101,7 @@ public class NotificacaoService {
 	}
 
 	public Page<Notificacao> listaNotificacoesEnviadasNaoExcluidas(Long idUsuario, Pageable page) {
-		return notificacaoRepository.findAllByEnviadaNaoExcluidaDispositivoUsuarioIdOrderByDataCriacaoDesc(idUsuario, page);
+		return notificacaoRepository.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(
+				true, false, idUsuario, page);
 	}
 }

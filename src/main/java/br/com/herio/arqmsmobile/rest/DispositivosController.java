@@ -1,7 +1,8 @@
 package br.com.herio.arqmsmobile.rest;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class DispositivosController {
 	@GetMapping
 	public Collection<Dispositivo> listarDispositivos(@PathVariable Long idUsuario,
 			@RequestParam(required = false) boolean exibirAtivos) {
-		return exibirAtivos ? dispositivoRepository.findByIdUsuarioAtivos(idUsuario)
-				: dispositivoRepository.findByIdUsuario(idUsuario);
+		return exibirAtivos ? dispositivoRepository.findAllByUsuarioIdAndDataExclusaoIsNull(idUsuario)
+				: dispositivoRepository.findAllByUsuarioId(idUsuario);
 	}
 
 	@ApiOperation("salvarDispositivo")
@@ -64,7 +65,7 @@ public class DispositivosController {
 	@DeleteMapping("/{id}")
 	public void removerDispositivo(@PathVariable Long id) {
 		Dispositivo dispositivo = dispositivoRepository.findById(id).get();
-		dispositivo.setDataExclusao(new Date());
+		dispositivo.setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
 		dispositivoRepository.save(dispositivo);
 	}
 }

@@ -1,12 +1,17 @@
 package br.com.herio.arqmsmobile.service;
 
-import br.com.herio.arqmsmobile.dominio.*;
+import java.util.NoSuchElementException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.NoSuchElementException;
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem;
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoRepository;
+import br.com.herio.arqmsmobile.dominio.Usuario;
+import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 
 @Service
 public class ConfiguracaoNotificacaoService {
@@ -17,9 +22,6 @@ public class ConfiguracaoNotificacaoService {
 
 	@Autowired
 	private ConfiguracaoNotificacaoRepository configuracaoNotificacaoRepository;
-
-	@Autowired
-	private NotificacaoService notificacaoService;
 
 	public ConfiguracaoNotificacao salvarConfiguracao(Long idUsuario, ConfiguracaoNotificacao configuracaoNotificacao) {
 		ConfiguracaoNotificacao configBd;
