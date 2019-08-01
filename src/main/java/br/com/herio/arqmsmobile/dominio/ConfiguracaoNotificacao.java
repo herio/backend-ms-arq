@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -28,7 +29,7 @@ public class ConfiguracaoNotificacao extends Entidade implements Serializable {
 	@Column(name = "RECEBER_NOTIFICACAO")
 	private boolean receberNotificacao;
 
-	@OneToMany(mappedBy = "configuracao", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "configuracao", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ConfiguracaoNotificacaoItem> itens = new ArrayList<>();
 
 	public List<ConfiguracaoNotificacaoItem> getItens() {

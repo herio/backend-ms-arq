@@ -64,10 +64,10 @@ public class FirebaseFachada {
 					.setToken(notificacao.getDispositivo().getNumRegistro())
 					.build();
 			String response = FirebaseMessaging.getInstance().send(message);
-			LOGGER.debug("FirebaseFachada salvaEEnviaNotificacao", response);
+			LOGGER.debug("FirebaseFachada enviaNotificacao", response);
 			return response != null;
 		} catch (FirebaseMessagingException e) {
-			LOGGER.error("FirebaseFachada salvaEEnviaNotificacao erro", e);
+			LOGGER.error("FirebaseFachada enviaNotificacao erro", e);
 			throw new RuntimeException(e);
 		}
 	}
