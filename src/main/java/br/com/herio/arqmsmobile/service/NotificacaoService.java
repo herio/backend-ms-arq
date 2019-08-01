@@ -104,4 +104,8 @@ public class NotificacaoService {
 		return notificacaoRepository.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(
 				true, false, idUsuario, page);
 	}
+
+	public Page<Notificacao> listaNotificacoes(Long idUsuario, Pageable page) {
+		return notificacaoRepository.findAllByNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(idUsuario, page);
+	}
 }

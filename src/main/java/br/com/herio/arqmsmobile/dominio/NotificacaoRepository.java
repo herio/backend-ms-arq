@@ -13,5 +13,7 @@ public interface NotificacaoRepository extends CrudRepository<Notificacao, Long>
 	Page<Notificacao> findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(
 			boolean enviada, boolean excluida, Long usuarioId, Pageable page);
 
-	Optional<Notificacao> findTopByEnviadaAndExcluidaAndDispositivoUsuarioIdOrderByDataCriacaoDesc(boolean enviada, boolean excluida, Long usuarioId);
+	Page<Notificacao> findAllByNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(Long usuarioId, Pageable page);
+
+	Optional<Notificacao> findTopByEnviadaAndDispositivoUsuarioIdOrderByDataCriacaoDesc(boolean enviada, Long usuarioId);
 }

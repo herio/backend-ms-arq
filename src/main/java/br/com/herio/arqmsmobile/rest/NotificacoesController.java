@@ -41,4 +41,10 @@ public class NotificacoesController {
 		return notificacaoService.listaNotificacoesEnviadasNaoExcluidas(idUsuario, page);
 	}
 
+	@ApiOperation("listaNotificacoes")
+	@GetMapping
+	public Page<Notificacao> listaNotificacoes(@PathVariable Long idUsuario, Pageable page) {
+		return notificacaoService.listaNotificacoes(idUsuario, page);
+	}
+
 }
