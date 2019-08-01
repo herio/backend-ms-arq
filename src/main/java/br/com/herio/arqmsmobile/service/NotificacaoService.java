@@ -97,6 +97,9 @@ public class NotificacaoService {
 		Notificacao notificacaoBd = notificacaoRepository.findById(idNotificacao).get();
 		notificacaoBd.setLida(notificacao.isLida());
 		notificacaoBd.setExcluida(notificacao.isExcluida());
+		if(notificacao.getDataEnvio() != null) {
+			notificacaoBd.setDataEnvio(notificacao.getDataEnvio());
+		}
 		notificacaoRepository.save(notificacaoBd);
 		return notificacaoBd;
 	}
