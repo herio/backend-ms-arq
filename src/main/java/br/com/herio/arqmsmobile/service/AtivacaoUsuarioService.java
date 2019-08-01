@@ -26,21 +26,20 @@ public class AtivacaoUsuarioService {
 	protected UsuarioRepository usuarioRepository;
 
 	public AtivacaoUsuario gerarAtivacaoUsuario(Long idUsuario) {
+		AtivacaoUsuario ativacaoUsuario = null;
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
-		if (usuario.isAtivado()) {
-			throw new ExcecaoNegocio("Usuário já está ativado!");
+		if (!usuario.isAtivado()) {
+			Optional<AtivacaoUsuario> ativacao = ativacaoUsuarioRepository.findByUsuarioId(idUsuario);
+			if (ativacao.isPresent()) {
+				ativacaoUsuario = ativacao.get();
+			} else {
+				ativacaoUsuario = new AtivacaoUsuario();
+				ativacaoUsuario.setUsuario(usuario);
+			}
+			ativacaoUsuario.setDataAtivacao(null);
+			ativacaoUsuario.geraChaveAtivacao();
+			ativacaoUsuarioRepository.save(ativacaoUsuario);
 		}
-		Optional<AtivacaoUsuario> ativacao = ativacaoUsuarioRepository.findByUsuarioId(idUsuario);
-		AtivacaoUsuario ativacaoUsuario;
-		if (ativacao.isPresent()) {
-			ativacaoUsuario = ativacao.get();
-		} else {
-			ativacaoUsuario = new AtivacaoUsuario();
-			ativacaoUsuario.setUsuario(usuario);
-		}
-		ativacaoUsuario.setDataAtivacao(null);
-		ativacaoUsuario.geraChaveAtivacao();
-		ativacaoUsuarioRepository.save(ativacaoUsuario);
 		return ativacaoUsuario;
 	}
 
