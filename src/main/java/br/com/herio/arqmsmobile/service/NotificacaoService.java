@@ -68,7 +68,8 @@ public class NotificacaoService {
 				}
 			} catch (RuntimeException e) {
 				LOGGER.error("Erro ao enviar notificação para dispositivo", notificacaoBd.getToken(), e);
-				if (e.getMessage().contains("Requested entity was not found")) {
+				if (e.getMessage().contains("Requested entity was not found") ||
+						e.getMessage().contains("The registration token is not a valid FCM registration token")) {
 					notificacaoBd.getDispositivo().setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
 					dispositivoRepository.save(notificacaoBd.getDispositivo());
 				}
