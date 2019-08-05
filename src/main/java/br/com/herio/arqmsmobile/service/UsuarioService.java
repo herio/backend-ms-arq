@@ -68,6 +68,7 @@ public class UsuarioService {
 		usuarioBd.setNome(usuario.getNome());
 		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
 		usuarioBd.setEmail(usuario.getEmail());
+		usuarioBd.setAtivado(usuario.isAtivado());
 		usuarioBd.valida();
 		usuarioBd = usuarioRepository.save(usuarioBd);
 

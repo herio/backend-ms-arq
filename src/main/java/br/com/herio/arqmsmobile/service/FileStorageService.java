@@ -2,6 +2,7 @@ package br.com.herio.arqmsmobile.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -48,6 +49,27 @@ public class FileStorageService {
 			// Copy file to the target location (Replacing existing file with the same name)
 			Path targetLocation = this.fileStorageLocation.resolve(fileName);
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+			return targetLocation.toFile();
+
+		} catch (IOException ex) {
+			throw new RuntimeException("Could not store file " + fileName + ". Please try again!", ex);
+		}
+	}
+
+	public File storeFile(InputStream in, String nomeFile) {
+		// Normalize file name
+		String fileName = StringUtils.cleanPath(nomeFile);
+
+		try {
+			// Check if the file's name contains invalid characters
+			if (fileName.contains("..")) {
+				throw new RuntimeException("Sorry! Filename contains invalid path sequence " + fileName);
+			}
+
+			// Copy file to the target location (Replacing existing file with the same name)
+			Path targetLocation = this.fileStorageLocation.resolve(fileName);
+			Files.copy(in, targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
 			return targetLocation.toFile();
 
