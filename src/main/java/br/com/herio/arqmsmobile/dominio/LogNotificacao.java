@@ -16,7 +16,7 @@ public class LogNotificacao extends Entidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "LOG")
-	private String log = "";
+	private String log;
 
 	public String getLog() {
 		return log;
@@ -24,10 +24,6 @@ public class LogNotificacao extends Entidade implements Serializable {
 
 	public void setLog(String log) {
 		this.log = log;
-	}
-
-	public void addLog(String log) {
-		this.log += log + "\n";
 	}
 
 	@JsonProperty
