@@ -23,28 +23,28 @@ public class NotificacoesController {
 	@Autowired
 	private NotificacaoService notificacaoService;
 
-	@ApiOperation("enviaNotificacao")
+	@ApiOperation("enviarNotificacao")
 	@PostMapping("/envia")
-	public boolean enviaNotificacao(@RequestBody Notificacao notificacao) {
-		return notificacaoService.salvaEEnviaNotificacao(notificacao);
+	public boolean enviarNotificacao(@RequestBody Notificacao notificacao) {
+		return notificacaoService.salvarEEnviarNotificacao(notificacao);
 	}
 
-	@ApiOperation("atualizaNotificacao")
+	@ApiOperation("atualizarNotificacao")
 	@PostMapping("/{idNotificacao}")
-	public Notificacao atualizaNotificacao(@PathVariable Long idNotificacao, @RequestBody Notificacao notificacao) {
-		return notificacaoService.atualizaNotificacao(idNotificacao, notificacao);
+	public Notificacao atualizarNotificacao(@PathVariable Long idNotificacao, @RequestBody Notificacao notificacao) {
+		return notificacaoService.atualizarNotificacao(idNotificacao, notificacao);
 	}
 
-	@ApiOperation("listaNotificacoesEnviadasNaoExcluidas")
+	@ApiOperation("listarNotificacoesEnviadasNaoExcluidas")
 	@GetMapping("/enviadasnaoexcluidas")
-	public Page<Notificacao> listaNotificacoesEnviadasNaoExcluidas(@PathVariable Long idUsuario, Pageable page) {
-		return notificacaoService.listaNotificacoesEnviadasNaoExcluidas(idUsuario, page);
+	public Page<Notificacao> listarNotificacoesEnviadasNaoExcluidas(@PathVariable Long idUsuario, Pageable page) {
+		return notificacaoService.listarNotificacoesEnviadasNaoExcluidas(idUsuario, page);
 	}
 
-	@ApiOperation("listaNotificacoes")
+	@ApiOperation("listarNotificacoes")
 	@GetMapping
-	public Page<Notificacao> listaNotificacoes(@PathVariable Long idUsuario, Pageable page) {
-		return notificacaoService.listaNotificacoes(idUsuario, page);
+	public Page<Notificacao> listarNotificacoes(@PathVariable Long idUsuario, Pageable page) {
+		return notificacaoService.listarNotificacoes(idUsuario, page);
 	}
 
 }

@@ -78,7 +78,7 @@ public class NotificacaoService {
 		return enviou;
 	}
 
-	public boolean salvaEEnviaNotificacao(Notificacao notificacao) {
+	public boolean salvarEEnviarNotificacao(Notificacao notificacao) {
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
 				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
 		notificacao.setDispositivo(dispositivoBd);
@@ -93,7 +93,7 @@ public class NotificacaoService {
 		return enviou;
 	}
 
-	public Notificacao atualizaNotificacao(Long idNotificacao, Notificacao notificacao) {
+	public Notificacao atualizarNotificacao(Long idNotificacao, Notificacao notificacao) {
 		Notificacao notificacaoBd = notificacaoRepository.findById(idNotificacao).get();
 		notificacaoBd.setLida(notificacao.isLida());
 		notificacaoBd.setExcluida(notificacao.isExcluida());
@@ -104,12 +104,12 @@ public class NotificacaoService {
 		return notificacaoBd;
 	}
 
-	public Page<Notificacao> listaNotificacoesEnviadasNaoExcluidas(Long idUsuario, Pageable page) {
+	public Page<Notificacao> listarNotificacoesEnviadasNaoExcluidas(Long idUsuario, Pageable page) {
 		return notificacaoRepository.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(
 				true, false, idUsuario, page);
 	}
 
-	public Page<Notificacao> listaNotificacoes(Long idUsuario, Pageable page) {
+	public Page<Notificacao> listarNotificacoes(Long idUsuario, Pageable page) {
 		return notificacaoRepository.findAllByNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(idUsuario, page);
 	}
 }
