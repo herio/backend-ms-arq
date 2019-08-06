@@ -1,26 +1,6 @@
 package br.com.herio.arqmsmobile.infra.drive;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.security.GeneralSecurityException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
-
+import br.com.herio.arqmsmobile.service.FileStorageService;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
@@ -33,10 +13,24 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
-
-import br.com.herio.arqmsmobile.service.FileStorageService;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.net.URL;
+import java.security.GeneralSecurityException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 @Component
 public class GoogleDriveFachada {
@@ -56,7 +50,7 @@ public class GoogleDriveFachada {
 	private String credentialsFile;
 
 	@Autowired
-	protected FileStorageService fileStorageService;
+	protected ImageResizer imageResizer;
 
 	@PostConstruct
 	public void init() {
@@ -85,11 +79,12 @@ public class GoogleDriveFachada {
 
 	public File uploadFile(MultipartFile mFile, String idFolder) {
 		try {
-			java.io.File iofile = fileStorageService.storeFile(mFile);
+			java.io.File arquivoRedimensionado = imageResizer.salvaLocaleRedimensiona(mFile, 70);
+
 			File fileMetadata = new File();
-			fileMetadata.setName(iofile.getName());
+			fileMetadata.setName(arquivoRedimensionado.getName());
 			fileMetadata.setParents(Collections.singletonList(idFolder));
-			FileContent mediaContent = new FileContent("image/" + iofile.getName().split("\\.")[1], iofile);
+			FileContent mediaContent = new FileContent("image/" + arquivoRedimensionado.getName().split("\\.")[1], arquivoRedimensionado);
 
 			// upload
 			return service.files().create(fileMetadata, mediaContent)
