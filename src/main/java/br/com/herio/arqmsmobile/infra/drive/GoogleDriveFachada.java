@@ -79,7 +79,7 @@ public class GoogleDriveFachada {
 
 	public File uploadFile(MultipartFile mFile, String idFolder) {
 		try {
-			java.io.File arquivoRedimensionado = imageResizer.salvaLocaleRedimensiona(mFile, 70);
+			java.io.File arquivoRedimensionado = imageResizer.salvaLocaleRedimensiona(mFile, 50);
 
 			File fileMetadata = new File();
 			fileMetadata.setName(arquivoRedimensionado.getName());
