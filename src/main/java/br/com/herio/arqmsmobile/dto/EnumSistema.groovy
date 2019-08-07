@@ -48,9 +48,8 @@ enum EnumSistema {
 		ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
 		switch (sistema) {
 			case NOTICIAS_JURIDICAS:
-				configItem.setTipoItem("ULTIMAS_SITE");
-				configItem.setTipoPeriodicidade("UM_POR_DIA");
-				configItem.setValorItem("1");
+				configItem.setTipoItem("DESTAQUE");
+				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
 				break;
 			default:
 				break;

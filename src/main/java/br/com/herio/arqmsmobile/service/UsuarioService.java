@@ -2,14 +2,13 @@ package br.com.herio.arqmsmobile.service;
 
 import java.util.Base64;
 
-import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
-import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.api.services.drive.model.File;
 
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
@@ -47,10 +46,10 @@ public class UsuarioService {
 		usuario = usuarioRepository.save(usuario);
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 
-		//gera ativação
+		// gera ativação
 		ativacaoUsuarioService.gerarAtivacaoUsuario(usuario.getId());
 
-		//criaconfignotificacao default
+		// criaconfignotificacao default
 		criaConfigNotificacaoDefault(usuario.getId(), sistema);
 
 		// enviaEmail
