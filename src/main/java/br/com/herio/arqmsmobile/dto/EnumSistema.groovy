@@ -1,7 +1,8 @@
 package br.com.herio.arqmsmobile.dto
 
-import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem
 import org.apache.commons.text.StringEscapeUtils
+
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem
 
 enum EnumSistema {
 	NOTICIAS_JURIDICAS("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_app.png",
@@ -47,9 +48,8 @@ enum EnumSistema {
 		ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
 		switch (sistema) {
 			case NOTICIAS_JURIDICAS:
-				configItem.setTipoItem("ULTIMAS_SITE");
-				configItem.setTipoPeriodicidade("UM_POR_DIA");
-				configItem.setValorItem("0");
+				configItem.setTipoItem("DESTAQUE");
+				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
 				break;
 			default:
 				break;
