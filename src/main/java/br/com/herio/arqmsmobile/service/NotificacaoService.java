@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,22 +57,38 @@ public class NotificacaoService {
 		return notificacoesASeremEnviadas;
 	}
 
-	public boolean enviaNotificacoes(Collection<Notificacao> notificacoes) {
+	public boolean enviaNotificacoes(Map<Long, Collection<Notificacao>> notificacoes) {
 		boolean enviou = false;
-		for (Notificacao notificacaoBd : notificacoes) {
-			try {
-				enviou = firebaseFachada.enviaNotificacao(notificacaoBd);
-				if (enviou) {
-					notificacaoBd.setEnviada(true);
-					notificacaoBd.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));
-					notificacaoRepository.save(notificacaoBd);
-				}
-			} catch (RuntimeException e) {
-				LOGGER.error("Erro ao enviar notificação para dispositivo", notificacaoBd.getToken(), e);
-				if (e.getMessage().contains("Requested entity was not found") ||
-						e.getMessage().contains("The registration token is not a valid FCM registration token")) {
-					notificacaoBd.getDispositivo().setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
-					dispositivoRepository.save(notificacaoBd.getDispositivo());
+		for (Map.Entry<Long, Collection<Notificacao>> entryNotificacoes : notificacoes.entrySet()) {
+			boolean notificacaoOrigemEnviada = false;
+			Notificacao primeiraNotificacaoEnviada = null;
+			for (Notificacao notificacaoBd : entryNotificacoes.getValue()) {
+				try {
+					enviou = firebaseFachada.enviaNotificacao(notificacaoBd);
+					if (enviou) {
+						if (notificacaoBd.getNotificacaoOrigem() == null) {
+							notificacaoOrigemEnviada = true;
+						} else if (!notificacaoOrigemEnviada) {
+							if (primeiraNotificacaoEnviada == null) {
+								// notificação origem não foi enviada, primeira após vira origem
+								primeiraNotificacaoEnviada = notificacaoBd;
+								notificacaoBd.setNotificacaoOrigem(null);
+							} else {
+								notificacaoBd.setNotificacaoOrigem(primeiraNotificacaoEnviada);
+							}
+						}
+						notificacaoBd.setEnviada(true);
+						notificacaoBd.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));
+						notificacaoRepository.save(notificacaoBd);
+
+					}
+				} catch (RuntimeException e) {
+					LOGGER.error("Erro ao enviar notificação para dispositivo", notificacaoBd.getToken(), e);
+					if (e.getMessage().contains("Requested entity was not found") ||
+							e.getMessage().contains("The registration token is not a valid FCM registration token")) {
+						notificacaoBd.getDispositivo().setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
+						dispositivoRepository.save(notificacaoBd.getDispositivo());
+					}
 				}
 			}
 		}
@@ -97,7 +114,7 @@ public class NotificacaoService {
 		Notificacao notificacaoBd = notificacaoRepository.findById(idNotificacao).get();
 		notificacaoBd.setLida(notificacao.isLida());
 		notificacaoBd.setExcluida(notificacao.isExcluida());
-		if(notificacao.getDataEnvio() != null) {
+		if (notificacao.getDataEnvio() != null) {
 			notificacaoBd.setDataEnvio(notificacao.getDataEnvio());
 		}
 		notificacaoRepository.save(notificacaoBd);
