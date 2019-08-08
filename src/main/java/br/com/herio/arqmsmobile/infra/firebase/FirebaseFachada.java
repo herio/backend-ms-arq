@@ -31,11 +31,24 @@ public class FirebaseFachada {
 	@Value("${firebase.credentialsFile}")
 	private String credentialsFile;
 
+	@Value("${firebase.credentialsFilePago}")
+	private String credentialsFilePago;
+
 	@Value("${firebase.urlDatabase}")
 	private String urlDatabase;
 
-	@PostConstruct
-	public void init() {
+	@Value("${firebase.urlDatabasePago}")
+	private String urlDatabasePago;
+
+	public void init(boolean versaoPaga) {
+		if(versaoPaga) {
+			init(credentialsFilePago, urlDatabasePago);
+		} else {
+			init(credentialsFile, urlDatabase);
+		}
+	}
+
+	private void init(String credentialsFile, String urlDatabase) {
 		LOGGER.debug(String.format("FirebaseFachada init credentialsFile[%s], urlDatabase[%s]", credentialsFile, urlDatabase));
 		try {
 			if (credentialsFile != null && !"".equals(credentialsFile) && urlDatabase != null && !"".equals(urlDatabase)) {

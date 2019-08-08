@@ -57,7 +57,8 @@ public class NotificacaoService {
 		return notificacoesASeremEnviadas;
 	}
 
-	public boolean enviaNotificacoes(Map<Long, Collection<Notificacao>> notificacoes) {
+	public boolean enviaNotificacoes(Map<Long, Collection<Notificacao>> notificacoes, boolean versaoPaga) {
+		firebaseFachada.init(versaoPaga);
 		boolean enviou = false;
 		for (Map.Entry<Long, Collection<Notificacao>> entryNotificacoes : notificacoes.entrySet()) {
 			boolean notificacaoOrigemEnviada = false;
@@ -95,7 +96,8 @@ public class NotificacaoService {
 		return enviou;
 	}
 
-	public boolean salvarEEnviarNotificacao(Notificacao notificacao) {
+	public boolean salvarEEnviarNotificacao(Notificacao notificacao, boolean versaoPaga) {
+		firebaseFachada.init(versaoPaga);
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
 				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
 		notificacao.setDispositivo(dispositivoBd);
