@@ -1,5 +1,7 @@
 package br.com.herio.arqmsmobile.infra.security.token;
 
+import org.springframework.security.access.AccessDeniedException;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -9,7 +11,7 @@ public class TokenSeguranca {
 
     protected final String TOKEN_ISSUER = "com.herio";
 
-    // 7 dias em milisegundos - 1000 * 60 * 60 * 24 * 7
+    // 15 dias em milisegundos - 1000 * 60 * 60 * 24 * 15
     private final int tempoExpiracaoClienteMobile = 604800000;
 
     private Date dataExpiracaoToken;
@@ -48,7 +50,7 @@ public class TokenSeguranca {
         final long expiracaoEmMills = this.getDataExpiracaoToken().getTime();
         final long dataHoraCorrenteEmMills = new Date().getTime();
         if (expiracaoEmMills < dataHoraCorrenteEmMills) {
-            throw new IllegalStateException("Validade do token JWT expirada");
+            throw new AccessDeniedException("Validade do token JWT expirada");
         }
     }
 
