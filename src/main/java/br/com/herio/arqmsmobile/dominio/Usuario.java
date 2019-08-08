@@ -37,6 +37,9 @@ public class Usuario extends Entidade implements Serializable {
 	@Column(name = "ATIVADO")
 	private boolean ativado;
 
+	@Column(name = "CELULAR")
+	private String celular;
+
 	@Column(name = "SISTEMA")
 	private String sistema;
 
@@ -48,15 +51,12 @@ public class Usuario extends Entidade implements Serializable {
 		super();
 	}
 
-	public Usuario(String login, String senha, String nome, String email, String urlFoto, boolean ativado, String sistema) {
-		super();
-		this.login = login;
-		this.senha = senha;
-		this.nome = nome;
-		this.email = email;
-		this.urlFoto = urlFoto;
-		this.ativado = ativado;
-		this.sistema = sistema;
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 	public String getSistema() {
