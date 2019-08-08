@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
-	Optional<Usuario> findByLogin(String login);
+	Optional<Usuario> findByLoginAndSistema(String login, String sistema);
 
-	Optional<Usuario> findByLoginAndSenhaAndAtivado(String login, String senha, boolean ativado);
+	Optional<Usuario> findByLoginAndSenhaAndAtivadoAndSistema(String login, String senha, boolean ativado, String sistema);
 
 }

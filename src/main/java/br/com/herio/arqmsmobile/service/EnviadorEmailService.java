@@ -56,8 +56,9 @@ public class EnviadorEmailService {
 		}
 	}
 
-	public void enviaEmailAtualizacaoDados(Usuario usuario, EnumSistema sistema) {
+	public void enviaEmailAtualizacaoDados(Usuario usuario) {
 		try {
+			EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(),
 					String.format("Seus dados foram atualizados no App %s", sistema.getNome()));

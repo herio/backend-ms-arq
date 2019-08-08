@@ -32,10 +32,9 @@ public class UsuariosController {
 	protected UsuarioService usuarioService;
 
 	@ApiOperation("atualizarUsuario")
-	@PostMapping("/{idUsuario}/{sistema}")
-	public Usuario atualizarUsuario(@PathVariable Long idUsuario, @PathVariable EnumSistema sistema,
-			@RequestBody Usuario usuario) {
-		return usuarioService.atualizarUsuario(idUsuario, sistema, usuario);
+	@PostMapping("/{idUsuario}")
+	public Usuario atualizarUsuario(@PathVariable Long idUsuario, @RequestBody Usuario usuario) {
+		return usuarioService.atualizarUsuario(idUsuario, usuario);
 	}
 
 	@ApiOperation("removerUsuario")

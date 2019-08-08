@@ -7,7 +7,10 @@ import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem
 enum EnumSistema {
 	NOTICIAS_JURIDICAS("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_app.png",
 	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
-	"https://noticias-juridicas.herokuapp.com/publico/files/NOTICIAS_JURIDICAS/usuarios/%s/fotos/%s");
+	"https://noticias-juridicas.herokuapp.com/publico/files/NOTICIAS_JURIDICAS/usuarios/%s/fotos/%s"),
+	NOTICIAS_JURIDICAS_PAGO("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_app.png",
+			"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
+			"https://noticias-juridicas.herokuapp.com/publico/files/NOTICIAS_JURIDICAS_PAGO/usuarios/%s/fotos/%s");
 
 	String nome;
 	String icone;
@@ -48,6 +51,10 @@ enum EnumSistema {
 		ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
 		switch (sistema) {
 			case NOTICIAS_JURIDICAS:
+				configItem.setTipoItem("DESTAQUE");
+				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
+				break;
+			case NOTICIAS_JURIDICAS_PAGO:
 				configItem.setTipoItem("DESTAQUE");
 				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
 				break;

@@ -28,9 +28,9 @@ public class UsuariosPublicoController {
 	protected UsuarioService usuarioService;
 
 	@ApiOperation("criarUsuario")
-	@PostMapping("/{sistema}")
-	public Usuario criarUsuario(@RequestBody Usuario usuario, @PathVariable EnumSistema sistema) {
-		return usuarioService.criarUsuario(usuario, sistema);
+	@PostMapping
+	public Usuario criarUsuario(@RequestBody Usuario usuario) {
+		return usuarioService.criarUsuario(usuario);
 	}
 
 	@ApiOperation("recuperarSenha")

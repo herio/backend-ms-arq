@@ -37,6 +37,9 @@ public class Usuario extends Entidade implements Serializable {
 	@Column(name = "ATIVADO")
 	private boolean ativado;
 
+	@Column(name = "SISTEMA")
+	private String sistema;
+
 	@Transient
 	private String token;
 
@@ -45,7 +48,7 @@ public class Usuario extends Entidade implements Serializable {
 		super();
 	}
 
-	public Usuario(String login, String senha, String nome, String email, String urlFoto, boolean ativado) {
+	public Usuario(String login, String senha, String nome, String email, String urlFoto, boolean ativado, String sistema) {
 		super();
 		this.login = login;
 		this.senha = senha;
@@ -53,6 +56,15 @@ public class Usuario extends Entidade implements Serializable {
 		this.email = email;
 		this.urlFoto = urlFoto;
 		this.ativado = ativado;
+		this.sistema = sistema;
+	}
+
+	public String getSistema() {
+		return sistema;
+	}
+
+	public void setSistema(String sistema) {
+		this.sistema = sistema;
 	}
 
 	public boolean isAtivado() {

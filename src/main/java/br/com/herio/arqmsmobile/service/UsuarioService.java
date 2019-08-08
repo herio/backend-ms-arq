@@ -36,7 +36,7 @@ public class UsuarioService {
 	@Autowired
 	protected ConfiguracaoNotificacaoService configuracaoNotificacaoService;
 
-	public Usuario criarUsuario(Usuario usuario, EnumSistema sistema) {
+	public Usuario criarUsuario(Usuario usuario) {
 		if (usuario.getId() != null) {
 			throw new IllegalArgumentException("Informe um novo usuário (sem id)!");
 		}
@@ -50,6 +50,7 @@ public class UsuarioService {
 		ativacaoUsuarioService.gerarAtivacaoUsuario(usuario.getId());
 
 		// criaconfignotificacao default
+		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 		criaConfigNotificacaoDefault(usuario.getId(), sistema);
 
 		// enviaEmail
@@ -57,7 +58,7 @@ public class UsuarioService {
 		return usuario;
 	}
 
-	public Usuario atualizarUsuario(Long idUsuario, EnumSistema sistema, Usuario usuario) {
+	public Usuario atualizarUsuario(Long idUsuario, Usuario usuario) {
 		if (idUsuario == null) {
 			throw new IllegalArgumentException("Informe um usuário já existente (com id)!");
 		}
@@ -72,7 +73,7 @@ public class UsuarioService {
 		usuarioBd = usuarioRepository.save(usuarioBd);
 
 		// enviaEmail
-		enviadorEmailService.enviaEmailAtualizacaoDados(usuarioBd, sistema);
+		enviadorEmailService.enviaEmailAtualizacaoDados(usuarioBd);
 		return usuarioBd;
 	}
 
@@ -80,20 +81,21 @@ public class UsuarioService {
 		return googleDriveFachada.downloadFile(idFile, fileName);
 	}
 
-	public Usuario uploadFoto(Long idUsuario, EnumSistema sistema, MultipartFile mfile) {
-		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
+	public Usuario uploadFoto(Long idUsuario, MultipartFile mfile) {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
+		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
 		String fileUri = String.format(sistema.getDownloadUrl(), idUsuario, file.getId());
 		usuario.setUrlFoto(fileUri);
 		usuarioRepository.save(usuario);
 
 		// enviaEmail
-		enviadorEmailService.enviaEmailAtualizacaoDados(usuario, sistema);
+		enviadorEmailService.enviaEmailAtualizacaoDados(usuario);
 		return usuario;
 	}
 
 	public String recuperarSenha(String login, EnumSistema sistema) {
-		Usuario usuario = usuarioRepository.findByLogin(login).get();
+		Usuario usuario = usuarioRepository.findByLoginAndSistema(login, sistema.name()).get();
 		if (usuario == null) {
 			throw new ExcecaoNegocio(String.format("Usuário de login %s inexistente", login));
 		}

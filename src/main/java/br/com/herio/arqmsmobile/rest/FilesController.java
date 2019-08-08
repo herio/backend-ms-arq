@@ -32,15 +32,15 @@ public class FilesController {
 	private UsuarioService usuarioService;
 
 	@ApiOperation("uploadFoto")
-	@PostMapping("/files/{sistema}/usuarios/{idUsuario}/fotos")
-	public Usuario uploadFoto(@PathVariable EnumSistema sistema, @PathVariable Long idUsuario,
+	@PostMapping("/files/usuarios/{idUsuario}/fotos")
+	public Usuario uploadFoto(@PathVariable Long idUsuario,
 			@RequestParam("foto") MultipartFile file) {
-		return usuarioService.uploadFoto(idUsuario, sistema, file);
+		return usuarioService.uploadFoto(idUsuario, file);
 	}
 
 	@ApiOperation("downloadFoto")
-	@GetMapping("/publico/files/{sistema}/usuarios/{idUsuario}/fotos/{idFoto}")
-	public ResponseEntity<Resource> downloadFoto(@PathVariable EnumSistema sistema, @PathVariable Long idUsuario,
+	@GetMapping("/publico/files/usuarios/{idUsuario}/fotos/{idFoto}")
+	public ResponseEntity<Resource> downloadFoto(@PathVariable Long idUsuario,
 			@PathVariable String idFoto, HttpServletRequest request) throws FileNotFoundException {
 		File file = usuarioService.downloadFoto(idFoto, "foto.jpg");
 
