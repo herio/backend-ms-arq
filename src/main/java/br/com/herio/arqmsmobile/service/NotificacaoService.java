@@ -58,14 +58,13 @@ public class NotificacaoService {
 	}
 
 	public boolean enviaNotificacoes(Map<Long, Collection<Notificacao>> notificacoes, boolean versaoPaga) {
-		firebaseFachada.init(versaoPaga);
 		boolean enviou = false;
 		for (Map.Entry<Long, Collection<Notificacao>> entryNotificacoes : notificacoes.entrySet()) {
 			boolean notificacaoOrigemEnviada = false;
 			Notificacao primeiraNotificacaoEnviada = null;
 			for (Notificacao notificacaoBd : entryNotificacoes.getValue()) {
 				try {
-					enviou = firebaseFachada.enviaNotificacao(notificacaoBd);
+					enviou = firebaseFachada.enviaNotificacao(notificacaoBd, versaoPaga);
 					if (enviou) {
 						if (notificacaoBd.getNotificacaoOrigem() == null) {
 							notificacaoOrigemEnviada = true;
@@ -97,13 +96,12 @@ public class NotificacaoService {
 	}
 
 	public boolean salvarEEnviarNotificacao(Notificacao notificacao, boolean versaoPaga) {
-		firebaseFachada.init(versaoPaga);
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
 				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
 		notificacao.setDispositivo(dispositivoBd);
 		notificacao.setToken(dispositivoBd.getNumRegistro());
 		notificacao = notificacaoRepository.save(notificacao);
-		boolean enviou = firebaseFachada.enviaNotificacao(notificacao);
+		boolean enviou = firebaseFachada.enviaNotificacao(notificacao, versaoPaga);
 		if (enviou) {
 			notificacao.setEnviada(true);
 			notificacao.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));

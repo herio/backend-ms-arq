@@ -40,15 +40,11 @@ public class FirebaseFachada {
 	@Value("${firebase.urlDatabasePago}")
 	private String urlDatabasePago;
 
-	public void init(boolean versaoPaga) {
-		if(versaoPaga) {
-			init(credentialsFilePago, urlDatabasePago);
-		} else {
-			init(credentialsFile, urlDatabase);
-		}
-	}
+	private FirebaseApp gratis;
+	private FirebaseApp pago;
 
-	private void init(String credentialsFile, String urlDatabase) {
+	@PostConstruct
+	public void init() {
 		LOGGER.debug(String.format("FirebaseFachada init credentialsFile[%s], urlDatabase[%s]", credentialsFile, urlDatabase));
 		try {
 			if (credentialsFile != null && !"".equals(credentialsFile) && urlDatabase != null && !"".equals(urlDatabase)) {
@@ -60,23 +56,36 @@ public class FirebaseFachada {
 						.setCredentials(GoogleCredentials.fromStream(in))
 						.setDatabaseUrl(urlDatabase) // "https://noticias-juridicas-45015.firebaseio.com"
 						.build();
-				FirebaseApp.initializeApp(options);
+				gratis = FirebaseApp.initializeApp(options, "gratis");
 			} else {
 				LOGGER.debug("FirebaseFachada não iniciado. credentialsFile, urlDatabase nulos ", credentialsFile, urlDatabase);
+			}
+
+			if (credentialsFilePago != null && !"".equals(credentialsFilePago) && urlDatabasePago != null && !"".equals(urlDatabasePago)) {
+				InputStream in = FirebaseFachada.class.getResourceAsStream(credentialsFilePago);// noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
+				if (in == null) {
+					throw new FileNotFoundException("Resource not found: " + credentialsFilePago);
+				}
+				FirebaseOptions options = new FirebaseOptions.Builder()
+						.setCredentials(GoogleCredentials.fromStream(in))
+						.setDatabaseUrl(urlDatabasePago) // "https://noticias-juridicas-45015.firebaseio.com"
+						.build();
+				pago = FirebaseApp.initializeApp(options, "pago");
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public boolean enviaNotificacao(Notificacao notificacao) {
+	public boolean enviaNotificacao(Notificacao notificacao, boolean versaoPaga) {
 		try {
 			Message message = Message.builder()
 					.setNotification(new Notification(notificacao.getTitulo(), notificacao.getConteudo()))
 					.putAllData(notificacao.getMapDadosExtras())
 					.setToken(notificacao.getDispositivo().getNumRegistro())
 					.build();
-			String response = FirebaseMessaging.getInstance().send(message);
+			FirebaseApp app = versaoPaga ? pago : gratis;
+			String response = FirebaseMessaging.getInstance(app).send(message);
 			LOGGER.debug("FirebaseFachada enviaNotificacao", response);
 			return response != null;
 		} catch (FirebaseMessagingException e) {
