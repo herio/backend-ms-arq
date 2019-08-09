@@ -90,6 +90,9 @@ Definir usuário padrão para commit via linha de comando
 
     git config --global credential.username "seu email"
 
+Atualizar todos os repositórios pelo powershell
+
+    Get-ChildItem -Directory | foreach { Write-Host "`n■ Getting latest for $_ ↓" | git -C $_.FullName pull -v}
     
     
 ## Heroku
