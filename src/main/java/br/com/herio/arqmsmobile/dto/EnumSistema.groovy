@@ -5,12 +5,12 @@ import org.apache.commons.text.StringEscapeUtils
 import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem
 
 enum EnumSistema {
-	NOTICIAS_JURIDICAS("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_app.png",
+	NOTICIAS_JURIDICAS("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone.png",
 	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
 	"https://noticias-juridicas.herokuapp.com/publico/files/usuarios/%s/fotos/%s"),
-	NOTICIAS_JURIDICAS_PAGO("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_app.png",
-			"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
-			"https://noticias-juridicas.herokuapp.com/publico/files/usuarios/%s/fotos/%s");
+	NOTICIAS_JURIDICAS_PAGO("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_pago.png",
+	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
+	"https://noticias-juridicas.herokuapp.com/publico/files/usuarios/%s/fotos/%s");
 
 	String nome;
 	String icone;
