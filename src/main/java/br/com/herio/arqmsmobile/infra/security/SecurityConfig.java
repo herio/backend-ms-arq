@@ -63,6 +63,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/testeProducao/**").permitAll()
 				// actuator
 				.antMatchers("/actuator/**").permitAll()
+				// index
+				.antMatchers("/index.**").permitAll()
 				// demais publicos
 				.antMatchers("/publico/**").permitAll()
 				// swagger
