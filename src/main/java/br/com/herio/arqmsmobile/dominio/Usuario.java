@@ -40,6 +40,18 @@ public class Usuario extends Entidade implements Serializable {
 	@Column(name = "CELULAR")
 	private String celular;
 
+	@Column(name = "ENDERECO")
+	private String endereco;
+
+	@Column(name = "CEP")
+	private String cep;
+
+	@Column(name = "CIDADE")
+	private String cidade;
+
+	@Column(name = "ESTADO")
+	private String estado;
+
 	@Column(name = "SISTEMA")
 	private String sistema;
 
@@ -49,6 +61,38 @@ public class Usuario extends Entidade implements Serializable {
 	public Usuario() {
 		// default
 		super();
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public String getCelular() {
