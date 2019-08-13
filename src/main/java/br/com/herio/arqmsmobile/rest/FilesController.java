@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.herio.arqmsmobile.dominio.Usuario;
-import br.com.herio.arqmsmobile.dto.EnumSistema;
 import br.com.herio.arqmsmobile.service.UsuarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

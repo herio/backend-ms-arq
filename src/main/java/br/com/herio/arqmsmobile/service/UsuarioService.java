@@ -1,6 +1,7 @@
 package br.com.herio.arqmsmobile.service;
 
 import java.util.Base64;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,9 +96,13 @@ public class UsuarioService {
 	}
 
 	public String recuperarSenha(String login, EnumSistema sistema) {
-		Usuario usuario = usuarioRepository.findByLoginAndSistema(login, sistema.name()).get();
-		if (usuario == null) {
-			throw new ExcecaoNegocio(String.format("Usuário de login %s inexistente", login));
+		Optional<Usuario> usuarioOpt = usuarioRepository.findByLoginAndSistema(login, sistema.name());
+		if (!usuarioOpt.isPresent()) {
+			throw new ExcecaoNegocio(String.format("Usuário '%s' inexistente!", login));
+		}
+		Usuario usuario = usuarioOpt.get();
+		if (!usuario.isAtivado()) {
+			throw new ExcecaoNegocio(String.format("Usuário '%s' não está ativado!", login));
 		}
 
 		// enviaEmail

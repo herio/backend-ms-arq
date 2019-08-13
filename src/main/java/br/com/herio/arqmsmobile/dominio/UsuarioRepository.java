@@ -10,6 +10,4 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
 	Optional<Usuario> findByLoginAndSistema(String login, String sistema);
 
-	Optional<Usuario> findByLoginAndSenhaAndAtivadoAndSistema(String login, String senha, boolean ativado, String sistema);
-
 }
