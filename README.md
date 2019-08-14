@@ -134,7 +134,7 @@ Criar application-prod.yml com config de prod heroku:
 
 Criar add-on para postgress prod:
 
-    heroku addons:create heroku-postgresql:hobby-dev --version=9.6
+    heroku addons:create heroku-postgresql:hobby-dev --app nomeapp --version=9.6
 
 Acessar BD prod:
 
