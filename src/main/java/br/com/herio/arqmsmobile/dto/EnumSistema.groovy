@@ -12,7 +12,7 @@ enum EnumSistema {
 	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
 	"https://noticias-juridicas.herokuapp.com/publico/files/usuarios/%s/fotos/%s"),
 	ADVOGADO_COMUNITARIO("Advogado Comunit&aacute;rio", "https://advogado-comunitario.herokuapp.com/publico/icone.png",
-	"https://advogado-comunitario.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
+	"https://advogado-comunitario.herokuapp.com/publico/default-avatar.png", "1lYrXOmD4CT79jxNfXxl8wOk9BOD2FQTP",
 	"https://advogado-comunitario.herokuapp.com/demandas/%s/itensdemanda/anexos/%s");
 
 	String nome;
