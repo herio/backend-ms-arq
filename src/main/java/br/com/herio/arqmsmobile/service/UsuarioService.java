@@ -1,7 +1,13 @@
 package br.com.herio.arqmsmobile.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Base64;
+import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +48,6 @@ public class UsuarioService {
 			throw new IllegalArgumentException("Informe um novo usuário (sem id)!");
 		}
 		// cria
-		usuario.valida();
 		usuario.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
 		usuario = usuarioRepository.save(usuario);
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
@@ -65,12 +70,23 @@ public class UsuarioService {
 		}
 		// atualiza
 		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
+		usuarioBd.setSistema(usuario.getSistema());
 		usuarioBd.setLogin(usuario.getLogin());
+		usuarioBd.setEmail(usuario.getEmail());
 		usuarioBd.setNome(usuario.getNome());
 		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
-		usuarioBd.setEmail(usuario.getEmail());
 		usuarioBd.setAtivado(usuario.isAtivado());
-		usuarioBd.valida();
+
+		usuarioBd.setTelefone(usuario.getTelefone());
+		usuarioBd.setCelular(usuario.getCelular());
+		usuarioBd.setInstagram(usuario.getInstagram());
+		usuarioBd.setFacebook(usuario.getFacebook());
+		usuarioBd.setCpf(usuario.getCpf());
+		usuarioBd.setEndereco(usuario.getEndereco());
+		usuarioBd.setCep(usuario.getCep());
+		usuarioBd.setCidade(usuario.getCidade());
+		usuarioBd.setEstado(usuario.getEstado());
+
 		usuarioBd = usuarioRepository.save(usuarioBd);
 
 		// enviaEmail
@@ -114,6 +130,21 @@ public class UsuarioService {
 		configuracaoNotificacao.setReceberNotificacao(true);
 		configuracaoNotificacao.getItens().add(EnumSistema.getConfigItemDefault(sistema));
 		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
+	}
+
+	public void removerUsuario(Long idUsuario) {
+		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		usuario.setAtivado(false);
+		usuario.setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
+		usuarioRepository.save(usuario);
+	}
+
+	public Collection<Usuario> listarUsuarios(boolean ativos) {
+		Stream<Usuario> stream = StreamSupport.stream(usuarioRepository.findAll().spliterator(), false);
+		if (ativos) {
+			stream = stream.filter(usuario -> usuario.isAtivado());
+		}
+		return stream.collect(Collectors.toList());
 	}
 
 }

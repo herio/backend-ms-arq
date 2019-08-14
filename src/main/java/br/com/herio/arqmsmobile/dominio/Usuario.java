@@ -1,31 +1,31 @@
 package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
 @Entity
 @Table(name = "USUARIO")
 public class Usuario extends Entidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "NOME")
-	private String nome;
+	@Column(name = "SISTEMA")
+	private String sistema;
 
 	@Column(name = "LOGIN")
 	private String login;
 
 	@Column(name = "EMAIL")
 	private String email;
+
+	@Column(name = "NOME")
+	private String nome;
 
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name = "SENHA")
@@ -34,11 +34,20 @@ public class Usuario extends Entidade implements Serializable {
 	@Column(name = "URL_FOTO")
 	private String urlFoto;
 
-	@Column(name = "ATIVADO")
-	private boolean ativado;
+	@Column(name = "TELEFONE")
+	private String telefone;
 
 	@Column(name = "CELULAR")
 	private String celular;
+
+	@Column(name = "INSTAGRAM")
+	private String instagram;
+
+	@Column(name = "FACEBOOK")
+	private String facebook;
+
+	@Column(name = "CPF")
+	private String cpf;
 
 	@Column(name = "ENDERECO")
 	private String endereco;
@@ -52,15 +61,53 @@ public class Usuario extends Entidade implements Serializable {
 	@Column(name = "ESTADO")
 	private String estado;
 
-	@Column(name = "SISTEMA")
-	private String sistema;
+	@Column(name = "ATIVADO")
+	private boolean ativado;
+
+	@Column(name = "DATA_EXCLUSAO")
+	private LocalDateTime dataExclusao;
 
 	@Transient
 	private String token;
 
-	public Usuario() {
-		// default
-		super();
+	public LocalDateTime getDataExclusao() {
+		return dataExclusao;
+	}
+
+	public void setDataExclusao(LocalDateTime dataExclusao) {
+		this.dataExclusao = dataExclusao;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getInstagram() {
+		return instagram;
+	}
+
+	public void setInstagram(String instagram) {
+		this.instagram = instagram;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
 	}
 
 	public String getEndereco() {
@@ -167,29 +214,4 @@ public class Usuario extends Entidade implements Serializable {
 		this.email = email;
 	}
 
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
-
-	public void valida() {
-		StringBuilder msg = new StringBuilder();
-		if (StringUtils.isEmpty(this.login)) {
-			msg.append("Login inválido, ");
-		}
-		if (StringUtils.isEmpty(this.senha)) {
-			msg.append("Senha inválida, ");
-		}
-		if (StringUtils.isEmpty(this.nome)) {
-			msg.append("Nome inválido");
-		}
-		if (msg.length() > 0) {
-			throw new ExcecaoNegocio(msg.toString());
-		}
-	}
 }

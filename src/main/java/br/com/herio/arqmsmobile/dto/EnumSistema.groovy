@@ -10,7 +10,10 @@ enum EnumSistema {
 	"https://noticias-juridicas.herokuapp.com/publico/files/usuarios/%s/fotos/%s"),
 	NOTICIAS_JURIDICAS_PAGO("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_pago.png",
 	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
-	"https://noticias-juridicas.herokuapp.com/publico/files/usuarios/%s/fotos/%s");
+	"https://noticias-juridicas.herokuapp.com/publico/files/usuarios/%s/fotos/%s"),
+	ADVOGADO_COMUNITARIO("Advogado Comunit&aacute;rio", "https://advogado-comunitario.herokuapp.com/publico/icone.png",
+	"https://advogado-comunitario.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
+	"https://advogado-comunitario.herokuapp.com/demandas/%s/itensdemanda/anexos/%s");
 
 	String nome;
 	String icone;
@@ -57,6 +60,10 @@ enum EnumSistema {
 			case NOTICIAS_JURIDICAS_PAGO:
 				configItem.setTipoItem("DESTAQUE");
 				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
+				break;
+			case ADVOGADO_COMUNITARIO:
+				configItem.setTipoItem("DEMANDAS");
+				configItem.setTipoPeriodicidade("DIARIO");
 				break;
 			default:
 				break;

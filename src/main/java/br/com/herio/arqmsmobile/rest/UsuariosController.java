@@ -1,8 +1,6 @@
 package br.com.herio.arqmsmobile.rest;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.herio.arqmsmobile.dominio.Usuario;
@@ -33,6 +32,9 @@ public class UsuariosController {
 	@ApiOperation("atualizarUsuario")
 	@PostMapping("/{idUsuario}")
 	public Usuario atualizarUsuario(@PathVariable Long idUsuario, @RequestBody Usuario usuario) {
+		if (idUsuario == null) {
+			throw new IllegalArgumentException("Informe um usuário válido!");
+		}
 		return usuarioService.atualizarUsuario(idUsuario, usuario);
 	}
 
@@ -40,14 +42,15 @@ public class UsuariosController {
 	@DeleteMapping("/{idUsuario}")
 	public void removerUsuario(@PathVariable Long idUsuario) {
 		if (idUsuario == null) {
-			throw new IllegalArgumentException("Informe um usuário já existente (com id)!");
+			throw new IllegalArgumentException("Informe um usuário válido!");
 		}
-		usuarioRepository.deleteById(idUsuario);
+		usuarioService.removerUsuario(idUsuario);
 	}
 
 	@ApiOperation("listarUsuarios")
 	@GetMapping
-	public Collection<Usuario> listarUsuarios() {
-		return StreamSupport.stream(usuarioRepository.findAll().spliterator(), false).collect(Collectors.toList());
+	public Collection<Usuario> listarUsuarios(@RequestParam(required = false) boolean ativos) {
+		return usuarioService.listarUsuarios(ativos);
 	}
+
 }

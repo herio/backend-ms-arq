@@ -16,4 +16,5 @@ public interface DispositivoRepository extends CrudRepository<Dispositivo, Long>
 	List<Dispositivo> findAllByUsuarioId(Long usuarioId);
 
 	Optional<Dispositivo> findByNumRegistroAndSo(String numRegistro, EnumTipoSO so);
+
 }

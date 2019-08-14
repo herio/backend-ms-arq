@@ -24,9 +24,9 @@ import br.com.herio.arqmsmobile.service.UsuarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api("FilesController")
+@Api("FilesUsuariosController")
 @RestController
-public class FilesController {
+public class FilesUsuariosController {
 	@Autowired
 	private UsuarioService usuarioService;
 
