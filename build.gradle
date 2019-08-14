@@ -95,6 +95,10 @@ publishing {
 		maven {
 			url 'file:./../backend-noticias-juridicas/repo'
 		}
+		
+		maven {
+			url 'file:./../backend-advogado-comunitario/repo'
+		}
 		mavenLocal()
 	}
 }
