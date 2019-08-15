@@ -15,7 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.api.services.drive.model.File;
 
+import br.com.herio.arqmsmobile.dominio.ArquivoUsuario;
+import br.com.herio.arqmsmobile.dominio.ArquivoUsuarioRepository;
 import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
+import br.com.herio.arqmsmobile.dominio.EnumTipoArquivo;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
@@ -27,6 +30,9 @@ public class UsuarioService {
 
 	@Autowired
 	protected UsuarioRepository usuarioRepository;
+
+	@Autowired
+	protected ArquivoUsuarioRepository arquivoUsuarioRepository;
 
 	@Autowired
 	protected AtivacaoUsuarioService ativacaoUsuarioService;
@@ -82,10 +88,6 @@ public class UsuarioService {
 		usuarioBd.setInstagram(usuario.getInstagram());
 		usuarioBd.setFacebook(usuario.getFacebook());
 		usuarioBd.setCpf(usuario.getCpf());
-		usuarioBd.setEndereco(usuario.getEndereco());
-		usuarioBd.setCep(usuario.getCep());
-		usuarioBd.setCidade(usuario.getCidade());
-		usuarioBd.setEstado(usuario.getEstado());
 
 		usuarioBd = usuarioRepository.save(usuarioBd);
 
@@ -145,6 +147,26 @@ public class UsuarioService {
 			stream = stream.filter(usuario -> usuario.isAtivado());
 		}
 		return stream.collect(Collectors.toList());
+	}
+
+	public ArquivoUsuario uploadArquivo(Long idUsuario, EnumTipoArquivo tipoArquivo, MultipartFile mfile) {
+		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
+		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
+		String fileUri = String.format(sistema.getDownloadUrl(), idUsuario, file.getId());
+
+		ArquivoUsuario arquivo = new ArquivoUsuario();
+		arquivo.setTipoArquivo(tipoArquivo);
+		arquivo.setIdDrive(file.getId());
+		arquivo.setNome(file.getName());
+		arquivo.setLink(fileUri);
+		arquivo.setUsuario(usuario);
+		return arquivoUsuarioRepository.save(arquivo);
+	}
+
+	public java.io.File downloadArquivo(Long idArquivo) {
+		ArquivoUsuario arquivo = arquivoUsuarioRepository.findById(idArquivo).get();
+		return googleDriveFachada.downloadFile(arquivo.getIdDrive(), arquivo.getNome());
 	}
 
 }

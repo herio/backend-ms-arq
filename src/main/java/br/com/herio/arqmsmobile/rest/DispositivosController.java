@@ -63,9 +63,10 @@ public class DispositivosController {
 
 	@ApiOperation("removerDispositivo")
 	@DeleteMapping("/{id}")
-	public void removerDispositivo(@PathVariable Long id) {
+	public boolean removerDispositivo(@PathVariable Long id) {
 		Dispositivo dispositivo = dispositivoRepository.findById(id).get();
 		dispositivo.setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
 		dispositivoRepository.save(dispositivo);
+		return true;
 	}
 }
