@@ -43,6 +43,7 @@ public class DispositivosPublicoController {
 		} else {
 			usuario = new Usuario();
 			usuario.setSistema(sistema.name());
+			usuario.setLogin(dispositivo.getNumRegistro());
 			usuarioRepository.save(usuario);
 			dispositivoBd = new Dispositivo();
 			dispositivoBd.setNumRegistro(dispositivo.getNumRegistro());
