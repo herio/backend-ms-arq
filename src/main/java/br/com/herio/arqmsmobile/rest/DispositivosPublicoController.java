@@ -41,10 +41,15 @@ public class DispositivosPublicoController {
 			dispositivoBd = dispOpt.get();
 			usuario = dispositivoBd.getUsuario();
 		} else {
-			usuario = new Usuario();
-			usuario.setSistema(sistema.name());
-			usuario.setLogin(dispositivo.getNumRegistro());
-			usuarioRepository.save(usuario);
+			Optional<Usuario> usuarioOpt = usuarioRepository.findByLoginAndSistema(dispositivo.getNumRegistro(), sistema.name());
+			if (usuarioOpt.isPresent()) {
+				usuario = usuarioOpt.get();
+			} else {
+				usuario = new Usuario();
+				usuario.setSistema(sistema.name());
+				usuario.setLogin(dispositivo.getNumRegistro());
+				usuarioRepository.save(usuario);
+			}
 			dispositivoBd = new Dispositivo();
 			dispositivoBd.setNumRegistro(dispositivo.getNumRegistro());
 			dispositivoBd.setSo(dispositivo.getSo());
