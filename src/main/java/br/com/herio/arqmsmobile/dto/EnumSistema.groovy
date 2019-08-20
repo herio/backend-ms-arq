@@ -7,26 +7,25 @@ import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem
 enum EnumSistema {
 	NOTICIAS_JURIDICAS("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone.png",
 	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
-	"https://noticias-juridicas.herokuapp.com/publico/files/usuarios/%s/fotos/%s"),
+	"https://noticias-juridicas.herokuapp.com"),
 	NOTICIAS_JURIDICAS_PAGO("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_pago.png",
 	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
-	"https://noticias-juridicas.herokuapp.com/publico/files/usuarios/%s/fotos/%s"),
+	"https://noticias-juridicas.herokuapp.com"),
 	ADVOGADO_COMUNITARIO("Advogado Comunit&aacute;rio", "https://advogado-comunitario.herokuapp.com/publico/icone.png",
 	"https://advogado-comunitario.herokuapp.com/publico/default-avatar.png", "1lYrXOmD4CT79jxNfXxl8wOk9BOD2FQTP",
-	"https://advogado-comunitario.herokuapp.com/publico/files/usuarios/%s/arquivos/%s");
+	"https://advogado-comunitario.herokuapp.com",);
 
 	String nome;
 	String icone;
 	String defaultAvatar;
 	String uploadFolder;
-	String downloadUrl;
-
-	EnumSistema(String nome, String icone, String defaultAvatar, String uploadFolder, String downloadUrl) {
+	String urlBase;
+	EnumSistema(String nome, String icone, String defaultAvatar, String uploadFolder, String urlBase) {
 		this.nome = nome;
 		this.icone = icone;
 		this.defaultAvatar = defaultAvatar;
 		this.uploadFolder = uploadFolder;
-		this.downloadUrl = downloadUrl;
+		this.urlBase = urlBase;
 	}
 
 	String getNome() {
@@ -46,8 +45,12 @@ enum EnumSistema {
 		return uploadFolder;
 	}
 
-	public String getDownloadUrl() {
-		return downloadUrl;
+	public String getUrlDownloadFotos() {
+		return urlDownloadFotos;
+	}
+
+	public String getUrlBase() {
+		return urlBase;
 	}
 
 	public static ConfiguracaoNotificacaoItem getConfigItemDefault(EnumSistema sistema) {

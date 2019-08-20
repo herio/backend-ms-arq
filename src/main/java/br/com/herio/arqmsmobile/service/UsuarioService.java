@@ -107,7 +107,8 @@ public class UsuarioService {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
-		String fileUri = String.format(sistema.getDownloadUrl(), idUsuario, file.getId());
+		String urlDownloadArquivo = sistema.getUrlBase() + "/publico/usuarios/%s/files/fotos/%s";
+		String fileUri = String.format(urlDownloadArquivo, idUsuario, file.getId());
 		usuario.setUrlFoto(fileUri);
 		usuarioRepository.save(usuario);
 
@@ -149,7 +150,8 @@ public class UsuarioService {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
-		String fileUri = String.format(sistema.getDownloadUrl(), idUsuario, file.getId());
+		String urlDownloadArquivo = sistema.getUrlBase() + "/publico/usuarios/%s/files/arquivos/%s";
+		String fileUri = String.format(urlDownloadArquivo, idUsuario, file.getId());
 
 		ArquivoUsuario arquivo = new ArquivoUsuario();
 		arquivo.setIdDrive(file.getId());
