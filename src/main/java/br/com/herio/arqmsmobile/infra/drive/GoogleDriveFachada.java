@@ -42,6 +42,7 @@ import br.com.herio.arqmsmobile.service.FileStorageService;
 
 @Component
 public class GoogleDriveFachada {
+	// https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin
 	// https://developers.google.com/drive/api/v3/quickstart/java?authuser=1
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GoogleDriveFachada.class);
