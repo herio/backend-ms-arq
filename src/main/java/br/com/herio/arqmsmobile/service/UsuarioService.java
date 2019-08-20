@@ -53,10 +53,26 @@ public class UsuarioService {
 		if (usuario.getId() != null) {
 			throw new IllegalArgumentException("Informe um novo usuário (sem id)!");
 		}
-		// cria
-		usuario.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
-		usuario = usuarioRepository.save(usuario);
-		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
+		// verifica se usuário já existe
+		Optional<Usuario> usuarioOpt = usuarioRepository.findByLoginAndSistema(usuario.getLogin(), usuario.getSistema());
+		Usuario usuarioBd = usuario;
+		if (usuarioOpt.isPresent()) {
+			usuarioBd = usuarioOpt.get();
+			if (usuarioBd.getDataExclusao() == null) {
+				// usuário existente
+				throw new ExcecaoNegocio("Usuário já cadastrado! Solicite a recuperação de senha.");
+			} else {
+				// usuário excluído anteriormente, atualiza
+				usuarioBd.setDataExclusao(null);
+				atualizaUsuario(usuarioBd, usuario);
+			}
+		} else {
+			usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
+		}
+
+		// cria/atualiza excluído
+		usuarioBd = usuarioRepository.save(usuarioBd);
+		usuarioBd.setToken(autenticacaoService.criaTokenJwt(usuarioBd));
 
 		// gera ativação
 		ativacaoUsuarioService.gerarAtivacaoUsuario(usuario.getId());
@@ -76,19 +92,7 @@ public class UsuarioService {
 		}
 		// atualiza
 		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
-		usuarioBd.setSistema(usuario.getSistema());
-		usuarioBd.setLogin(usuario.getLogin());
-		usuarioBd.setEmail(usuario.getEmail());
-		usuarioBd.setNome(usuario.getNome());
-		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
-		usuarioBd.setAtivado(usuario.isAtivado());
-
-		usuarioBd.setTelefone(usuario.getTelefone());
-		usuarioBd.setCelular(usuario.getCelular());
-		usuarioBd.setInstagram(usuario.getInstagram());
-		usuarioBd.setFacebook(usuario.getFacebook());
-		usuarioBd.setCpf(usuario.getCpf());
-
+		atualizaUsuario(usuarioBd, usuario);
 		usuarioBd = usuarioRepository.save(usuarioBd);
 
 		// enviaEmail
@@ -127,13 +131,6 @@ public class UsuarioService {
 		return enviadorEmailService.enviaEmailRecuperaSenha(usuario, sistema);
 	}
 
-	private void criaConfigNotificacaoDefault(Long idUsuario, EnumSistema sistema) {
-		ConfiguracaoNotificacao configuracaoNotificacao = new ConfiguracaoNotificacao();
-		configuracaoNotificacao.setReceberNotificacao(true);
-		configuracaoNotificacao.getItens().add(EnumSistema.getConfigItemDefault(sistema));
-		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
-	}
-
 	public void removerUsuario(Long idUsuario) {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		usuario.setAtivado(false);
@@ -167,6 +164,28 @@ public class UsuarioService {
 	public java.io.File downloadArquivo(Long idArquivo) {
 		ArquivoUsuario arquivo = arquivoUsuarioRepository.findById(idArquivo).get();
 		return googleDriveFachada.downloadFile(arquivo.getIdDrive(), arquivo.getNome());
+	}
+
+	private void atualizaUsuario(Usuario usuarioBd, Usuario usuario) {
+		usuarioBd.setSistema(usuario.getSistema());
+		usuarioBd.setLogin(usuario.getLogin());
+		usuarioBd.setEmail(usuario.getEmail());
+		usuarioBd.setNome(usuario.getNome());
+		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
+		usuarioBd.setAtivado(usuario.isAtivado());
+
+		usuarioBd.setTelefone(usuario.getTelefone());
+		usuarioBd.setCelular(usuario.getCelular());
+		usuarioBd.setInstagram(usuario.getInstagram());
+		usuarioBd.setFacebook(usuario.getFacebook());
+		usuarioBd.setCpf(usuario.getCpf());
+	}
+
+	private void criaConfigNotificacaoDefault(Long idUsuario, EnumSistema sistema) {
+		ConfiguracaoNotificacao configuracaoNotificacao = new ConfiguracaoNotificacao();
+		configuracaoNotificacao.setReceberNotificacao(true);
+		configuracaoNotificacao.getItens().add(EnumSistema.getConfigItemDefault(sistema));
+		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
 	}
 
 }
