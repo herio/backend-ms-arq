@@ -23,9 +23,6 @@ public class ArquivoUsuario extends Entidade implements Serializable {
 	@Column(name = "NOME")
 	private String nome;
 
-	@Column(name = "TIPO_ARQUIVO")
-	private EnumTipoArquivo tipoArquivo;
-
 	@Column(name = "LINK")
 	private String link;
 
@@ -34,14 +31,6 @@ public class ArquivoUsuario extends Entidade implements Serializable {
 
 	@Column(name = "DATA_EXCLUSAO")
 	private LocalDateTime dataExclusao;
-
-	public EnumTipoArquivo getTipoArquivo() {
-		return tipoArquivo;
-	}
-
-	public void setTipoArquivo(EnumTipoArquivo tipoArquivo) {
-		this.tipoArquivo = tipoArquivo;
-	}
 
 	public LocalDateTime getDataExclusao() {
 		return dataExclusao;

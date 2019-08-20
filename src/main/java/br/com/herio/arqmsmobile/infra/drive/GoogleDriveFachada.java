@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.FileNameMap;
 import java.net.URL;
+import java.net.URLConnection;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +38,8 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 
+import br.com.herio.arqmsmobile.service.FileStorageService;
+
 @Component
 public class GoogleDriveFachada {
 	// https://developers.google.com/drive/api/v3/quickstart/java?authuser=1
@@ -55,6 +59,9 @@ public class GoogleDriveFachada {
 
 	@Autowired
 	protected ImageResizer imageResizer;
+
+	@Autowired
+	protected FileStorageService fileStorageService;
 
 	@PostConstruct
 	public void init() {
@@ -83,12 +90,21 @@ public class GoogleDriveFachada {
 
 	public File uploadFile(MultipartFile mFile, String idFolder) {
 		try {
-			java.io.File arquivoRedimensionado = imageResizer.salvaLocaleRedimensiona(mFile, 50);
+			FileNameMap fileNameMap = URLConnection.getFileNameMap();
+			String mimeType = fileNameMap.getContentTypeFor(mFile.getOriginalFilename());
+			java.io.File file = null;
+			if (mimeType.contains("image")) {
+				// redimensiona e salva imagem
+				file = imageResizer.salvaLocaleRedimensiona(mFile, 50);
+			} else {
+				// salva arquivo
+				file = fileStorageService.storeFile(mFile);
+			}
 
 			File fileMetadata = new File();
-			fileMetadata.setName(arquivoRedimensionado.getName());
+			fileMetadata.setName(file.getName());
 			fileMetadata.setParents(Collections.singletonList(idFolder));
-			FileContent mediaContent = new FileContent("image/" + arquivoRedimensionado.getName().split("\\.")[1], arquivoRedimensionado);
+			FileContent mediaContent = new FileContent(mimeType, file);
 
 			// upload
 			return service.files().create(fileMetadata, mediaContent)

@@ -20,27 +20,26 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.herio.arqmsmobile.dominio.ArquivoUsuario;
-import br.com.herio.arqmsmobile.dominio.EnumTipoArquivo;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.service.UsuarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api("FilesUsuariosController")
+@Api("FilesController")
 @RestController
-public class FilesUsuariosController {
+public class FilesController {
 	@Autowired
 	private UsuarioService usuarioService;
 
 	@ApiOperation("uploadFoto")
-	@PostMapping("/files/usuarios/{idUsuario}/fotos")
+	@PostMapping("/usuarios/{idUsuario}/files/fotos")
 	public Usuario uploadFoto(@PathVariable Long idUsuario,
 			@RequestParam("foto") MultipartFile file) {
 		return usuarioService.uploadFoto(idUsuario, file);
 	}
 
 	@ApiOperation("downloadFoto")
-	@GetMapping("/publico/files/usuarios/{idUsuario}/fotos/{idFoto}")
+	@GetMapping("/publico/usuarios/{idUsuario}/files/fotos/{idFoto}")
 	public ResponseEntity<Resource> downloadFoto(@PathVariable Long idUsuario,
 			@PathVariable String idFoto, HttpServletRequest request) throws FileNotFoundException {
 		File file = usuarioService.downloadFoto(idFoto, "foto.jpg");
@@ -60,16 +59,15 @@ public class FilesUsuariosController {
 	}
 
 	@ApiOperation("uploadArquivo")
-	@PostMapping("/files/usuarios/{idUsuario}/arquivos")
-	public ArquivoUsuario uploadArquivo(@PathVariable Long idUsuario, @RequestParam EnumTipoArquivo tipoArquivo,
-			@RequestParam("arquivo") MultipartFile file) {
-		return usuarioService.uploadArquivo(idUsuario, tipoArquivo, file);
+	@PostMapping("/usuarios/{idUsuario}/files/arquivos")
+	public ArquivoUsuario uploadArquivo(@PathVariable Long idUsuario, @RequestParam("arquivo") MultipartFile file) {
+		return usuarioService.uploadArquivo(idUsuario, file);
 	}
 
 	@ApiOperation("downloadArquivo")
-	@GetMapping("/files/usuarios/{idUsuario}/arquivos/{idArquivo}")
+	@GetMapping("/publico/usuarios/{idUsuario}/files/arquivos/{idArquivo}")
 	public ResponseEntity<Resource> downloadArquivo(@PathVariable Long idUsuario,
-			@PathVariable Long idArquivo, HttpServletRequest request) throws FileNotFoundException {
+			@PathVariable String idArquivo, HttpServletRequest request) throws FileNotFoundException {
 		File file = usuarioService.downloadArquivo(idArquivo);
 
 		// Try to determine file's content type

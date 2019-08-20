@@ -18,7 +18,6 @@ import com.google.api.services.drive.model.File;
 import br.com.herio.arqmsmobile.dominio.ArquivoUsuario;
 import br.com.herio.arqmsmobile.dominio.ArquivoUsuarioRepository;
 import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
-import br.com.herio.arqmsmobile.dominio.EnumTipoArquivo;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
@@ -146,14 +145,13 @@ public class UsuarioService {
 		return stream.collect(Collectors.toList());
 	}
 
-	public ArquivoUsuario uploadArquivo(Long idUsuario, EnumTipoArquivo tipoArquivo, MultipartFile mfile) {
+	public ArquivoUsuario uploadArquivo(Long idUsuario, MultipartFile mfile) {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
 		String fileUri = String.format(sistema.getDownloadUrl(), idUsuario, file.getId());
 
 		ArquivoUsuario arquivo = new ArquivoUsuario();
-		arquivo.setTipoArquivo(tipoArquivo);
 		arquivo.setIdDrive(file.getId());
 		arquivo.setNome(file.getName());
 		arquivo.setLink(fileUri);
@@ -161,8 +159,8 @@ public class UsuarioService {
 		return arquivoUsuarioRepository.save(arquivo);
 	}
 
-	public java.io.File downloadArquivo(Long idArquivo) {
-		ArquivoUsuario arquivo = arquivoUsuarioRepository.findById(idArquivo).get();
+	public java.io.File downloadArquivo(String idArquivo) {
+		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idArquivo).get();
 		return googleDriveFachada.downloadFile(arquivo.getIdDrive(), arquivo.getNome());
 	}
 
