@@ -1,9 +1,6 @@
 package br.com.herio.arqmsmobile.rest;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Collection;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.herio.arqmsmobile.dominio.Dispositivo;
 import br.com.herio.arqmsmobile.dominio.DispositivoRepository;
-import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
+import br.com.herio.arqmsmobile.service.DispositivoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -29,7 +26,7 @@ public class DispositivosController {
 	protected DispositivoRepository dispositivoRepository;
 
 	@Autowired
-	protected UsuarioRepository usuarioRepository;
+	protected DispositivoService dispositivoService;
 
 	@ApiOperation("listarDispositivos")
 	@GetMapping
@@ -42,31 +39,12 @@ public class DispositivosController {
 	@ApiOperation("salvarDispositivo")
 	@PostMapping
 	public Dispositivo salvarDispositivo(@PathVariable Long idUsuario, @RequestBody Dispositivo dispositivo) {
-		if (dispositivo.getId() == null) {
-			Optional<Dispositivo> dispositivoOpt = dispositivoRepository.findByNumRegistroAndSo(dispositivo.getNumRegistro(), dispositivo.getSo());
-			if (dispositivoOpt.isPresent()) {
-				// dispositivo excluido anteriormente
-				dispositivo = dispositivoOpt.get();
-				dispositivo.setDataExclusao(null);
-			}
-			dispositivo.setUsuario(usuarioRepository.findById(idUsuario).get());
-		} else {
-			// atualiza registrationID e retira data exclusao
-			String novoNumRegistro = dispositivo.getNumRegistro();
-			dispositivo = dispositivoRepository.findById(dispositivo.getId()).get();
-			dispositivo.setNumRegistro(novoNumRegistro);
-			dispositivo.setDataExclusao(null);
-		}
-		dispositivo.valida();
-		return dispositivoRepository.save(dispositivo);
+		return dispositivoService.salvarDispositivo(idUsuario, dispositivo);
 	}
 
 	@ApiOperation("removerDispositivo")
 	@DeleteMapping("/{id}")
 	public boolean removerDispositivo(@PathVariable Long id) {
-		Dispositivo dispositivo = dispositivoRepository.findById(id).get();
-		dispositivo.setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
-		dispositivoRepository.save(dispositivo);
-		return true;
+		return dispositivoService.removerDispositivo(id);
 	}
 }
