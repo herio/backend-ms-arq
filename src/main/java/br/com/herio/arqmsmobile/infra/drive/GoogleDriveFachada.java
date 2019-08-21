@@ -6,9 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.FileNameMap;
 import java.net.URL;
-import java.net.URLConnection;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +15,7 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.tika.Tika;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,10 +90,10 @@ public class GoogleDriveFachada {
 
 	public File uploadFile(MultipartFile mFile, String idFolder) {
 		try {
-			FileNameMap fileNameMap = URLConnection.getFileNameMap();
-			String mimeType = fileNameMap.getContentTypeFor(mFile.getOriginalFilename());
+			String mimeType = new Tika().detect(mFile.getOriginalFilename());
+
 			java.io.File file = null;
-			if (mimeType.contains("image")) {
+			if (mimeType != null && mimeType.contains("image")) {
 				// redimensiona e salva imagem
 				file = imageResizer.salvaLocaleRedimensiona(mFile, 50);
 			} else {
