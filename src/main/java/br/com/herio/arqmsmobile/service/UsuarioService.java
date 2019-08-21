@@ -126,6 +126,9 @@ public class UsuarioService {
 		if (!usuario.isAtivado()) {
 			throw new ExcecaoNegocio(String.format("Usuário '%s' não está ativado!", login));
 		}
+		if (usuario.getEmail() != null) {
+			throw new ExcecaoNegocio(String.format("Usuário '%s' não possui e-mail cadastrado!", login));
+		}
 
 		// enviaEmail
 		return enviadorEmailService.enviaEmailRecuperaSenha(usuario, sistema);

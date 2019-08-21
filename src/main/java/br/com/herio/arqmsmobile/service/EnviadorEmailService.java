@@ -40,17 +40,19 @@ public class EnviadorEmailService {
 
 	public void enviaEmailBoasVindas(Usuario usuario, EnumSistema sistema) {
 		try {
-			MimeMessage msg = javaMailSender.createMimeMessage();
-			MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), String.format("Seja bem vindo ao App %s", sistema.getNome()));
+			if (usuario.getEmail() != null) {
+				MimeMessage msg = javaMailSender.createMimeMessage();
+				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), String.format("Seja bem vindo ao App %s", sistema.getNome()));
 
-			String email = new StringBuilder()
-					.append(addHeader(sistema.getIcone(), String.format("%s - Dados de Cadastro", sistema.getNome())))
-					.append(addDadosUsuario(usuario, sistema))
-					.append(addFooter())
-					.toString();
-			helper.setText(email, true);
+				String email = new StringBuilder()
+						.append(addHeader(sistema.getIcone(), String.format("%s - Dados de Cadastro", sistema.getNome())))
+						.append(addDadosUsuario(usuario, sistema))
+						.append(addFooter())
+						.toString();
+				helper.setText(email, true);
 
-			javaMailSender.send(msg);
+				javaMailSender.send(msg);
+			}
 		} catch (MessagingException e) {
 			throw new RuntimeException("Erro ao enviar email", e);
 		}
@@ -58,19 +60,21 @@ public class EnviadorEmailService {
 
 	public void enviaEmailAtualizacaoDados(Usuario usuario) {
 		try {
-			EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
-			MimeMessage msg = javaMailSender.createMimeMessage();
-			MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(),
-					String.format("Seus dados foram atualizados no App %s", sistema.getNome()));
+			if (usuario.getEmail() != null) {
+				EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
+				MimeMessage msg = javaMailSender.createMimeMessage();
+				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(),
+						String.format("Seus dados foram atualizados no App %s", sistema.getNome()));
 
-			String email = new StringBuilder()
-					.append(addHeader(sistema.getIcone(), String.format("%s - Dados atualizados", sistema.getNome())))
-					.append(addDadosUsuario(usuario, sistema))
-					.append(addFooter())
-					.toString();
-			helper.setText(email, true);
+				String email = new StringBuilder()
+						.append(addHeader(sistema.getIcone(), String.format("%s - Dados atualizados", sistema.getNome())))
+						.append(addDadosUsuario(usuario, sistema))
+						.append(addFooter())
+						.toString();
+				helper.setText(email, true);
 
-			javaMailSender.send(msg);
+				javaMailSender.send(msg);
+			}
 		} catch (MessagingException e) {
 			throw new RuntimeException("Erro ao enviar email", e);
 		}
