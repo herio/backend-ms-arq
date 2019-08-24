@@ -62,7 +62,7 @@ public class FilesUsuariosController {
 	@ApiOperation("uploadArquivo")
 	@PostMapping("/usuarios/{idUsuario}/files/arquivos")
 	public ArquivoUsuario uploadArquivo(@PathVariable Long idUsuario, @RequestParam("arquivo") MultipartFile file,
-			@RequestParam String atributos) {
+			@RequestParam(required = false) String atributos) {
 		return usuarioService.uploadArquivo(idUsuario, file, atributos);
 	}
 
