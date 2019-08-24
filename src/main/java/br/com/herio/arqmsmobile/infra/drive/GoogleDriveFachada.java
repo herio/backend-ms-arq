@@ -36,6 +36,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
 
 import br.com.herio.arqmsmobile.service.FileStorageService;
 
@@ -78,22 +79,37 @@ public class GoogleDriveFachada {
 		}
 	}
 
-	public List<File> listFiles() {
+	public List<File> listFiles(String idFolder, Long idUsuario) {
 		try {
+			String idFolderPesquisa = idFolder;
+			if (idUsuario != null) {
+				idFolderPesquisa = recuperaDiretorioUsuario(idFolder, idUsuario).getId();
+			}
 			return service.files().list()
-					.setFields("nextPageToken, files(id, name)")
+					.setQ(String.format("'%s' in parents", idFolderPesquisa))
+					.setSpaces("drive")
+					.setFields("files(id, name, parents)")
 					.execute().getFiles();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public File uploadFile(MultipartFile mFile, String idFolder) {
+	public File getFolder(String idFolder) {
 		try {
+			return service.files().get(idFolder).execute();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public File uploadFile(Long idUsuario, MultipartFile mFile, String idFolder, boolean redimensionar) {
+		try {
+			File diretorioUsuario = recuperaDiretorioUsuario(idFolder, idUsuario);
 			String mimeType = new Tika().detect(mFile.getOriginalFilename());
 
 			java.io.File file = null;
-			if (mimeType != null && mimeType.contains("image")) {
+			if (mimeType != null && mimeType.contains("image") && redimensionar) {
 				// redimensiona e salva imagem
 				file = imageResizer.salvaLocaleRedimensiona(mFile, 50);
 			} else {
@@ -103,16 +119,49 @@ public class GoogleDriveFachada {
 
 			File fileMetadata = new File();
 			fileMetadata.setName(file.getName());
-			fileMetadata.setParents(Collections.singletonList(idFolder));
+			fileMetadata.setParents(Collections.singletonList(diretorioUsuario.getId()));
 			FileContent mediaContent = new FileContent(mimeType, file);
 
 			// upload
 			return service.files().create(fileMetadata, mediaContent)
-					.setFields("name,id,parents,webViewLink")
+					.setFields("id, name, parents, webViewLink")
 					.execute();
 		} catch (IOException e) {
 			throw new RuntimeException("GoogleDriveFachada Erro em uploadFile", e);
 		}
+	}
+
+	protected File recuperaDiretorioUsuario(String idFolder, Long idUsuario) throws IOException {
+		File diretorioUsuario = null;
+		String pageToken = null;
+		do {
+			FileList result = service.files()
+					.list()
+					.setQ(String.format("name='%s' and '%s' in parents", idUsuario.toString(), idFolder))
+					.setSpaces("drive")
+					.setFields("nextPageToken, files(id, name, parents)")
+					.setPageToken(pageToken)
+					.execute();
+			if (result.getFiles() != null && result.getFiles().size() == 1) {
+				// encontrou diretório usuário
+				diretorioUsuario = result.getFiles().get(0);
+				break;
+			}
+			pageToken = result.getNextPageToken();
+		} while (pageToken != null);
+
+		if (diretorioUsuario == null) {
+			// não encontrou diretório usuário, irá criá-lo
+			File fileMetadata = new File();
+			fileMetadata.setName(idUsuario.toString());
+			fileMetadata.setMimeType("application/vnd.google-apps.folder");
+			fileMetadata.setParents(Collections.singletonList(idFolder));
+			diretorioUsuario = service.files()
+					.create(fileMetadata)
+					.setFields("id")
+					.execute();
+		}
+		return diretorioUsuario;
 	}
 
 	public java.io.File downloadFile(String fileId, String fileName) {
@@ -154,7 +203,7 @@ public class GoogleDriveFachada {
 	public static void main(String... args) {
 		try {
 			GoogleDriveFachada fachadaGoogleDrive = new GoogleDriveFachada();
-			List<File> files = fachadaGoogleDrive.listFiles();
+			List<File> files = fachadaGoogleDrive.listFiles("6xW613ez3abtPfDiWahYnJ4E", null);
 			if (files == null || files.isEmpty()) {
 				System.out.println("No files found.");
 			} else {
@@ -173,7 +222,7 @@ public class GoogleDriveFachada {
 			FileInputStream input = new FileInputStream(file);
 			MultipartFile mfile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(input));
 			String folderUploads = "1qk7108N-6xW613ez3abtPfDiWahYnJ4E";
-			File fileUpload = fachadaGoogleDrive.uploadFile(mfile, folderUploads);
+			File fileUpload = fachadaGoogleDrive.uploadFile(1L, mfile, folderUploads, false);
 			if (fileUpload != null) {
 				System.out.println(String.format("fileUpload[%s],[%s], [%s]", fileUpload.getName(),
 						fileUpload.getId(), fileUpload.getParents()));
@@ -188,7 +237,6 @@ public class GoogleDriveFachada {
 				System.out.println("fileUpload null");
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

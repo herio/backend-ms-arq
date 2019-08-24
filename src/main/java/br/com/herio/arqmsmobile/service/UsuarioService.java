@@ -106,7 +106,7 @@ public class UsuarioService {
 	public Usuario uploadFoto(Long idUsuario, MultipartFile mfile) {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
-		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
+		File file = googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), true);
 		String urlDownloadArquivo = sistema.getUrlBase() + "/publico/usuarios/%s/files/fotos/%s";
 		String fileUri = String.format(urlDownloadArquivo, idUsuario, file.getId());
 		usuario.setUrlFoto(fileUri);
@@ -149,10 +149,10 @@ public class UsuarioService {
 		return stream.collect(Collectors.toList());
 	}
 
-	public ArquivoUsuario uploadArquivo(Long idUsuario, MultipartFile mfile) {
+	public ArquivoUsuario uploadArquivo(Long idUsuario, MultipartFile mfile, String atributos) {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
-		File file = googleDriveFachada.uploadFile(mfile, sistema.getUploadFolder());
+		File file = googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), false);
 		String urlDownloadArquivo = sistema.getUrlBase() + "/publico/usuarios/%s/files/arquivos/%s";
 		String fileUri = String.format(urlDownloadArquivo, idUsuario, file.getId());
 
@@ -161,6 +161,7 @@ public class UsuarioService {
 		arquivo.setNome(file.getName());
 		arquivo.setLink(fileUri);
 		arquivo.setUsuario(usuario);
+		arquivo.setAtributos(atributos);
 		return arquivoUsuarioRepository.save(arquivo);
 	}
 
@@ -189,6 +190,10 @@ public class UsuarioService {
 		configuracaoNotificacao.setReceberNotificacao(true);
 		configuracaoNotificacao.getItens().add(EnumSistema.getConfigItemDefault(sistema));
 		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
+	}
+
+	public boolean deleteArquivo(Long idUsuario, String idArquivo) {
+		return googleDriveFachada.deleteFile(idArquivo);
 	}
 
 }

@@ -12,6 +12,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,8 +61,9 @@ public class FilesUsuariosController {
 
 	@ApiOperation("uploadArquivo")
 	@PostMapping("/usuarios/{idUsuario}/files/arquivos")
-	public ArquivoUsuario uploadArquivo(@PathVariable Long idUsuario, @RequestParam("arquivo") MultipartFile file) {
-		return usuarioService.uploadArquivo(idUsuario, file);
+	public ArquivoUsuario uploadArquivo(@PathVariable Long idUsuario, @RequestParam("arquivo") MultipartFile file,
+			@RequestParam String atributos) {
+		return usuarioService.uploadArquivo(idUsuario, file, atributos);
 	}
 
 	@ApiOperation("downloadArquivo")
@@ -84,4 +86,9 @@ public class FilesUsuariosController {
 				.body(resource);
 	}
 
+	@ApiOperation("deleteArquivo")
+	@DeleteMapping("/publico/usuarios/{idUsuario}/files/arquivos/{idArquivo}")
+	public boolean deleteArquivo(@PathVariable Long idUsuario, @PathVariable String idArquivo) {
+		return usuarioService.deleteArquivo(idUsuario, idArquivo);
+	}
 }

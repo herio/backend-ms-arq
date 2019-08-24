@@ -29,8 +29,19 @@ public class ArquivoUsuario extends Entidade implements Serializable {
 	@Column(name = "ID_DRIVE")
 	private String idDrive;
 
+	@Column(name = "ATRIBUTOS")
+	private String atributos;
+
 	@Column(name = "DATA_EXCLUSAO")
 	private LocalDateTime dataExclusao;
+
+	public String getAtributos() {
+		return atributos;
+	}
+
+	public void setAtributos(String atributos) {
+		this.atributos = atributos;
+	}
 
 	public LocalDateTime getDataExclusao() {
 		return dataExclusao;
