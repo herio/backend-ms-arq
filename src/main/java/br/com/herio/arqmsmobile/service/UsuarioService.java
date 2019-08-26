@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +27,10 @@ import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
 @Service
 public class UsuarioService {
+	private static final String URL_BASE_LOCALHOST = "http://192.168.0.12:";
+
+	@Autowired
+	protected Environment env;
 
 	@Autowired
 	protected UsuarioRepository usuarioRepository;
@@ -107,7 +112,7 @@ public class UsuarioService {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 		File file = googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), true);
-		String urlDownloadArquivo = sistema.getUrlBase() + "/publico/usuarios/%s/files/fotos/%s";
+		String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/fotos/%s";
 		String fileUri = String.format(urlDownloadArquivo, idUsuario, file.getId());
 		usuario.setUrlFoto(fileUri);
 		usuarioRepository.save(usuario);
@@ -153,7 +158,7 @@ public class UsuarioService {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 		File file = googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), false);
-		String urlDownloadArquivo = sistema.getUrlBase() + "/publico/usuarios/%s/files/arquivos/%s";
+		String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/arquivos/%s";
 		String fileUri = String.format(urlDownloadArquivo, idUsuario, file.getId());
 
 		ArquivoUsuario arquivo = new ArquivoUsuario();
@@ -168,6 +173,16 @@ public class UsuarioService {
 	public java.io.File downloadArquivo(String idArquivo) {
 		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idArquivo).get();
 		return googleDriveFachada.downloadFile(arquivo.getIdDrive(), arquivo.getNome());
+	}
+
+	protected String getUrlBase(EnumSistema sistema) {
+		String[] profiles = env.getActiveProfiles();
+
+		boolean isProducao = false;
+		if (profiles.length > 0 && "prod".contentEquals(profiles[0])) {
+			isProducao = true;
+		}
+		return isProducao ? sistema.getUrlBase() : URL_BASE_LOCALHOST + env.getProperty("server.port");
 	}
 
 	private void atualizaUsuario(Usuario usuarioBd, Usuario usuario) {
