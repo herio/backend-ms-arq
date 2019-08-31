@@ -23,9 +23,14 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
 	@Bean
 	public Docket apiDocket() {
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
-				.ignoredParameterTypes(groovy.lang.MetaClass.class).select()
-				.apis(RequestHandlerSelectors.basePackage("br.com.herio")).paths(PathSelectors.any()).build();
+
+		return new Docket(DocumentationType.SWAGGER_2)
+				.apiInfo(apiInfo())
+				.ignoredParameterTypes(groovy.lang.MetaClass.class)
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("br.com.herio"))
+				.paths(PathSelectors.any())
+				.build();
 	}
 
 	private ApiInfo apiInfo() {
