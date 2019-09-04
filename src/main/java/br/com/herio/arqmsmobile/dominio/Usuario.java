@@ -49,6 +49,9 @@ public class Usuario extends Entidade implements Serializable {
 	@Column(name = "CPF")
 	private String cpf;
 
+	@Column(name = "PERFIL")
+	private String perfil;
+
 	@Column(name = "ATIVADO")
 	private boolean ativado;
 
@@ -57,6 +60,14 @@ public class Usuario extends Entidade implements Serializable {
 
 	@Transient
 	private String token;
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
 
 	public LocalDateTime getDataExclusao() {
 		return dataExclusao;
