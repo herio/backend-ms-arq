@@ -175,6 +175,18 @@ public class UsuarioService {
 		return googleDriveFachada.downloadFile(arquivo.getIdDrive(), arquivo.getNome());
 	}
 
+	public boolean deleteArquivo(Long idUsuario, String idArquivo) {
+		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idArquivo).get();
+		if(!arquivo.getUsuario().getId().equals(idUsuario)) {
+			throw new ExcecaoNegocio("Apenas o próprio Usuário pode remover esse arquivo!");
+		}
+		boolean removeu = googleDriveFachada.deleteFile(idArquivo);
+		if(removeu) {
+			arquivoUsuarioRepository.delete(arquivo);
+		}
+		return removeu;
+	}
+
 	protected String getUrlBase(EnumSistema sistema) {
 		String[] profiles = env.getActiveProfiles();
 
@@ -205,10 +217,6 @@ public class UsuarioService {
 		configuracaoNotificacao.setReceberNotificacao(true);
 		configuracaoNotificacao.getItens().add(EnumSistema.getConfigItemDefault(sistema));
 		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
-	}
-
-	public boolean deleteArquivo(Long idUsuario, String idArquivo) {
-		return googleDriveFachada.deleteFile(idArquivo);
 	}
 
 }
