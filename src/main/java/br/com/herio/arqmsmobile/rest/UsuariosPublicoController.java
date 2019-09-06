@@ -35,7 +35,7 @@ public class UsuariosPublicoController {
 
 	@ApiOperation("recuperarSenha")
 	@GetMapping("/senha/{sistema}")
-	public String recuperarSenha(@RequestParam String login, @PathVariable EnumSistema sistema) {
-		return usuarioService.recuperarSenha(login, sistema);
+	public String recuperarSenha(@RequestParam String email, @PathVariable EnumSistema sistema) {
+		return usuarioService.recuperarSenha(email, sistema);
 	}
 }
