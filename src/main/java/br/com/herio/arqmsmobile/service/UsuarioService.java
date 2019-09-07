@@ -175,14 +175,18 @@ public class UsuarioService {
 
 	public boolean deleteArquivo(Long idUsuario, String idArquivo) {
 		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idArquivo).get();
-		if(!arquivo.getUsuario().getId().equals(idUsuario)) {
+		if (!arquivo.getUsuario().getId().equals(idUsuario)) {
 			throw new ExcecaoNegocio("Apenas o próprio Usuário pode remover esse arquivo!");
 		}
 		boolean removeu = googleDriveFachada.deleteFile(idArquivo);
-		if(removeu) {
+		if (removeu) {
 			arquivoUsuarioRepository.delete(arquivo);
 		}
 		return removeu;
+	}
+
+	public Collection<ArquivoUsuario> recuperaArquivosComAtributos(Long idUsuario, String atributos) {
+		return arquivoUsuarioRepository.findAllByUsuarioIdAndAtributosContaining(idUsuario, atributos);
 	}
 
 	protected String getUrlBase(EnumSistema sistema) {

@@ -3,6 +3,7 @@ package br.com.herio.arqmsmobile.rest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,6 +33,7 @@ public class FilesUsuariosController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	// FOTO
 	@ApiOperation("uploadFoto")
 	@PostMapping("/usuarios/{idUsuario}/files/fotos")
 	public Usuario uploadFoto(@PathVariable Long idUsuario,
@@ -44,19 +46,23 @@ public class FilesUsuariosController {
 	public ResponseEntity<Resource> downloadFoto(@PathVariable Long idUsuario,
 			@PathVariable String idFoto, HttpServletRequest request) throws FileNotFoundException {
 		File file = usuarioService.downloadFoto(idFoto, "foto.jpg");
-
-		// Try to determine file's content type
 		String contentType = request.getServletContext().getMimeType(file.getAbsolutePath());
 		Resource resource = new InputStreamResource(new FileInputStream(file));
-		// Fallback to the default content type if type could not be determined
 		if (contentType == null) {
 			contentType = "application/octet-stream";
 		}
-
 		return ResponseEntity.ok()
 				.contentType(MediaType.parseMediaType(contentType))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getName() + "\"")
 				.body(resource);
+	}
+
+	// ARQUIVO
+	@ApiOperation("recuperaArquivosComAtributos")
+	@GetMapping("/usuarios/{idUsuario}/files/arquivos")
+	public Collection<ArquivoUsuario> recuperaArquivosComAtributos(@PathVariable Long idUsuario,
+			@RequestParam String atributos) {
+		return usuarioService.recuperaArquivosComAtributos(idUsuario, atributos);
 	}
 
 	@ApiOperation("uploadArquivo")
@@ -71,15 +77,11 @@ public class FilesUsuariosController {
 	public ResponseEntity<Resource> downloadArquivo(@PathVariable Long idUsuario,
 			@PathVariable String idArquivo, HttpServletRequest request) throws FileNotFoundException {
 		File file = usuarioService.downloadArquivo(idArquivo);
-
-		// Try to determine file's content type
 		String contentType = request.getServletContext().getMimeType(file.getAbsolutePath());
 		Resource resource = new InputStreamResource(new FileInputStream(file));
-		// Fallback to the default content type if type could not be determined
 		if (contentType == null) {
 			contentType = "application/octet-stream";
 		}
-
 		return ResponseEntity.ok()
 				.contentType(MediaType.parseMediaType(contentType))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getName() + "\"")
