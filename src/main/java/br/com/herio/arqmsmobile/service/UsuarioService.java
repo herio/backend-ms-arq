@@ -123,17 +123,14 @@ public class UsuarioService {
 		return usuario;
 	}
 
-	public String recuperarSenha(String login, EnumSistema sistema) {
-		Optional<Usuario> usuarioOpt = usuarioRepository.findByLoginAndSistema(login, sistema.name());
+	public String recuperarSenha(String email, EnumSistema sistema) {
+		Optional<Usuario> usuarioOpt = usuarioRepository.findByEmailAndSistema(email, sistema.name());
 		if (!usuarioOpt.isPresent()) {
-			throw new ExcecaoNegocio(String.format("Usuário '%s' inexistente!", login));
+			throw new ExcecaoNegocio(String.format("Usuário de email '%s' inexistente!", email));
 		}
 		Usuario usuario = usuarioOpt.get();
 		if (!usuario.isAtivado()) {
-			throw new ExcecaoNegocio(String.format("Usuário '%s' não está ativado!", login));
-		}
-		if (usuario.getEmail() != null) {
-			throw new ExcecaoNegocio(String.format("Usuário '%s' não possui e-mail cadastrado!", login));
+			throw new ExcecaoNegocio(String.format("Usuário '%s' não está ativado!", usuario.getLogin()));
 		}
 
 		// enviaEmail
@@ -176,6 +173,18 @@ public class UsuarioService {
 		return googleDriveFachada.downloadFile(arquivo.getIdDrive(), arquivo.getNome());
 	}
 
+	public boolean deleteArquivo(Long idUsuario, String idArquivo) {
+		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idArquivo).get();
+		if(!arquivo.getUsuario().getId().equals(idUsuario)) {
+			throw new ExcecaoNegocio("Apenas o próprio Usuário pode remover esse arquivo!");
+		}
+		boolean removeu = googleDriveFachada.deleteFile(idArquivo);
+		if(removeu) {
+			arquivoUsuarioRepository.delete(arquivo);
+		}
+		return removeu;
+	}
+
 	protected String getUrlBase(EnumSistema sistema) {
 		String[] profiles = env.getActiveProfiles();
 
@@ -206,10 +215,6 @@ public class UsuarioService {
 		configuracaoNotificacao.setReceberNotificacao(true);
 		configuracaoNotificacao.getItens().add(EnumSistema.getConfigItemDefault(sistema));
 		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
-	}
-
-	public boolean deleteArquivo(Long idUsuario, String idArquivo) {
-		return googleDriveFachada.deleteFile(idArquivo);
 	}
 
 }
