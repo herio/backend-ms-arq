@@ -33,7 +33,7 @@ public class FilesUsuariosController {
 	@Autowired
 	private UsuarioService usuarioService;
 
-	// FOTO
+	// FOTOS
 	@ApiOperation("uploadFoto")
 	@PostMapping("/usuarios/{idUsuario}/files/fotos")
 	public Usuario uploadFoto(@PathVariable Long idUsuario,
@@ -57,7 +57,7 @@ public class FilesUsuariosController {
 				.body(resource);
 	}
 
-	// ARQUIVO
+	// ARQUIVOS
 	@ApiOperation("recuperaArquivosComAtributos")
 	@GetMapping("/usuarios/{idUsuario}/files/arquivos")
 	public Collection<ArquivoUsuario> recuperaArquivosComAtributos(@PathVariable Long idUsuario,
