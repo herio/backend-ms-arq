@@ -98,7 +98,7 @@ public class UsuarioService {
 		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
 		atualizaUsuario(usuarioBd, usuario);
 		usuarioBd = usuarioRepository.save(usuarioBd);
-		usuarioBd.setToken(autenticacaoService.criaTokenJwt(usuario));
+		usuarioBd.setToken(autenticacaoService.criaTokenJwt(usuarioBd));
 
 		// enviaEmail
 		enviadorEmailService.enviaEmailAtualizacaoDados(usuarioBd);
