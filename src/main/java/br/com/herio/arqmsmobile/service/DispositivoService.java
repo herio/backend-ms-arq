@@ -64,6 +64,7 @@ public class DispositivoService {
 			dispositivoBd = salvarDispositivo(usuario.getId(), dispositivo);
 		}
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
+		dispositivoBd.setUsuario(usuario);
 		return dispositivoBd;
 	}
 
