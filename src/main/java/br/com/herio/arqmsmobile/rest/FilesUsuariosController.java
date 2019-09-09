@@ -58,6 +58,12 @@ public class FilesUsuariosController {
 	}
 
 	// ARQUIVOS
+	@ApiOperation("deleteArquivo")
+	@DeleteMapping("/usuarios/{idUsuario}/files/arquivos/{idArquivo}")
+	public boolean deleteArquivo(@PathVariable Long idUsuario, @PathVariable String idArquivo) {
+		return usuarioService.deleteArquivo(idUsuario, idArquivo);
+	}
+
 	@ApiOperation("recuperaArquivosComAtributos")
 	@GetMapping("/usuarios/{idUsuario}/files/arquivos")
 	public Collection<ArquivoUsuario> recuperaArquivosComAtributos(@PathVariable Long idUsuario,
@@ -88,9 +94,4 @@ public class FilesUsuariosController {
 				.body(resource);
 	}
 
-	@ApiOperation("deleteArquivo")
-	@DeleteMapping("/publico/usuarios/{idUsuario}/files/arquivos/{idArquivo}")
-	public boolean deleteArquivo(@PathVariable Long idUsuario, @PathVariable String idArquivo) {
-		return usuarioService.deleteArquivo(idUsuario, idArquivo);
-	}
 }
