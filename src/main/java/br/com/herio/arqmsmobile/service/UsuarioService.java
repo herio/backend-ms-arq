@@ -117,6 +117,7 @@ public class UsuarioService {
 		String fileUri = String.format(urlDownloadArquivo, idUsuario, file.getId());
 		usuario.setUrlFoto(fileUri);
 		usuarioRepository.save(usuario);
+		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 
 		// enviaEmail
 		enviadorEmailService.enviaEmailAtualizacaoDados(usuario);
