@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import br.com.herio.arqmsmobile.dominio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.api.services.drive.model.File;
 
-import br.com.herio.arqmsmobile.dominio.ArquivoUsuario;
-import br.com.herio.arqmsmobile.dominio.ArquivoUsuarioRepository;
-import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
-import br.com.herio.arqmsmobile.dominio.Usuario;
-import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
 import br.com.herio.arqmsmobile.infra.drive.GoogleDriveFachada;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
@@ -218,7 +214,10 @@ public class UsuarioService {
 	private void criaConfigNotificacaoDefault(Long idUsuario, EnumSistema sistema) {
 		ConfiguracaoNotificacao configuracaoNotificacao = new ConfiguracaoNotificacao();
 		configuracaoNotificacao.setReceberNotificacao(true);
-		configuracaoNotificacao.getItens().add(EnumSistema.getConfigItemDefault(sistema));
+		ConfiguracaoNotificacaoItem configItem = EnumSistema.getConfigItemDefault(sistema);
+		if(configItem != null) {
+			configuracaoNotificacao.getItens().add(configItem);
+		}
 		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
 	}
 

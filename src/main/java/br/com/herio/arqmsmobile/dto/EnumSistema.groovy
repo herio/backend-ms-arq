@@ -54,19 +54,19 @@ enum EnumSistema {
 	}
 
 	public static ConfiguracaoNotificacaoItem getConfigItemDefault(EnumSistema sistema) {
-		ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
+		ConfiguracaoNotificacaoItem configItem = null;
 		switch (sistema) {
 			case NOTICIAS_JURIDICAS:
+				configItem = new ConfiguracaoNotificacaoItem();
 				configItem.setTipoItem("DESTAQUE");
 				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
 				break;
 			case NOTICIAS_JURIDICAS_PAGO:
+				configItem = new ConfiguracaoNotificacaoItem();
 				configItem.setTipoItem("DESTAQUE");
 				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
 				break;
 			case ADVOGADO_COMUNITARIO:
-				configItem.setTipoItem("DEMANDAS");
-				configItem.setTipoPeriodicidade("DIARIO");
 				break;
 			default:
 				break;
