@@ -8,6 +8,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,6 +18,15 @@ import br.com.herio.arqmsmobile.infra.excecao.dto.DtoExcecao;
 @RestControllerAdvice
 @Order(HIGHEST_PRECEDENCE)
 public class TratadorExcecaoRestController {
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	@ExceptionHandler(AccessDeniedException.class)
+	public DtoExcecao tratarExcecaoSessaoInvalida(AccessDeniedException e) {
+		// AccessDeniedException deve retornar http status 401
+		String causa = ExceptionUtils.getStackTrace(e);
+		return new DtoExcecao(e.getMessage(), causa);
+
+	}
+
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	@ExceptionHandler(ExcecaoSessaoInvalida.class)
 	public DtoExcecao tratarExcecaoSessaoInvalida(ExcecaoSessaoInvalida e) {
