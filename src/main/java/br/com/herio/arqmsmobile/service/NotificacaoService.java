@@ -95,7 +95,7 @@ public class NotificacaoService {
 		return enviou;
 	}
 
-	public boolean salvarEEnviarNotificacao(Notificacao notificacao, boolean versaoPaga) {
+		public boolean salvarEEnviarNotificacao(Notificacao notificacao, boolean versaoPaga) {
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
 				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
 		notificacao.setDispositivo(dispositivoBd);
