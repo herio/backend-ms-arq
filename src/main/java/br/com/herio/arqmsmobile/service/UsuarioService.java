@@ -72,6 +72,8 @@ public class UsuarioService {
 
 		// cria/atualiza excluído
 		usuarioBd = usuarioRepository.save(usuarioBd);
+
+		//atualiza token
 		usuarioBd.setToken(autenticacaoService.criaTokenJwt(usuarioBd));
 
 		// gera ativação
@@ -99,25 +101,6 @@ public class UsuarioService {
 		// enviaEmail
 		enviadorEmailService.enviaEmailAtualizacaoDados(usuarioBd);
 		return usuarioBd;
-	}
-
-	public java.io.File downloadFoto(String idFile, String fileName) {
-		return googleDriveFachada.downloadFile(idFile, fileName);
-	}
-
-	public Usuario uploadFoto(Long idUsuario, MultipartFile mfile) {
-		Usuario usuario = usuarioRepository.findById(idUsuario).get();
-		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
-		File file = googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), true);
-		String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/fotos/%s";
-		String fileUri = String.format(urlDownloadArquivo, idUsuario, file.getId());
-		usuario.setUrlFoto(fileUri);
-		usuarioRepository.save(usuario);
-		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
-
-		// enviaEmail
-		enviadorEmailService.enviaEmailAtualizacaoDados(usuario);
-		return usuario;
 	}
 
 	public String recuperarSenha(String email, EnumSistema sistema) {
@@ -149,19 +132,74 @@ public class UsuarioService {
 		return stream.collect(Collectors.toList());
 	}
 
+	public java.io.File downloadFoto(String idFile, String fileName) {
+		return googleDriveFachada.downloadFile(idFile, fileName);
+	}
+
+	public Usuario uploadFoto(Long idUsuario, MultipartFile mfile) {
+		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
+
+		//upload
+		File gFile = null;
+		File gFileThumb = null;
+		googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), gFile, gFileThumb);
+		String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/fotos/%s";
+		if(gFile != null) {
+			String fileUri = String.format(urlDownloadArquivo, idUsuario, gFile.getId());
+			usuario.setUrlFoto(fileUri);
+			usuario.setIdDriveFoto(gFile.getId());
+		}
+		if(gFileThumb != null) {
+			String fileUriThumb = String.format(urlDownloadArquivo, idUsuario, gFileThumb.getId());
+			usuario.setUrlFotoThumb(fileUriThumb);
+			usuario.setIdDriveFotoThumb(gFileThumb.getId());
+		}
+		usuarioRepository.save(usuario);
+
+		//atualiza token
+		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
+
+		// enviaEmail
+		enviadorEmailService.enviaEmailAtualizacaoDados(usuario);
+		return usuario;
+	}
+
+	public boolean deleteFoto(Long idUsuario, String idFoto) {
+		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		boolean removeu = googleDriveFachada.deleteFile(idFoto);
+		if (removeu) {
+			usuario.setUrlFoto(null);
+			usuario.setUrlFotoThumb(null);
+			usuarioRepository.save(usuario);
+		}
+		return removeu;
+	}
+
 	public ArquivoUsuario uploadArquivo(Long idUsuario, MultipartFile mfile, String atributos) {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
-		File file = googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), false);
-		String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/arquivos/%s";
-		String fileUri = String.format(urlDownloadArquivo, idUsuario, file.getId());
-
 		ArquivoUsuario arquivo = new ArquivoUsuario();
-		arquivo.setIdDrive(file.getId());
-		arquivo.setNome(file.getName());
-		arquivo.setLink(fileUri);
 		arquivo.setUsuario(usuario);
 		arquivo.setAtributos(atributos);
+
+		//upload
+		File gFile = null;
+		File gFileThumb = null;
+		googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), gFile, gFileThumb);
+		String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/arquivos/%s";
+		if(gFile != null) {
+			String fileUri = String.format(urlDownloadArquivo, idUsuario, gFile.getId());
+			arquivo.setIdDrive(gFile.getId());
+			arquivo.setNome(gFile.getName());
+			arquivo.setLink(fileUri);
+		}
+		if(gFileThumb != null) {
+			String fileUriThumb = String.format(urlDownloadArquivo, idUsuario, gFileThumb.getId());
+			arquivo.setIdDriveThumb(gFileThumb.getId());
+			arquivo.setLinkThumb(fileUriThumb);
+		}
+
 		return arquivoUsuarioRepository.save(arquivo);
 	}
 

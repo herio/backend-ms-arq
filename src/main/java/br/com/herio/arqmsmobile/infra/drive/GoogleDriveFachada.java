@@ -103,29 +103,34 @@ public class GoogleDriveFachada {
 		}
 	}
 
-	public File uploadFile(Long idUsuario, MultipartFile mFile, String idFolder, boolean redimensionar) {
+	public void uploadFile(Long idUsuario, MultipartFile mFile, String idFolder, File gFile, File gFileThumb) {
 		try {
 			File diretorioUsuario = recuperaDiretorioUsuario(idFolder, idUsuario);
 			String mimeType = new Tika().detect(mFile.getOriginalFilename());
 
-			java.io.File file = null;
-			if (mimeType != null && mimeType.contains("image") && redimensionar) {
-				// redimensiona e salva imagem
-				file = imageResizer.salvaLocaleRedimensiona(mFile, 50);
-			} else {
-				// salva arquivo
-				file = fileStorageService.storeFile(mFile);
-			}
-
+			//gFile
+			java.io.File file = fileStorageService.storeFile(mFile);
 			File fileMetadata = new File();
 			fileMetadata.setName(file.getName());
 			fileMetadata.setParents(Collections.singletonList(diretorioUsuario.getId()));
 			FileContent mediaContent = new FileContent(mimeType, file);
-
-			// upload
-			return service.files().create(fileMetadata, mediaContent)
+			gFile = service.files().create(fileMetadata, mediaContent)
 					.setFields("id, name, parents, webViewLink")
 					.execute();
+
+			//gFileThumb
+			if (mimeType != null && mimeType.contains("image")) {
+				// redimensiona e salva imagem
+				java.io.File fileThumb = imageResizer.salvaLocaleRedimensiona(mFile, 30);
+				File fileMetadataThumb = new File();
+				fileMetadataThumb.setName(fileThumb.getName());
+				fileMetadataThumb.setParents(Collections.singletonList(diretorioUsuario.getId()));
+				FileContent mediaContentThumb = new FileContent(mimeType, fileThumb);
+				gFileThumb = service.files().create(fileMetadataThumb, mediaContentThumb)
+						.setFields("id, name, parents, webViewLink")
+						.execute();
+			}
+
 		} catch (IOException e) {
 			throw new RuntimeException("GoogleDriveFachada Erro em uploadFile", e);
 		}
@@ -222,7 +227,9 @@ public class GoogleDriveFachada {
 			FileInputStream input = new FileInputStream(file);
 			MultipartFile mfile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(input));
 			String folderUploads = "1qk7108N-6xW613ez3abtPfDiWahYnJ4E";
-			File fileUpload = fachadaGoogleDrive.uploadFile(1L, mfile, folderUploads, false);
+			File fileUpload = null;
+			File fileThumb = null;
+			fachadaGoogleDrive.uploadFile(1L, mfile, folderUploads, fileUpload, fileThumb);
 			if (fileUpload != null) {
 				System.out.println(String.format("fileUpload[%s],[%s], [%s]", fileUpload.getName(),
 						fileUpload.getId(), fileUpload.getParents()));

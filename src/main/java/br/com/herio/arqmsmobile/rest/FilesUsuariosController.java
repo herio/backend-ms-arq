@@ -57,6 +57,12 @@ public class FilesUsuariosController {
 				.body(resource);
 	}
 
+	@ApiOperation("deleteFoto")
+	@DeleteMapping("/publico/usuarios/{idUsuario}/files/fotos/{idFoto}")
+	public boolean deleteFoto(@PathVariable Long idUsuario, @PathVariable String idFoto) {
+		return usuarioService.deleteFoto(idUsuario, idFoto);
+	}
+
 	// ARQUIVOS
 	@ApiOperation("deleteArquivo")
 	@DeleteMapping("/usuarios/{idUsuario}/files/arquivos/{idArquivo}")

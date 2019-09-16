@@ -25,14 +25,36 @@ public class ArquivoUsuario extends Entidade implements Serializable {
 	@Column(name = "LINK")
 	private String link;
 
+	@Column(name = "LINK_THUMB")
+	private String linkThumb;
+
 	@Column(name = "ID_DRIVE")
 	private String idDrive;
+
+	@Column(name = "ID_DRIVE_THUMB")
+	private String idDriveThumb;
 
 	@Column(name = "ATRIBUTOS")
 	private String atributos;
 
 	@Column(name = "DATA_EXCLUSAO")
 	private LocalDateTime dataExclusao;
+
+	public String getLinkThumb() {
+		return linkThumb;
+	}
+
+	public void setLinkThumb(String linkThumb) {
+		this.linkThumb = linkThumb;
+	}
+
+	public String getIdDriveThumb() {
+		return idDriveThumb;
+	}
+
+	public void setIdDriveThumb(String idDriveThumb) {
+		this.idDriveThumb = idDriveThumb;
+	}
 
 	public String getAtributos() {
 		return atributos;

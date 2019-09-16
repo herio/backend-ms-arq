@@ -34,6 +34,15 @@ public class Usuario extends Entidade implements Serializable {
 	@Column(name = "URL_FOTO")
 	private String urlFoto;
 
+	@Column(name = "URL_FOTO_THUMB")
+	private String urlFotoThumb;
+
+	@Column(name = "ID_DRIVE_FOTO")
+	private String idDriveFoto;
+
+	@Column(name = "ID_DRIVE_FOTO_THUMB")
+	private String idDriveFotoThumb;
+
 	@Column(name = "TELEFONE")
 	private String telefone;
 
@@ -60,6 +69,30 @@ public class Usuario extends Entidade implements Serializable {
 
 	@Transient
 	private String token;
+
+	public String getIdDriveFoto() {
+		return idDriveFoto;
+	}
+
+	public void setIdDriveFoto(String idDriveFoto) {
+		this.idDriveFoto = idDriveFoto;
+	}
+
+	public String getIdDriveFotoThumb() {
+		return idDriveFotoThumb;
+	}
+
+	public void setIdDriveFotoThumb(String idDriveFotoThumb) {
+		this.idDriveFotoThumb = idDriveFotoThumb;
+	}
+
+	public String getUrlFotoThumb() {
+		return urlFotoThumb;
+	}
+
+	public void setUrlFotoThumb(String urlFotoThumb) {
+		this.urlFotoThumb = urlFotoThumb;
+	}
 
 	public String getPerfil() {
 		return perfil;
