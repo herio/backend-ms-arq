@@ -66,8 +66,8 @@ public class FilesUsuariosController {
 	// ARQUIVOS
 	@ApiOperation("deleteArquivo")
 	@DeleteMapping("/usuarios/{idUsuario}/files/arquivos/{idArquivo}")
-	public boolean deleteArquivo(@PathVariable Long idUsuario, @PathVariable Long idArquivo) {
-		return usuarioService.deleteArquivo(idUsuario, idArquivo);
+	public boolean deleteArquivo(@PathVariable Long idUsuario, @PathVariable String idDrive) {
+		return usuarioService.deleteArquivo(idUsuario, idDrive);
 	}
 
 	@ApiOperation("recuperaArquivosComAtributos")
@@ -87,8 +87,9 @@ public class FilesUsuariosController {
 	@ApiOperation("downloadArquivo")
 	@GetMapping("/publico/usuarios/{idUsuario}/files/arquivos/{idDrive}")
 	public ResponseEntity<Resource> downloadArquivo(@PathVariable Long idUsuario,
-			@PathVariable String idDrive, HttpServletRequest request) throws FileNotFoundException {
-		File file = usuarioService.downloadArquivo(idDrive);
+			@PathVariable String idDrive, @RequestParam(required = false) boolean thumb,
+			HttpServletRequest request) throws FileNotFoundException {
+		File file = usuarioService.downloadArquivo(idDrive, thumb);
 		String contentType = request.getServletContext().getMimeType(file.getAbsolutePath());
 		Resource resource = new InputStreamResource(new FileInputStream(file));
 		if (contentType == null) {

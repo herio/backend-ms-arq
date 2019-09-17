@@ -182,13 +182,13 @@ public class UsuarioService {
 		return arquivoUsuarioRepository.save(arquivo);
 	}
 
-	public java.io.File downloadArquivo(String idDrive) {
-		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDriveOrIdDriveThumb(idDrive, idDrive).get();
-		return googleDriveFachada.downloadFile(idDrive, arquivo.getNome());
+	public java.io.File downloadArquivo(String idDrive, boolean thumb) {
+		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idDrive).get();
+		return googleDriveFachada.downloadFile(thumb ? arquivo.getIdDriveThumb() : idDrive, arquivo.getNome());
 	}
 
-	public boolean deleteArquivo(Long idUsuario, Long idArquivo) {
-		ArquivoUsuario arquivo = arquivoUsuarioRepository.findById(idArquivo).get();
+	public boolean deleteArquivo(Long idUsuario, String idDrive) {
+		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idDrive).get();
 		if (!arquivo.getUsuario().getId().equals(idUsuario)) {
 			throw new ExcecaoNegocio("Apenas o próprio Usuário pode remover esse arquivo!");
 		}

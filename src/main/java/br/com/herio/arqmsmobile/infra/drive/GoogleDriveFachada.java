@@ -157,12 +157,12 @@ public class GoogleDriveFachada {
 						.setFields("id, name, parents, webViewLink")
 						.execute();
 				if (arquivo != null) {
-					String fileUriThumb = String.format(urlDownloadArquivo, idUsuario, gFileThumb.getId());
+					String fileUriThumb = String.format(urlDownloadArquivo, idUsuario, gFile.getId()) + "?thumb=true";
 					arquivo.setIdDriveThumb(gFileThumb.getId());
 					arquivo.setLinkThumb(fileUriThumb);
 				}
 				if (usuario != null) {
-					String fileUriThumb = String.format(urlDownloadUsuario, idUsuario);
+					String fileUriThumb = String.format(urlDownloadUsuario, idUsuario) + "?thumb=true";
 					usuario.setUrlFotoThumb(fileUriThumb);
 					usuario.setIdDriveFotoThumb(gFileThumb.getId());
 				}
