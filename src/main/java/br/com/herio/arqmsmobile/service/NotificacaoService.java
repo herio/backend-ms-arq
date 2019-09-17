@@ -121,9 +121,15 @@ public class NotificacaoService {
 		return notificacaoBd;
 	}
 
-	public Page<Notificacao> listarNotificacoesEnviadasNaoExcluidas(Long idUsuario, Pageable page) {
-		return notificacaoRepository.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(
-				true, false, idUsuario, page);
+	public Page<Notificacao> listarNotificacoesEnviadasNaoExcluidas(Long idUsuario, String dadosExtras, Pageable page) {
+		if(dadosExtras == null) {
+			return notificacaoRepository.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(
+					true, false, idUsuario, page);
+		} else {
+			return notificacaoRepository
+				.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdAndDadosExtrasIgnoreCaseContainingOrderByDataCriacaoDesc(
+						true, false, idUsuario, dadosExtras, page);
+		}
 	}
 
 	public Page<Notificacao> listarNotificacoes(Long idUsuario, Pageable page) {

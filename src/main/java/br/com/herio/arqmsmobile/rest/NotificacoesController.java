@@ -32,8 +32,9 @@ public class NotificacoesController {
 
 	@ApiOperation("listarNotificacoesEnviadasNaoExcluidas")
 	@GetMapping("/enviadasnaoexcluidas")
-	public Page<Notificacao> listarNotificacoesEnviadasNaoExcluidas(@PathVariable Long idUsuario, Pageable page) {
-		return notificacaoService.listarNotificacoesEnviadasNaoExcluidas(idUsuario, page);
+	public Page<Notificacao> listarNotificacoesEnviadasNaoExcluidas(@PathVariable Long idUsuario,
+																	@RequestParam(required = false) String dadosExtras, Pageable page) {
+		return notificacaoService.listarNotificacoesEnviadasNaoExcluidas(idUsuario, dadosExtras, page);
 	}
 
 	@ApiOperation("listarNotificacoes")
