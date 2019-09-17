@@ -65,7 +65,7 @@ public class FilesUsuariosController {
 
 	// ARQUIVOS
 	@ApiOperation("deleteArquivo")
-	@DeleteMapping("/usuarios/{idUsuario}/files/arquivos/{idArquivo}")
+	@DeleteMapping("/usuarios/{idUsuario}/files/arquivos/{idDrive}")
 	public boolean deleteArquivo(@PathVariable Long idUsuario, @PathVariable String idDrive) {
 		return usuarioService.deleteArquivo(idUsuario, idDrive);
 	}
