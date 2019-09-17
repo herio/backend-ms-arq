@@ -9,24 +9,22 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import br.com.herio.arqmsmobile.dominio.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.api.services.drive.model.File;
-
+import br.com.herio.arqmsmobile.dominio.ArquivoUsuario;
+import br.com.herio.arqmsmobile.dominio.ArquivoUsuarioRepository;
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem;
+import br.com.herio.arqmsmobile.dominio.Usuario;
+import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
 import br.com.herio.arqmsmobile.infra.drive.GoogleDriveFachada;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 
 @Service
 public class UsuarioService {
-	private static final String URL_BASE_LOCALHOST = "http://192.168.0.12:";
-
-	@Autowired
-	protected Environment env;
 
 	@Autowired
 	protected UsuarioRepository usuarioRepository;
@@ -73,7 +71,7 @@ public class UsuarioService {
 		// cria/atualiza excluído
 		usuarioBd = usuarioRepository.save(usuarioBd);
 
-		//atualiza token
+		// atualiza token
 		usuarioBd.setToken(autenticacaoService.criaTokenJwt(usuarioBd));
 
 		// gera ativação
@@ -140,24 +138,12 @@ public class UsuarioService {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 
-		//upload
-		File gFile = null;
-		File gFileThumb = null;
-		googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), gFile, gFileThumb);
-		String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/fotos/%s";
-		if(gFile != null) {
-			String fileUri = String.format(urlDownloadArquivo, idUsuario, gFile.getId());
-			usuario.setUrlFoto(fileUri);
-			usuario.setIdDriveFoto(gFile.getId());
-		}
-		if(gFileThumb != null) {
-			String fileUriThumb = String.format(urlDownloadArquivo, idUsuario, gFileThumb.getId());
-			usuario.setUrlFotoThumb(fileUriThumb);
-			usuario.setIdDriveFotoThumb(gFileThumb.getId());
-		}
+		// upload
+		googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), usuario, sistema);
+
 		usuarioRepository.save(usuario);
 
-		//atualiza token
+		// atualiza token
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 
 		// enviaEmail
@@ -183,22 +169,8 @@ public class UsuarioService {
 		arquivo.setUsuario(usuario);
 		arquivo.setAtributos(atributos);
 
-		//upload
-		File gFile = null;
-		File gFileThumb = null;
-		googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), gFile, gFileThumb);
-		String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/arquivos/%s";
-		if(gFile != null) {
-			String fileUri = String.format(urlDownloadArquivo, idUsuario, gFile.getId());
-			arquivo.setIdDrive(gFile.getId());
-			arquivo.setNome(gFile.getName());
-			arquivo.setLink(fileUri);
-		}
-		if(gFileThumb != null) {
-			String fileUriThumb = String.format(urlDownloadArquivo, idUsuario, gFileThumb.getId());
-			arquivo.setIdDriveThumb(gFileThumb.getId());
-			arquivo.setLinkThumb(fileUriThumb);
-		}
+		// upload
+		googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), arquivo, sistema);
 
 		return arquivoUsuarioRepository.save(arquivo);
 	}
@@ -224,16 +196,6 @@ public class UsuarioService {
 		return arquivoUsuarioRepository.findAllByUsuarioIdAndAtributosContaining(idUsuario, atributos);
 	}
 
-	protected String getUrlBase(EnumSistema sistema) {
-		String[] profiles = env.getActiveProfiles();
-
-		boolean isProducao = false;
-		if (profiles.length > 0 && "prod".contentEquals(profiles[0])) {
-			isProducao = true;
-		}
-		return isProducao ? sistema.getUrlBase() : URL_BASE_LOCALHOST + env.getProperty("server.port");
-	}
-
 	private void atualizaUsuario(Usuario usuarioBd, Usuario usuario) {
 		usuarioBd.setSistema(usuario.getSistema());
 		usuarioBd.setLogin(usuario.getLogin());
@@ -253,7 +215,7 @@ public class UsuarioService {
 		ConfiguracaoNotificacao configuracaoNotificacao = new ConfiguracaoNotificacao();
 		configuracaoNotificacao.setReceberNotificacao(true);
 		ConfiguracaoNotificacaoItem configItem = EnumSistema.getConfigItemDefault(sistema);
-		if(configItem != null) {
+		if (configItem != null) {
 			configuracaoNotificacao.getItens().add(configItem);
 		}
 		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
