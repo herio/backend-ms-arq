@@ -132,7 +132,7 @@ public class GoogleDriveFachada {
 					.execute();
 
 			String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/arquivos/%s";
-			String urlDownloadUsuario = getUrlBase(sistema) + "/publico/usuarios/%s/files/fotos/%s";
+			String urlDownloadUsuario = getUrlBase(sistema) + "/publico/usuarios/%s/files/fotos";
 			if (arquivo != null) {
 				String fileUri = String.format(urlDownloadArquivo, idUsuario, gFile.getId());
 				arquivo.setIdDrive(gFile.getId());
@@ -140,7 +140,7 @@ public class GoogleDriveFachada {
 				arquivo.setLink(fileUri);
 			}
 			if (usuario != null) {
-				String fileUri = String.format(urlDownloadUsuario, idUsuario, gFile.getId());
+				String fileUri = String.format(urlDownloadUsuario, idUsuario);
 				usuario.setUrlFoto(fileUri);
 				usuario.setIdDriveFoto(gFile.getId());
 			}
@@ -162,7 +162,7 @@ public class GoogleDriveFachada {
 					arquivo.setLinkThumb(fileUriThumb);
 				}
 				if (usuario != null) {
-					String fileUriThumb = String.format(urlDownloadUsuario, idUsuario, gFileThumb.getId());
+					String fileUriThumb = String.format(urlDownloadUsuario, idUsuario);
 					usuario.setUrlFotoThumb(fileUriThumb);
 					usuario.setIdDriveFotoThumb(gFileThumb.getId());
 				}

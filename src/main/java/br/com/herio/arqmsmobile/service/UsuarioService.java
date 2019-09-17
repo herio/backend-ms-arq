@@ -130,8 +130,9 @@ public class UsuarioService {
 		return stream.collect(Collectors.toList());
 	}
 
-	public java.io.File downloadFoto(String idFile, String fileName) {
-		return googleDriveFachada.downloadFile(idFile, fileName);
+	public java.io.File downloadFoto(Long idUsuario, boolean thumb) {
+		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		return googleDriveFachada.downloadFile(thumb ? usuario.getIdDriveFotoThumb() : usuario.getIdDriveFoto(), "foto.jpg");
 	}
 
 	public Usuario uploadFoto(Long idUsuario, MultipartFile mfile) {
@@ -151,13 +152,19 @@ public class UsuarioService {
 		return usuario;
 	}
 
-	public boolean deleteFoto(Long idUsuario, String idFoto) {
+	public boolean deleteFoto(Long idUsuario) {
+		boolean removeu = false;
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
-		boolean removeu = googleDriveFachada.deleteFile(idFoto);
-		if (removeu) {
-			usuario.setUrlFoto(null);
-			usuario.setUrlFotoThumb(null);
-			usuarioRepository.save(usuario);
+		if (usuario.getIdDriveFoto() != null) {
+			removeu = googleDriveFachada.deleteFile(usuario.getIdDriveFoto());
+			if (usuario.getIdDriveFotoThumb() != null) {
+				removeu = googleDriveFachada.deleteFile(usuario.getIdDriveFotoThumb());
+			}
+			if (removeu) {
+				usuario.setUrlFoto(null);
+				usuario.setUrlFotoThumb(null);
+				usuarioRepository.save(usuario);
+			}
 		}
 		return removeu;
 	}
@@ -175,18 +182,21 @@ public class UsuarioService {
 		return arquivoUsuarioRepository.save(arquivo);
 	}
 
-	public java.io.File downloadArquivo(String idArquivo) {
-		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idArquivo).get();
-		return googleDriveFachada.downloadFile(arquivo.getIdDrive(), arquivo.getNome());
+	public java.io.File downloadArquivo(String idDrive) {
+		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDriveOrIdDriveThumb(idDrive, idDrive).get();
+		return googleDriveFachada.downloadFile(idDrive, arquivo.getNome());
 	}
 
-	public boolean deleteArquivo(Long idUsuario, String idArquivo) {
-		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idArquivo).get();
+	public boolean deleteArquivo(Long idUsuario, Long idArquivo) {
+		ArquivoUsuario arquivo = arquivoUsuarioRepository.findById(idArquivo).get();
 		if (!arquivo.getUsuario().getId().equals(idUsuario)) {
 			throw new ExcecaoNegocio("Apenas o próprio Usuário pode remover esse arquivo!");
 		}
-		boolean removeu = googleDriveFachada.deleteFile(idArquivo);
+		boolean removeu = googleDriveFachada.deleteFile(arquivo.getIdDrive());
 		if (removeu) {
+			if (arquivo.getIdDriveThumb() != null) {
+				removeu = googleDriveFachada.deleteFile(arquivo.getIdDriveThumb());
+			}
 			arquivoUsuarioRepository.delete(arquivo);
 		}
 		return removeu;

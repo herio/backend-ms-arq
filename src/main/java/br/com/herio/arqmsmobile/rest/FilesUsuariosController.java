@@ -42,10 +42,10 @@ public class FilesUsuariosController {
 	}
 
 	@ApiOperation("downloadFoto")
-	@GetMapping("/publico/usuarios/{idUsuario}/files/fotos/{idFoto}")
+	@GetMapping("/publico/usuarios/{idUsuario}/files/fotos")
 	public ResponseEntity<Resource> downloadFoto(@PathVariable Long idUsuario,
-			@PathVariable String idFoto, HttpServletRequest request) throws FileNotFoundException {
-		File file = usuarioService.downloadFoto(idFoto, "foto.jpg");
+			@RequestParam(required = false) boolean thumb, HttpServletRequest request) throws FileNotFoundException {
+		File file = usuarioService.downloadFoto(idUsuario, thumb);
 		String contentType = request.getServletContext().getMimeType(file.getAbsolutePath());
 		Resource resource = new InputStreamResource(new FileInputStream(file));
 		if (contentType == null) {
@@ -58,15 +58,15 @@ public class FilesUsuariosController {
 	}
 
 	@ApiOperation("deleteFoto")
-	@DeleteMapping("/publico/usuarios/{idUsuario}/files/fotos/{idFoto}")
-	public boolean deleteFoto(@PathVariable Long idUsuario, @PathVariable String idFoto) {
-		return usuarioService.deleteFoto(idUsuario, idFoto);
+	@DeleteMapping("/usuarios/{idUsuario}/files/fotos")
+	public boolean deleteFoto(@PathVariable Long idUsuario) {
+		return usuarioService.deleteFoto(idUsuario);
 	}
 
 	// ARQUIVOS
 	@ApiOperation("deleteArquivo")
 	@DeleteMapping("/usuarios/{idUsuario}/files/arquivos/{idArquivo}")
-	public boolean deleteArquivo(@PathVariable Long idUsuario, @PathVariable String idArquivo) {
+	public boolean deleteArquivo(@PathVariable Long idUsuario, @PathVariable Long idArquivo) {
 		return usuarioService.deleteArquivo(idUsuario, idArquivo);
 	}
 
@@ -85,10 +85,10 @@ public class FilesUsuariosController {
 	}
 
 	@ApiOperation("downloadArquivo")
-	@GetMapping("/publico/usuarios/{idUsuario}/files/arquivos/{idArquivo}")
+	@GetMapping("/publico/usuarios/{idUsuario}/files/arquivos/{idDrive}")
 	public ResponseEntity<Resource> downloadArquivo(@PathVariable Long idUsuario,
-			@PathVariable String idArquivo, HttpServletRequest request) throws FileNotFoundException {
-		File file = usuarioService.downloadArquivo(idArquivo);
+			@PathVariable String idDrive, HttpServletRequest request) throws FileNotFoundException {
+		File file = usuarioService.downloadArquivo(idDrive);
 		String contentType = request.getServletContext().getMimeType(file.getAbsolutePath());
 		Resource resource = new InputStreamResource(new FileInputStream(file));
 		if (contentType == null) {

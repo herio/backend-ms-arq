@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArquivoUsuarioRepository extends CrudRepository<ArquivoUsuario, Long> {
 
-	Optional<ArquivoUsuario> findByIdDrive(String idDrive);
+	Optional<ArquivoUsuario> findByIdDriveOrIdDriveThumb(String idDrive, String idDriveThumb);
 
 	Collection<ArquivoUsuario> findAllByUsuarioIdAndAtributosContaining(Long usuarioId, String atributos);
 }
