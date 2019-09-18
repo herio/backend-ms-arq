@@ -2,10 +2,7 @@ package br.com.herio.arqmsmobile.service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,30 +29,6 @@ public class NotificacaoService {
 
 	@Autowired
 	private FirebaseFachada firebaseFachada;
-
-	public List<Notificacao> criaNotificacoesParaDispositivos(List<Dispositivo> dispositivos, Notificacao notificacao) {
-		List<Notificacao> notificacoesASeremEnviadas = new ArrayList<>();
-		if (dispositivos != null && !dispositivos.isEmpty()) {
-			Notificacao notificacaoOrigem = null;
-			for (Dispositivo dispositivo : dispositivos) {
-				Notificacao notificacaoAtual = new Notificacao();
-				notificacaoAtual.setTitulo(notificacao.getTitulo());
-				notificacaoAtual.setConteudo(notificacao.getConteudo());
-				notificacaoAtual.setDadosExtras(notificacao.getDadosExtras());
-				notificacaoAtual.setDispositivo(dispositivo);
-				notificacaoAtual.setToken(dispositivo.getNumRegistro());
-				if (notificacaoOrigem != null) {
-					notificacaoAtual.setNotificacaoOrigem(notificacaoOrigem);
-				}
-				notificacaoAtual = notificacaoRepository.save(notificacaoAtual);
-				if (notificacoesASeremEnviadas.isEmpty()) {
-					notificacaoOrigem = notificacaoAtual;
-				}
-				notificacoesASeremEnviadas.add(notificacaoAtual);
-			}
-		}
-		return notificacoesASeremEnviadas;
-	}
 
 	public boolean enviaNotificacoes(Map<Long, Collection<Notificacao>> notificacoes, boolean versaoPaga) {
 		boolean enviou = false;
@@ -95,7 +68,7 @@ public class NotificacaoService {
 		return enviou;
 	}
 
-		public boolean salvarEEnviarNotificacao(Notificacao notificacao, boolean versaoPaga) {
+	public boolean salvarEEnviarNotificacao(Notificacao notificacao, boolean versaoPaga) {
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
 				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
 		notificacao.setDispositivo(dispositivoBd);
@@ -127,12 +100,54 @@ public class NotificacaoService {
 					true, false, idUsuario, page);
 		} else {
 			return notificacaoRepository
-				.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdAndDadosExtrasIgnoreCaseContainingOrderByDataCriacaoDesc(
-						true, false, idUsuario, dadosExtras, page);
+					.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdAndDadosExtrasIgnoreCaseContainingOrderByDataCriacaoDesc(
+							true, false, idUsuario, dadosExtras, page);
 		}
 	}
 
 	public Page<Notificacao> listarNotificacoes(Long idUsuario, Pageable page) {
 		return notificacaoRepository.findAllByNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(idUsuario, page);
 	}
+
+	public boolean criarEEnviarNotificacoes(String titulo, String conteudo, String dadosExtras, Long idUsuarioDestino) {
+		Map<Long, Collection<Notificacao>> mapNotificacoesASeremEnviadas = new HashMap<>();
+		Collection<Dispositivo> dispositivosAtivos = dispositivoRepository.findAllByUsuarioIdAndDataExclusaoIsNull(idUsuarioDestino);
+		LOGGER.info(String.format("MensagemBatePapoService dispositivosAtivos.size[%s]", dispositivosAtivos.size()));
+		if (!dispositivosAtivos.isEmpty()) {
+			mapNotificacoesASeremEnviadas = criarNotificacoesASeremEnviadas(titulo, conteudo, dadosExtras, dispositivosAtivos);
+		}
+		LOGGER.info(String.format("MensagemBatePapoService mapNotificacoesASeremEnviadas.size[%s]", mapNotificacoesASeremEnviadas.size()));
+
+		return enviaNotificacoes(mapNotificacoesASeremEnviadas, false);
+	}
+
+	private Map<Long, Collection<Notificacao>> criarNotificacoesASeremEnviadas(String titulo, String conteudo, String dadosExtras,
+																			   Collection<Dispositivo> dispositivos) {
+		Map<Long, Collection<Notificacao>> mapNotificacoes = new HashMap<>();
+		Collection<Notificacao> notificacoes = new ArrayList<>();
+
+		Notificacao notificacaoOrigem = null;
+		for (Dispositivo dispositivo : dispositivos) {
+			Notificacao notificacao = new Notificacao();
+			notificacao.setTitulo(titulo);
+			notificacao.setConteudo(conteudo);
+			notificacao.setToken(dispositivo.getNumRegistro());
+			notificacao.setDispositivo(dispositivo);
+			notificacao.setDadosExtras(dadosExtras);
+			notificacao.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));
+			if (notificacaoOrigem != null) {
+				notificacao.setNotificacaoOrigem(notificacaoOrigem);
+			}
+			notificacao = notificacaoRepository.save(notificacao);
+			if (notificacoes.isEmpty()) {
+				notificacaoOrigem = notificacao;
+			}
+			notificacoes.add(notificacao);
+		}
+		if (notificacaoOrigem != null) {
+			mapNotificacoes.put(notificacaoOrigem.getId(), notificacoes);
+		}
+		return mapNotificacoes;
+	}
+
 }
