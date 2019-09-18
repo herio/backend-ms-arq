@@ -25,6 +25,9 @@ public class DispositivoService {
 	@Autowired
 	protected AutenticacaoService autenticacaoService;
 
+	@Autowired
+	protected ConfiguracaoNotificacaoService configuracaoNotificacaoService;
+
 	public Dispositivo salvarDispositivo(Long idUsuario, Dispositivo dispositivo) {
 		if (dispositivo.getId() == null) {
 			Optional<Dispositivo> dispositivoOpt = dispositivoRepository.findByNumRegistroAndSo(dispositivo.getNumRegistro(), dispositivo.getSo());
@@ -78,6 +81,8 @@ public class DispositivoService {
 			usuario.setSistema(sistema.name());
 			usuario.setLogin(numRegistro);
 			usuario = usuarioRepository.save(usuario);
+
+			configuracaoNotificacaoService.criaConfiguracaoNotificacaoDefault(usuario.getId(), sistema);
 		}
 		return usuario;
 	}

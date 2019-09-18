@@ -2,6 +2,7 @@ package br.com.herio.arqmsmobile.service;
 
 import java.util.NoSuchElementException;
 
+import br.com.herio.arqmsmobile.dto.EnumSistema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +51,15 @@ public class ConfiguracaoNotificacaoService {
 			return null;
 		}
 	}
+
+	public void criaConfiguracaoNotificacaoDefault(Long idUsuario, EnumSistema sistema) {
+		ConfiguracaoNotificacao configuracaoNotificacao = new ConfiguracaoNotificacao();
+		configuracaoNotificacao.setReceberNotificacao(true);
+		ConfiguracaoNotificacaoItem configItem = EnumSistema.getConfigItemDefault(sistema);
+		if (configItem != null) {
+			configuracaoNotificacao.getItens().add(configItem);
+		}
+		salvarConfiguracao(idUsuario, configuracaoNotificacao);
+	}
+
 }

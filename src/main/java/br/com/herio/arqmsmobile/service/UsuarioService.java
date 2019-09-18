@@ -77,9 +77,9 @@ public class UsuarioService {
 		// gera ativação
 		ativacaoUsuarioService.gerarAtivacaoUsuario(usuario.getId());
 
-		// criaconfignotificacao default
+		// criaConfiguracaoNotificacaoDefault
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
-		criaConfigNotificacaoDefault(usuario.getId(), sistema);
+		configuracaoNotificacaoService.criaConfiguracaoNotificacaoDefault(usuario.getId(), sistema);
 
 		// enviaEmail
 		enviadorEmailService.enviaEmailBoasVindas(usuario, sistema);
@@ -219,16 +219,6 @@ public class UsuarioService {
 		usuarioBd.setInstagram(usuario.getInstagram());
 		usuarioBd.setFacebook(usuario.getFacebook());
 		usuarioBd.setCpf(usuario.getCpf());
-	}
-
-	private void criaConfigNotificacaoDefault(Long idUsuario, EnumSistema sistema) {
-		ConfiguracaoNotificacao configuracaoNotificacao = new ConfiguracaoNotificacao();
-		configuracaoNotificacao.setReceberNotificacao(true);
-		ConfiguracaoNotificacaoItem configItem = EnumSistema.getConfigItemDefault(sistema);
-		if (configItem != null) {
-			configuracaoNotificacao.getItens().add(configItem);
-		}
-		configuracaoNotificacaoService.salvarConfiguracao(idUsuario, configuracaoNotificacao);
 	}
 
 }
