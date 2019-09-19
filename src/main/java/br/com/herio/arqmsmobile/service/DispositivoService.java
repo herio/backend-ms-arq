@@ -29,6 +29,8 @@ public class DispositivoService {
 	protected ConfiguracaoNotificacaoService configuracaoNotificacaoService;
 
 	public Dispositivo salvarDispositivo(Long idUsuario, Dispositivo dispositivo) {
+		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 		if (dispositivo.getId() == null) {
 			Optional<Dispositivo> dispositivoOpt = dispositivoRepository.findByNumRegistroAndSo(dispositivo.getNumRegistro(), dispositivo.getSo());
 			if (dispositivoOpt.isPresent()) {
@@ -36,7 +38,6 @@ public class DispositivoService {
 				dispositivo = dispositivoOpt.get();
 				dispositivo.setDataExclusao(null);
 			}
-			dispositivo.setUsuario(usuarioRepository.findById(idUsuario).get());
 		} else {
 			// atualiza registrationID e retira data exclusao
 			String novoNumRegistro = dispositivo.getNumRegistro();
@@ -44,6 +45,7 @@ public class DispositivoService {
 			dispositivo.setNumRegistro(novoNumRegistro);
 			dispositivo.setDataExclusao(null);
 		}
+		dispositivo.setUsuario(usuario);
 		dispositivo.valida();
 		return dispositivoRepository.save(dispositivo);
 	}
