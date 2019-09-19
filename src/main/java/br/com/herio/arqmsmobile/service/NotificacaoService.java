@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
+import br.com.herio.arqmsmobile.dominio.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.herio.arqmsmobile.dominio.Dispositivo;
-import br.com.herio.arqmsmobile.dominio.DispositivoRepository;
-import br.com.herio.arqmsmobile.dominio.Notificacao;
-import br.com.herio.arqmsmobile.dominio.NotificacaoRepository;
 import br.com.herio.arqmsmobile.infra.firebase.FirebaseFachada;
 
 @Service
 public class NotificacaoService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(NotificacaoService.class);
+
+	@Autowired
+	protected LogNotificacaoRepository logNotificacaoRepository;
 
 	@Autowired
 	private DispositivoRepository dispositivoRepository;
@@ -30,7 +29,48 @@ public class NotificacaoService {
 	@Autowired
 	private FirebaseFachada firebaseFachada;
 
-	public boolean enviaNotificacoes(Map<Long, Collection<Notificacao>> notificacoes, boolean versaoPaga) {
+	private StringBuilder log = new StringBuilder("");
+
+	public boolean salvarEEnviarNotificacao(Notificacao notificacao, boolean versaoPaga) {
+		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
+				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
+		notificacao.setDispositivo(dispositivoBd);
+		notificacao.setToken(dispositivoBd.getNumRegistro());
+		notificacao = notificacaoRepository.save(notificacao);
+		boolean enviou = firebaseFachada.enviaNotificacao(notificacao, versaoPaga);
+		if (enviou) {
+			notificacao.setEnviada(true);
+			notificacao.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));
+			notificacaoRepository.save(notificacao);
+		}
+		return enviou;
+	}
+
+	public boolean salvarEEnviarNotificacoes(String titulo, String conteudo, String dadosExtras, Long idUsuarioDestino, boolean versaoPaga) {
+		this.log = new StringBuilder("");
+		this.log.append(String.format("%n salvarEEnviarNotificacoes titulo[%s] conteudo[%s] dadosExtras[%s] idUsuarioDestino[%s] versaoPaga[%s]",
+				titulo, conteudo, dadosExtras, idUsuarioDestino, versaoPaga));
+
+		Map<Long, Collection<Notificacao>> mapNotificacoesASeremEnviadas = new HashMap<>();
+		Collection<Dispositivo> dispositivosAtivos = dispositivoRepository.findAllByUsuarioIdAndDataExclusaoIsNull(idUsuarioDestino);
+		this.log.append(String.format("%n dispositivosAtivos.size[%s]", dispositivosAtivos.size()));
+
+		if (!dispositivosAtivos.isEmpty()) {
+			mapNotificacoesASeremEnviadas = criarNotificacoesASeremEnviadas(titulo, conteudo, dadosExtras, dispositivosAtivos);
+		}
+		this.log.append(String.format("%n mapNotificacoesASeremEnviadas.size[%s]", mapNotificacoesASeremEnviadas.size()));
+
+		boolean enviou = enviarNotificacoes(mapNotificacoesASeremEnviadas, versaoPaga);
+
+		// salva log em banco
+		LogNotificacao logNotificacao = new LogNotificacao();
+		logNotificacao.setLog(this.log.toString());
+		logNotificacaoRepository.save(logNotificacao);
+
+		return enviou;
+	}
+
+	public boolean enviarNotificacoes(Map<Long, Collection<Notificacao>> notificacoes, boolean versaoPaga) {
 		boolean enviou = false;
 		for (Map.Entry<Long, Collection<Notificacao>> entryNotificacoes : notificacoes.entrySet()) {
 			boolean notificacaoOrigemEnviada = false;
@@ -38,6 +78,8 @@ public class NotificacaoService {
 			for (Notificacao notificacaoBd : entryNotificacoes.getValue()) {
 				try {
 					enviou = firebaseFachada.enviaNotificacao(notificacaoBd, versaoPaga);
+					this.log.append(String.format("%n enviarNotificacoes enviou[%s] notificacao[%s]", enviou, notificacaoBd));
+
 					if (enviou) {
 						if (notificacaoBd.getNotificacaoOrigem() == null) {
 							notificacaoOrigemEnviada = true;
@@ -56,29 +98,15 @@ public class NotificacaoService {
 
 					}
 				} catch (RuntimeException e) {
-					LOGGER.error("Erro ao enviar notificação para dispositivo", notificacaoBd.getToken(), e);
+					this.log.append(String.format("%n enviarNotificacoes ERRO e.getMessage[%s] notificacao[%s]", e.getMessage(), notificacaoBd));
 					if (e.getMessage().contains("Requested entity was not found") ||
 							e.getMessage().contains("The registration token is not a valid FCM registration token")) {
+						this.log.append(String.format("%n enviarNotificacoes ERRO excluindo dispositivo[%s]", notificacaoBd.getDispositivo()));
 						notificacaoBd.getDispositivo().setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
 						dispositivoRepository.save(notificacaoBd.getDispositivo());
 					}
 				}
 			}
-		}
-		return enviou;
-	}
-
-	public boolean salvarEEnviarNotificacao(Notificacao notificacao, boolean versaoPaga) {
-		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
-				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
-		notificacao.setDispositivo(dispositivoBd);
-		notificacao.setToken(dispositivoBd.getNumRegistro());
-		notificacao = notificacaoRepository.save(notificacao);
-		boolean enviou = firebaseFachada.enviaNotificacao(notificacao, versaoPaga);
-		if (enviou) {
-			notificacao.setEnviada(true);
-			notificacao.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));
-			notificacaoRepository.save(notificacao);
 		}
 		return enviou;
 	}
@@ -107,18 +135,6 @@ public class NotificacaoService {
 
 	public Page<Notificacao> listarNotificacoes(Long idUsuario, Pageable page) {
 		return notificacaoRepository.findAllByNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(idUsuario, page);
-	}
-
-	public boolean criarEEnviarNotificacoes(String titulo, String conteudo, String dadosExtras, Long idUsuarioDestino) {
-		Map<Long, Collection<Notificacao>> mapNotificacoesASeremEnviadas = new HashMap<>();
-		Collection<Dispositivo> dispositivosAtivos = dispositivoRepository.findAllByUsuarioIdAndDataExclusaoIsNull(idUsuarioDestino);
-		LOGGER.info(String.format("MensagemBatePapoService dispositivosAtivos.size[%s]", dispositivosAtivos.size()));
-		if (!dispositivosAtivos.isEmpty()) {
-			mapNotificacoesASeremEnviadas = criarNotificacoesASeremEnviadas(titulo, conteudo, dadosExtras, dispositivosAtivos);
-		}
-		LOGGER.info(String.format("MensagemBatePapoService mapNotificacoesASeremEnviadas.size[%s]", mapNotificacoesASeremEnviadas.size()));
-
-		return enviaNotificacoes(mapNotificacoesASeremEnviadas, false);
 	}
 
 	private Map<Long, Collection<Notificacao>> criarNotificacoesASeremEnviadas(String titulo, String conteudo, String dadosExtras,

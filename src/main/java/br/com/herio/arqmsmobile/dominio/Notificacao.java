@@ -159,4 +159,13 @@ public class Notificacao extends Entidade implements Serializable {
 		return map;
 	}
 
+	@Override
+	public String toString() {
+		return "Notificacao{" +
+				"titulo='" + titulo + '\'' +
+				", conteudo='" + conteudo + '\'' +
+				", dadosExtras='" + dadosExtras + '\'' +
+				", token='" + token + '\'' +
+				'}';
+	}
 }
