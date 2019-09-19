@@ -90,7 +90,7 @@ public class Dispositivo extends Entidade implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("%nDispositivo [id=%s, idUsuario=%s, numRegistro=%s, so=%s, sistema=%s]", getId(),
+		return String.format("%n Dispositivo [id=%s, idUsuario=%s, numRegistro=%s, so=%s]", getId(),
 				usuario.getId(), numRegistro, so);
 	}
 
