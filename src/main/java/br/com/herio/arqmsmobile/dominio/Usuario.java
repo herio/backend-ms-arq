@@ -64,11 +64,22 @@ public class Usuario extends Entidade implements Serializable {
 	@Column(name = "ATIVADO")
 	private boolean ativado;
 
+	@Column(name = "ADMIN")
+	private boolean admin;
+
 	@Column(name = "DATA_EXCLUSAO")
 	private LocalDateTime dataExclusao;
 
 	@Transient
 	private String token;
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 
 	public String getIdDriveFoto() {
 		return idDriveFoto;

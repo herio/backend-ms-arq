@@ -2,16 +2,22 @@ package br.com.herio.arqmsmobile.service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-import br.com.herio.arqmsmobile.dominio.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.herio.arqmsmobile.dominio.Dispositivo;
+import br.com.herio.arqmsmobile.dominio.DispositivoRepository;
+import br.com.herio.arqmsmobile.dominio.LogNotificacao;
+import br.com.herio.arqmsmobile.dominio.LogNotificacaoRepository;
+import br.com.herio.arqmsmobile.dominio.Notificacao;
+import br.com.herio.arqmsmobile.dominio.NotificacaoRepository;
 import br.com.herio.arqmsmobile.infra.firebase.FirebaseFachada;
 
 @Service
@@ -123,7 +129,7 @@ public class NotificacaoService {
 	}
 
 	public Page<Notificacao> listarNotificacoesEnviadasNaoExcluidas(Long idUsuario, String dadosExtras, Pageable page) {
-		if(dadosExtras == null) {
+		if (dadosExtras == null) {
 			return notificacaoRepository.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(
 					true, false, idUsuario, page);
 		} else {
@@ -138,7 +144,7 @@ public class NotificacaoService {
 	}
 
 	private Map<Long, Collection<Notificacao>> criarNotificacoesASeremEnviadas(String titulo, String conteudo, String dadosExtras,
-																			   Collection<Dispositivo> dispositivos) {
+			Collection<Dispositivo> dispositivos) {
 		Map<Long, Collection<Notificacao>> mapNotificacoes = new HashMap<>();
 		Collection<Notificacao> notificacoes = new ArrayList<>();
 

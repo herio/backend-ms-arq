@@ -15,8 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.herio.arqmsmobile.dominio.ArquivoUsuario;
 import br.com.herio.arqmsmobile.dominio.ArquivoUsuarioRepository;
-import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
-import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
@@ -213,6 +211,7 @@ public class UsuarioService {
 		usuarioBd.setNome(usuario.getNome());
 		usuarioBd.setSenha(Base64.getEncoder().encodeToString(usuario.getSenha().getBytes()));
 		usuarioBd.setAtivado(usuario.isAtivado());
+		usuarioBd.setAdmin(usuario.isAdmin());
 
 		usuarioBd.setTelefone(usuario.getTelefone());
 		usuarioBd.setCelular(usuario.getCelular());
