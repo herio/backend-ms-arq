@@ -45,6 +45,9 @@ public class UsuarioService {
 	@Autowired
 	protected ConfiguracaoNotificacaoService configuracaoNotificacaoService;
 
+	@Autowired
+	private PrincipalService principalService;
+
 	public Usuario criarUsuario(Usuario usuario) {
 		if (usuario.getId() != null) {
 			throw new IllegalArgumentException("Informe um novo usuário (sem id)!");
@@ -85,9 +88,9 @@ public class UsuarioService {
 	}
 
 	public Usuario atualizarUsuario(Long idUsuario, Usuario usuario) {
-		if (idUsuario == null) {
-			throw new IllegalArgumentException("Informe um usuário já existente (com id)!");
-		}
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
 		// atualiza
 		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
 		atualizaUsuario(usuarioBd, usuario);
@@ -114,6 +117,9 @@ public class UsuarioService {
 	}
 
 	public void removerUsuario(Long idUsuario) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		usuario.setAtivado(false);
 		usuario.setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
@@ -121,6 +127,9 @@ public class UsuarioService {
 	}
 
 	public Collection<Usuario> listarUsuarios(boolean ativos) {
+		// somente admin pode realizar essa operação
+		principalService.validaPermissaoUsuario(null);
+
 		Stream<Usuario> stream = StreamSupport.stream(usuarioRepository.findAll().spliterator(), false);
 		if (ativos) {
 			stream = stream.filter(usuario -> usuario.isAtivado());
@@ -134,6 +143,9 @@ public class UsuarioService {
 	}
 
 	public Usuario uploadFoto(Long idUsuario, MultipartFile mfile) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 
@@ -151,6 +163,9 @@ public class UsuarioService {
 	}
 
 	public boolean deleteFoto(Long idUsuario) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
 		boolean removeu = false;
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		if (usuario.getIdDriveFoto() != null) {
@@ -168,6 +183,9 @@ public class UsuarioService {
 	}
 
 	public ArquivoUsuario uploadArquivo(Long idUsuario, MultipartFile mfile, String atributos) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 		ArquivoUsuario arquivo = new ArquivoUsuario();
@@ -186,6 +204,9 @@ public class UsuarioService {
 	}
 
 	public boolean deleteArquivo(Long idUsuario, String idDrive) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
 		ArquivoUsuario arquivo = arquivoUsuarioRepository.findByIdDrive(idDrive).get();
 		if (!arquivo.getUsuario().getId().equals(idUsuario)) {
 			throw new ExcecaoNegocio("Apenas o próprio Usuário pode remover esse arquivo!");

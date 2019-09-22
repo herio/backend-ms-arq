@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.herio.arqmsmobile.dominio.Dispositivo;
 import br.com.herio.arqmsmobile.dominio.DispositivoRepository;
@@ -28,7 +27,13 @@ public class DispositivoService {
 	@Autowired
 	protected ConfiguracaoNotificacaoService configuracaoNotificacaoService;
 
+	@Autowired
+	private PrincipalService principalService;
+
 	public Dispositivo salvarDispositivo(Long idUsuario, Dispositivo dispositivo) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 		if (dispositivo.getId() == null) {
@@ -50,7 +55,10 @@ public class DispositivoService {
 		return dispositivoRepository.save(dispositivo);
 	}
 
-	public boolean removerDispositivo(@PathVariable Long id) {
+	public boolean removerDispositivo(Long idUsuario, Long id) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
 		Dispositivo dispositivo = dispositivoRepository.findById(id).get();
 		dispositivo.setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
 		dispositivoRepository.save(dispositivo);

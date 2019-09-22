@@ -44,7 +44,7 @@ public class DispositivosController {
 
 	@ApiOperation("removerDispositivo")
 	@DeleteMapping("/{id}")
-	public boolean removerDispositivo(@PathVariable Long id) {
-		return dispositivoService.removerDispositivo(id);
+	public boolean removerDispositivo(@PathVariable Long idUsuario, @PathVariable Long id) {
+		return dispositivoService.removerDispositivo(idUsuario, id);
 	}
 }
