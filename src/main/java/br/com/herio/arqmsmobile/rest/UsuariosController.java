@@ -1,6 +1,7 @@
 package br.com.herio.arqmsmobile.rest;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,6 +40,18 @@ public class UsuariosController {
 	@PostMapping("/{idUsuario}/admin")
 	public boolean tornarAdmin(@PathVariable Long idUsuario) {
 		return usuarioService.tornarAdmin(idUsuario);
+	}
+
+	@ApiOperation("listarUsuariosComCadastroCompleto")
+	@GetMapping("/cadastrocompleto")
+	public List<Usuario> listarUsuariosComCadastroCompleto() {
+		return usuarioRepository.findAllByNomeNotNullAndEmailNotNullOrderByIdDesc();
+	}
+
+	@ApiOperation("pesquisarUsuariosPorNomeOuEmail")
+	@GetMapping("/pesquisa")
+	public List<Usuario> pesquisarUsuariosPorNomeOuEmail(@RequestParam String nome, @RequestParam String email) {
+		return usuarioRepository.findByNomeContainingIgnoreCaseOrEmailContainingIgnoreCaseOrderByIdDesc(nome, email);
 	}
 
 	@ApiOperation("removerUsuario")
