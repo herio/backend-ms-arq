@@ -102,6 +102,16 @@ public class UsuarioService {
 		return usuarioBd;
 	}
 
+	public boolean tornarAdmin(Long idUsuario) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
+		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
+		usuarioBd.setAdmin(true);
+		usuarioRepository.save(usuarioBd);
+		return true;
+	}
+
 	public String recuperarSenha(String email, EnumSistema sistema) {
 		Optional<Usuario> usuarioOpt = usuarioRepository.findByEmailAndSistema(email, sistema.name());
 		if (!usuarioOpt.isPresent()) {

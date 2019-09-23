@@ -31,9 +31,6 @@ public class DispositivoService {
 	private PrincipalService principalService;
 
 	public Dispositivo salvarDispositivo(Long idUsuario, Dispositivo dispositivo) {
-		// somente usuário e admin podem realizar essa operação
-		principalService.validaPermissaoUsuario(idUsuario);
-
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 		if (dispositivo.getId() == null) {

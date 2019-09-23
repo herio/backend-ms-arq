@@ -32,18 +32,18 @@ public class UsuariosController {
 	@ApiOperation("atualizarUsuario")
 	@PostMapping("/{idUsuario}")
 	public Usuario atualizarUsuario(@PathVariable Long idUsuario, @RequestBody Usuario usuario) {
-		if (idUsuario == null) {
-			throw new IllegalArgumentException("Informe um usuário válido!");
-		}
 		return usuarioService.atualizarUsuario(idUsuario, usuario);
+	}
+
+	@ApiOperation("tornarAdmin")
+	@PostMapping("/{idUsuario}/admin")
+	public boolean tornarAdmin(@PathVariable Long idUsuario) {
+		return usuarioService.tornarAdmin(idUsuario);
 	}
 
 	@ApiOperation("removerUsuario")
 	@DeleteMapping("/{idUsuario}")
 	public void removerUsuario(@PathVariable Long idUsuario) {
-		if (idUsuario == null) {
-			throw new IllegalArgumentException("Informe um usuário válido!");
-		}
 		usuarioService.removerUsuario(idUsuario);
 	}
 
