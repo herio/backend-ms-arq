@@ -2,7 +2,6 @@ package br.com.herio.arqmsmobile.service;
 
 import java.util.NoSuchElementException;
 
-import br.com.herio.arqmsmobile.dto.EnumSistema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem;
 import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoRepository;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
+import br.com.herio.arqmsmobile.dto.EnumSistema;
 
 @Service
 public class ConfiguracaoNotificacaoService {
@@ -35,11 +35,13 @@ public class ConfiguracaoNotificacaoService {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		configBd.setUsuario(usuario);
 		configBd.setReceberNotificacao(configuracaoNotificacao.isReceberNotificacao());
-		for (ConfiguracaoNotificacaoItem item : configuracaoNotificacao.getItens()) {
-			item.setConfiguracao(configBd);
+		if (configuracaoNotificacao.getItens() != null) {
+			for (ConfiguracaoNotificacaoItem item : configuracaoNotificacao.getItens()) {
+				item.setConfiguracao(configBd);
+			}
+			configBd.getItens().clear();
+			configBd.getItens().addAll(configuracaoNotificacao.getItens());
 		}
-		configBd.getItens().clear();
-		configBd.getItens().addAll(configuracaoNotificacao.getItens());
 		return configuracaoNotificacaoRepository.save(configBd);
 	}
 
