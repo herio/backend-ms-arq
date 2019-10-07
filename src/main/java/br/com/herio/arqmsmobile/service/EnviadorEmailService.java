@@ -1,20 +1,21 @@
 package br.com.herio.arqmsmobile.service;
 
-import java.util.Base64;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-
+import br.com.herio.arqmsmobile.dominio.Usuario;
+import br.com.herio.arqmsmobile.dto.EnumSistema;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import br.com.herio.arqmsmobile.dominio.Usuario;
-import br.com.herio.arqmsmobile.dto.EnumSistema;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.util.Base64;
 
 @Service
 public class EnviadorEmailService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(EnviadorEmailService.class);
 
 	@Autowired
 	protected JavaMailSender javaMailSender;
@@ -54,7 +55,7 @@ public class EnviadorEmailService {
 				javaMailSender.send(msg);
 			}
 		} catch (MessagingException e) {
-			throw new RuntimeException("Erro ao enviar email", e);
+			LOGGER.error("EnviadorEmailService Erro ao enviar email", e);
 		}
 	}
 
@@ -76,7 +77,7 @@ public class EnviadorEmailService {
 				javaMailSender.send(msg);
 			}
 		} catch (MessagingException e) {
-			throw new RuntimeException("Erro ao enviar email", e);
+			LOGGER.error("EnviadorEmailService Erro ao enviar email", e);
 		}
 	}
 
