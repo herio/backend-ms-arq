@@ -34,6 +34,9 @@ public class NotificacaoService {
 	private EnviadorEmailService enviadorEmailService;
 
 	@Autowired
+	private ConfiguracaoNotificacaoService configuracaoNotificacaoService;
+
+	@Autowired
 	private FirebaseFachada firebaseFachada;
 
 	private StringBuilder log = new StringBuilder("");
@@ -55,27 +58,32 @@ public class NotificacaoService {
 
 	public boolean salvarEEnviarNotificacoes(String titulo, String conteudo, String dadosExtras, Long idUsuarioDestino, boolean versaoPaga,
 			 boolean enviarEmail) {
+		boolean enviou = false;
 		this.log = new StringBuilder("");
 		this.log.append(String.format("%n salvarEEnviarNotificacoes titulo[%s] conteudo[%s] dadosExtras[%s] idUsuarioDestino[%s] versaoPaga[%s]",
 				titulo, conteudo, dadosExtras, idUsuarioDestino, versaoPaga));
 
-		Map<Long, Collection<Notificacao>> mapNotificacoesASeremEnviadas = new HashMap<>();
-		Collection<Dispositivo> dispositivosAtivos = dispositivoRepository.findAllByUsuarioIdAndDataExclusaoIsNull(idUsuarioDestino);
-		this.log.append(String.format("%n dispositivosAtivos.size[%s]", dispositivosAtivos.size()));
-
-		if (!dispositivosAtivos.isEmpty()) {
-			mapNotificacoesASeremEnviadas = criarNotificacoesASeremEnviadas(titulo, conteudo, dadosExtras, dispositivosAtivos);
+		ConfiguracaoNotificacao configuracaoNotificacao = configuracaoNotificacaoService.recuperarConfiguracao(idUsuarioDestino);
+		if(configuracaoNotificacao != null && configuracaoNotificacao.isReceberNotificacao()) {
+			Map<Long, Collection<Notificacao>> mapNotificacoesASeremEnviadas = new HashMap<>();
+			Collection<Dispositivo> dispositivosAtivos = dispositivoRepository.findAllByUsuarioIdAndDataExclusaoIsNull(idUsuarioDestino);
+			this.log.append(String.format("%n dispositivosAtivos.size[%s]", dispositivosAtivos.size()));
+			if (!dispositivosAtivos.isEmpty()) {
+				mapNotificacoesASeremEnviadas = criarNotificacoesASeremEnviadas(titulo, conteudo, dadosExtras, dispositivosAtivos);
+			}
+			this.log.append(String.format("%n mapNotificacoesASeremEnviadas.size[%s]", mapNotificacoesASeremEnviadas.size()));
+			enviou = enviarNotificacoes(mapNotificacoesASeremEnviadas, versaoPaga);
+		} else {
+			this.log.append(String.format("%n configuracaoNotificacao.isReceberNotificacao[%s]",
+				configuracaoNotificacao == null ? "null" : configuracaoNotificacao.isReceberNotificacao()));
 		}
-		this.log.append(String.format("%n mapNotificacoesASeremEnviadas.size[%s]", mapNotificacoesASeremEnviadas.size()));
-
-		boolean enviou = enviarNotificacoes(mapNotificacoesASeremEnviadas, versaoPaga);
 
 		// salva log em banco
 		LogNotificacao logNotificacao = new LogNotificacao();
 		logNotificacao.setLog(this.log.toString());
 		logNotificacaoRepository.save(logNotificacao);
 
-		if(enviou && enviarEmail) {
+		if(enviarEmail) {
 			Usuario usuario = usuarioRepository.findById(idUsuarioDestino).get();
 			enviadorEmailService.enviaEmailParaUsuario(titulo, conteudo, usuario);
 		}
