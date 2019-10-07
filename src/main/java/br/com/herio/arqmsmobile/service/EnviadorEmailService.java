@@ -59,6 +59,26 @@ public class EnviadorEmailService {
 		}
 	}
 
+	public void enviaEmailParaUsuario(String assunto, String conteudo, Usuario usuario) {
+		try {
+			if (usuario.getEmail() != null) {
+				EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
+				MimeMessage msg = javaMailSender.createMimeMessage();
+				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(),assunto);
+
+				String email = new StringBuilder()
+						.append(addHeader(sistema.getIcone(), String.format("%s - atualização", sistema.getNome())))
+						.append(conteudo)
+						.toString();
+				helper.setText(email, true);
+
+				javaMailSender.send(msg);
+			}
+		} catch (MessagingException e) {
+			LOGGER.error("EnviadorEmailService Erro ao enviar email", e);
+		}
+	}
+
 	public void enviaEmailAtualizacaoDados(Usuario usuario) {
 		try {
 			if (usuario.getEmail() != null) {

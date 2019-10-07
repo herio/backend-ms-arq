@@ -7,17 +7,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.herio.arqmsmobile.dominio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.herio.arqmsmobile.dominio.Dispositivo;
-import br.com.herio.arqmsmobile.dominio.DispositivoRepository;
-import br.com.herio.arqmsmobile.dominio.LogNotificacao;
-import br.com.herio.arqmsmobile.dominio.LogNotificacaoRepository;
-import br.com.herio.arqmsmobile.dominio.Notificacao;
-import br.com.herio.arqmsmobile.dominio.NotificacaoRepository;
 import br.com.herio.arqmsmobile.infra.firebase.FirebaseFachada;
 
 @Service
@@ -30,7 +25,13 @@ public class NotificacaoService {
 	private DispositivoRepository dispositivoRepository;
 
 	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
 	private NotificacaoRepository notificacaoRepository;
+
+	@Autowired
+	private EnviadorEmailService enviadorEmailService;
 
 	@Autowired
 	private FirebaseFachada firebaseFachada;
@@ -52,7 +53,8 @@ public class NotificacaoService {
 		return enviou;
 	}
 
-	public boolean salvarEEnviarNotificacoes(String titulo, String conteudo, String dadosExtras, Long idUsuarioDestino, boolean versaoPaga) {
+	public boolean salvarEEnviarNotificacoes(String titulo, String conteudo, String dadosExtras, Long idUsuarioDestino, boolean versaoPaga,
+			 boolean enviarEmail) {
 		this.log = new StringBuilder("");
 		this.log.append(String.format("%n salvarEEnviarNotificacoes titulo[%s] conteudo[%s] dadosExtras[%s] idUsuarioDestino[%s] versaoPaga[%s]",
 				titulo, conteudo, dadosExtras, idUsuarioDestino, versaoPaga));
@@ -72,6 +74,11 @@ public class NotificacaoService {
 		LogNotificacao logNotificacao = new LogNotificacao();
 		logNotificacao.setLog(this.log.toString());
 		logNotificacaoRepository.save(logNotificacao);
+
+		if(enviou && enviarEmail) {
+			Usuario usuario = usuarioRepository.findById(idUsuarioDestino).get();
+			enviadorEmailService.enviaEmailParaUsuario(titulo, conteudo, usuario);
+		}
 
 		return enviou;
 	}
