@@ -106,6 +106,7 @@ public class EnviadorEmailService {
 				.append("<td><img style='width:100px;height:100px;border-radius: 50%' src='").append(img).append("'/></td>")
 				.append("<td><b>Nome:</b> ").append(usuario.getNome())
 				.append("<br/><b>E-mail:</b> ").append(usuario.getEmail())
+				.append("<br/><b>Celular:</b> ").append(usuario.getCelular())
 				.append("<br/><b>Senha:</b> ").append(new String(Base64.getDecoder().decode(usuario.getSenha()))).append("</td>")
 				.append("</tr></table>")
 				.toString();
