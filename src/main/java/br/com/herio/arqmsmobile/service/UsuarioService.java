@@ -157,10 +157,20 @@ public class UsuarioService {
 		principalService.validaPermissaoUsuario(idUsuario);
 
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
+		String idDriveFotoAnterior = usuario.getIdDriveFoto();
+		String idDriveFotoThumbAnterior = usuario.getIdDriveFotoThumb();
 		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 
 		// upload
 		googleDriveFachada.uploadFile(idUsuario, mfile, sistema.getUploadFolder(), usuario, sistema);
+
+		// delete anteriores
+		if (idDriveFotoAnterior != null) {
+			googleDriveFachada.deleteFile(idDriveFotoAnterior);
+		}
+		if (idDriveFotoThumbAnterior != null) {
+			googleDriveFachada.deleteFile(idDriveFotoThumbAnterior);
+		}
 
 		usuarioRepository.save(usuario);
 
