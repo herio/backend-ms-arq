@@ -25,6 +25,8 @@ import br.com.herio.arqmsmobile.dominio.Notificacao;
 public class FirebaseFachada {
 	// https://firebase.google.com/docs/admin/setup#initialize_the_sdk
 	// https://firebase.google.com/docs/cloud-messaging/send-message#send_messages_to_specific_devices
+	// https://github.com/firebase/firebase-admin-java/blob/d8c611153cd92a6cf872b232667d65977113a13e/
+	// src/test/java/com/google/firebase/snippets/FirebaseMessagingSnippets.java
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(FirebaseFachada.class);
 
