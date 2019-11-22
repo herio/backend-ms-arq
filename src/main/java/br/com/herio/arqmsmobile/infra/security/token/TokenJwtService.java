@@ -49,6 +49,7 @@ public class TokenJwtService {
 				.compact();
 	}
 
+	@SuppressWarnings("unchecked")
 	public TokenSeguranca tokenJwtToTokenSeguranca(String tokenJwt) {
 		final Claims claims = parseClaimsJwt(tokenJwt);
 		String emissorToken = claims.getIssuer();
@@ -59,8 +60,7 @@ public class TokenJwtService {
 		Long idUsuario = claims.get("id", Long.class);
 		String nomeUsuario = claims.get("nu", String.class);
 
-		return new TokenSeguranca(dataExpiracaoToken, dataCriacaoToken, idUsuario, nomeUsuario, loginUsuario, roles,
-				emissorToken);
+		return new TokenSeguranca(dataExpiracaoToken, dataCriacaoToken, idUsuario, nomeUsuario, loginUsuario, roles, emissorToken);
 	}
 
 	public UserDetails tokenJwtToUserDetais(String token) {
@@ -82,8 +82,7 @@ public class TokenJwtService {
 
 		Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(rolesArray);
 
-		return new AppUserDetails(idUsuario, nomeUsuarioLogado, loginUsuario, password, authorities, accountNonExpired,
-				accountNonLocked, credentialsNonExpired, enabled);
+		return new AppUserDetails(idUsuario, nomeUsuarioLogado, loginUsuario, password, authorities, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled);
 	}
 
 	private Claims parseClaimsJwt(String tokenJwt) {

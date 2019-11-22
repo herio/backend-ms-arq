@@ -143,6 +143,7 @@ public class Notificacao extends Entidade implements Serializable {
 		return getDataEnvio() == null ? "" : getDataEnvio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, String> getMapDadosExtras() {
 		// dadosExtras: { "field1" : "value1", "field2" : "value2" }
 		Map<String, String> map = new HashMap<>();
