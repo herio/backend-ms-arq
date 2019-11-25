@@ -45,7 +45,7 @@ public class UsuariosController {
 	@ApiOperation("listarUsuariosComCadastroCompleto")
 	@GetMapping("/cadastrocompleto")
 	public List<Usuario> listarUsuariosComCadastroCompleto() {
-		return usuarioRepository.findAllByNomeNotNullAndEmailNotNullOrderByNomeDesc();
+		return usuarioRepository.findAllByNomeNotNullAndEmailNotNullOrderByNomeAsc();
 	}
 
 	@ApiOperation("pesquisarUsuariosPorNomeOuEmail")
