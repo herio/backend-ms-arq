@@ -144,10 +144,13 @@ Acessar BD prod:
 Comandos de BD úteis
 
     \dt //lista tabelas 
+    \dt advogado_comunitario. //lista tabelas de um schema
     \dn //lista schemas
     \d noticias_juridicas.notificacao; //desc table    
     drop schema noticias_juridicas cascade; //remove schema
     update noticias_juridicas.notificacao set data_envio = '2019-07-01 00:00:00-00' //atualizar
+    SHOW server_encoding;
+    SET client_encoding TO 'UTF8'; //atualizar encoding do banco
 
 Criar backup sql no pgadmin (caso não tenha flyway): 
 
