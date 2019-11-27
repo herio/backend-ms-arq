@@ -122,7 +122,12 @@ public class GoogleDriveFachada {
 			String mimeType = new Tika().detect(mFile.getOriginalFilename());
 
 			// gFile
-			java.io.File file = fileStorageService.storeFile(mFile);
+            java.io.File file = null;
+            if(mimeType != null && mimeType.contains("image")) {
+                file = imageResizer.salvaLocaleRedimensiona(mFile, 60);
+            } else {
+                file = fileStorageService.storeFile(mFile);
+            }
 			File fileMetadata = new File();
 			fileMetadata.setName(file.getName());
 			fileMetadata.setParents(Collections.singletonList(diretorioUsuario.getId()));
@@ -148,7 +153,7 @@ public class GoogleDriveFachada {
 			// gFileThumb
 			if (mimeType != null && mimeType.contains("image")) {
 				// redimensiona e salva imagem
-				java.io.File fileThumb = imageResizer.salvaLocaleRedimensiona(mFile, 30);
+				java.io.File fileThumb = imageResizer.salvaLocaleRedimensiona(mFile, 20);
 				File fileMetadataThumb = new File();
 				fileMetadataThumb.setName(fileThumb.getName());
 				fileMetadataThumb.setParents(Collections.singletonList(diretorioUsuario.getId()));
