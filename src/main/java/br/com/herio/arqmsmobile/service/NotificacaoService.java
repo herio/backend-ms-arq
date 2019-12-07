@@ -7,12 +7,20 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.herio.arqmsmobile.dominio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacao;
+import br.com.herio.arqmsmobile.dominio.Dispositivo;
+import br.com.herio.arqmsmobile.dominio.DispositivoRepository;
+import br.com.herio.arqmsmobile.dominio.LogNotificacao;
+import br.com.herio.arqmsmobile.dominio.LogNotificacaoRepository;
+import br.com.herio.arqmsmobile.dominio.Notificacao;
+import br.com.herio.arqmsmobile.dominio.NotificacaoRepository;
+import br.com.herio.arqmsmobile.dominio.Usuario;
+import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.infra.firebase.FirebaseFachada;
 
 @Service
@@ -41,7 +49,7 @@ public class NotificacaoService {
 
 	private StringBuilder log = new StringBuilder("");
 
-	public boolean salvarEEnviarNotificacao(Notificacao notificacao, boolean versaoPaga) {
+	public boolean salvarEEnviarNotificacaoParaDispositivo(Notificacao notificacao, boolean versaoPaga) {
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
 				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
 		notificacao.setDispositivo(dispositivoBd);
@@ -57,14 +65,14 @@ public class NotificacaoService {
 	}
 
 	public boolean salvarEEnviarNotificacoes(String titulo, String conteudo, String dadosExtras, Long idUsuarioDestino, boolean versaoPaga,
-			 boolean enviarEmail) {
+			boolean enviarEmail) {
 		boolean enviou = false;
 		this.log = new StringBuilder("");
 		this.log.append(String.format("%n salvarEEnviarNotificacoes titulo[%s] conteudo[%s] dadosExtras[%s] idUsuarioDestino[%s] versaoPaga[%s]",
 				titulo, conteudo, dadosExtras, idUsuarioDestino, versaoPaga));
 
 		ConfiguracaoNotificacao configuracaoNotificacao = configuracaoNotificacaoService.recuperarConfiguracao(idUsuarioDestino);
-		if(configuracaoNotificacao != null && configuracaoNotificacao.isReceberNotificacao()) {
+		if (configuracaoNotificacao != null && configuracaoNotificacao.isReceberNotificacao()) {
 			Map<Long, Collection<Notificacao>> mapNotificacoesASeremEnviadas = new HashMap<>();
 			Collection<Dispositivo> dispositivosAtivos = dispositivoRepository.findAllByUsuarioIdAndDataExclusaoIsNull(idUsuarioDestino);
 			this.log.append(String.format("%n dispositivosAtivos.size[%s]", dispositivosAtivos.size()));
@@ -75,7 +83,7 @@ public class NotificacaoService {
 			enviou = enviarNotificacoes(mapNotificacoesASeremEnviadas, versaoPaga);
 		} else {
 			this.log.append(String.format("%n configuracaoNotificacao.isReceberNotificacao[%s]",
-				configuracaoNotificacao == null ? "null" : configuracaoNotificacao.isReceberNotificacao()));
+					configuracaoNotificacao == null ? "null" : configuracaoNotificacao.isReceberNotificacao()));
 		}
 
 		// salva log em banco
@@ -83,7 +91,7 @@ public class NotificacaoService {
 		logNotificacao.setLog(this.log.toString());
 		logNotificacaoRepository.save(logNotificacao);
 
-		if(enviarEmail) {
+		if (enviarEmail) {
 			Usuario usuario = usuarioRepository.findById(idUsuarioDestino).get();
 			enviadorEmailService.enviaEmailParaUsuario(titulo, conteudo, usuario);
 		}
