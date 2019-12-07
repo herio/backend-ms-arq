@@ -24,7 +24,7 @@ public class NotificacoesController {
 	@Autowired
 	private NotificacaoService notificacaoService;
 
-	@ApiOperation("enviarNotificacao")
+	@ApiOperation("enviarNotificacaoParaDispositivo")
 	@PostMapping("/enviaparadispositivo")
 	public boolean enviarNotificacaoParaDispositivo(@RequestParam(required = false) boolean versaoPaga, @RequestBody Notificacao notificacao) {
 		return notificacaoService.salvarEEnviarNotificacaoParaDispositivo(notificacao, versaoPaga);
