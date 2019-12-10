@@ -68,21 +68,22 @@ public class NotificacaoService {
 			boolean enviarEmail) {
 		boolean enviou = false;
 		this.log = new StringBuilder("");
-		this.log.append(String.format("%n salvarEEnviarNotificacoes titulo[%s] conteudo[%s] dadosExtras[%s] idUsuarioDestino[%s] versaoPaga[%s]",
+		this.log.append(String.format(
+				">>> NotificacaoService salvarEEnviarNotificacoes titulo[%s] conteudo[%s] dadosExtras[%s] idUsuarioDestino[%s] versaoPaga[%s]%n",
 				titulo, conteudo, dadosExtras, idUsuarioDestino, versaoPaga));
 
 		ConfiguracaoNotificacao configuracaoNotificacao = configuracaoNotificacaoService.recuperarConfiguracao(idUsuarioDestino);
 		if (configuracaoNotificacao != null && configuracaoNotificacao.isReceberNotificacao()) {
 			Map<Long, Collection<Notificacao>> mapNotificacoesASeremEnviadas = new HashMap<>();
 			Collection<Dispositivo> dispositivosAtivos = dispositivoRepository.findAllByUsuarioIdAndDataExclusaoIsNull(idUsuarioDestino);
-			this.log.append(String.format("%n dispositivosAtivos.size[%s]", dispositivosAtivos.size()));
+			this.log.append(String.format(">>> NotificacaoService dispositivosAtivos.size[%s]%n", dispositivosAtivos.size()));
 			if (!dispositivosAtivos.isEmpty()) {
 				mapNotificacoesASeremEnviadas = criarNotificacoesASeremEnviadas(titulo, conteudo, dadosExtras, dispositivosAtivos);
 			}
-			this.log.append(String.format("%n mapNotificacoesASeremEnviadas.size[%s]", mapNotificacoesASeremEnviadas.size()));
-			enviou = enviarNotificacoes(mapNotificacoesASeremEnviadas, versaoPaga);
+			this.log.append(String.format(">>> NotificacaoService mapNotificacoesASeremEnviadas.size[%s]%n", mapNotificacoesASeremEnviadas.size()));
+			enviou = enviarNotificacoes(mapNotificacoesASeremEnviadas, versaoPaga, this.log);
 		} else {
-			this.log.append(String.format("%n configuracaoNotificacao.isReceberNotificacao[%s]",
+			this.log.append(String.format(">>> NotificacaoService configuracaoNotificacao.isReceberNotificacao[%s]%n",
 					configuracaoNotificacao == null ? "null" : configuracaoNotificacao.isReceberNotificacao()));
 		}
 
@@ -99,7 +100,7 @@ public class NotificacaoService {
 		return enviou;
 	}
 
-	public boolean enviarNotificacoes(Map<Long, Collection<Notificacao>> notificacoes, boolean versaoPaga) {
+	public boolean enviarNotificacoes(Map<Long, Collection<Notificacao>> notificacoes, boolean versaoPaga, StringBuilder log) {
 		boolean enviou = false;
 		for (Map.Entry<Long, Collection<Notificacao>> entryNotificacoes : notificacoes.entrySet()) {
 			boolean notificacaoOrigemEnviada = false;
@@ -107,7 +108,7 @@ public class NotificacaoService {
 			for (Notificacao notificacaoBd : entryNotificacoes.getValue()) {
 				try {
 					enviou = firebaseFachada.enviaNotificacao(notificacaoBd, versaoPaga);
-					this.log.append(String.format("%n enviarNotificacoes enviou[%s] notificacao[%s]", enviou, notificacaoBd));
+					log.append(String.format(">>> NotificacaoService enviarNotificacoes enviou[%s] notificacao[%s]%n", enviou, notificacaoBd));
 
 					if (enviou) {
 						if (notificacaoBd.getNotificacaoOrigem() == null) {
@@ -127,10 +128,12 @@ public class NotificacaoService {
 
 					}
 				} catch (RuntimeException e) {
-					this.log.append(String.format("%n enviarNotificacoes ERRO e.getMessage[%s] notificacao[%s]", e.getMessage(), notificacaoBd));
+					log.append(String.format(">>> NotificacaoService enviarNotificacoes ERRO e.getMessage[%s] notificacao[%s]%n", e.getMessage(),
+							notificacaoBd));
 					if (e.getMessage().contains("Requested entity was not found") ||
 							e.getMessage().contains("The registration token is not a valid FCM registration token")) {
-						this.log.append(String.format("%n enviarNotificacoes ERRO excluindo dispositivo[%s]", notificacaoBd.getDispositivo()));
+						log.append(String.format(">>> NotificacaoService enviarNotificacoes ERRO excluindo dispositivo[%s]%n",
+								notificacaoBd.getDispositivo()));
 						notificacaoBd.getDispositivo().setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
 						dispositivoRepository.save(notificacaoBd.getDispositivo());
 					}
