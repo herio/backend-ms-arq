@@ -198,4 +198,8 @@ public class NotificacaoService {
 		return mapNotificacoes;
 	}
 
+    public boolean removerNotificacao(Long idNotificacao) {
+        notificacaoRepository.deleteById(idNotificacao);
+        return true;
+    }
 }
