@@ -132,7 +132,7 @@ public class NotificacaoService {
 							notificacaoBd));
 					if (e.getMessage().contains("Requested entity was not found") ||
 							e.getMessage().contains("The registration token is not a valid FCM registration token")) {
-						log.append(String.format(">>> NotificacaoService enviarNotificacoes ERRO excluindo dispositivo[%s]\n",
+						log.append(String.format(">>> NotificacaoService enviarNotificacoes EXCLUIR dispositivo[%s]\n",
 								notificacaoBd.getDispositivo()));
 						notificacaoBd.getDispositivo().setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
 						dispositivoRepository.save(notificacaoBd.getDispositivo());
