@@ -35,9 +35,9 @@ public class LogNotificacoesController {
 		return logNotificacaoRepository.findByData(dataLog);
 	}
 
-    @ApiOperation("listarUltimoLogNotificacao")
+    @ApiOperation("recuperarUltimoLogNotificacao")
     @GetMapping("/ultimo")
-    public LogNotificacao listarUltimoLogNotificacao() {
+    public LogNotificacao recuperarUltimoLogNotificacao() {
         return logNotificacaoRepository.findTopByOrderByIdDesc();
     }
 
