@@ -108,7 +108,7 @@ public class NotificacaoService {
 			for (Notificacao notificacaoBd : entryNotificacoes.getValue()) {
 				try {
 					enviou = firebaseFachada.enviaNotificacao(notificacaoBd, versaoPaga);
-					log.append(String.format(">>> NotificacaoService enviarNotificacoes enviou[%s] \n\r notificacao[%s]\n", enviou, notificacaoBd));
+					log.append(String.format(">>> NotificacaoService enviarNotificacoes enviou[%s]\n   notificacao[%s]\n", enviou, notificacaoBd));
 
 					if (enviou) {
 						if (notificacaoBd.getNotificacaoOrigem() == null) {
