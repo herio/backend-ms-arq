@@ -14,4 +14,6 @@ public interface LogNotificacaoRepository extends CrudRepository<LogNotificacao,
 	List<LogNotificacao> findByData(@Param("dataCriacao") String dataCriacao);
 
 	List<LogNotificacao> findAll();
+
+	LogNotificacao findTopByOrderByIdDesc();
 }

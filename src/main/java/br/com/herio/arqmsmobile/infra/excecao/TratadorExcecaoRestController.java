@@ -24,7 +24,6 @@ public class TratadorExcecaoRestController {
 		// AccessDeniedException deve retornar http status 401
 		String causa = ExceptionUtils.getStackTrace(e);
 		return new DtoExcecao(e.getMessage(), causa);
-
 	}
 
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
@@ -33,7 +32,6 @@ public class TratadorExcecaoRestController {
 		// ExcecaoSessaoInvalida deve retornar http status 401
 		String causa = ExceptionUtils.getStackTrace(e);
 		return new DtoExcecao(e.getMessage(), causa);
-
 	}
 
 	@ResponseStatus(HttpStatus.PRECONDITION_FAILED)

@@ -35,6 +35,12 @@ public class LogNotificacoesController {
 		return logNotificacaoRepository.findByData(dataLog);
 	}
 
+    @ApiOperation("listarUltimoLogNotificacao")
+    @GetMapping("/ultimo")
+    public LogNotificacao listarUltimoLogNotificacao() {
+        return logNotificacaoRepository.findTopByOrderByIdDesc();
+    }
+
 	@ApiOperation("removerLogNotificacao")
 	@DeleteMapping("/{idLog}")
 	public void removerApp(@PathVariable Long idLog) {
