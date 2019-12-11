@@ -2,6 +2,7 @@ package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ public class LogNotificacao extends Entidade implements Serializable {
 
 	@JsonProperty
 	public String getDataFormatada() {
-		return getDataCriacao() == null ? "" : getDataCriacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+		return getDataCriacao() == null ? "" : getDataCriacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm", new Locale("pt", "BR")));
 	}
 
 }
