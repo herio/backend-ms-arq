@@ -124,7 +124,7 @@ public class GoogleDriveFachada {
 			// gFile
             java.io.File file = null;
             if(mimeType != null && mimeType.contains("image")) {
-                file = imageResizer.salvaLocaleRedimensiona(mFile, 60);
+                file = imageResizer.salvaLocaleRedimensiona(mFile, 80);
             } else {
                 file = fileStorageService.storeFile(mFile);
             }
@@ -155,7 +155,7 @@ public class GoogleDriveFachada {
 				// redimensiona e salva imagem
 				java.io.File fileThumb = imageResizer.salvaLocaleRedimensiona(mFile, 20);
 				File fileMetadataThumb = new File();
-				fileMetadataThumb.setName(fileThumb.getName());
+				fileMetadataThumb.setName("thumb" + fileThumb.getName());
 				fileMetadataThumb.setParents(Collections.singletonList(diretorioUsuario.getId()));
 				FileContent mediaContentThumb = new FileContent(mimeType, fileThumb);
 				File gFileThumb = service.files().create(fileMetadataThumb, mediaContentThumb)
