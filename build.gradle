@@ -101,6 +101,10 @@ publishing {
 		maven {
 			url 'file:./../backend-advogado-comunitario/repo'
 		}
+		
+		maven {
+			url 'file:./../backend-coach-concursos/repo'
+		}
 		mavenLocal()
 	}
 }
