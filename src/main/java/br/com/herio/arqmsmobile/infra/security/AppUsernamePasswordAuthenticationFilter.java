@@ -51,8 +51,8 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 				httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				return;
 			}
-			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
-					null, userDetails.getAuthorities());
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails
+					.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
 		chain.doFilter(request, response);
@@ -61,6 +61,10 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 	private String extraiTokenDoHeader(ServletRequest request) {
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		String url = httpRequest.getRequestURL().toString();
+		if (url.contains("/publico")) {
+			return null;
+		}
 		String authToken = httpRequest.getHeader(this.TOKEN_HEADER);
 		String tokenJwt = null;
 		if (authToken != null && !authToken.startsWith("Basic")) {
