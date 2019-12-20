@@ -144,7 +144,7 @@ Acessar BD prod:
 Comandos de BD úteis
 
     \dt //lista tabelas 
-    \dt advogado_comunitario. //lista tabelas de um schema
+    \dt advogado_comunitario.* //lista tabelas de um schema
     \dn //lista schemas
     \d noticias_juridicas.notificacao; //desc table    
     drop schema noticias_juridicas cascade; //remove schema
