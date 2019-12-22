@@ -122,12 +122,12 @@ public class GoogleDriveFachada {
 			String mimeType = new Tika().detect(mFile.getOriginalFilename());
 
 			// gFile
-            java.io.File file = null;
-            if(mimeType != null && mimeType.contains("image")) {
-                file = imageResizer.salvaLocaleRedimensiona(mFile, 80);
-            } else {
-                file = fileStorageService.storeFile(mFile);
-            }
+			java.io.File file = null;
+			if (mimeType != null && mimeType.contains("image")) {
+				file = imageResizer.salvaLocaleRedimensiona(mFile, 80);
+			} else {
+				file = fileStorageService.storeFile(mFile);
+			}
 			File fileMetadata = new File();
 			fileMetadata.setName(file.getName());
 			fileMetadata.setParents(Collections.singletonList(diretorioUsuario.getId()));
@@ -246,7 +246,7 @@ public class GoogleDriveFachada {
 	private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
 		InputStream in = GoogleDriveFachada.class.getResourceAsStream(credentialsFile);
 		if (in == null) {
-			LOGGER.debug("GoogleDriveFachada não iniciado. Resource not found: " + credentialsFile);
+			LOGGER.error("GoogleDriveFachada não iniciado. Resource not found: " + credentialsFile);
 		} else {
 			GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 			GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
