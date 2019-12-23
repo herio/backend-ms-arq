@@ -103,7 +103,7 @@ publishing {
 		}
 		
 		maven {
-			url 'file:./../backend-coach-concursos/repo'
+			url 'file:./../backend-coach-oab/repo'
 		}
 		mavenLocal()
 	}
