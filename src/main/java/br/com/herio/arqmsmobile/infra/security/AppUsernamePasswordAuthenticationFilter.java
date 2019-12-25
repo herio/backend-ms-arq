@@ -61,10 +61,6 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 	private String extraiTokenDoHeader(ServletRequest request) {
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		String url = httpRequest.getRequestURL().toString();
-		if (url.contains("/publico")) {
-			return null;
-		}
 		String authToken = httpRequest.getHeader(this.TOKEN_HEADER);
 		String tokenJwt = null;
 		if (authToken != null && !authToken.startsWith("Basic")) {

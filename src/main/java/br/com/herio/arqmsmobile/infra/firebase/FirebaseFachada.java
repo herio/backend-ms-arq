@@ -60,7 +60,7 @@ public class FirebaseFachada {
 						.build();
 				gratis = FirebaseApp.initializeApp(options, "gratis");
 			} else {
-				LOGGER.debug("FirebaseFachada não iniciado. credentialsFile, urlDatabase nulos ", credentialsFile, urlDatabase);
+				LOGGER.error("FirebaseFachada não iniciado. credentialsFile, urlDatabase nulos ", credentialsFile, urlDatabase);
 			}
 
 			if (credentialsFilePago != null && !"".equals(credentialsFilePago) && urlDatabasePago != null && !"".equals(urlDatabasePago)) {

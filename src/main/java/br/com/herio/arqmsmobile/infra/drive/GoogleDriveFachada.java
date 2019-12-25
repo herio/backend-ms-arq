@@ -74,10 +74,13 @@ public class GoogleDriveFachada {
 		try {
 			final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 			Credential credential = getCredentials(HTTP_TRANSPORT);
-			if (credential != null) {
+			if (credential == null) {
+				LOGGER.error("GoogleDriveFachada credential == null");
+			} else {
 				this.service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
 						.setApplicationName(appName)
 						.build();
+				LOGGER.info("GoogleDriveFachada credential carregada com sucesso");
 			}
 		} catch (GeneralSecurityException | IOException e) {
 			throw new RuntimeException("GoogleDriveFachada Erro ao conectar ao Drive", e);
