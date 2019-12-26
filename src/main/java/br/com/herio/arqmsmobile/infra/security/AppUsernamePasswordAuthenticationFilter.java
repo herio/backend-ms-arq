@@ -1,6 +1,9 @@
 package br.com.herio.arqmsmobile.infra.security;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,9 +21,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import br.com.herio.arqmsmobile.dominio.Usuario;
+import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
+import br.com.herio.arqmsmobile.infra.security.dto.DtoTokenAutenticacao;
 import br.com.herio.arqmsmobile.infra.security.token.TokenJwtService;
+import br.com.herio.arqmsmobile.service.PrincipalService;
 
 public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+	final private static Map<Long, DtoTokenAutenticacao> ULTIMAS_AUTENTICACOES = new HashMap<>();
 
 	final private String MSG_TOKEN_NAO_INFORMADO = "Token de autorizacao nao enviado";
 	final private String MSG_AUTHORIZATION_HEADER_INCORRETO = "Header do token de autorizacao esta incorreto ou inexistente";
@@ -30,6 +39,9 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 
 	@Autowired
 	private TokenJwtService tokenJwtService;
+
+	@Autowired
+	private PrincipalService principalService;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -46,6 +58,14 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 			UserDetails userDetails;
 			try {
 				userDetails = tokenJwtService.tokenJwtToUserDetais(token);
+
+				Usuario usuario = principalService.recuperaUsuarioAutenticado();
+				if (isAutenticacao(request)) {
+					criaDtoTokenAutenticacao(usuario, token);
+				} else {
+					validaAutenticacaoSimultanea(usuario, token);
+				}
+
 			} catch (AccessDeniedException ade) {
 				HttpServletResponse httpResponse = (HttpServletResponse) response;
 				httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -56,6 +76,35 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
 		chain.doFilter(request, response);
+	}
+
+	private boolean isAutenticacao(ServletRequest request) {
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		String url = httpRequest.getRequestURL().toString();
+		return url.contains("/publico/autenticacao");
+	}
+
+	private void criaDtoTokenAutenticacao(Usuario usuario, String token) {
+		DtoTokenAutenticacao dtoTokenAutenticacao = new DtoTokenAutenticacao();
+		dtoTokenAutenticacao.setIdUsuario(usuario.getId());
+		dtoTokenAutenticacao.setToken(token);
+		dtoTokenAutenticacao.setDataHora(LocalDateTime.now());
+		ULTIMAS_AUTENTICACOES.put(usuario.getId(), dtoTokenAutenticacao);
+	}
+
+	private void validaAutenticacaoSimultanea(Usuario usuario, String token) {
+		DtoTokenAutenticacao dtoTokenAutenticacao = ULTIMAS_AUTENTICACOES.get(usuario.getId());
+		if (dtoTokenAutenticacao == null) {
+			criaDtoTokenAutenticacao(usuario, token);
+		} else {
+			LocalDateTime dataLimite = LocalDateTime.now().minusHours(1);
+			if (!dtoTokenAutenticacao.getToken().equals(token) && dtoTokenAutenticacao.getDataHora().isAfter(dataLimite)) {
+				throw new ExcecaoNegocio("Você já está autenticado em outro dispositivo, faça uma nova autenticação para "
+						+ "acessar o app a partir desse dispositivo!");
+			} else {
+				ULTIMAS_AUTENTICACOES.remove(usuario.getId());
+			}
+		}
 	}
 
 	private String extraiTokenDoHeader(ServletRequest request) {
