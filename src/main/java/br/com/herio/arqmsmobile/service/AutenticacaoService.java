@@ -22,6 +22,9 @@ public class AutenticacaoService {
 	@Autowired
 	protected TokenJwtService tokenJwtService;
 
+	@Autowired
+	protected DispositivoService dispositivoService;
+
 	public Usuario autenticarUsuario(DtoAutenticacao dtoAutenticacao) {
 		Optional<Usuario> usuarioOpt = usuarioRepository
 				.findByLoginAndSistema(dtoAutenticacao.getLogin(), dtoAutenticacao.getSistema());
@@ -36,6 +39,12 @@ public class AutenticacaoService {
 			throw new ExcecaoNegocio("Senha inválida. Digite a senha corretamente!");
 		}
 		usuario.setToken(criaTokenJwt(usuario));
+
+		if (dtoAutenticacao.getNumRegistro() != null && dtoAutenticacao.getSo() != null) {
+			// criar/atualizar dispositivo do usuário na autenticação
+			dispositivoService.criarAtualizarDispositivoUsuario(usuario, dtoAutenticacao.getNumRegistro(), dtoAutenticacao.getSo());
+		}
+
 		return usuario;
 	}
 

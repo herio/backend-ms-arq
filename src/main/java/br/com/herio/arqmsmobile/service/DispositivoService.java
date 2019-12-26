@@ -12,6 +12,7 @@ import br.com.herio.arqmsmobile.dominio.DispositivoRepository;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
 import br.com.herio.arqmsmobile.dto.EnumSistema;
+import br.com.herio.arqmsmobile.dto.EnumTipoSO;
 
 @Service
 public class DispositivoService {
@@ -29,6 +30,25 @@ public class DispositivoService {
 
 	@Autowired
 	private PrincipalService principalService;
+
+	public Dispositivo criarAtualizarDispositivoUsuario(Usuario usuario, String numRegistro, EnumTipoSO so) {
+		Dispositivo dispositivo = null;
+		Optional<Dispositivo> dispositivoOpt = dispositivoRepository.findByNumRegistroAndSo(numRegistro, so);
+		if (dispositivoOpt.isPresent()) {
+			// dispositivo existente - atualiza
+			dispositivo = dispositivoOpt.get();
+			dispositivo.setUsuario(usuario);
+			dispositivo.setDataExclusao(null);
+		} else {
+			// dispositivo novo - cria
+			dispositivo = new Dispositivo();
+			dispositivo.setUsuario(usuario);
+			dispositivo.setNumRegistro(numRegistro);
+			dispositivo.setSo(so);
+		}
+		dispositivo.valida();
+		return dispositivoRepository.save(dispositivo);
+	}
 
 	public Dispositivo salvarDispositivo(Long idUsuario, Dispositivo dispositivo) {
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
