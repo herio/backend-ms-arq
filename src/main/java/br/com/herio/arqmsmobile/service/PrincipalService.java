@@ -1,6 +1,7 @@
 package br.com.herio.arqmsmobile.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class PrincipalService {
 	private UsuarioRepository usuarioRepository;
 
 	public Long recuperaIdUsuarioAutenticado() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Object principal = getPrincipal();
 		if (principal != null && principal instanceof AppUserDetails) {
 			return ((AppUserDetails) principal).getIdUsuario();
 		}
@@ -24,7 +25,7 @@ public class PrincipalService {
 	}
 
 	public Usuario recuperaUsuarioAutenticado() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Object principal = getPrincipal();
 		if (principal != null && principal instanceof AppUserDetails) {
 			Long idUsuario = ((AppUserDetails) principal).getIdUsuario();
 			return usuarioRepository.findById(idUsuario).get();
@@ -47,4 +48,11 @@ public class PrincipalService {
 		}
 	}
 
+	private Object getPrincipal() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			return auth.getPrincipal();
+		}
+		return null;
+	}
 }
