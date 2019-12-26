@@ -21,7 +21,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.infra.excecao.ExcecaoNegocio;
 import br.com.herio.arqmsmobile.infra.security.dto.DtoTokenAutenticacao;
 import br.com.herio.arqmsmobile.infra.security.token.TokenJwtService;
@@ -59,11 +58,9 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 			try {
 				userDetails = tokenJwtService.tokenJwtToUserDetais(token);
 
-				Usuario usuario = principalService.recuperaUsuarioAutenticado();
-				if (isAutenticacao(request)) {
-					criaDtoTokenAutenticacao(usuario, token);
-				} else {
-					validaAutenticacaoSimultanea(usuario, token);
+				Long idUsuario = principalService.recuperaIdUsuarioAutenticado();
+				if (!isAutenticacao(request) && idUsuario != null) {
+					validaAutenticacaoSimultanea(idUsuario, token);
 				}
 
 			} catch (AccessDeniedException ade) {
@@ -84,25 +81,25 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 		return url.contains("/publico/autenticacao");
 	}
 
-	private void criaDtoTokenAutenticacao(Usuario usuario, String token) {
+	private void criaDtoTokenAutenticacao(Long idUsuario, String token) {
 		DtoTokenAutenticacao dtoTokenAutenticacao = new DtoTokenAutenticacao();
-		dtoTokenAutenticacao.setIdUsuario(usuario.getId());
+		dtoTokenAutenticacao.setIdUsuario(idUsuario);
 		dtoTokenAutenticacao.setToken(token);
 		dtoTokenAutenticacao.setDataHora(LocalDateTime.now());
-		ULTIMAS_AUTENTICACOES.put(usuario.getId(), dtoTokenAutenticacao);
+		ULTIMAS_AUTENTICACOES.put(idUsuario, dtoTokenAutenticacao);
 	}
 
-	private void validaAutenticacaoSimultanea(Usuario usuario, String token) {
-		DtoTokenAutenticacao dtoTokenAutenticacao = ULTIMAS_AUTENTICACOES.get(usuario.getId());
+	private void validaAutenticacaoSimultanea(Long idUsuario, String token) {
+		DtoTokenAutenticacao dtoTokenAutenticacao = ULTIMAS_AUTENTICACOES.get(idUsuario);
 		if (dtoTokenAutenticacao == null) {
-			criaDtoTokenAutenticacao(usuario, token);
+			criaDtoTokenAutenticacao(idUsuario, token);
 		} else {
 			LocalDateTime dataLimite = LocalDateTime.now().minusHours(1);
 			if (!dtoTokenAutenticacao.getToken().equals(token) && dtoTokenAutenticacao.getDataHora().isAfter(dataLimite)) {
 				throw new ExcecaoNegocio("Você já está autenticado em outro dispositivo, faça uma nova autenticação para "
 						+ "acessar o app a partir desse dispositivo!");
 			} else {
-				ULTIMAS_AUTENTICACOES.remove(usuario.getId());
+				ULTIMAS_AUTENTICACOES.remove(idUsuario);
 			}
 		}
 	}

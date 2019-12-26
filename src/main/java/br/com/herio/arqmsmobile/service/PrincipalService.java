@@ -15,6 +15,14 @@ public class PrincipalService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
+	public Long recuperaIdUsuarioAutenticado() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal != null && principal instanceof AppUserDetails) {
+			return ((AppUserDetails) principal).getIdUsuario();
+		}
+		return null;
+	}
+
 	public Usuario recuperaUsuarioAutenticado() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal != null && principal instanceof AppUserDetails) {
