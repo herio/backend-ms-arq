@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -39,6 +40,9 @@ public class Dispositivo extends Entidade implements Serializable {
 	@Column(name = "DATA_EXCLUSAO")
 	private LocalDateTime dataExclusao;
 
+	@Transient
+	private boolean validacaoApple;
+
 	public Dispositivo() {
 		super();
 		// default
@@ -49,6 +53,14 @@ public class Dispositivo extends Entidade implements Serializable {
 		this.usuario = usuario;
 		this.numRegistro = numRegistro;
 		this.so = so;
+	}
+
+	public boolean isValidacaoApple() {
+		return validacaoApple;
+	}
+
+	public void setValidacaoApple(boolean validacaoApple) {
+		this.validacaoApple = validacaoApple;
 	}
 
 	public String getNumRegistro() {

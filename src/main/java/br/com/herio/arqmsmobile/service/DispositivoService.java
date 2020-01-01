@@ -69,6 +69,12 @@ public class DispositivoService {
 		}
 		dispositivo.setUsuario(usuario);
 		dispositivo.valida();
+
+		// TODO validacao apple
+		if (EnumSistema.ADVOGADO_COMUNITARIO.name().equals(usuario.getSistema())) {
+			dispositivo.setValidacaoApple(true);
+		}
+
 		return dispositivoRepository.save(dispositivo);
 	}
 
@@ -95,6 +101,12 @@ public class DispositivoService {
 		}
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 		dispositivoBd.setUsuario(usuario);
+
+		// TODO validacao apple
+		if (EnumSistema.ADVOGADO_COMUNITARIO.name().equals(usuario.getSistema())) {
+			dispositivoBd.setValidacaoApple(true);
+		}
+
 		return dispositivoBd;
 	}
 
