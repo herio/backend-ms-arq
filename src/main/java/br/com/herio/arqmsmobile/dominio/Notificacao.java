@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Entity
@@ -50,6 +51,7 @@ public class Notificacao extends Entidade implements Serializable {
 	@Column(name = "DATA_ENVIO")
 	private LocalDateTime dataEnvio;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	@JoinColumn(name = "ID_NOTIFICACAO_ORIGEM")
 	private Notificacao notificacaoOrigem;
