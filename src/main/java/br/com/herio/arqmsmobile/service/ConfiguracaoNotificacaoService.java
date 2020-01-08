@@ -1,5 +1,6 @@
 package br.com.herio.arqmsmobile.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
@@ -57,9 +58,9 @@ public class ConfiguracaoNotificacaoService {
 	public void criaConfiguracaoNotificacaoDefault(Long idUsuario, EnumSistema sistema) {
 		ConfiguracaoNotificacao configuracaoNotificacao = new ConfiguracaoNotificacao();
 		configuracaoNotificacao.setReceberNotificacao(true);
-		ConfiguracaoNotificacaoItem configItem = EnumSistema.getConfigItemDefault(sistema);
-		if (configItem != null) {
-			configuracaoNotificacao.getItens().add(configItem);
+		List<ConfiguracaoNotificacaoItem> configsItem = EnumSistema.getConfigsItensDefault(sistema);
+		if (configsItem != null) {
+			configuracaoNotificacao.getItens().addAll(configsItem);
 		}
 		salvarConfiguracao(idUsuario, configuracaoNotificacao);
 	}

@@ -56,24 +56,41 @@ enum EnumSistema {
 		return urlBase;
 	}
 
-	public static ConfiguracaoNotificacaoItem getConfigItemDefault(EnumSistema sistema) {
-		ConfiguracaoNotificacaoItem configItem = null;
+	public static List<ConfiguracaoNotificacaoItem> getConfigsItensDefault(EnumSistema sistema) {
+        List<ConfiguracaoNotificacaoItem> configs = new ArrayList<>();
 		switch (sistema) {
 			case NOTICIAS_JURIDICAS:
-				configItem = new ConfiguracaoNotificacaoItem();
+                ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
 				configItem.setTipoItem("DESTAQUE");
 				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
+                configs.add(configItem);
 				break;
 			case NOTICIAS_JURIDICAS_PAGO:
-				configItem = new ConfiguracaoNotificacaoItem();
+                ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
 				configItem.setTipoItem("DESTAQUE");
 				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
+                configs.add(configItem);
 				break;
+            case MEU_COACH_OAB:
+                ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
+                configItem.setTipoItem("PLANOS_ESTUDOS");
+                configItem.setTipoPeriodicidade("DIARIO");
+                configItem.setValorItem(Boolean.TRUE.toString())
+                configs.add(configItem);
+                configItem.setTipoItem("SIMULADOS");
+                configItem.setTipoPeriodicidade("DIARIO");
+                configItem.setValorItem(Boolean.TRUE.toString())
+                configs.add(configItem);
+                configItem.setTipoItem("MENSAGENS_MOTIVACIONAIS");
+                configItem.setTipoPeriodicidade("DIARIO");
+                configItem.setValorItem(Boolean.TRUE.toString())
+                configs.add(configItem);
+                break;
 			case ADVOGADO_COMUNITARIO:
 				break;
 			default:
 				break;
 		}
-		return configItem;
+		return configs;
 	}
 }
