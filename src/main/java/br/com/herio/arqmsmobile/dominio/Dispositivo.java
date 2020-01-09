@@ -2,7 +2,6 @@ package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
@@ -90,7 +89,7 @@ public class Dispositivo extends Entidade implements Serializable {
 
 	@JsonProperty
 	public String getDataExclusaoFormatada() {
-		return this.dataExclusao == null ? "" : this.dataExclusao.atZone(ZoneId.of("UTC-3")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+		return this.dataExclusao == null ? "" : this.dataExclusao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 	}
 
 	public Usuario getUsuario() {

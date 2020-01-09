@@ -3,7 +3,6 @@ package br.com.herio.arqmsmobile.dominio;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -143,7 +142,7 @@ public class Notificacao extends Entidade implements Serializable {
 
 	@JsonProperty
 	public String getDataEnvioFormatada() {
-		return getDataEnvio() == null ? "" : getDataEnvio().atZone(ZoneId.of("UTC-3")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+		return getDataEnvio() == null ? "" : getDataEnvio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 	}
 
 	@SuppressWarnings("unchecked")
