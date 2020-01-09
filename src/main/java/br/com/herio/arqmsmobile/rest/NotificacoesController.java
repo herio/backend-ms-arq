@@ -1,9 +1,18 @@
 package br.com.herio.arqmsmobile.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.herio.arqmsmobile.dominio.Notificacao;
 import br.com.herio.arqmsmobile.service.NotificacaoService;
@@ -28,8 +37,9 @@ public class NotificacoesController {
 	@PostMapping("/envia")
 	public boolean enviarNotificacao(@PathVariable Long idUsuario, @RequestBody Notificacao notificacao,
 			@RequestParam(required = false) boolean versaoPaga, @RequestParam(required = false) boolean enviarEmail) {
-		return notificacaoService.salvarEEnviarNotificacoes(notificacao.getTitulo(), notificacao.getConteudo(), notificacao.getDadosExtras(),
-				idUsuario, versaoPaga, enviarEmail);
+		List<Notificacao> notificacoesEnviadas = notificacaoService.salvarEEnviarNotificacoes(notificacao.getTitulo(), notificacao.getConteudo(),
+				notificacao.getDadosExtras(), idUsuario, versaoPaga, enviarEmail);
+		return notificacoesEnviadas != null && !notificacoesEnviadas.isEmpty();
 	}
 
 	@ApiOperation("atualizarNotificacao")
@@ -38,11 +48,11 @@ public class NotificacoesController {
 		return notificacaoService.atualizarNotificacao(idNotificacao, notificacao);
 	}
 
-    @ApiOperation("removerNotificacao")
-    @DeleteMapping("/{idNotificacao}")
-    public boolean removerNotificacao(@PathVariable Long idNotificacao) {
-        return notificacaoService.removerNotificacao(idNotificacao);
-    }
+	@ApiOperation("removerNotificacao")
+	@DeleteMapping("/{idNotificacao}")
+	public boolean removerNotificacao(@PathVariable Long idNotificacao) {
+		return notificacaoService.removerNotificacao(idNotificacao);
+	}
 
 	@ApiOperation("listarNotificacoesEnviadasNaoExcluidas")
 	@GetMapping("/enviadasnaoexcluidas")

@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,9 +65,9 @@ public class NotificacaoService {
 		return enviou;
 	}
 
-	public boolean salvarEEnviarNotificacoes(String titulo, String conteudo, String dadosExtras, Long idUsuarioDestino, boolean versaoPaga,
+	public List<Notificacao> salvarEEnviarNotificacoes(String titulo, String conteudo, String dadosExtras, Long idUsuarioDestino, boolean versaoPaga,
 			boolean enviarEmail) {
-		boolean enviou = false;
+		List<Notificacao> notificacoesEnviadas = new ArrayList<>();
 		this.log = new StringBuilder("");
 		this.log.append(String.format(
 				">>> NotificacaoService salvarEEnviarNotificacoes titulo[%s] conteudo[%s] dadosExtras[%s] idUsuarioDestino[%s] versaoPaga[%s]\n",
@@ -81,7 +82,7 @@ public class NotificacaoService {
 				mapNotificacoesASeremEnviadas = criarNotificacoesASeremEnviadas(titulo, conteudo, dadosExtras, dispositivosAtivos);
 			}
 			this.log.append(String.format(">>> NotificacaoService mapNotificacoesASeremEnviadas.size[%s]\n", mapNotificacoesASeremEnviadas.size()));
-			enviou = enviarNotificacoes(mapNotificacoesASeremEnviadas, versaoPaga, this.log);
+			notificacoesEnviadas = enviarNotificacoes(mapNotificacoesASeremEnviadas, versaoPaga, this.log);
 		} else {
 			this.log.append(String.format(">>> NotificacaoService configuracaoNotificacao.isReceberNotificacao[%s]\n",
 					configuracaoNotificacao == null ? "null" : configuracaoNotificacao.isReceberNotificacao()));
@@ -97,17 +98,18 @@ public class NotificacaoService {
 			enviadorEmailService.enviaEmailParaUsuario(titulo, conteudo, usuario);
 		}
 
-		return enviou;
+		return notificacoesEnviadas;
 	}
 
-	public boolean enviarNotificacoes(Map<Long, Collection<Notificacao>> notificacoes, boolean versaoPaga, StringBuilder log) {
-		boolean enviou = false;
+	public List<Notificacao> enviarNotificacoes(Map<Long, Collection<Notificacao>> notificacoes, boolean versaoPaga, StringBuilder log) {
+		List<Notificacao> notificacoesEnviadas = new ArrayList<>();
+
 		for (Map.Entry<Long, Collection<Notificacao>> entryNotificacoes : notificacoes.entrySet()) {
 			boolean notificacaoOrigemEnviada = false;
 			Notificacao primeiraNotificacaoEnviada = null;
 			for (Notificacao notificacaoBd : entryNotificacoes.getValue()) {
 				try {
-					enviou = firebaseFachada.enviaNotificacao(notificacaoBd, versaoPaga);
+					boolean enviou = firebaseFachada.enviaNotificacao(notificacaoBd, versaoPaga);
 					log.append(String.format(">>> NotificacaoService enviarNotificacoes enviou[%s]\n   notificacao[%s]\n", enviou, notificacaoBd));
 
 					if (enviou) {
@@ -125,6 +127,7 @@ public class NotificacaoService {
 						notificacaoBd.setEnviada(true);
 						notificacaoBd.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));
 						notificacaoRepository.save(notificacaoBd);
+						notificacoesEnviadas.add(notificacaoBd);
 
 					}
 				} catch (RuntimeException e) {
@@ -140,7 +143,7 @@ public class NotificacaoService {
 				}
 			}
 		}
-		return enviou;
+		return notificacoesEnviadas;
 	}
 
 	public Notificacao atualizarNotificacao(Long idNotificacao, Notificacao notificacao) {
@@ -198,8 +201,8 @@ public class NotificacaoService {
 		return mapNotificacoes;
 	}
 
-    public boolean removerNotificacao(Long idNotificacao) {
-        notificacaoRepository.deleteById(idNotificacao);
-        return true;
-    }
+	public boolean removerNotificacao(Long idNotificacao) {
+		notificacaoRepository.deleteById(idNotificacao);
+		return true;
+	}
 }
