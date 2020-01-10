@@ -3,10 +3,7 @@ package br.com.herio.arqmsmobile.dominio;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,6 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name = "USUARIO")
 public class Usuario extends Entidade implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private VigenciaUsuario vigenciaUsuario;
 
 	@Column(name = "SISTEMA")
 	private String sistema;
@@ -73,7 +73,15 @@ public class Usuario extends Entidade implements Serializable {
 	@Transient
 	private String token;
 
-	public boolean isAdmin() {
+    public VigenciaUsuario getVigenciaUsuario() {
+        return vigenciaUsuario;
+    }
+
+    public void setVigenciaUsuario(VigenciaUsuario vigenciaUsuario) {
+        this.vigenciaUsuario = vigenciaUsuario;
+    }
+
+    public boolean isAdmin() {
 		return admin;
 	}
 
