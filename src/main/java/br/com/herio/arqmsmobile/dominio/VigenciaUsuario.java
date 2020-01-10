@@ -1,10 +1,12 @@
 package br.com.herio.arqmsmobile.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "VIGENCIA_USUARIO")
@@ -47,4 +49,8 @@ public class VigenciaUsuario extends Entidade implements Serializable {
 		this.usuario = usuario;
 	}
 
+    @JsonProperty
+    public String getDataTerminoVigenciaFormatada() {
+        return this.dataTerminoVigencia == null ? "" : this.dataTerminoVigencia.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
 }

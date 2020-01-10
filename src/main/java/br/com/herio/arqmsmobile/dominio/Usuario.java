@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Usuario extends Entidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private VigenciaUsuario vigenciaUsuario;
 
 	@Column(name = "SISTEMA")
