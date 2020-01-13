@@ -44,17 +44,16 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
-		String token = extraiTokenDoHeader(request);
-		// Se o token nao existir no request deixa passar direto.
-		// No momento em que usuario eh efetivamente autenticado no Spring Security este
-		// filtro eh novamente disparado, por isso
-		// testamos se o contexto de seguranca do Spring Security jah contem a
-		// Authentication, o que significa que o usuario jah
-		// foi autenticado, e nesta situacao tambem deixamos o filtro passar direto.
-		if (token != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails userDetails;
-			try {
+		try {
+			String token = extraiTokenDoHeader(request);
+			// Se o token nao existir no request deixa passar direto.
+			// No momento em que usuario eh efetivamente autenticado no Spring Security este
+			// filtro eh novamente disparado, por isso
+			// testamos se o contexto de seguranca do Spring Security jah contem a
+			// Authentication, o que significa que o usuario jah
+			// foi autenticado, e nesta situacao tambem deixamos o filtro passar direto.
+			if (token != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+				UserDetails userDetails;
 				userDetails = tokenJwtService.tokenJwtToUserDetais(token);
 
 				Long idUsuario = principalService.recuperaIdUsuarioAutenticado();
@@ -62,14 +61,16 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 					validaAutenticacaoSimultanea(idUsuario, token);
 				}
 
-			} catch (AccessDeniedException ade) {
-				HttpServletResponse httpResponse = (HttpServletResponse) response;
-				httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-				return;
+				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails
+						.getAuthorities());
+				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
-			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails
-					.getAuthorities());
-			SecurityContextHolder.getContext().setAuthentication(authentication);
+		} catch (AccessDeniedException ade) {
+			HttpServletResponse httpResponse = (HttpServletResponse) response;
+			httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+			httpResponse.getWriter().write(ade.getMessage());
+			httpResponse.flushBuffer();
+			return;
 		}
 		chain.doFilter(request, response);
 	}
