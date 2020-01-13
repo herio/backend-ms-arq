@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -110,13 +109,17 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 		String authToken = httpRequest.getHeader(this.TOKEN_HEADER);
 		String tokenJwt = null;
 		if (authToken != null && !authToken.startsWith("Basic")) {
-			Validate.notEmpty(authToken, MSG_AUTHORIZATION_HEADER_INCORRETO);
+			if ("".equals(authToken)) {
+				throw new AccessDeniedException(MSG_AUTHORIZATION_HEADER_INCORRETO);
+			}
 			if (authToken.toLowerCase().startsWith(this.TIPO_TOKEN_HEADER.toLowerCase())) {
 				tokenJwt = StringUtils.substringAfter(authToken, " ");
 			} else {
 				throw new AccessDeniedException(MSG_AUTHORIZATION_HEADER_INCORRETO);
 			}
-			Validate.notEmpty(tokenJwt, MSG_TOKEN_NAO_INFORMADO);
+			if (tokenJwt == null || "".equals(tokenJwt)) {
+				throw new AccessDeniedException(MSG_TOKEN_NAO_INFORMADO);
+			}
 		}
 		return tokenJwt;
 	}
