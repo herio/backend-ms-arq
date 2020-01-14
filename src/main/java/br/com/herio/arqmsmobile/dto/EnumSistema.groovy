@@ -77,10 +77,12 @@ enum EnumSistema {
                 configItem.setTipoPeriodicidade("DIARIO");
                 configItem.setValorItem(Boolean.TRUE.toString())
                 configs.add(configItem);
+                configItem = new ConfiguracaoNotificacaoItem();
                 configItem.setTipoItem("SIMULADOS");
                 configItem.setTipoPeriodicidade("DIARIO");
                 configItem.setValorItem(Boolean.TRUE.toString())
                 configs.add(configItem);
+                configItem = new ConfiguracaoNotificacaoItem();
                 configItem.setTipoItem("MENSAGENS_MOTIVACIONAIS");
                 configItem.setTipoPeriodicidade("DIARIO");
                 configItem.setValorItem(Boolean.TRUE.toString())
