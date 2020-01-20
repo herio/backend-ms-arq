@@ -14,9 +14,9 @@ enum EnumSistema {
 	ADVOGADO_COMUNITARIO("Advogado Comunit&aacute;rio", "https://advogado-comunitario.herokuapp.com/publico/icone.png",
 	"https://advogado-comunitario.herokuapp.com/publico/default-avatar.png", "1lYrXOmD4CT79jxNfXxl8wOk9BOD2FQTP",
 	"https://advogado-comunitario.herokuapp.com",),
-	MEU_COACH_OAB("Meu Coach OAB", "https://meu-coach-oab.herokuapp.com/publico/icone.png",
-	"https://meu-coach-oab.herokuapp.com/publico/default-avatar.png", "1ijvzuupj8sBY2GgV3irM7bgDQX5JDPGk",
-	"https://meu-coach-oab.herokuapp.com",);
+	MEU_COACH_OAB("Meu Coach OAB", "https://coach-oab.herokuapp.com/publico/icone.png",
+	"https://coach-oab.herokuapp.com/publico/default-avatar.png", "1ijvzuupj8sBY2GgV3irM7bgDQX5JDPGk",
+	"https://coach-oab.herokuapp.com",);
 
 	String nome;
 	String icone;
