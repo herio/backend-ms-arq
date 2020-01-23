@@ -87,11 +87,11 @@ public class GoogleDriveFachada {
 		}
 	}
 
-	public List<File> listFiles(String idFolder, Long idUsuario) {
+	public List<File> listFiles(String idFolder, String idDirUsuario) {
 		try {
 			String idFolderPesquisa = idFolder;
-			if (idUsuario != null) {
-				idFolderPesquisa = recuperaDiretorioUsuario(idFolder, idUsuario).getId();
+			if (idDirUsuario != null) {
+				idFolderPesquisa = recuperaDiretorioUsuario(idFolder, idDirUsuario).getId();
 			}
 			return service.files().list()
 					.setQ(String.format("'%s' in parents", idFolderPesquisa))
@@ -121,7 +121,7 @@ public class GoogleDriveFachada {
 
 	protected void uploadFile(Long idUsuario, MultipartFile mFile, String idFolder, ArquivoUsuario arquivo, Usuario usuario, EnumSistema sistema) {
 		try {
-			File diretorioUsuario = recuperaDiretorioUsuario(idFolder, idUsuario);
+			File diretorioUsuario = recuperaDiretorioUsuario(idFolder, idUsuario.toString());
 			String mimeType = new Tika().detect(mFile.getOriginalFilename());
 
 			// gFile
@@ -203,13 +203,13 @@ public class GoogleDriveFachada {
 		}
 	}
 
-	protected File recuperaDiretorioUsuario(String idFolder, Long idUsuario) throws IOException {
+	protected File recuperaDiretorioUsuario(String idFolder, String idDirUsuario) throws IOException {
 		File diretorioUsuario = null;
 		String pageToken = null;
 		do {
 			FileList result = service.files()
 					.list()
-					.setQ(String.format("name='%s' and '%s' in parents", idUsuario.toString(), idFolder))
+					.setQ(String.format("name='%s' and '%s' in parents", idDirUsuario, idFolder))
 					.setSpaces("drive")
 					.setFields("nextPageToken, files(id, name, parents)")
 					.setPageToken(pageToken)
@@ -225,7 +225,7 @@ public class GoogleDriveFachada {
 		if (diretorioUsuario == null) {
 			// não encontrou diretório usuário, irá criá-lo
 			File fileMetadata = new File();
-			fileMetadata.setName(idUsuario.toString());
+			fileMetadata.setName(idDirUsuario);
 			fileMetadata.setMimeType("application/vnd.google-apps.folder");
 			fileMetadata.setParents(Collections.singletonList(idFolder));
 			diretorioUsuario = service.files()
