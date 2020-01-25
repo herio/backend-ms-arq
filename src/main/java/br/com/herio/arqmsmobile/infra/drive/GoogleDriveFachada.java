@@ -87,7 +87,25 @@ public class GoogleDriveFachada {
 		}
 	}
 
-	public List<File> listFiles(String idFolder, String idDirUsuario) {
+	public List<File> listFilesDir(String idDirRaiz, String nomeDir) {
+		try {
+			File dirPesquisado = recuperaDiretorio(idDirRaiz, nomeDir);
+			if (dirPesquisado == null) {
+				return null;
+			} else {
+				String idDirPesquisado = dirPesquisado.getId();
+				return service.files().list()
+						.setQ(String.format("'%s' in parents", idDirPesquisado))
+						.setSpaces("drive")
+						.setFields("files(id, name, parents)")
+						.execute().getFiles();
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public List<File> listFilesDirUsuario(String idFolder, String idDirUsuario) {
 		try {
 			String idFolderPesquisa = idFolder;
 			if (idDirUsuario != null) {
@@ -201,6 +219,28 @@ public class GoogleDriveFachada {
 		} catch (IOException e) {
 			throw new RuntimeException("GoogleDriveFachada Erro em deleteFile", e);
 		}
+	}
+
+	protected File recuperaDiretorio(String idDirRaiz, String nomeDir) throws IOException {
+		File diretorioUsuario = null;
+		String pageToken = null;
+		do {
+			FileList result = service.files()
+					.list()
+					.setQ(String.format("name='%s' and '%s' in parents", nomeDir, idDirRaiz))
+					.setSpaces("drive")
+					.setFields("nextPageToken, files(id, name, parents)")
+					.setPageToken(pageToken)
+					.execute();
+			if (result != null && result.getFiles() != null && result.getFiles().size() == 1) {
+				// encontrou diretório usuário
+				diretorioUsuario = result.getFiles().get(0);
+				break;
+			}
+			pageToken = result.getNextPageToken();
+		} while (pageToken != null);
+
+		return diretorioUsuario;
 	}
 
 	protected File recuperaDiretorioUsuario(String idFolder, String idDirUsuario) throws IOException {
