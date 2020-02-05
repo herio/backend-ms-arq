@@ -141,6 +141,10 @@ Acessar BD prod:
     Ir em datastore > settings > credentials > heroku CLI > Copiar comando (Executar esse comando na raiz do projeto: pgsql deve estar configurado no PATH)
     Ex. heroku pg:psql postgresql-asymmetrical-61306 --app sgtifgo
     
+Acessar BD via psql:
+
+    psql --host=ec2-52-203-98-126.compute-1.amazonaws.com --port=5432 --username=lhnebstamvmtzs --password=1a0cfdefd51bf354b4da5cccaa420aa92a8943f862c1dd43abce2ed1d3f970e5 --dbname=deamr4lqjg7tri
+    
 Comandos de BD úteis
 
     \dt //lista tabelas 
