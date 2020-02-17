@@ -2,6 +2,7 @@ package br.com.herio.arqmsmobile.infra.security;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,7 +86,7 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 		DtoTokenAutenticacao dtoTokenAutenticacao = new DtoTokenAutenticacao();
 		dtoTokenAutenticacao.setIdUsuario(idUsuario);
 		dtoTokenAutenticacao.setToken(token);
-		dtoTokenAutenticacao.setDataHora(LocalDateTime.now());
+		dtoTokenAutenticacao.setDataHora(LocalDateTime.now(ZoneId.of("UTC-3")));
 		ULTIMAS_AUTENTICACOES.put(idUsuario, dtoTokenAutenticacao);
 	}
 
@@ -94,7 +95,7 @@ public class AppUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 		if (dtoTokenAutenticacao == null) {
 			criaDtoTokenAutenticacao(idUsuario, token);
 		} else {
-			LocalDateTime dataLimite = LocalDateTime.now().minusHours(1);
+			LocalDateTime dataLimite = LocalDateTime.now(ZoneId.of("UTC-3")).minusHours(1);
 			if (!dtoTokenAutenticacao.getToken().equals(token) && dtoTokenAutenticacao.getDataHora().isAfter(dataLimite)) {
 				throw new ExcecaoNegocio("Você já está autenticado em outro dispositivo, faça uma nova autenticação para "
 						+ "acessar o app a partir desse dispositivo!");
