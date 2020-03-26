@@ -50,6 +50,10 @@ public class UsuarioService {
 	private PrincipalService principalService;
 
 	public Usuario criarUsuario(Usuario usuario) {
+
+		if (EnumSistema.MEU_COACH_OAB.equals(EnumSistema.valueOf(usuario.getSistema()))) {
+			throw new ExcecaoNegocio("Sistema em fase de testes, em breve o cadatro de novos usuários estará liberado!");
+		}
 		if (usuario.getId() != null) {
 			throw new IllegalArgumentException("Informe um novo usuário (sem id)!");
 		}
