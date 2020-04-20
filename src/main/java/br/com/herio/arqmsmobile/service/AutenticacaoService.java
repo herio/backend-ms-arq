@@ -27,7 +27,7 @@ public class AutenticacaoService {
 
 	public Usuario autenticarUsuario(DtoAutenticacao dtoAutenticacao) {
 		Optional<Usuario> usuarioOpt = usuarioRepository
-				.findByLoginAndSistema(dtoAutenticacao.getLogin(), dtoAutenticacao.getSistema());
+				.findByLoginIgnoreCaseAndSistema(dtoAutenticacao.getLogin().toLowerCase(), dtoAutenticacao.getSistema());
 		if (!usuarioOpt.isPresent()) {
 			throw new ExcecaoNegocio(String.format("Usuário '%s' inexistente!", dtoAutenticacao.getLogin()));
 		}

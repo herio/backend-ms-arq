@@ -58,7 +58,7 @@ public class UsuarioService {
 			throw new IllegalArgumentException("Informe um novo usuário (sem id)!");
 		}
 		// verifica se usuário já existe
-		Optional<Usuario> usuarioOpt = usuarioRepository.findByLoginAndSistema(usuario.getLogin(), usuario.getSistema());
+		Optional<Usuario> usuarioOpt = usuarioRepository.findByLoginIgnoreCaseAndSistema(usuario.getLogin().toLowerCase(), usuario.getSistema());
 		Usuario usuarioBd = usuario;
 		if (usuarioOpt.isPresent()) {
 			usuarioBd = usuarioOpt.get();

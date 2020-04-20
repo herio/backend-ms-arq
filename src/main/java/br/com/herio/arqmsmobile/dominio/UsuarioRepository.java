@@ -13,7 +13,7 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
 	Optional<Usuario> findByCelularAndSistema(String celular, String sistema);
 
-	Optional<Usuario> findByLoginAndSistema(String login, String sistema);
+	Optional<Usuario> findByLoginIgnoreCaseAndSistema(String login, String sistema);
 
 	List<Usuario> findAllByNomeNotNullAndEmailNotNullOrderByNomeAsc();
 

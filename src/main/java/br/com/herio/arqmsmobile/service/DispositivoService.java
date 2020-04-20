@@ -108,7 +108,7 @@ public class DispositivoService {
 
 	private Usuario recuperaUsuario(String numRegistro, EnumSistema sistema) {
 		Usuario usuario;
-		Optional<Usuario> usuarioOpt = usuarioRepository.findByLoginAndSistema(numRegistro, sistema.name());
+		Optional<Usuario> usuarioOpt = usuarioRepository.findByLoginIgnoreCaseAndSistema(numRegistro.toLowerCase(), sistema.name());
 		if (usuarioOpt.isPresent()) {
 			usuario = usuarioOpt.get();
 		} else {
