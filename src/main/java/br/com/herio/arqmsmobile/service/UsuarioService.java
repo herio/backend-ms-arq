@@ -51,6 +51,7 @@ public class UsuarioService {
 
 	public Usuario criarUsuario(Usuario usuario) {
 
+		// TODO
 		if (EnumSistema.MEU_COACH_OAB.equals(EnumSistema.valueOf(usuario.getSistema()))) {
 			throw new ExcecaoNegocio("Sistema em fase de testes, em breve o cadatro de novos usuários estará liberado!");
 		}

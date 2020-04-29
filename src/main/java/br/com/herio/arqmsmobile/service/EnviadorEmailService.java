@@ -1,7 +1,10 @@
 package br.com.herio.arqmsmobile.service;
 
-import br.com.herio.arqmsmobile.dominio.Usuario;
-import br.com.herio.arqmsmobile.dto.EnumSistema;
+import java.util.Base64;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +12,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import java.util.Base64;
+import br.com.herio.arqmsmobile.dominio.Usuario;
+import br.com.herio.arqmsmobile.dto.EnumSistema;
 
 @Service
 public class EnviadorEmailService {
@@ -34,7 +36,7 @@ public class EnviadorEmailService {
 
 			javaMailSender.send(msg);
 			return "E-mail de recuperação de senha enviado com sucesso! Verifique sua caixa de e-mail.";
-		} catch (MessagingException e) {
+		} catch (Exception e) {
 			throw new RuntimeException("Erro ao enviar email", e);
 		}
 	}
@@ -54,7 +56,7 @@ public class EnviadorEmailService {
 
 				javaMailSender.send(msg);
 			}
-		} catch (MessagingException e) {
+		} catch (Exception e) {
 			LOGGER.error("EnviadorEmailService Erro ao enviar email", e);
 		}
 	}
@@ -64,7 +66,7 @@ public class EnviadorEmailService {
 			if (usuario.getEmail() != null) {
 				EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 				MimeMessage msg = javaMailSender.createMimeMessage();
-				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(),assunto);
+				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), assunto);
 
 				String email = new StringBuilder()
 						.append(addHeader(sistema.getIcone(), String.format("%s - atualização", sistema.getNome())))
@@ -74,7 +76,7 @@ public class EnviadorEmailService {
 
 				javaMailSender.send(msg);
 			}
-		} catch (MessagingException e) {
+		} catch (Exception e) {
 			LOGGER.error("EnviadorEmailService Erro ao enviar email", e);
 		}
 	}
@@ -96,7 +98,7 @@ public class EnviadorEmailService {
 
 				javaMailSender.send(msg);
 			}
-		} catch (MessagingException e) {
+		} catch (Exception e) {
 			LOGGER.error("EnviadorEmailService Erro ao enviar email", e);
 		}
 	}
