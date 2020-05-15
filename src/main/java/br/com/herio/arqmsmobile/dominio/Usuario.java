@@ -3,7 +3,12 @@ package br.com.herio.arqmsmobile.dominio;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

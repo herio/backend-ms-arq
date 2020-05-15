@@ -19,6 +19,7 @@ public class VigenciaUsuario extends Entidade implements Serializable {
     @JoinColumn(name = "ID_USUARIO")
 	private Usuario usuario;
 
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name = "DATA_TERMINO_VIGENCIA")
 	private LocalDateTime dataTerminoVigencia;
 
