@@ -116,8 +116,8 @@ public class UsuarioService {
 	}
 
 	public boolean tornarAdmin(Long idUsuario) {
-		// somente usuário e admin podem realizar essa operação
-		principalService.validaPermissaoUsuario(idUsuario);
+		// somente admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(null);
 
 		Usuario usuarioBd = usuarioRepository.findById(idUsuario).get();
 		usuarioBd.setAdmin(true);
