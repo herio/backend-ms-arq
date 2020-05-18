@@ -50,8 +50,13 @@ public class UsuariosController {
 
 	@ApiOperation("pesquisarUsuariosPorNomeOuEmail")
 	@GetMapping("/pesquisa")
-	public List<Usuario> pesquisarUsuariosPorNomeOuEmail(@RequestParam String nome, @RequestParam String email) {
-		return usuarioRepository.findByNomeContainingIgnoreCaseOrEmailContainingIgnoreCaseOrderByIdDesc(nome, email);
+	public List<Usuario> pesquisarUsuariosPorNomeOuEmail(@RequestParam(required = false) String nome, @RequestParam(required = false) String email) {
+		if(nome != null) {
+			return usuarioRepository.findAllByNomeContainingIgnoreCaseOrderByIdDesc(nome);
+		} else if(email != null) {
+			return usuarioRepository.findAllByEmailContainingIgnoreCaseOrderByIdDesc(email);
+		}
+		return null;
 	}
 
 	@ApiOperation("removerUsuario")

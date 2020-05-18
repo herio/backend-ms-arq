@@ -17,7 +17,11 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
 	List<Usuario> findAllByNomeNotNullAndEmailNotNullOrderByNomeAsc();
 
-	List<Usuario> findByNomeContainingIgnoreCaseOrEmailContainingIgnoreCaseOrderByIdDesc(String nome, String email);
-
 	List<Usuario> findAllByAdmin(boolean admin);
+
+	List<Usuario> findAllByNomeContainingIgnoreCaseOrderByIdDesc(String nome);
+
+	List<Usuario> findAllByEmailContainingIgnoreCaseOrderByIdDesc(String email);
+
+	List<Usuario> findByNomeContainingIgnoreCaseOrEmailContainingIgnoreCaseOrderByIdDesc(String nome, String email);
 }
