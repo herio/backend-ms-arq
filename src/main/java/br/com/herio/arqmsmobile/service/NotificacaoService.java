@@ -22,6 +22,7 @@ import br.com.herio.arqmsmobile.dominio.Notificacao;
 import br.com.herio.arqmsmobile.dominio.NotificacaoRepository;
 import br.com.herio.arqmsmobile.dominio.Usuario;
 import br.com.herio.arqmsmobile.dominio.UsuarioRepository;
+import br.com.herio.arqmsmobile.dto.EnumSistema;
 import br.com.herio.arqmsmobile.infra.firebase.FirebaseFachada;
 
 @Service
@@ -95,7 +96,9 @@ public class NotificacaoService {
 
 		if (enviarEmail) {
 			Usuario usuario = usuarioRepository.findById(idUsuarioDestino).get();
-			enviadorEmailService.enviaEmailParaUsuario(titulo, conteudo, usuario);
+			String header = String.format("%s - atualização", EnumSistema.valueOf(usuario.getSistema()).getNome());
+			String assunto = titulo;
+			enviadorEmailService.enviaEmailParaUsuario(assunto, header, conteudo, usuario);
 		}
 
 		return notificacoesEnviadas;

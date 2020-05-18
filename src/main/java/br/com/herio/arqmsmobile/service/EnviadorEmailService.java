@@ -61,7 +61,7 @@ public class EnviadorEmailService {
 		}
 	}
 
-	public void enviaEmailParaUsuario(String assunto, String conteudo, Usuario usuario) {
+	public void enviaEmailParaUsuario(String assunto, String header, String conteudo, Usuario usuario) {
 		try {
 			if (usuario.getEmail() != null) {
 				EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
@@ -69,7 +69,7 @@ public class EnviadorEmailService {
 				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), assunto);
 
 				String email = new StringBuilder()
-						.append(addHeader(sistema.getIcone(), String.format("%s - atualização", sistema.getNome())))
+						.append(addHeader(sistema.getIcone(), header))
 						.append(conteudo)
 						.toString();
 				helper.setText(email, true);
