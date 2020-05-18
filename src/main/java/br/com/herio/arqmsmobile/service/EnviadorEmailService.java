@@ -30,7 +30,7 @@ public class EnviadorEmailService {
 			String email = new StringBuilder()
 					.append(addHeader(sistema.getIcone(), String.format("Recuperação de senha do App %s", sistema.getNome())))
 					.append(addDadosUsuario(usuario, sistema))
-					.append(addFooter())
+					.append(addFooter(true))
 					.toString();
 			helper.setText(email, true);
 
@@ -50,27 +50,7 @@ public class EnviadorEmailService {
 				String email = new StringBuilder()
 						.append(addHeader(sistema.getIcone(), String.format("%s - Dados de Cadastro", sistema.getNome())))
 						.append(addDadosUsuario(usuario, sistema))
-						.append(addFooter())
-						.toString();
-				helper.setText(email, true);
-
-				javaMailSender.send(msg);
-			}
-		} catch (Exception e) {
-			LOGGER.error("EnviadorEmailService Erro ao enviar email", e);
-		}
-	}
-
-	public void enviaEmailParaUsuario(String assunto, String header, String conteudo, Usuario usuario) {
-		try {
-			if (usuario.getEmail() != null) {
-				EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
-				MimeMessage msg = javaMailSender.createMimeMessage();
-				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), assunto);
-
-				String email = new StringBuilder()
-						.append(addHeader(sistema.getIcone(), header))
-						.append(conteudo)
+						.append(addFooter(true))
 						.toString();
 				helper.setText(email, true);
 
@@ -92,7 +72,28 @@ public class EnviadorEmailService {
 				String email = new StringBuilder()
 						.append(addHeader(sistema.getIcone(), String.format("%s - Dados atualizados", sistema.getNome())))
 						.append(addDadosUsuario(usuario, sistema))
-						.append(addFooter())
+						.append(addFooter(true))
+						.toString();
+				helper.setText(email, true);
+
+				javaMailSender.send(msg);
+			}
+		} catch (Exception e) {
+			LOGGER.error("EnviadorEmailService Erro ao enviar email", e);
+		}
+	}
+
+	public void enviaEmailParaUsuario(String assunto, String header, String conteudo, Usuario usuario) {
+		try {
+			if (usuario.getEmail() != null) {
+				EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
+				MimeMessage msg = javaMailSender.createMimeMessage();
+				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), assunto);
+
+				String email = new StringBuilder()
+						.append(addHeader(sistema.getIcone(), header))
+						.append(conteudo)
+						.append(addFooter(false))
 						.toString();
 				helper.setText(email, true);
 
@@ -134,9 +135,11 @@ public class EnviadorEmailService {
 				.toString();
 	}
 
-	private String addFooter() {
-		return new StringBuilder().append(
-				"<br/><br/>Para atualizar seus dados, entre no App e vá em: Configurações > Atualize seus dados.")
-				.append("<br/><br/>Atenciosamente, Juris Apps.<br/><br/></html>").toString();
+	private String addFooter(boolean exibeMsgAtualizacao) {
+		StringBuilder stingBuilder = new StringBuilder();
+		if(exibeMsgAtualizacao) {
+			stingBuilder.append("<br/><br/>Para atualizar seus dados, entre no App e vá em: Configurações > Atualize seus dados.");
+		}
+		return stingBuilder.append("<br/><br/>Atenciosamente, Juris Apps.<br/><br/></html>").toString();
 	}
 }
