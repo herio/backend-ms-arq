@@ -41,6 +41,7 @@ public class AppConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
 	}
 
+	//CORS
 	@Bean
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -53,6 +54,7 @@ public class AppConfig implements WebMvcConfigurer {
 		return new CorsFilter(source);
 	}
 
+	//LOGS
 	@Bean
 	public AppCommonsRequestLoggingFilter requestLoggingFilter() {
 		AppCommonsRequestLoggingFilter loggingFilter = new AppCommonsRequestLoggingFilter();
@@ -65,6 +67,7 @@ public class AppConfig implements WebMvcConfigurer {
 		return loggingFilter;
 	}
 
+	//FEIGN
 	@Bean
 	Logger.Level feignLoggerLevel() {
 		return Logger.Level.FULL;
