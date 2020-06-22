@@ -140,6 +140,13 @@ public class UsuarioService {
 		// somente usuário e admin podem realizar essa operação
 		principalService.validaPermissaoUsuario(idUsuario);
 
+		usuarioRepository.deleteById(idUsuario);
+	}
+
+	public void desativarUsuario(Long idUsuario) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+
 		Usuario usuario = usuarioRepository.findById(idUsuario).get();
 		usuario.setAtivado(false);
 		usuario.setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));

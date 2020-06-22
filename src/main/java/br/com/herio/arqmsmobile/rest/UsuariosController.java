@@ -65,6 +65,12 @@ public class UsuariosController {
 		usuarioService.removerUsuario(idUsuario);
 	}
 
+	@ApiOperation("desativarUsuario")
+	@PostMapping("/{idUsuario}/desativar")
+	public void desativarUsuario(@PathVariable Long idUsuario) {
+		usuarioService.desativarUsuario(idUsuario);
+	}
+
 	@ApiOperation("listarUsuarios")
 	@GetMapping
 	public Collection<Usuario> listarUsuarios(@RequestParam(required = false) boolean ativos) {
