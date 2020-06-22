@@ -81,15 +81,15 @@ public class UsuarioService {
 		usuarioBd.setToken(autenticacaoService.criaTokenJwt(usuarioBd));
 
 		// gera ativação
-		ativacaoUsuarioService.gerarAtivacaoUsuario(usuario.getId());
+		ativacaoUsuarioService.gerarAtivacaoUsuario(usuarioBd.getId());
 
 		// criaConfiguracaoNotificacaoDefault
-		EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
-		configuracaoNotificacaoService.criaConfiguracaoNotificacaoDefault(usuario.getId(), sistema);
+		EnumSistema sistema = EnumSistema.valueOf(usuarioBd.getSistema());
+		configuracaoNotificacaoService.criaConfiguracaoNotificacaoDefault(usuarioBd.getId(), sistema);
 
 		// enviaEmail
-		enviadorEmailService.enviaEmailBoasVindas(getFrom(sistema), usuario, sistema);
-		return usuario;
+		enviadorEmailService.enviaEmailBoasVindas(getFrom(sistema), usuarioBd, sistema);
+		return usuarioBd;
 	}
 
 	public Usuario atualizarUsuario(Long idUsuario, Usuario usuario) {
