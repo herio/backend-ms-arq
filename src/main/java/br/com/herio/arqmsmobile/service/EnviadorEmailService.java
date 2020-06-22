@@ -22,10 +22,10 @@ public class EnviadorEmailService {
 	@Autowired
 	protected JavaMailSender javaMailSender;
 
-	public String enviaEmailRecuperaSenha(Usuario usuario, EnumSistema sistema) {
+	public String enviaEmailRecuperaSenha(String from, Usuario usuario, EnumSistema sistema) {
 		try {
 			MimeMessage msg = javaMailSender.createMimeMessage();
-			MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), String.format("Recuperação de senha do App %s", sistema.getNome()));
+			MimeMessageHelper helper = criaHelper(msg, from, usuario.getEmail(), String.format("Recuperação de senha do App %s", sistema.getNome()));
 
 			String email = new StringBuilder()
 					.append(addHeader(sistema.getIcone(), String.format("Recuperação de senha do App %s", sistema.getNome())))
@@ -41,11 +41,11 @@ public class EnviadorEmailService {
 		}
 	}
 
-	public void enviaEmailBoasVindas(Usuario usuario, EnumSistema sistema) {
+	public void enviaEmailBoasVindas(String from, Usuario usuario, EnumSistema sistema) {
 		try {
 			if (usuario.getEmail() != null) {
 				MimeMessage msg = javaMailSender.createMimeMessage();
-				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), String.format("Seja bem vindo ao App %s", sistema.getNome()));
+				MimeMessageHelper helper = criaHelper(msg, from, usuario.getEmail(), String.format("Seja bem vindo ao App %s", sistema.getNome()));
 
 				String email = new StringBuilder()
 						.append(addHeader(sistema.getIcone(), String.format("%s - Dados de Cadastro", sistema.getNome())))
@@ -61,12 +61,12 @@ public class EnviadorEmailService {
 		}
 	}
 
-	public void enviaEmailAtualizacaoDados(Usuario usuario) {
+	public void enviaEmailAtualizacaoDados(String from, Usuario usuario) {
 		try {
 			if (usuario.getEmail() != null) {
 				EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 				MimeMessage msg = javaMailSender.createMimeMessage();
-				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(),
+				MimeMessageHelper helper = criaHelper(msg, from, usuario.getEmail(),
 						String.format("Seus dados foram atualizados no App %s", sistema.getNome()));
 
 				String email = new StringBuilder()
@@ -83,12 +83,12 @@ public class EnviadorEmailService {
 		}
 	}
 
-	public void enviaEmailParaUsuario(String assunto, String header, String conteudo, Usuario usuario) {
+	public void enviaEmailParaUsuario(String from, String assunto, String header, String conteudo, Usuario usuario) {
 		try {
 			if (usuario.getEmail() != null) {
 				EnumSistema sistema = EnumSistema.valueOf(usuario.getSistema());
 				MimeMessage msg = javaMailSender.createMimeMessage();
-				MimeMessageHelper helper = criaHelper(msg, usuario.getEmail(), assunto);
+				MimeMessageHelper helper = criaHelper(msg, from, usuario.getEmail(), assunto);
 
 				String email = new StringBuilder()
 						.append(addHeader(sistema.getIcone(), header))
@@ -104,10 +104,10 @@ public class EnviadorEmailService {
 		}
 	}
 
-	private MimeMessageHelper criaHelper(MimeMessage msg, String destinatario, String assunto) {
+	private MimeMessageHelper criaHelper(MimeMessage msg, String from, String destinatario, String assunto) {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(msg, "ISO-8859-1");
-			helper.setFrom("Juris Apps <contatojurisapps@gmail.com>");
+			helper.setFrom(from);
 			helper.setTo(destinatario);
 			helper.setSubject(assunto);
 			return helper;

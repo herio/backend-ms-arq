@@ -92,7 +92,7 @@ public class UsuarioService {
 		configuracaoNotificacaoService.criaConfiguracaoNotificacaoDefault(usuario.getId(), sistema);
 
 		// enviaEmail
-		enviadorEmailService.enviaEmailBoasVindas(usuario, sistema);
+		enviadorEmailService.enviaEmailBoasVindas(getFrom(sistema), usuario, sistema);
 		return usuario;
 	}
 
@@ -111,7 +111,8 @@ public class UsuarioService {
 		usuarioBd.setToken(autenticacaoService.criaTokenJwt(usuarioBd));
 
 		// enviaEmail
-		enviadorEmailService.enviaEmailAtualizacaoDados(usuarioBd);
+		EnumSistema sistema = EnumSistema.valueOf(usuarioBd.getSistema());
+		enviadorEmailService.enviaEmailAtualizacaoDados(getFrom(sistema), usuarioBd);
 		return usuarioBd;
 	}
 
@@ -136,7 +137,7 @@ public class UsuarioService {
 		}
 
 		// enviaEmail
-		return enviadorEmailService.enviaEmailRecuperaSenha(usuario, sistema);
+		return enviadorEmailService.enviaEmailRecuperaSenha(getFrom(sistema), usuario, sistema);
 	}
 
 	public void removerUsuario(Long idUsuario) {
@@ -191,7 +192,7 @@ public class UsuarioService {
 		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));
 
 		// enviaEmail
-		enviadorEmailService.enviaEmailAtualizacaoDados(usuario);
+		enviadorEmailService.enviaEmailAtualizacaoDados(getFrom(sistema), usuario);
 		return usuario;
 	}
 
@@ -340,6 +341,16 @@ public class UsuarioService {
 		} catch (InputMismatchException erro) {
 			return false;
 		}
+	}
+
+	private String getFrom(EnumSistema sistema) {
+		String from = "Juris Apps <contatojurisapps@gmail.com>";
+		if(EnumSistema.MEU_COACH_OAB.equals(sistema)) {
+			from = "Meu Coach OAB <meucoachoab@gmail.com>";
+		} else if(EnumSistema.ADVOGADO_COMUNITARIO.equals(sistema)) {
+			from = "Advogado Comunitário <advogadocomunitario@gmail.com>";
+		}
+		return from;
 	}
 
 }

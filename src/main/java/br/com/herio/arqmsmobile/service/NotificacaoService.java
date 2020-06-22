@@ -98,7 +98,7 @@ public class NotificacaoService {
 			Usuario usuario = usuarioRepository.findById(idUsuarioDestino).get();
 			String header = String.format("%s - atualização", EnumSistema.valueOf(usuario.getSistema()).getNome());
 			String assunto = titulo;
-			enviadorEmailService.enviaEmailParaUsuario(assunto, header, conteudo, usuario);
+			enviadorEmailService.enviaEmailParaUsuario("Juris Apps <contatojurisapps@gmail.com>", assunto, header, conteudo, usuario);
 		}
 
 		return notificacoesEnviadas;
