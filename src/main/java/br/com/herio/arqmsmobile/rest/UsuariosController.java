@@ -71,6 +71,12 @@ public class UsuariosController {
 		usuarioService.desativarUsuario(idUsuario);
 	}
 
+	@ApiOperation("recuperarSenhaUsuario")
+	@GetMapping("/{idUsuario}/recuperarsenha")
+	public String recuperarSenhaUsuario(@PathVariable Long idUsuario) {
+		return usuarioService.recuperarSenhaUsuario(idUsuario);
+	}
+
 	@ApiOperation("listarUsuarios")
 	@GetMapping
 	public Collection<Usuario> listarUsuarios(@RequestParam(required = false) boolean ativos) {

@@ -262,6 +262,13 @@ public class UsuarioService {
 		return arquivoUsuarioRepository.findAllByUsuarioIdAndAtributosContaining(idUsuario, atributos);
 	}
 
+	public String recuperarSenhaUsuario(Long idUsuario) {
+		// somente usuário e admin podem realizar essa operação
+		principalService.validaPermissaoUsuario(idUsuario);
+		Usuario usuario = usuarioRepository.findById(idUsuario).get();		
+		return new String(Base64.getDecoder().decode(usuario.getSenha()));
+	}
+	
 	private void atualizaUsuario(Usuario usuarioBd, Usuario usuario) {
 		usuarioBd.setSistema(usuario.getSistema());
 		usuarioBd.setLogin(usuario.getLogin());
@@ -355,5 +362,6 @@ public class UsuarioService {
 		}
 		return from;
 	}
+
 
 }
