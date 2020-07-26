@@ -55,6 +55,7 @@ public class NotificacaoService {
 		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
 				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
 		notificacao.setDispositivo(dispositivoBd);
+		notificacao.setUsuarioOrigem(dispositivoBd.getUsuario());
 		notificacao.setToken(dispositivoBd.getNumRegistro());
 		notificacao = notificacaoRepository.save(notificacao);
 		boolean enviou = firebaseFachada.enviaNotificacao(notificacao, versaoPaga);
@@ -185,6 +186,7 @@ public class NotificacaoService {
 			notificacao.setConteudo(conteudo);
 			notificacao.setToken(dispositivo.getNumRegistro());
 			notificacao.setDispositivo(dispositivo);
+			notificacao.setUsuarioOrigem(dispositivo.getUsuario());
 			notificacao.setDadosExtras(dadosExtras);
 			notificacao.setDataEnvio(LocalDateTime.now(ZoneId.of("UTC-3")));
 			if (notificacaoOrigem != null) {
