@@ -56,9 +56,22 @@ public class Notificacao extends Entidade implements Serializable {
 	@JoinColumn(name = "ID_NOTIFICACAO_ORIGEM")
 	private Notificacao notificacaoOrigem;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
+	@ManyToOne
+	@JoinColumn(name = "ID_USUARIO_ORIGEM")
+	private Usuario usuarioOrigem;
+
 	@ManyToOne
 	@JoinColumn(name = "ID_DISPOSITIVO")
 	private Dispositivo dispositivo;
+
+	public Usuario getUsuarioOrigem() {
+		return usuarioOrigem;
+	}
+
+	public void setUsuarioOrigem(Usuario usuarioOrigem) {
+		this.usuarioOrigem = usuarioOrigem;
+	}
 
 	public LocalDateTime getDataEnvio() {
 		return dataEnvio;

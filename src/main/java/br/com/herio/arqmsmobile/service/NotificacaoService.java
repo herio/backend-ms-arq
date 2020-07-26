@@ -164,10 +164,8 @@ public class NotificacaoService {
 		if (dadosExtras == null) {
 			return notificacaoRepository.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(
 					true, false, idUsuario, page);
-		} else {
-			return notificacaoRepository
-					.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdAndDadosExtrasIgnoreCaseContainingOrderByDataCriacaoDesc(
-							true, false, idUsuario, dadosExtras, page);
+		} else {	
+			return notificacaoRepository.findAllEnvidasNaoExcluidasDadosExtras(true, false, idUsuario, dadosExtras, page);
 		}
 	}
 
