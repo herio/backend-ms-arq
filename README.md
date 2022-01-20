@@ -3,7 +3,7 @@
 Projeto spring boot que fornece infra para projetos spring boot mobile.
 
 Fornece a infra de:
-- tratamento de exceÃ§Ãµes (TratadorExcecaoRestController)
+- tratamento de exceções (TratadorExcecaoRestController)
 - swagger (SwaggerConfig)
 - cliente feign (FeignErrorDecoder e FeignRequestInterceptor)
 - security (SecurityConfig)
@@ -12,18 +12,19 @@ Fornece a infra de:
 - Config logs do projeto (AppCommonsRequestLoggingFilter)
 
 Fornece endpoints para:
-- AutenticaÃ§Ã£o (AutenticacaoController)
-- CRUD usuÃ¡rios (UsuariosController)
+- Autenticação (AutenticacaoController)
+- CRUD usuários (UsuariosController)
 - CRUD dispositivos (DispositivosController)
-- NotificaÃ§Ãµes (NotificacoesController)
+- Notificações (NotificacoesController)
 - Logs (LogController)
 
-## PrÃ©-requisitos para rodar localmente
+## Pré-requisitos para rodar localmente
 
-Ter instalado (configurado nas variÃ¡veis de ambiente):
-- Java 8 (JAVA_HOME e PATH)
-- Gradle 5.4 (GRADLE_HOME e GRADLE_USER_HOME)
-- Maven (M2_HOME)
+Ter instalado (configurado nas variáveis de ambiente):
+- Java 11 (JAVA_HOME e PATH)
+
+Não precisa instalar - wrapper:
+- Gradle 7.3.3
 
 
 ## Importando no intelliJ
@@ -33,14 +34,14 @@ File > New > Project from existing source > arq-ms-mobile
 Import project from external model > Gradle
 
 - Use default gradle wrapper
-- Gradle home > instalaÃ§Ã£o do gradle local (definido em GRADLE_HOME)
-- Gradle JVM > instalaÃ§Ã£o Jdk 8 local (definido em JAVA_HOME)
+- Gradle home > instalação do gradle local (definido em GRADLE_HOME)
+- Gradle JVM > instalação Jdk 8 local (definido em JAVA_HOME)
 - Global Gradle settings > Service directory path deve apontar para GRADLE_USER_HOME 
 
 
-## PublicaÃ§Ã£o no repositÃ³rio local
+## Publicação no repositório local
 
-Para publicar atualizaÃ§Ã£o do projeto, rodar comando gradle:
+Para publicar atualização do projeto, rodar comando gradle:
 
     gradle publish
     
@@ -52,7 +53,7 @@ Baixar projeto:
 
     git clone https://github.com/herio/backend-ms-arq.git
 
-Sobrescrever cÃ³digo local com o do repositÃ³rio:
+Sobrescrever código local com o do repositório:
 
     git fetch --all
 	git reset --hard origin/master
@@ -60,37 +61,37 @@ Sobrescrever cÃ³digo local com o do repositÃ³rio:
 - git fetch downloads the latest from remote without trying to merge or rebase anything.
 - Then the git reset resets the master branch to what you just fetched. The --hard option changes all the files in your working tree to match the files in origin/master
 	
-Atualizar cÃ³digo local mantendo suas atualizaÃ§Ãµes
+Atualizar código local mantendo suas atualizações
   
     git status
 	git stash
 	git pull
 	git stash pop
 
-Ver log dos Ãºltimos commits:
+Ver log dos Últimos commits:
 
     git log --stat
 
 Fazer commit:
 
-    git add . --add todas alteraÃ§Ãµes
-    git commit -m "descriÃ§Ã£o" --faz commit repo local
+    git add . --add todas alterações
+    git commit -m "descrição" --faz commit repo local
     git push origin master --push repo remoto
     
-Criar novo repositÃ³rio:
+Criar novo repositório:
 
     Na web > + > new repository > nome, vazio
     git clone url
     adiciona arquivos
     git add .
-    git commit -m "comentÃ¡rio"
+    git commit -m "comentário"
     git push iu origin master
     
-Definir usuÃ¡rio padrÃ£o para commit via linha de comando
+Definir usuário padrão para commit via linha de comando
 
     git config --global credential.username "seu email"
 
-Atualizar todos os repositÃ³rios pelo powershell
+Atualizar todos os repositórios pelo powershell
 
     Get-ChildItem -Directory | foreach { Write-Host "`nâ–  Getting latest for $_ â†“" | git -C $_.FullName pull -v}
     
@@ -101,12 +102,12 @@ Principais comandos:
     
     heroku login
     heroku create appname
-    git push heroku master //toda vez que tiver alteraÃ§Ã£o e quiser subir em produÃ§Ã£o
+    git push heroku master //toda vez que tiver alteração e quiser subir em produção
     heroku open
     heroku logs --tail
-    heroku config //vÃª url bd
-    heroku pg //vÃª dados bd
-    heroku ps:scale web=1 //add uma instÃ¢ncia web
+    heroku config //vê url bd
+    heroku pg //vê dados bd
+    heroku ps:scale web=1 //add uma instância web
     heroku config:set ENERGY="20 GeV" //criar var ambiente
     heroku config //listar var ambiente
     heroku apps //listar apps
@@ -145,7 +146,7 @@ Acessar BD via psql:
 
     psql --host=ec2-52-203-98-126.compute-1.amazonaws.com --port=5432 --username=lhnebstamvmtzs --password=1a0cfdefd51bf354b4da5cccaa420aa92a8943f862c1dd43abce2ed1d3f970e5 --dbname=deamr4lqjg7tri
     
-Comandos de BD Ãºteis
+Comandos de BD úteis
 
     \dt //lista tabelas 
     \dt advogado_comunitario.* //lista tabelas de um schema
@@ -156,11 +157,11 @@ Comandos de BD Ãºteis
     SHOW server_encoding;
     SET client_encoding TO 'UTF8'; //atualizar encoding do banco
 
-Criar backup sql no pgadmin (caso nÃ£o tenha flyway): 
+Criar backup sql no pgadmin (caso não tenha flyway): 
 
     Clique botÃ£o direito no banco > backup > plain > gere arquivo .sql e jogue na raiz do projeto
 
-Alterar owner do arquivo .sql  por usuÃ¡rio do banco no heroku:
+Alterar owner do arquivo .sql  por usuário do banco no heroku:
 
     ex. replace all: 'TO postgres' por: 'TO zpsjlzbixfkzxt'
 
@@ -168,10 +169,10 @@ Em heroku pg:sql, mande executar o arquivo criado
 
     \i sgt.sql
 
-DÃºvidas de comandos:
+Dúvidas de comandos:
  
-    \copyright para mostrar termos de distribuiÃ§Ã£o
+    \copyright para mostrar termos de distribuição
     \h para ajuda com comandos SQL
     \? para ajuda com comandos do psql
-    \g ou terminar com ponto-e-vÃ­rgula para executar a consulta
+    \g ou terminar com ponto-e-vírgula para executar a consulta
     \q para sair
