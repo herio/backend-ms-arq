@@ -5,18 +5,15 @@ import org.apache.commons.text.StringEscapeUtils
 import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem
 
 enum EnumSistema {
-	NOTICIAS_JURIDICAS("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone.png",
-	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
-	"https://noticias-juridicas.herokuapp.com"),
-	NOTICIAS_JURIDICAS_PAGO("Not&iacute;cias Jur&iacute;dicas", "https://noticias-juridicas.herokuapp.com/publico/icone_pago.png",
-	"https://noticias-juridicas.herokuapp.com/publico/default-avatar.png", "1qk7108N-6xW613ez3abtPfDiWahYnJ4E",
-	"https://noticias-juridicas.herokuapp.com"),
 	ADVOGADO_COMUNITARIO("Advogado Comunit&aacute;rio", "https://advogado-comunitario.herokuapp.com/publico/icone.png",
 	"https://advogado-comunitario.herokuapp.com/publico/default-avatar.png", "1lYrXOmD4CT79jxNfXxl8wOk9BOD2FQTP",
 	"https://advogado-comunitario.herokuapp.com",),
 	MEU_COACH_OAB("Meu Coach OAB", "https://coach-oab.herokuapp.com/publico/icone.png",
 	"https://coach-oab.herokuapp.com/publico/default-avatar.png", "1ijvzuupj8sBY2GgV3irM7bgDQX5JDPGk",
-	"https://coach-oab.herokuapp.com",);
+	"https://coach-oab.herokuapp.com",),
+	ESTUDANDO_JESUS_COM_JACK_DARSA("Estudando Jesus com Jack Darsa", "https://estudando-jesus-com-jack-darsa.herokuapp.com/publico/icone.png",
+	"https://estudando-jesus-com-jack-darsa.herokuapp.com/publico/default-avatar.png", "1ijvzuupj8sBY2GgV3irM7bgDQX5JDPGk",
+	"https://estudando-jesus-com-jack-darsa.herokuapp.com",);
 
 	String nome;
 	String icone;
@@ -59,16 +56,16 @@ enum EnumSistema {
 	public static List<ConfiguracaoNotificacaoItem> getConfigsItensDefault(EnumSistema sistema) {
         List<ConfiguracaoNotificacaoItem> configs = new ArrayList<>();
 		switch (sistema) {
-			case NOTICIAS_JURIDICAS:
+			case ESTUDANDO_JESUS_COM_JACK_DARSA:
                 ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
-				configItem.setTipoItem("DESTAQUE");
-				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
+                configItem.setTipoItem("ESTUDOS");
+                configItem.setTipoPeriodicidade("DIARIO");
+                configItem.setValorItem(Boolean.TRUE.toString())
                 configs.add(configItem);
-				break;
-			case NOTICIAS_JURIDICAS_PAGO:
-                ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
-				configItem.setTipoItem("DESTAQUE");
-				configItem.setTipoPeriodicidade("DOIS_POR_DIA");
+                configItem = new ConfiguracaoNotificacaoItem();
+                configItem.setTipoItem("LIVES");
+                configItem.setTipoPeriodicidade("DIARIO");
+                configItem.setValorItem(Boolean.TRUE.toString())
                 configs.add(configItem);
 				break;
             case MEU_COACH_OAB:
