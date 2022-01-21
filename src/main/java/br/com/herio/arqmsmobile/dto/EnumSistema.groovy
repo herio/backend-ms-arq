@@ -12,7 +12,7 @@ enum EnumSistema {
 	"https://coach-oab.herokuapp.com/publico/default-avatar.png", "1ijvzuupj8sBY2GgV3irM7bgDQX5JDPGk",
 	"https://coach-oab.herokuapp.com",),
 	ESTUDANDO_JESUS_COM_JACK_DARSA("Estudando Jesus com Jack Darsa", "https://estudando-jesus-com-jack-darsa.herokuapp.com/publico/icone.png",
-	"https://estudando-jesus-com-jack-darsa.herokuapp.com/publico/default-avatar.png", "1ijvzuupj8sBY2GgV3irM7bgDQX5JDPGk",
+	"https://estudando-jesus-com-jack-darsa.herokuapp.com/publico/default-avatar.png", "17uQFFi6FuN2ZhhZhjxfizaS_g6iFYlK_",
 	"https://estudando-jesus-com-jack-darsa.herokuapp.com",);
 
 	String nome;
