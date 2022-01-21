@@ -47,7 +47,7 @@ public class FirebaseFachada {
 
 	@PostConstruct
 	public void init() {
-		LOGGER.debug(String.format("FirebaseFachada init credentialsFile[%s], urlDatabase[%s]", credentialsFile, urlDatabase));
+		LOGGER.info(String.format("FirebaseFachada init credentialsFile[%s], urlDatabase[%s]", credentialsFile, urlDatabase));
 		try {
 			if (credentialsFile != null && !"".equals(credentialsFile)) {
 				InputStream in = FirebaseFachada.class.getResourceAsStream(credentialsFile);
@@ -88,7 +88,7 @@ public class FirebaseFachada {
 			Message message = Message.builder()
 					.setNotification(new Notification(notificacao.getTitulo(), notificacao.getConteudo()))
 					.putAllData(notificacao.getMapDadosExtras())
-					.setToken(notificacao.getDispositivo().getNumRegistro())
+					.setToken(notificacao.getDispositivo().getNumRegistro().replaceAll("naoautenticado", ""))
 					.build();
 			FirebaseApp app = versaoPaga ? pago : gratis;
 			String response = FirebaseMessaging.getInstance(app).send(message);
