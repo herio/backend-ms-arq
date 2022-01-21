@@ -49,29 +49,33 @@ public class FirebaseFachada {
 	public void init() {
 		LOGGER.debug(String.format("FirebaseFachada init credentialsFile[%s], urlDatabase[%s]", credentialsFile, urlDatabase));
 		try {
-			if (credentialsFile != null && !"".equals(credentialsFile) && urlDatabase != null && !"".equals(urlDatabase)) {
-				InputStream in = FirebaseFachada.class.getResourceAsStream(credentialsFile);// noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
+			if (credentialsFile != null && !"".equals(credentialsFile)) {
+				InputStream in = FirebaseFachada.class.getResourceAsStream(credentialsFile);
 				if (in == null) {
 					throw new FileNotFoundException("Resource not found: " + credentialsFile);
 				}
-				FirebaseOptions options = new FirebaseOptions.Builder()
-						.setCredentials(GoogleCredentials.fromStream(in))
-						.setDatabaseUrl(urlDatabase) // "https://noticias-juridicas-45015.firebaseio.com"
-						.build();
+				FirebaseOptions.Builder optionsBuilder = new FirebaseOptions.Builder()
+						.setCredentials(GoogleCredentials.fromStream(in));
+				if(urlDatabase != null && !"".equals(urlDatabase)) {
+					optionsBuilder.setDatabaseUrl(urlDatabase); 
+				}
+				FirebaseOptions options= optionsBuilder.build();
 				gratis = FirebaseApp.initializeApp(options, "gratis");
 			} else {
-				LOGGER.error("FirebaseFachada não iniciado. credentialsFile, urlDatabase nulos ", credentialsFile, urlDatabase);
+				LOGGER.error("FirebaseFachada não iniciado. credentialsFile nulo", credentialsFile, urlDatabase);
 			}
 
 			if (credentialsFilePago != null && !"".equals(credentialsFilePago) && urlDatabasePago != null && !"".equals(urlDatabasePago)) {
-				InputStream in = FirebaseFachada.class.getResourceAsStream(credentialsFilePago);// noticias-juridicas-45015-firebase-adminsdk-lrh3u-bd08f09ccd.json
+				InputStream in = FirebaseFachada.class.getResourceAsStream(credentialsFilePago);
 				if (in == null) {
 					throw new FileNotFoundException("Resource not found: " + credentialsFilePago);
 				}
-				FirebaseOptions options = new FirebaseOptions.Builder()
-						.setCredentials(GoogleCredentials.fromStream(in))
-						.setDatabaseUrl(urlDatabasePago) // "https://noticias-juridicas-45015.firebaseio.com"
-						.build();
+				FirebaseOptions.Builder optionsBuilder = new FirebaseOptions.Builder()
+						.setCredentials(GoogleCredentials.fromStream(in));
+				if(urlDatabase != null && !"".equals(urlDatabase)) {
+					optionsBuilder.setDatabaseUrl(urlDatabasePago);
+				}						
+				FirebaseOptions options = optionsBuilder.build();
 				pago = FirebaseApp.initializeApp(options, "pago");
 			}
 		} catch (IOException e) {

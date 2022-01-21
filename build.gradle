@@ -92,6 +92,10 @@ publishing {
 	repositories {
 		//deploy nos repositorios dos projetos dependentes para publicacao no heroku
 		maven {
+			url 'file:./../backend-estudando-jesus-com-jack-darsa/repo'
+		}
+		
+		maven {
 			url 'file:./../backend-ms-template/repo'
 		}
 
