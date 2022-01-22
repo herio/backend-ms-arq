@@ -82,6 +82,10 @@ sourceSets {
 	}
 }
 
+java {
+	withSourcesJar()
+}
+
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
