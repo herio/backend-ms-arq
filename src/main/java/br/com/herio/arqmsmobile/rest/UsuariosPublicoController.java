@@ -27,21 +27,21 @@ public class UsuariosPublicoController {
 	@Autowired
 	protected UsuarioService usuarioService;
 
-	@ApiOperation("root")
-	@PostMapping("/root/{sistema}")
-	public Usuario root(@PathVariable EnumSistema sistema) {
-		return usuarioService.root(sistema);
-	}
-
 	@ApiOperation("criarUsuario")
 	@PostMapping
 	public Usuario criarUsuario(@RequestBody Usuario usuario) {
 		return usuarioService.criarUsuario(usuario);
 	}
 
+	@ApiOperation("root")
+	@PostMapping("/root/{sistema}")
+	public Usuario root(@PathVariable String sistema) {
+		return usuarioService.root(EnumSistema.valueOf(sistema));
+	}
+
 	@ApiOperation("recuperarSenha")
 	@GetMapping("/senha/{sistema}")
-	public String recuperarSenha(@RequestParam String email, @PathVariable EnumSistema sistema) {
-		return usuarioService.recuperarSenha(email, sistema);
+	public String recuperarSenha(@RequestParam String email, @PathVariable String sistema) {
+		return usuarioService.recuperarSenha(email, EnumSistema.valueOf(sistema));
 	}
 }

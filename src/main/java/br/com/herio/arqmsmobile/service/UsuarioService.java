@@ -365,13 +365,24 @@ public class UsuarioService {
 
 	public Usuario root(EnumSistema sistema) {
 		Usuario usuario = new Usuario();
-		usuario.setAdmin(true);
 		usuario.setLogin("admin");
-		usuario.setSenha("admin");
-		usuario.setSistema(sistema.name());
-		usuario = usuarioRepository.save(usuario);
-		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));		
-		return usuario;
+		usuario.setSistema(sistema.name());		
+		Optional<Usuario> usuarioOpt = usuarioRepository.findByLoginIgnoreCaseAndSistema(usuario.getLogin().toLowerCase(), usuario.getSistema());
+		Usuario usuarioBd = usuario;
+		if (usuarioOpt.isPresent()) {
+			usuarioBd = usuarioOpt.get();
+			usuarioBd.setDataExclusao(null);
+		}
+		usuarioBd.setAdmin(true);
+		usuarioBd.setAtivado(true);
+		usuarioBd.setNome("admin");
+		usuarioBd.setSenha(Base64.getEncoder().encodeToString("admin".getBytes()));
+		
+		usuarioBd = usuarioRepository.save(usuarioBd);
+		
+		usuarioBd.setToken(autenticacaoService.criaTokenJwt(usuarioBd));		
+		
+		return usuarioBd;
 	}
 
 

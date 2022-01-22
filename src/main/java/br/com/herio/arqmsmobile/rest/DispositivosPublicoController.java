@@ -22,8 +22,8 @@ public class DispositivosPublicoController {
 
 	@ApiOperation("criaUsuarioeSalvaDispositivo")
 	@PostMapping
-	public Dispositivo criaUsuarioeSalvaDispositivo(@RequestBody Dispositivo dispositivo, @PathVariable EnumSistema sistema) {
-		return dispositivoService.criaUsuarioeSalvaDispositivo(dispositivo, sistema);
+	public Dispositivo criaUsuarioeSalvaDispositivo(@RequestBody Dispositivo dispositivo, @PathVariable String sistema) {
+		return dispositivoService.criaUsuarioeSalvaDispositivo(dispositivo, EnumSistema.valueOf(sistema));
 	}
 
 }

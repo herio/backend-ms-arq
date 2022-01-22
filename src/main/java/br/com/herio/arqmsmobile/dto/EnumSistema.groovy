@@ -7,13 +7,13 @@ import br.com.herio.arqmsmobile.dominio.ConfiguracaoNotificacaoItem
 enum EnumSistema {
 	ADVOGADO_COMUNITARIO("Advogado Comunit&aacute;rio", "https://advogado-comunitario.herokuapp.com/publico/icone.png",
 	"https://advogado-comunitario.herokuapp.com/publico/default-avatar.png", "1lYrXOmD4CT79jxNfXxl8wOk9BOD2FQTP",
-	"https://advogado-comunitario.herokuapp.com",),
+	"https://advogado-comunitario.herokuapp.com", true),
 	MEU_COACH_OAB("Meu Coach OAB", "https://coach-oab.herokuapp.com/publico/icone.png",
 	"https://coach-oab.herokuapp.com/publico/default-avatar.png", "1ijvzuupj8sBY2GgV3irM7bgDQX5JDPGk",
-	"https://coach-oab.herokuapp.com",),
+	"https://coach-oab.herokuapp.com", true),
 	ESTUDANDO_JESUS_COM_JACK_DARSA("Estudando Jesus com Jack Darsa", "https://estudando-jesus-com-jack-darsa.herokuapp.com/publico/icone.png",
 	"https://estudando-jesus-com-jack-darsa.herokuapp.com/publico/default-avatar.png", "17uQFFi6FuN2ZhhZhjxfizaS_g6iFYlK_",
-	"https://estudando-jesus-com-jack-darsa.herokuapp.com",);
+	"https://estudando-jesus-com-jack-darsa.herokuapp.com", false);
 
 	String nome;
 	String icone;
