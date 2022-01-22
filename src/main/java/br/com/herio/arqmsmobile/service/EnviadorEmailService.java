@@ -43,7 +43,7 @@ public class EnviadorEmailService {
 
 	public void enviaEmailBoasVindas(String from, Usuario usuario, EnumSistema sistema) {
 		try {
-			if (usuario.getEmail() != null) {
+			if (usuario.getEmail() != null && sistema.isEnviarEmail()) {
 				MimeMessage msg = javaMailSender.createMimeMessage();
 				MimeMessageHelper helper = criaHelper(msg, from, usuario.getEmail(), String.format("Seja bem vindo ao App %s", sistema.getNome()));
 

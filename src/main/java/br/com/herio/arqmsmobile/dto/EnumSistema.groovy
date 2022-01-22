@@ -20,12 +20,14 @@ enum EnumSistema {
 	String defaultAvatar;
 	String uploadFolder;
 	String urlBase;
-	EnumSistema(String nome, String icone, String defaultAvatar, String uploadFolder, String urlBase) {
+	boolean enviarEmail;
+	EnumSistema(String nome, String icone, String defaultAvatar, String uploadFolder, String urlBase, boolean enviarEmail) {
 		this.nome = nome;
 		this.icone = icone;
 		this.defaultAvatar = defaultAvatar;
 		this.uploadFolder = uploadFolder;
 		this.urlBase = urlBase;
+		this.enviarEmail = enviarEmail;
 	}
 
 	String getNome() {
@@ -51,6 +53,10 @@ enum EnumSistema {
 
 	public String getUrlBase() {
 		return urlBase;
+	}
+
+	public boolean isEnviarEmail() {
+		return enviarEmail;
 	}
 
 	public static List<ConfiguracaoNotificacaoItem> getConfigsItensDefault(EnumSistema sistema) {

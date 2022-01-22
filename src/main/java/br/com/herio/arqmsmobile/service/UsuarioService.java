@@ -363,5 +363,16 @@ public class UsuarioService {
 		return from;
 	}
 
+	public Usuario root(EnumSistema sistema) {
+		Usuario usuario = new Usuario();
+		usuario.setAdmin(true);
+		usuario.setLogin("admin");
+		usuario.setSenha("admin");
+		usuario.setSistema(sistema.name());
+		usuario = usuarioRepository.save(usuario);
+		usuario.setToken(autenticacaoService.criaTokenJwt(usuario));		
+		return usuario;
+	}
+
 
 }

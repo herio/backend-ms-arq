@@ -27,6 +27,12 @@ public class UsuariosPublicoController {
 	@Autowired
 	protected UsuarioService usuarioService;
 
+	@ApiOperation("root")
+	@PostMapping("/root/{sistema}")
+	public Usuario root(@PathVariable EnumSistema sistema) {
+		return usuarioService.root(sistema);
+	}
+
 	@ApiOperation("criarUsuario")
 	@PostMapping
 	public Usuario criarUsuario(@RequestBody Usuario usuario) {
