@@ -77,9 +77,7 @@ public class GoogleDriveFachada {
 			if (credential == null) {
 				LOGGER.error("GoogleDriveFachada credential == null");
 			} else {
-				this.service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-						.setApplicationName(appName)
-						.build();
+				this.service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName(appName).build();
 				LOGGER.info("GoogleDriveFachada credential carregada com sucesso");
 			}
 		} catch (GeneralSecurityException | IOException e) {
@@ -87,18 +85,22 @@ public class GoogleDriveFachada {
 		}
 	}
 
-	public List<File> listFilesDir(String idDirRaiz, String nomeDir) {
+	public List<File> listFiles(String idDirRaiz) throws IOException {
+		String pageToken = null;
+		FileList result = service.files().list().setQ(String.format("'%s' in parents", idDirRaiz)).setSpaces("drive")
+				.setFields("nextPageToken, files(id, name, parents)").setPageToken(pageToken).execute();
+		return result.getFiles();
+	}
+
+	public List<File> listFilesNomeDir(String idDirRaiz, String nomeDir) {
 		try {
 			File dirPesquisado = recuperaDiretorio(idDirRaiz, nomeDir);
 			if (dirPesquisado == null) {
 				return null;
 			} else {
 				String idDirPesquisado = dirPesquisado.getId();
-				return service.files().list()
-						.setQ(String.format("'%s' in parents", idDirPesquisado))
-						.setSpaces("drive")
-						.setFields("files(id, name, parents)")
-						.execute().getFiles();
+				return service.files().list().setQ(String.format("'%s' in parents", idDirPesquisado)).setSpaces("drive")
+						.setFields("files(id, name, parents)").execute().getFiles();
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -111,11 +113,8 @@ public class GoogleDriveFachada {
 			if (idDirUsuario != null) {
 				idFolderPesquisa = recuperaDiretorioUsuario(idFolder, idDirUsuario).getId();
 			}
-			return service.files().list()
-					.setQ(String.format("'%s' in parents", idFolderPesquisa))
-					.setSpaces("drive")
-					.setFields("files(id, name, parents)")
-					.execute().getFiles();
+			return service.files().list().setQ(String.format("'%s' in parents", idFolderPesquisa)).setSpaces("drive")
+					.setFields("files(id, name, parents)").execute().getFiles();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -153,9 +152,7 @@ public class GoogleDriveFachada {
 			fileMetadata.setName(file.getName());
 			fileMetadata.setParents(Collections.singletonList(diretorioUsuario.getId()));
 			FileContent mediaContent = new FileContent(mimeType, file);
-			File gFile = service.files().create(fileMetadata, mediaContent)
-					.setFields("id, name, parents, webViewLink")
-					.execute();
+			File gFile = service.files().create(fileMetadata, mediaContent).setFields("id, name, parents, webViewLink").execute();
 
 			String urlDownloadArquivo = getUrlBase(sistema) + "/publico/usuarios/%s/files/arquivos/%s";
 			String urlDownloadUsuario = getUrlBase(sistema) + "/publico/usuarios/%s/files/fotos";
@@ -179,9 +176,7 @@ public class GoogleDriveFachada {
 				fileMetadataThumb.setName("thumb" + fileThumb.getName());
 				fileMetadataThumb.setParents(Collections.singletonList(diretorioUsuario.getId()));
 				FileContent mediaContentThumb = new FileContent(mimeType, fileThumb);
-				File gFileThumb = service.files().create(fileMetadataThumb, mediaContentThumb)
-						.setFields("id, name, parents, webViewLink")
-						.execute();
+				File gFileThumb = service.files().create(fileMetadataThumb, mediaContentThumb).setFields("id, name, parents, webViewLink").execute();
 				if (arquivo != null) {
 					String fileUriThumb = String.format(urlDownloadArquivo, idUsuario, gFile.getId()) + "?thumb=true";
 					arquivo.setIdDriveThumb(gFileThumb.getId());
@@ -225,13 +220,15 @@ public class GoogleDriveFachada {
 		File diretorioUsuario = null;
 		String pageToken = null;
 		do {
-			FileList result = service.files()
-					.list()
-					.setQ(String.format("name='%s' and '%s' in parents", nomeDir, idDirRaiz))
-					.setSpaces("drive")
-					.setFields("nextPageToken, files(id, name, parents)")
-					.setPageToken(pageToken)
-					.execute();
+
+			Drive.Files.List files = service.files().list();
+			if (nomeDir == null) {
+				files = files.setQ(String.format("'%s' in parents", idDirRaiz));
+			} else {
+				files = files.setQ(String.format("name='%s' and '%s' in parents", nomeDir, idDirRaiz));
+			}
+
+			FileList result = files.setSpaces("drive").setFields("nextPageToken, files(id, name, parents)").setPageToken(pageToken).execute();
 			if (result != null && result.getFiles() != null && result.getFiles().size() == 1) {
 				// encontrou diretório usuário
 				diretorioUsuario = result.getFiles().get(0);
@@ -247,13 +244,8 @@ public class GoogleDriveFachada {
 		File diretorioUsuario = null;
 		String pageToken = null;
 		do {
-			FileList result = service.files()
-					.list()
-					.setQ(String.format("name='%s' and '%s' in parents", idDirUsuario, idFolder))
-					.setSpaces("drive")
-					.setFields("nextPageToken, files(id, name, parents)")
-					.setPageToken(pageToken)
-					.execute();
+			FileList result = service.files().list().setQ(String.format("name='%s' and '%s' in parents", idDirUsuario, idFolder)).setSpaces("drive")
+					.setFields("nextPageToken, files(id, name, parents)").setPageToken(pageToken).execute();
 			if (result.getFiles() != null && result.getFiles().size() == 1) {
 				// encontrou diretório usuário
 				diretorioUsuario = result.getFiles().get(0);
@@ -268,10 +260,7 @@ public class GoogleDriveFachada {
 			fileMetadata.setName(idDirUsuario);
 			fileMetadata.setMimeType("application/vnd.google-apps.folder");
 			fileMetadata.setParents(Collections.singletonList(idFolder));
-			diretorioUsuario = service.files()
-					.create(fileMetadata)
-					.setFields("id")
-					.execute();
+			diretorioUsuario = service.files().create(fileMetadata).setFields("id").execute();
 		}
 		return diretorioUsuario;
 	}
@@ -293,8 +282,7 @@ public class GoogleDriveFachada {
 		} else {
 			GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 			GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-					.setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
-					.build();
+					.setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH))).build();
 			return flow.loadCredential("user");
 		}
 		return null;

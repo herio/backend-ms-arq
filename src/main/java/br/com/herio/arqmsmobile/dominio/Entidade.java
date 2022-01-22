@@ -24,12 +24,12 @@ public class Entidade {
 
 	@JsonIgnore
 	@CreationTimestamp
-	@Column(name = "DATA_CRIACAO")
+	@Column(name = "DATA_CRIACAO", columnDefinition = "TIMESTAMP")
 	private LocalDateTime dataCriacao;
 
 	@JsonIgnore
 	@UpdateTimestamp
-	@Column(name = "DATA_ATUALIZACAO")
+	@Column(name = "DATA_ATUALIZACAO", columnDefinition = "TIMESTAMP")
 	private LocalDateTime dataAtualizacao;
 
 	@JsonIgnore

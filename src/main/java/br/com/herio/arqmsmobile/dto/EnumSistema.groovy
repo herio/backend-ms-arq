@@ -60,37 +60,37 @@ enum EnumSistema {
 	}
 
 	public static List<ConfiguracaoNotificacaoItem> getConfigsItensDefault(EnumSistema sistema) {
-        List<ConfiguracaoNotificacaoItem> configs = new ArrayList<>();
+		List<ConfiguracaoNotificacaoItem> configs = new ArrayList<>();
 		switch (sistema) {
 			case ESTUDANDO_JESUS_COM_JACK_DARSA:
-                ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
-                configItem.setTipoItem("ESTUDOS");
-                configItem.setTipoPeriodicidade("DIARIO");
-                configItem.setValorItem(Boolean.TRUE.toString())
-                configs.add(configItem);
-                configItem = new ConfiguracaoNotificacaoItem();
-                configItem.setTipoItem("LIVES");
-                configItem.setTipoPeriodicidade("DIARIO");
-                configItem.setValorItem(Boolean.TRUE.toString())
-                configs.add(configItem);
+				ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
+				configItem.setTipoItem("ESTUDOS");
+				configItem.setTipoPeriodicidade("DIARIO");
+				configItem.setValorItem(Boolean.TRUE.toString())
+				configs.add(configItem);
+				configItem = new ConfiguracaoNotificacaoItem();
+				configItem.setTipoItem("LIVES");
+				configItem.setTipoPeriodicidade("DIARIO");
+				configItem.setValorItem(Boolean.TRUE.toString())
+				configs.add(configItem);
 				break;
-            case MEU_COACH_OAB:
-                ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
-                configItem.setTipoItem("PLANOS_ESTUDOS");
-                configItem.setTipoPeriodicidade("DIARIO");
-                configItem.setValorItem(Boolean.TRUE.toString())
-                configs.add(configItem);
-                configItem = new ConfiguracaoNotificacaoItem();
-                configItem.setTipoItem("SIMULADOS");
-                configItem.setTipoPeriodicidade("DIARIO");
-                configItem.setValorItem(Boolean.TRUE.toString())
-                configs.add(configItem);
-                configItem = new ConfiguracaoNotificacaoItem();
-                configItem.setTipoItem("MENSAGENS_MOTIVACIONAIS");
-                configItem.setTipoPeriodicidade("DIARIO");
-                configItem.setValorItem(Boolean.TRUE.toString())
-                configs.add(configItem);
-                break;
+			case MEU_COACH_OAB:
+				ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
+				configItem.setTipoItem("PLANOS_ESTUDOS");
+				configItem.setTipoPeriodicidade("DIARIO");
+				configItem.setValorItem(Boolean.TRUE.toString())
+				configs.add(configItem);
+				configItem = new ConfiguracaoNotificacaoItem();
+				configItem.setTipoItem("SIMULADOS");
+				configItem.setTipoPeriodicidade("DIARIO");
+				configItem.setValorItem(Boolean.TRUE.toString())
+				configs.add(configItem);
+				configItem = new ConfiguracaoNotificacaoItem();
+				configItem.setTipoItem("MENSAGENS_MOTIVACIONAIS");
+				configItem.setTipoPeriodicidade("DIARIO");
+				configItem.setValorItem(Boolean.TRUE.toString())
+				configs.add(configItem);
+				break;
 			case ADVOGADO_COMUNITARIO:
 				break;
 			default:
