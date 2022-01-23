@@ -21,6 +21,8 @@ group = 'br.com.herio'
 version = '1.0.0'
 sourceCompatibility = JavaVersion.VERSION_11
 
+compileGroovy { options.encoding = 'ISO-8859-1' }
+
 repositories project.repos
 
 dependencies {
