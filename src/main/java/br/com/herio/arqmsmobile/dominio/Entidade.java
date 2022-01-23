@@ -3,9 +3,6 @@ package br.com.herio.arqmsmobile.dominio;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
@@ -15,35 +12,22 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @MappedSuperclass
-public class Entidade {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private Long id;
+public class Entidade extends EntidadeSimples {
 
 	@JsonIgnore
 	@CreationTimestamp
-	@Column(name = "DATA_CRIACAO", columnDefinition = "TIMESTAMP")
+	@Column(name = "DATA_CRIACAO")
 	private LocalDateTime dataCriacao;
 
 	@JsonIgnore
 	@UpdateTimestamp
-	@Column(name = "DATA_ATUALIZACAO", columnDefinition = "TIMESTAMP")
+	@Column(name = "DATA_ATUALIZACAO")
 	private LocalDateTime dataAtualizacao;
 
 	@JsonIgnore
 	@Version
 	@Column(name = "VERSAO")
 	private Long versao;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
