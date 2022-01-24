@@ -54,12 +54,11 @@ public class FirebaseFachada {
 				if (in == null) {
 					throw new FileNotFoundException("Resource not found: " + credentialsFile);
 				}
-				FirebaseOptions.Builder optionsBuilder = new FirebaseOptions.Builder()
-						.setCredentials(GoogleCredentials.fromStream(in));
-				if(urlDatabase != null && !"".equals(urlDatabase)) {
-					optionsBuilder.setDatabaseUrl(urlDatabase); 
+				FirebaseOptions.Builder optionsBuilder = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(in));
+				if (urlDatabase != null && !"".equals(urlDatabase)) {
+					optionsBuilder.setDatabaseUrl(urlDatabase);
 				}
-				FirebaseOptions options= optionsBuilder.build();
+				FirebaseOptions options = optionsBuilder.build();
 				gratis = FirebaseApp.initializeApp(options, "gratis");
 			} else {
 				LOGGER.error("FirebaseFachada não iniciado. credentialsFile nulo", credentialsFile, urlDatabase);
@@ -70,11 +69,10 @@ public class FirebaseFachada {
 				if (in == null) {
 					throw new FileNotFoundException("Resource not found: " + credentialsFilePago);
 				}
-				FirebaseOptions.Builder optionsBuilder = new FirebaseOptions.Builder()
-						.setCredentials(GoogleCredentials.fromStream(in));
-				if(urlDatabase != null && !"".equals(urlDatabase)) {
+				FirebaseOptions.Builder optionsBuilder = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(in));
+				if (urlDatabase != null && !"".equals(urlDatabase)) {
 					optionsBuilder.setDatabaseUrl(urlDatabasePago);
-				}						
+				}
 				FirebaseOptions options = optionsBuilder.build();
 				pago = FirebaseApp.initializeApp(options, "pago");
 			}
@@ -85,17 +83,13 @@ public class FirebaseFachada {
 
 	public boolean enviaNotificacao(Notificacao notificacao, boolean versaoPaga) {
 		try {
-			Message message = Message.builder()
-					.setNotification(new Notification(notificacao.getTitulo(), notificacao.getConteudo()))
-					.putAllData(notificacao.getMapDadosExtras())
-					.setToken(notificacao.getDispositivo().getNumRegistro().replaceAll("naoautenticado", ""))
-					.build();
+			Message message = Message.builder().setNotification(new Notification(notificacao.getTitulo(), notificacao.getConteudo()))
+					.putAllData(notificacao.getMapDadosExtras()).setToken(notificacao.getDispositivo().getNumRegistro()).build();
 			FirebaseApp app = versaoPaga ? pago : gratis;
 			String response = FirebaseMessaging.getInstance(app).send(message);
 			LOGGER.debug("FirebaseFachada enviaNotificacao", response);
 			return response != null;
 		} catch (FirebaseMessagingException e) {
-			LOGGER.error("FirebaseFachada enviaNotificacao erro", e);
 			throw new RuntimeException(e);
 		}
 	}
