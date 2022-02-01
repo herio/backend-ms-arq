@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +30,7 @@ import br.com.herio.arqmsmobile.infra.firebase.FirebaseFachada;
 
 @Service
 public class NotificacaoService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(NotificacaoService.class);
 
 	@Autowired
 	protected LogNotificacaoRepository logNotificacaoRepository;
@@ -102,6 +105,9 @@ public class NotificacaoService {
 			String assunto = titulo;
 			enviadorEmailService.enviaEmailParaUsuario("Juris Apps <contatojurisapps@gmail.com>", assunto, header, conteudo, usuario);
 		}
+
+		// log console
+		LOGGER.debug(String.format(">>> NotificacaoService salvarEEnviarNotificacoes log[%s]", this.log.toString()));
 
 		return notificacoesEnviadas;
 	}
