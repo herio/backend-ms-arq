@@ -1,6 +1,7 @@
 package br.com.herio.arqmsmobile.dominio;
 
 import java.io.Serializable;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -30,7 +31,7 @@ public class LogNotificacao extends Entidade implements Serializable {
 	@JsonProperty
 	public String getDataFormatada() {
 		return getDataCriacao() == null ? ""
-				: getDataCriacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm", new Locale("pt", "BR")));
+				: getDataCriacao().atZone(ZoneId.of("UTC-3")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm", new Locale("pt", "BR")));
 	}
 
 }

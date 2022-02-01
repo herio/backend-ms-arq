@@ -1,6 +1,9 @@
 package br.com.herio.arqmsmobile.dominio;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -16,4 +19,8 @@ public interface LogNotificacaoRepository extends CrudRepository<LogNotificacao,
 	List<LogNotificacao> findAll();
 
 	LogNotificacao findTopByOrderByIdDesc();
+
+	@Transactional
+	Long deleteAllByDataCriacaoBefore(LocalDateTime dataLimite);
+
 }

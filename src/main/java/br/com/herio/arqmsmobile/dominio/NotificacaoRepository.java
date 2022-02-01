@@ -3,6 +3,8 @@ package br.com.herio.arqmsmobile.dominio;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -33,4 +35,7 @@ public interface NotificacaoRepository extends CrudRepository<Notificacao, Long>
 			+ " AND n.dadosExtras like %:dadosExtras% AND n.usuarioOrigem.id = :usuarioId ORDER BY n.dataCriacao DESC")
 	Page<Notificacao> findAllEnvidasNaoExcluidasDadosExtras(@Param("enviada") boolean enviada, @Param("excluida") boolean excluida,
 			@Param("usuarioId") Long usuarioId, @Param("dadosExtras") String dadosExtras, Pageable page);
+
+	@Transactional
+	Long deleteAllByDataCriacaoBefore(LocalDateTime dataHoraLimite);
 }
