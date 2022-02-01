@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -52,8 +53,8 @@ public class NotificacaoService {
 	private StringBuilder log = new StringBuilder("");
 
 	public boolean salvarEEnviarNotificacaoParaDispositivo(Notificacao notificacao, boolean versaoPaga) {
-		Dispositivo dispositivoBd = dispositivoRepository.findByNumRegistroAndSo(
-				notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
+		Dispositivo dispositivoBd = dispositivoRepository
+				.findByNumRegistroAndSo(notificacao.getDispositivo().getNumRegistro(), notificacao.getDispositivo().getSo()).get();
 		notificacao.setDispositivo(dispositivoBd);
 		notificacao.setUsuarioOrigem(dispositivoBd.getUsuario());
 		notificacao.setToken(dispositivoBd.getNumRegistro());
@@ -135,12 +136,17 @@ public class NotificacaoService {
 
 					}
 				} catch (RuntimeException e) {
-					log.append(String.format(">>> NotificacaoService enviarNotificacoes ERRO e.getMessage[%s] notificacao[%s]\n", e.getMessage(),
-							notificacaoBd));
-					if (e.getMessage().contains("Requested entity was not found") ||
-							e.getMessage().contains("The registration token is not a valid FCM registration token")) {
-						log.append(String.format(">>> NotificacaoService enviarNotificacoes EXCLUIR dispositivo[%s]\n",
-								notificacaoBd.getDispositivo()));
+					String msg = e.getMessage();
+					if (msg == null) {
+						msg = ExceptionUtils.getStackTrace(e);
+					}
+					log.append(
+							String.format(">>> NotificacaoService enviarNotificacoes ERRO e.getMessage[%s] notificacao[%s]\n", msg, notificacaoBd));
+
+					if (msg.contains("Requested entity was not found")
+							|| msg.contains("The registration token is not a valid FCM registration token")) {
+						log.append(
+								String.format(">>> NotificacaoService enviarNotificacoes EXCLUIR dispositivo[%s]\n", notificacaoBd.getDispositivo()));
 						notificacaoBd.getDispositivo().setDataExclusao(LocalDateTime.now(ZoneId.of("UTC-3")));
 						dispositivoRepository.save(notificacaoBd.getDispositivo());
 					}
@@ -163,9 +169,9 @@ public class NotificacaoService {
 
 	public Page<Notificacao> listarNotificacoesEnviadasNaoExcluidas(Long idUsuario, String dadosExtras, Pageable page) {
 		if (dadosExtras == null) {
-			return notificacaoRepository.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(
-					true, false, idUsuario, page);
-		} else {	
+			return notificacaoRepository.findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdOrderByDataCriacaoDesc(true,
+					false, idUsuario, page);
+		} else {
 			return notificacaoRepository.findAllEnvidasNaoExcluidasDadosExtras(true, false, idUsuario, dadosExtras, page);
 		}
 	}
