@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +32,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.Drive.Files;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
@@ -86,10 +88,19 @@ public class GoogleDriveFachada {
 	}
 
 	public List<File> listFiles(String idDirRaiz) throws IOException {
-		String pageToken = null;
-		FileList result = service.files().list().setQ(String.format("'%s' in parents", idDirRaiz)).setSpaces("drive")
-				.setFields("nextPageToken, files(id, name, parents)").setPageToken(pageToken).execute();
-		return result.getFiles();
+		return listFiles(idDirRaiz, "nextPageToken, files(id, name, parents)");
+	}
+
+	public List<File> listFiles(String idDirRaiz, String fields) throws IOException {
+		List<File> allFiles = new ArrayList<>();
+		Files.List request = service.files().list().setQ(String.format("trashed = false and '%s' in parents", idDirRaiz)).setFields(fields)
+				.setPageToken(null);
+		do {
+			FileList files = request.execute();
+			allFiles.addAll(files.getFiles());
+			request.setPageToken(files.getNextPageToken());
+		} while (request.getPageToken() != null);
+		return allFiles;
 	}
 
 	public List<File> listFilesNomeDir(String idDirRaiz, String nomeDir) {
