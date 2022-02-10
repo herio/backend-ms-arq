@@ -33,6 +33,9 @@ public class Notificacao extends Entidade implements Serializable {
 	@Column(name = "CONTEUDO")
 	private String conteudo;
 
+	@Column(name = "IMAGEM")
+	private String imagem;
+
 	@Column(name = "DADOS_EXTRAS")
 	private String dadosExtras;
 
@@ -64,6 +67,14 @@ public class Notificacao extends Entidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ID_DISPOSITIVO")
 	private Dispositivo dispositivo;
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
 
 	public Usuario getUsuarioOrigem() {
 		return usuarioOrigem;
@@ -177,11 +188,7 @@ public class Notificacao extends Entidade implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Notificacao{" +
-				"titulo='" + titulo + '\'' +
-				", conteudo='" + conteudo + '\'' +
-				", dadosExtras='" + dadosExtras + '\'' +
-				", token='" + token + '\'' +
-				'}';
+		return "Notificacao{" + "titulo='" + titulo + '\'' + ", conteudo='" + conteudo + '\'' + ", dadosExtras='" + dadosExtras + '\'' + ", token='"
+				+ token + '\'' + '}';
 	}
 }

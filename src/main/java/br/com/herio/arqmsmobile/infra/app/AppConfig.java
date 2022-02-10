@@ -2,7 +2,6 @@ package br.com.herio.arqmsmobile.infra.app;
 
 import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -17,8 +16,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import br.com.herio.arqmsmobile.infra.feign.FeignErrorDecoder;
 import br.com.herio.arqmsmobile.infra.feign.FeignRequestInterceptor;
 import br.com.herio.arqmsmobile.infra.log.AppCommonsRequestLoggingFilter;
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.LoggerContext;
 import feign.Logger;
 import feign.RequestInterceptor;
 import feign.codec.ErrorDecoder;
@@ -28,8 +25,8 @@ import feign.codec.ErrorDecoder;
 @EnableWebMvc
 public class AppConfig implements WebMvcConfigurer {
 
-	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = { "classpath:/META-INF/resources/",
-			"classpath:/resources/", "classpath:/static/", "classpath:/public/" };
+	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = { "classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/",
+			"classpath:/public/" };
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
@@ -41,7 +38,7 @@ public class AppConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
 	}
 
-	//CORS
+	// CORS
 	@Bean
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -54,7 +51,7 @@ public class AppConfig implements WebMvcConfigurer {
 		return new CorsFilter(source);
 	}
 
-	//LOGS
+	// LOGS
 	@Bean
 	public AppCommonsRequestLoggingFilter requestLoggingFilter() {
 		AppCommonsRequestLoggingFilter loggingFilter = new AppCommonsRequestLoggingFilter();
@@ -62,12 +59,10 @@ public class AppConfig implements WebMvcConfigurer {
 		loggingFilter.setIncludeQueryString(true);
 		loggingFilter.setIncludeHeaders(true);
 		loggingFilter.setIncludePayload(true);
-		LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
-		context.getLogger(loggingFilter.getClass().getName()).setLevel(Level.DEBUG);
 		return loggingFilter;
 	}
 
-	//FEIGN
+	// FEIGN
 	@Bean
 	Logger.Level feignLoggerLevel() {
 		return Logger.Level.FULL;

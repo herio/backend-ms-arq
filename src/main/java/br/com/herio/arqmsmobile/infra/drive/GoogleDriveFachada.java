@@ -29,7 +29,7 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.FileContent;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.Drive.Files;
@@ -49,7 +49,7 @@ public class GoogleDriveFachada {
 	private static final String URL_BASE_LOCALHOST = "http://192.168.0.12:";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GoogleDriveFachada.class);
-	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+	private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 	private static final String TOKENS_DIRECTORY_PATH = "tokens";
 
 	private static final Set<String> SCOPES = DriveScopes.all();

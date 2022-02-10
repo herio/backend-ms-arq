@@ -54,7 +54,7 @@ public class FirebaseFachada {
 				if (in == null) {
 					throw new FileNotFoundException("Resource not found: " + credentialsFile);
 				}
-				FirebaseOptions.Builder optionsBuilder = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(in));
+				FirebaseOptions.Builder optionsBuilder = FirebaseOptions.builder().setCredentials(GoogleCredentials.fromStream(in));
 				if (urlDatabase != null && !"".equals(urlDatabase)) {
 					optionsBuilder.setDatabaseUrl(urlDatabase);
 				}
@@ -69,7 +69,7 @@ public class FirebaseFachada {
 				if (in == null) {
 					throw new FileNotFoundException("Resource not found: " + credentialsFilePago);
 				}
-				FirebaseOptions.Builder optionsBuilder = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(in));
+				FirebaseOptions.Builder optionsBuilder = FirebaseOptions.builder().setCredentials(GoogleCredentials.fromStream(in));
 				if (urlDatabase != null && !"".equals(urlDatabase)) {
 					optionsBuilder.setDatabaseUrl(urlDatabasePago);
 				}
@@ -83,8 +83,12 @@ public class FirebaseFachada {
 
 	public boolean enviaNotificacao(Notificacao notificacao, boolean versaoPaga) {
 		try {
-			Message message = Message.builder().setNotification(new Notification(notificacao.getTitulo(), notificacao.getConteudo()))
-					.putAllData(notificacao.getMapDadosExtras()).setToken(notificacao.getDispositivo().getNumRegistro()).build();
+			Notification.Builder builder = Notification.builder().setTitle(notificacao.getTitulo()).setBody(notificacao.getConteudo());
+			if (notificacao.getImagem() != null) {
+				builder.setImage(notificacao.getImagem());
+			}
+			Message message = Message.builder().setNotification(builder.build()).putAllData(notificacao.getMapDadosExtras())
+					.setToken(notificacao.getDispositivo().getNumRegistro()).build();
 			FirebaseApp app = versaoPaga ? pago : gratis;
 			String response = FirebaseMessaging.getInstance(app).send(message);
 			LOGGER.debug("FirebaseFachada enviaNotificacao", response);
