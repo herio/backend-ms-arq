@@ -53,9 +53,9 @@ public class LogNotificacoesController {
 	}
 
 	@ApiOperation("removerLogNotificacao")
-	@DeleteMapping("/{idLog}")
-	public void removerApp(@PathVariable Long idLog) {
-		logNotificacaoRepository.deleteById(idLog);
+	@DeleteMapping("/{id}")
+	public void removerApp(@PathVariable Long id) {
+		logNotificacaoRepository.deleteById(id);
 	}
 
 }
