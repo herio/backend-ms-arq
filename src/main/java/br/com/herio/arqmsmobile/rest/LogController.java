@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,7 +25,7 @@ import io.swagger.annotations.Api;
 @RequestMapping("/actuator/log")
 public class LogController {
 	private static final String NO_CACHE = "no-cache";
-	public static final int QTD_LINHAS = 200;
+	public static final int QTD_LINHAS = 500;
 
 	@Value("${logging.file}")
 	private String log;
@@ -32,13 +35,20 @@ public class LogController {
 		File f = new File(log);
 		try {
 			ReversedLinesFileReader r = new ReversedLinesFileReader(f, Charset.defaultCharset());
+			Deque<String> linhas = new ArrayDeque<>();
 			for (Integer i = 0; i < QTD_LINHAS; i++) {
 				String line = r.readLine();
 				if (line == null) {
 					break;
 				}
-				response.getWriter().append(line).append(System.getProperty("line.separator"));
+				linhas.add(line);
 			}
+
+			Iterator<String> iterator = linhas.descendingIterator();
+			while (iterator.hasNext()) {
+				response.getWriter().append(iterator.next()).append(System.getProperty("line.separator"));
+			}
+
 			response.flushBuffer();
 			r.close();
 		} catch (IOException e) {
@@ -54,8 +64,7 @@ public class LogController {
 			response.setContentType("application/x-download");
 			response.setHeader("Pragma", NO_CACHE);
 			response.setHeader("Cache-Control", NO_CACHE);
-			response.addHeader("Content-Disposition",
-					"attachment; filename=\"app.log\"");
+			response.addHeader("Content-Disposition", "attachment; filename=\"app.log\"");
 			response.getOutputStream().write(IOUtils.toByteArray(is));
 			response.flushBuffer();
 		} catch (IOException e) {
