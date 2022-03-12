@@ -78,6 +78,11 @@ enum EnumSistema {
 				configItem.setTipoPeriodicidade("DIARIO");
 				configItem.setValorItem(Boolean.TRUE.toString())
 				configs.add(configItem);
+				configItem = new ConfiguracaoNotificacaoItem();
+				configItem.setTipoItem("MINUTOS");
+				configItem.setTipoPeriodicidade("DIARIO");
+				configItem.setValorItem(Boolean.TRUE.toString())
+				configs.add(configItem);
 				break;
 			case MEU_COACH_OAB:
 				ConfiguracaoNotificacaoItem configItem = new ConfiguracaoNotificacaoItem();
