@@ -28,6 +28,8 @@ public interface NotificacaoRepository extends CrudRepository<Notificacao, Long>
 	Optional<Notificacao> findTopByEnviadaAndDispositivoUsuarioIdAndDadosExtrasIgnoreCaseContainingAndDataEnvioBetweenOrderByDataCriacaoDesc(
 			boolean enviada, Long usuarioId, String dadosExtras, LocalDateTime dataInicio, LocalDateTime dataFim);
 
+	Optional<Notificacao> findTopByEnviadaAndDadosExtrasIgnoreCaseContainingOrderByDataCriacaoDesc(boolean enviada, String dadosExtras);
+
 	Page<Notificacao> findAllByEnviadaAndExcluidaAndNotificacaoOrigemIsNullAndDispositivoUsuarioIdAndDadosExtrasIgnoreCaseContainingOrderByDataCriacaoDesc(
 			boolean enviada, boolean excluida, Long usuarioId, String dadosExtras, Pageable page);
 
